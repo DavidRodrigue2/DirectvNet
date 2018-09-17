@@ -1,0 +1,1 @@
+boton.addEventListener("click", procesa);
