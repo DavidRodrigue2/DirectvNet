@@ -30,12 +30,13 @@ function doClick(n)
 }
 function change(n){
   var ab = document.getElementById('ol'+n).childNodes;
+  console.log(n);
+  
   if (ab.length == 1) {
     d = document.getElementById('a'+n).className = "L2";
   }
   else if (ab.length > 1) {
     d = document.getElementById('ol'+n).className = "father withChild";
-
     var cont = 0;
     var i = 0;
     for (i = 0; i < ab.length; i++) {
