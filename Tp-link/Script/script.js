@@ -1,48 +1,41 @@
 var child = document.getElementById('left').childNodes;
-
+var cant = (child.length - 1) / 2;  
 function doClick(n)
-{
-  var cant = (child.length - 1) / 2;
-  var ab = document.getElementById('ol'+n).childNodes;  
-  var a;
-  for (a = 1; a <= cant; a++) {
+{  
+  var ab = document.getElementById('ol'+n).childNodes;
+  for (var a = 1; a <= cant; a++) {
     if (a == n) {
-      change(n);
+      marcar(n, ab);
     }
-    else{
-      if (ab.length == 1) {
-        d = document.getElementById('a'+a).className = "L1";
-      }
-      else if (ab.length > 1) {
-        d = document.getElementById('ol'+a).className = "father";
-    
-        var cont = 0;
-        var i = 0;
-        for (i = 0; i < ab.length; i++) {
-          if (ab[i].className == "showChild") {
-            cont += 1;
-            ab[i].className = "child";
-          }
-        }
+    else if (a != n){
+      ocultar(a);
+    }
+  }
+}
+
+function marcar(n, ab){
+  if (ab.length <= 1) {
+    d = document.getElementById('a'+n).className = "L2";
+  }
+  else if (ab.length > 1) {
+    c = document.getElementById('ol'+n).className = "father withChild";
+    for (var i = 0; i < ab.length; i++) {
+      if (ab[i].className == "child") {
+        ab[i].className = "showChild";
       }
     }
   }
 }
-function change(n){
-  var ab = document.getElementById('ol'+n).childNodes;
-  console.log(n);
-  
-  if (ab.length == 1) {
-    d = document.getElementById('a'+n).className = "L2";
-  }
-  else if (ab.length > 1) {
-    d = document.getElementById('ol'+n).className = "father withChild";
-    var cont = 0;
+
+function ocultar(a){
+    var ac = document.getElementById('ol'+a).childNodes;
+    d = document.getElementById('a'+a).className = "L1";
+    d = document.getElementById('ol'+a).className = "father";
+  if (ac.length > 1) {
     var i = 0;
-    for (i = 0; i < ab.length; i++) {
-      if (ab[i].className == "child") {
-        cont += 1;
-        ab[i].className = "showChild";
+    for (i = 0; i < ac.length; i++) {
+      if (ac[i].className == "showChild") {
+        ac[i].className = "child";
       }
     }
   }
