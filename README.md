@@ -1,2 +1,2 @@
-# DirectvNet
+# DTVNet
 Proyecto de InnDirectv
