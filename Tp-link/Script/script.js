@@ -40,3 +40,10 @@ function ocultar(a){
     }
   }
 }
+
+function link (n){
+  var recorrido = {
+    id: "a1",
+
+  };
+}
