@@ -1,7 +1,20 @@
 var child = document.getElementById('left').childNodes;
+const iframe = document.getElementById('iframeCenter');
+const link = document.getElementById('a1');
+link.addEventListener('click', (event)=>{
+  console.log(iframe.src);
+}
+);
+
 var cant = (child.length - 1) / 2;  
 function doClick(n)
 {  
+  if(n==1){
+    d = iframe.src = "Pages/status.html";
+  }
+  if(n==2){
+    d = iframe.src = "Pages/quickSetup.html";
+  }
   var ab = document.getElementById('ol'+n).childNodes;
   for (var a = 1; a <= cant; a++) {
     if (a == n) {
@@ -39,11 +52,4 @@ function ocultar(a){
       }
     }
   }
-}
-
-function link (n){
-  var recorrido = {
-    id: "a1",
-
-  };
 }

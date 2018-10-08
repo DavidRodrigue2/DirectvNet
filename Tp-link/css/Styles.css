@@ -188,6 +188,9 @@ button{
   padding: 2px 30px;
   margin: 1px 1px 1px 40px;
 }
+.bloque:last-child{
+  margin-bottom: 20px;
+}
 
 
 
