@@ -25,6 +25,7 @@ body{
 .login{
   color: #333333;
 }
+/* --------------------PAGINA PPAL------------------- */
 .containerPpal{
   max-width: 900px;
   width: 841px;
@@ -42,16 +43,14 @@ body{
 .container{
   display: grid;
   grid-template-columns: 45% 45%;
-  grid-template-rows: 180px 120px;
+  grid-template-rows: 150px 1fr;
   grid-template-areas: 	"prInternet configLTE"
                         "parLan configLTE"
                         "DtVersion recursos";
   max-width: 100%;
-  height: 100vh;
   grid-row-gap: 10px;
   grid-column-gap: 40px;
   position: relative;
-  overflow: none;
 }
 .container .title{
   font-size: 9pt;
@@ -90,3 +89,20 @@ body{
 .col2{
   width: 60%
   }
+  /* -------------------LOGIN------------------------------- */
+  .containerLogin{
+    width: 500px;
+    text-align: center;
+    margin: 0 auto;
+  }
+  .containerLogin .description{
+    text-align: initial;
+  }
+  .containerLogin .text{
+    display: inline-block;
+    padding-right: 30px;
+  }
+  .containerLogin .buttonLogin{
+    padding: 1px 35px;
+  }
+  
