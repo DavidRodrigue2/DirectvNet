@@ -69,3 +69,6 @@ body{
   top: 64px;
   left: 155px;
 }
+.hidden{
+  display: none;
+}
