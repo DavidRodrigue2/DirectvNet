@@ -1,0 +1,66 @@
+body{
+  margin: 0;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+.header figure{
+  margin: 0;
+}
+.header img{
+  width: 100%;
+}
+.left{
+  border-right: 1px solid #0085D0;
+  width: 177px;
+  height: 100vh;
+}
+.loginContainer{
+  position: relative;
+  left: 15px;
+  top: 100px;
+}
+.loginContainer p{
+  width: 147px;
+  margin: 3px 0;
+  font-size: 14.5px;
+}
+.loginContainer .idioma{
+  border: 1px solid grey;
+  padding: 2px 0;
+  height: 23px;
+  font-size: 12px;
+}
+.loginContainer input{
+  width: 147px;
+  height: 23px;
+  margin: 3px 0;
+}
+.loginContainer button{
+  width: 150px;
+  margin-top: 2px;
+  height: 30px;
+}
+.left .help{
+  position: relative;
+  left: 15px;
+  top: 160px;
+  text-align: center;
+  width: 147px;
+  background-color: #f90;
+  padding: 8px 0;
+  cursor: pointer;  
+}
+.left a{
+  color: #fff;
+  font-size: 13px;
+  text-decoration: underline;
+}
+.left .ChangePass{
+  position: relative;
+  left: 15px;
+  top: 180px;
+  text-align: center;
+  width: 147px;
+  background-color: #f90;
+  padding: 8px 0;
+  cursor: pointer;  
+}
