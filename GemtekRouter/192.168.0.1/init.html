@@ -1,0 +1,107 @@
+<html>
+
+
+<!-- Mirrored from 192.168.0.1/init.html by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 11 Jan 2017 00:16:11 GMT -->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta http-equiv="Pragma" content="no-cache">
+<meta http-equiv="Cache-Control" content="no-cache">
+<META http-equiv="Content-Style-Type" content="text/css">
+<LINK rel="stylesheet" href="WHR-G300N-160149-style-ENG.css" type="text/css">
+<LINK rel="stylesheet" href="WHR-G300N-160149-style-ad-ENG.css" type="text/css">
+<script type="text/javascript">
+<!--
+function back()
+{
+  document.getElementById("content").style.display = "";
+	document.getElementById("confirm").style.display = "none";
+}
+
+function nextPage()
+{
+  document.getElementById("content").style.display = "none";
+  document.getElementById("confirm").style.display = "";
+}
+
+function initapply()
+{
+  document.initForm.submit();
+}
+// -->
+</script>
+</head>
+
+<body class="BFK_BODY">
+
+<br>
+<div id="content">
+
+<form method="POST" name="rebootForm">
+     <table class="AD_SET">
+     <tbody>
+     <tr>
+     <th>Reiniciar</th>
+        	<td>
+     		<table>
+     		<tr>
+     	 	<td>Se reiniciará la Device.<br>
+			<input type="hidden" name="nosave_reboot" value="1">
+     			<input type="submit" value="Reiniciar&#160;ahora" id="id_rebootBtn">
+     		</td>
+     		</tr>
+     		</table>
+      		</td>
+     </tr>
+     </tbody>
+     </table>
+</form>
+
+<hr>
+<br>
+<form method="POST" name="initForm">
+     <table class="AD_SET">
+     <tbody>
+     <tr>
+     <th>Inicializar</th>
+        	<td>
+     		<table>
+     		<tr>
+     	 	<td>Esta acci&oacute;n restablecer&aacute; la Device a sus valores predeterminados de f&aacute;brica<br>
+			<input type="hidden" name="nosave_init" value="1">
+     			<input type="button" value="Inicializar&#160;ahora" id="id_initBtn" onclick="nextPage();">
+     		</td>
+     		</tr>
+     		</table>
+        	</td>
+     </tr>
+     </tbody>
+     </table>
+</form>
+</div>
+
+<div id="confirm" style="display:none;">
+<p>
+    <BR>Inicialice las configuraci&oacute;n. Vuelva a configurar las opciones de red y de la LAN inal&aacute;mbrica del PC.
+</p>
+<p>
+Para confirmar la configuraci&oacute;n, pulse el bot&oacute;n &quot;Aplicar&quot;.
+</p>
+<div class="C_CONFIRM">
+<p>
+Para continuar con la configuraci&oacute;n&#x2C; efect&uacute;e el procedimiento siguiente.<br>
+<ol>
+<li>Cierre todas las ventanas del explorador.
+<li>Confirme que se ha establecido una conexi&oacute;n entre el equipo y el enrutador.</li>
+<li>Abra de nuevo el explorador y vuelva conectarse mediante la utilidad de configuraci&oacute;n de la Device.
+</ol>
+&nbsp;&nbsp;&nbsp;Para obtener m&aacute;s informaci&oacute;n, consulte el manual del usuario.
+</p>
+</div>
+     <input type="button" value="Aplicar" onclick="initapply();">
+     <input type="button" value="Cancelar" onclick="back();">
+</div>
+
+</body>
+
+<!-- Mirrored from 192.168.0.1/init.html by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 11 Jan 2017 00:16:11 GMT -->
+</html>

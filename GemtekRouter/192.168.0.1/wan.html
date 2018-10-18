@@ -1,0 +1,611 @@
+<html>
+
+
+<!-- Mirrored from 192.168.0.1/wan.html by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 11 Jan 2017 00:16:09 GMT -->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta http-equiv="Pragma" content="no-cache">
+<meta http-equiv="Cache-Control" content="no-cache">
+<META http-equiv="Content-Style-Type" content="text/css">
+<LINK rel="stylesheet" href="WHR-G300N-160149-style-ENG.css" type="text/css">
+<LINK rel="stylesheet" href="WHR-G300N-160149-style-ad-ENG.css" type="text/css">
+
+<script language="JavaScript" type="text/javascript" src="common.html"></script>
+<script language="JavaScript">
+<!--
+
+function manual_macaddr_change()
+{
+  if (document.forms[0].InternetDefMacUse[0].checked == true)
+  {
+    document.forms[0].InternetMacAddr.disabled = 1;
+  }
+  else
+  {
+    document.forms[0].InternetMacAddr.disabled = 0;
+  }
+}
+
+function wan_manual_change()
+{
+        if('1' == "1") 
+        {
+                if (document.forms[0].WanMethod[5].checked == true) //static
+                {
+                        document.forms[0].WANStaticIP.disabled = 0;
+                        document.forms[0].WANStaticMASK.disabled = 0;
+                }
+                else
+                {
+                        document.forms[0].WANStaticIP.disabled = 1;
+                        document.forms[0].WANStaticMASK.disabled = 1;
+                }
+
+                if ( document.forms[0].WanMethod[2].checked == true || document.forms[0].WanMethod[3].checked == true || document.forms[0].WanMethod[4].checked == true) //pppoe,pptp,l2tp
+                {
+                        document.forms[0].InternetDefaultGateway.disabled = 1;
+                }
+                else
+                {
+                        document.forms[0].InternetDefaultGateway.disabled = 0;
+                }
+
+                if ( document.forms[0].WanMethod[2].checked == true || document.forms[0].WanMethod[3].checked == true || document.forms[0].WanMethod[4].checked == true) //pppoe,pptp,l2tp
+                {
+                        document.forms[0].InternetMtu.disabled = 1;
+                } 
+                else 
+                {
+                        document.forms[0].InternetMtu.disabled = 0;
+                }
+
+                document.getElementById("routeron").style.display="";
+                document.getElementById("routeroff").style.display="none";
+        }
+        else
+        {
+                document.getElementById("routeron").style.display="none";
+                document.getElementById("routeroff").style.display="";
+        }
+}
+
+function check_ip_format(ip, item, type, netmask)
+{
+	var n;
+	var lanip='192.168.0.1';
+	var lanmask='255.255.255.0';
+	var canNotSetTo255=0;
+	if (netmask)
+	{
+		if (netmask.length > 0)
+		{
+			o = netmask.split('.');
+			if (o.length==4)
+			{
+				if (o[2]>=254)
+					canNotSetTo255=1;
+			}
+		}
+	}
+	
+  if (ip=="0.0.0.0")
+  {
+    Show_error(item,"No se puede usar la direcci&oacute;n reservada (0.0.0.0)");
+    return false;
+  }
+  if (ip=="255.255.255.255")
+  {
+    Show_error(item,"No se puede usar la direcci&oacute;n reservada (255.255.255.255)");
+    return false;
+  }
+  if (ip==lanip)
+  {
+    Show_error(item,"No se puede especificar la direcci&oacute;n IP de la LAN de esta Device");
+    return false;
+  }
+  
+  if (!isBlank(ip))
+  {
+    n = ip.split('.');
+    
+    if (n.length!=4)
+    {
+      Show_error(item,"Formato de direcci&oacute;n IP no v&aacute;lido");
+      return false;
+    }
+    else
+    {
+      if(isBlank(n[0]))
+      {
+        Show_error(item,"Formato de direcci&oacute;n IP no v&aacute;lido");
+        return false;
+      }	
+      else if((isNaN(n[0]))||(n[0]<=0)||(n[0]>255)||!check_integer(n[0])||check_initial_zero(n[0])) 
+      {
+        Show_error(item,"Formato de direcci&oacute;n IP no v&aacute;lido");
+        return false;
+      }
+      else if (n[0]==127)
+      {
+        Show_error(item,"No se puede usar la direcci&oacute;n de bucle invertido (127.XXX.XXX.XXX)");
+        return false;
+      }
+	  else if (n[0]>=224 && n[0]<=239)
+      {
+        Show_error(item,"No se puede usar la direcci&oacute;n de prueba (de 224.XXX.XXX.XXX a 239.XXX.XXX.XXX)");
+        return false;
+      }	
+      else if (n[0]>=240 && n[0]<=255)
+      {
+        Show_error(item,"No se puede usar la direcci&oacute;n de prueba (de 240.XXX.XXX.XXX a 255.XXX.XXX.XXX)");
+        return false;
+      }	
+      
+      if(isBlank(n[1]))
+      {
+        Show_error(item,"Formato de direcci&oacute;n IP no v&aacute;lido");
+        return false;
+      }
+      else if((isNaN(n[1]))||(n[1]<0)||(n[1]>255)||!check_integer(n[1])||check_initial_zero(n[1])) 
+      {
+        Show_error(item,"Formato de direcci&oacute;n IP no v&aacute;lido");
+        return false;
+      }		
+      
+      if(isBlank(n[2]))
+      {
+        Show_error(item,"Formato de direcci&oacute;n IP no v&aacute;lido");
+        return false;
+      }
+      else if((isNaN(n[2]))||(n[2]<0)||(n[2]>255)||!check_integer(n[2])||check_initial_zero(n[2])) 
+      {
+        Show_error(item,"Formato de direcci&oacute;n IP no v&aacute;lido");
+        return false; 
+      }
+      
+      if(isBlank(n[3]))
+      {
+        Show_error(item,"Formato de direcci&oacute;n IP no v&aacute;lido");
+        return false;
+      }
+      else if((isNaN(n[3]))||(n[3]<=0)||(n[3]>=255)||!check_integer(n[3])||check_initial_zero(n[3])) 
+      {
+       	if (!(canNotSetTo255==0 && n[3]==255))
+       	{
+        	Show_error(item,"Formato de direcci&oacute;n IP no v&aacute;lido");
+        	return false;
+        }
+      }
+    }
+    
+    if (type=="staticip")//check lanip netmask and wanip netmask
+    {
+      if (check_the_same_subnet(lanip,ip,lanmask) || check_the_same_subnet(lanip,ip,document.forms[0].WANStaticMASK.options[document.forms[0].WANStaticMASK.selectedIndex].value))
+      {
+        Show_error(item,"No se puede usar la direcci&oacute;n IP del rango de direcciones de red de la LAN");
+        return false;
+      }
+    }
+  }
+  return true;
+}
+
+function isEmpty(s)
+{
+	if(s.length==0)
+	{
+		return true;
+	}
+	else
+	{
+		return false;
+	}
+}
+
+function check_initial_zero(tmp)
+{	
+	if(tmp.length>1&&tmp.charAt(0)=="0")
+	{
+		return true;
+	}
+	return false;
+}
+
+function isAllowValueIP(s,item)
+{
+  var i;
+	for (i=0; i<s.length; i++)
+	{
+		var c;
+		
+		c=s.charAt(i);
+	
+		if (((c>='0')&&(c<='9')) || (c=='.'))
+		{
+      continue;
+		}
+		else
+		{
+			Show_error(item,"Contiene un car&aacute;cter no v&aacute;lido");
+      return false;
+		}
+	}
+	
+	return true;
+}
+
+function init()//Candy add 090928
+{
+  var wannetmask='';
+  
+  if (wannetmask=='')
+    document.forms[0].WANStaticMASK.selectedIndex=6;//255.255.255.0
+}
+
+function apply()
+{
+  var wannetmask=document.forms[0].WANStaticMASK.options[document.forms[0].WANStaticMASK.selectedIndex].value;
+  Hide_error();
+  /*
+  document.forms[0].WANStaticIP.value = ip_normalize_0(document.forms[0].WANStaticIP.value);
+  document.forms[0].InternetDefaultGateway.value = ip_normalize_0(document.forms[0].InternetDefaultGateway.value);
+  document.forms[0].InternetDNS1.value = ip_normalize_0(document.forms[0].InternetDNS1.value);
+  document.forms[0].InternetDNS2.value = ip_normalize_0(document.forms[0].InternetDNS2.value);
+  */
+  if (document.forms[0].WanMethod[5].checked==true)//if select Static IP Address :can't be empty  
+  {
+    if (isEmpty(document.forms[0].WANStaticIP.value))
+    {
+      Show_error("Direcci&oacute;n IP manual","No configurado");
+      return false;
+    }
+    else if (!isAllowValueIP(document.forms[0].WANStaticIP.value,"Direcci&oacute;n IP manual") || 
+    !check_ip_format(document.forms[0].WANStaticIP.value,"Direcci&oacute;n IP manual","staticip",wannetmask))
+    {
+      return false;
+    }
+
+    if (isEmpty(document.forms[0].InternetDefaultGateway.value)){
+	Show_error("Static Mode Default Gateway","No configurado");
+	return false;
+    }
+  }
+  
+  if (!isEmpty(document.forms[0].InternetDefaultGateway.value))//Default Gateway
+  {
+    if (!isAllowValueIP(document.forms[0].InternetDefaultGateway.value,"Pasarela predeterminada") || !check_ip_format(document.forms[0].InternetDefaultGateway.value,"Pasarela predeterminada","defaultgw"))
+    {
+      return false;
+    }
+    else if ((document.forms[0].WANStaticIP.value==document.forms[0].InternetDefaultGateway.value) && document.forms[0].WanMethod[5].checked==true)//Default Gatewaycan't same with Static IP Address
+    {
+      Show_error("Pasarela predeterminada","No se puede especificar la direcci&oacute;n IP de la INTERNET de esta Device");
+      return false;
+    }
+    if (document.forms[0].WanMethod[5].checked==true)//check default getway
+    {
+      if (!check_the_same_subnet(document.forms[0].WANStaticIP.value,document.forms[0].InternetDefaultGateway.value,wannetmask))
+      {
+        Show_error("Pasarela predeterminada","Fuera del rango de direcciones de red de la LAN/Internet");
+        return false;
+      }
+	  else if (check_broadcast_ip_mask(document.forms[0].InternetDefaultGateway.value, document.forms[0].WANStaticMASK.options[document.forms[0].WANStaticMASK.selectedIndex].value , document.forms[0].WANStaticIP.value))
+	  {
+		Show_WizardError("Pasarela predeterminada","Fuera del rango de direcciones de red de la LAN/Internet");
+		return false;
+      }
+    }
+  }
+  
+  if (!isEmpty(document.forms[0].InternetDNS1.value))//dns1 //checkip(Address of DNS Name Server)
+  {
+    if (!isAllowValueIP(document.forms[0].InternetDNS1.value,"Servidor DNS principal") || !check_ip_format(document.forms[0].InternetDNS1.value,"Servidor DNS principal",""))
+    {
+      return false;
+    }
+    else if ((document.forms[0].WANStaticIP.value==document.forms[0].InternetDNS1.value) && document.forms[0].WanMethod[5].checked==true)
+    {
+      Show_error("Servidor DNS principal","No se puede especificar la direcci&oacute;n IP de la INTERNET de esta Device");
+      return false;
+    }
+  }
+  
+  if (!isEmpty(document.forms[0].InternetDNS2.value))//dns2
+  {
+    if (!isAllowValueIP(document.forms[0].InternetDNS2.value,"Servidor DNS secundario") || !check_ip_format(document.forms[0].InternetDNS2.value,"Servidor DNS secundario",""))
+    {
+      return false;
+    }
+    else if ((document.forms[0].WANStaticIP.value==document.forms[0].InternetDNS2.value) && document.forms[0].WanMethod[5].checked==true)
+    {
+      Show_error("Servidor DNS secundario","No se puede especificar la direcci&oacute;n IP de la INTERNET de esta Device");
+      return false;
+    }
+    //Primary can't same with Secondary
+    if(!isEmpty(document.forms[0].InternetDNS1.value) && (document.forms[0].InternetDNS1.value==document.forms[0].InternetDNS2.value))
+    {
+      Show_error("Servidor DNS secundario","Direcci&oacute;n IP duplicada");
+      return false;
+    }
+    else if (isEmpty(document.forms[0].InternetDNS1.value))//if not empty 2 and 1 can't be empty
+    {
+      Show_error("Servidor DNS principal","Para introducir la direcci&oacute;n del servidor DNS secundario, primero debe introducir la direcci&oacute;n del servidor DNS principal");
+      return false;
+    }
+  }
+  var check_mac_num=check_mac(document.forms[0].InternetMacAddr.value);//if(Use this address )checkmac(Internet MAC)
+  if (document.forms[0].InternetDefMacUse[1].checked==true)
+  {
+    if (isEmpty(document.forms[0].InternetMacAddr.value))//if (select) mac can't be empty
+    {
+      Show_error("Direcci&oacute;n MAC de la INTERNET","No configurado");
+      return false;
+    }	       
+    else if(check_mac_num!="0")
+	{
+        if((check_mac_num=="1")||(check_mac_num=="2"))
+        {
+	      Show_error("Direcci&oacute;n MAC de la INTERNET","Direcci&oacute;n MAC no v&aacute;lida");
+	      return false;	
+        }
+	}	
+  }
+  
+  if (document.forms[0].InternetMtu.disabled==false)//if mtu enable
+  {
+    if (isEmpty(document.forms[0].InternetMtu.value))//mtu can't be empty
+    {
+      Show_error("Tama&ntilde;o MTU del puerto INTERNET","No configurado");
+      return false;
+    }
+    else if (check_integer(document.forms[0].InternetMtu.value))//checkint(578-1500 mtu)
+    {
+      if (parseInt(document.forms[0].InternetMtu.value, 10)<578)
+      {
+        Show_error("Tama&ntilde;o MTU del puerto INTERNET","Valor introducido demasiado peque&ntilde;o");
+        return false;
+      }
+      else if (parseInt(document.forms[0].InternetMtu.value, 10)>1500)
+      {
+        Show_error("Tama&ntilde;o MTU del puerto INTERNET","Valor introducido demasiado grande");
+        return false;
+      }
+    }
+    else //if (!check_integer(document.forms[0].InternetMtu.value))
+    {
+      Show_error("Tama&ntilde;o MTU del puerto INTERNET","Contiene un car&aacute;cter no v&aacute;lido");
+      return false;
+    }
+    if (isInitialZero(document.forms[0].InternetMtu.value))
+    {
+      var mtu=parseInt(document.forms[0].InternetMtu.value,10);
+      document.forms[0].InternetMtu.value=mtu.toString(10);
+    }
+  }
+
+	if(document.forms[0].WanMethod[3].checked==true){ //pptp
+		if(""== ""){
+			Show_error("PPTP configuration null","Please edit PPTP connection configuration on PPTP/L2TP page.");
+			return false;	
+		}
+	}
+
+	if(document.forms[0].WanMethod[4].checked==true){ //l2tp
+                if(""== ""){
+                        Show_error("L2TP configuration null","Please edit L2TP connection configuration on PPTP/L2TP page.");
+                        return false;   
+                }
+        }
+  
+  document.forms[0].submit();
+}
+
+function switch_init()
+{
+//	var auto_switch = ;
+//	if(auto_switch == 3)
+//	{
+//		document.getElementById("routeron").style.display="none";
+//		document.getElementById("routeroff").style.display="none";
+//	}
+//	else
+//	{
+		document.getElementById("routerauto").style.display="none";
+//	}
+}
+
+// -->
+</script>
+
+</head>
+<body class="BFK_BODY" onLoad="wan_manual_change();manual_macaddr_change();init();switch_init();">
+<br>
+
+<form method="POST">
+<div id="id_errtbl" class="C_ERR" style="display:none;"></div>
+<div id="routeron">
+  <table class=AD_SET>
+    <tr>
+      <th>M&eacute;todo de obtenci&oacute;n de una direcci&oacute;n IP</th>
+      <td>
+        <table>
+          <tr>
+            <td>
+              <input type="radio" style="display:none;" value="4" name="WanMethod" onClick="wan_manual_change();" >
+            </td>
+            <td style="display:none;">Permite realizar la configuraci&oacute;n sencilla (Asistente para la conexi&oacute;n a Internet)</td> <!--Easy Setup-->
+          </tr>
+          <tr>
+            <td>
+     	        <input type="radio" value="1" name="WanMethod" onClick="wan_manual_change();" checked>
+            </td>
+            <td>Obtenci&oacute;n de una direcci&oacute;n IP de forma autom&aacute;tica de un servidor DHCP</td> <!--DHCP-->
+          </tr>
+          <tr>
+            <td>
+     	        <input type="radio" style='display:none' value="2" name="WanMethod" onClick="wan_manual_change();" >
+            </td>
+            <td style='display:none'> Usar cliente PPPoE</td> <!--PPPOE-->
+          </tr>
+	<tr>
+            <td>
+                <input type="radio" style="display:none;" value="6" name="WanMethod" onClick="wan_manual_change();" >
+            </td>
+            <td style="display:none;">Use PPTP Client </td> <!--PPTP-->
+          </tr>
+        <tr>
+            <td>
+                <input type="radio" style="display:none;" value="5" name="WanMethod" onClick="wan_manual_change();" >
+            </td>
+            <td style="display:none;">Use L2TP Client </td> <!--L2TP-->
+          </tr>
+          <tr>
+            <td>
+     	        <input type="radio" value="3" name="WanMethod" onClick="wan_manual_change();" >
+            </td>
+            <td> Usar esta direcci&oacute;n </td> <!--Static-->
+          </tr>
+          <tr>
+            <td> </td>
+            <td>
+              <table>
+                <tr>
+                  <td> Direcci&oacute;n IP est&aacute;tica </td>
+                  <td>
+                      <input type="text" name="WANStaticIP" size="20" maxlength="15" value="">
+                  </td>
+                </tr>
+                <tr>
+                  <td> M&aacute;scara de subred </td>
+                  <td> <select size="1" name="WANStaticMASK">
+<option value="255.255.255.252" >255.255.255.252</option>
+<option value="255.255.255.248" >255.255.255.248</option>
+<option value="255.255.255.240" >255.255.255.240</option>
+<option value="255.255.255.224" >255.255.255.224</option>
+<option value="255.255.255.192" >255.255.255.192</option>
+<option value="255.255.255.128" >255.255.255.128</option>
+<option value="255.255.255.0" >255.255.255.0</option>
+<option value="255.255.254.0" >255.255.254.0</option>
+<option value="255.255.252.0" >255.255.252.0</option>
+<option value="255.255.248.0" >255.255.248.0</option>
+<option value="255.255.240.0" >255.255.240.0</option>
+<option value="255.255.224.0" >255.255.224.0</option>
+<option value="255.255.192.0" >255.255.192.0</option>
+<option value="255.255.128.0" >255.255.128.0</option>
+<option value="255.255.0.0" >255.255.0.0</option>
+<option value="255.254.0.0" >255.254.0.0</option>
+<option value="255.252.0.0" >255.252.0.0</option>
+<option value="255.248.0.0" >255.248.0.0</option>
+<option value="255.240.0.0" >255.240.0.0</option>
+<option value="255.224.0.0" >255.224.0.0</option>
+<option value="255.192.0.0" >255.192.0.0</option>
+<option value="255.128.0.0" >255.128.0.0</option>
+<option value="255.0.0.0" >255.0.0.0</option>
+<option value="254.0.0.0" >254.0.0.0</option>
+<option value="252.0.0.0" >252.0.0.0</option>
+<option value="248.0.0.0" >248.0.0.0</option>
+<option value="240.0.0.0" >240.0.0.0</option>
+<option value="224.0.0.0" >224.0.0.0</option>
+<option value="192.0.0.0" >192.0.0.0</option>
+<option value="128.0.0.0" >128.0.0.0</option>
+</select>
+</td>
+                </tr>
+              </table>
+            </td>
+          </tr>
+        </table>
+      </td>
+    </tr>
+  </table>
+</div>
+
+<div id="routeroff">
+  <table class=AD_SET>
+    <tr>
+      <th>En cuanto al direcci&oacute;n IP adquisici&oacute;n m&eacute;todo,<BR> "Permite realizar la configuraci&oacute;n sencilla" es fijo a.
+    </tr>
+  </table>
+</div>
+
+<div id="routerauto">
+  <table class=AD_SET>
+    <tr>
+      <th>En cuanto al direcci&oacute;n IP adquisici&oacute;n m&eacute;todo,<BR> "Permite realizar la configuraci&oacute;n sencilla" es fijo a.
+    </tr>
+  </table>
+</div>
+<div>
+  <p class="notice" style='display:none'>Para configurar PPPoE&#x2C;<A href="#" onClick="top.location.href='index0303.html?page=pppoe.html';">haga clic aqu&iacute;</a>.</p>  
+
+  <hr>
+  <table class=AD_TTL2>
+    <tbody>
+    <tr><td>Configuraci&oacute;n avanzada  </td></tr>
+    </tbody>
+  </table>
+
+  <table class=AD_SET>
+    <tr>
+      <th>Pasarela predeterminada</th>
+      <td>
+        <input type="text" name="InternetDefaultGateway" size="20" maxlength="15" value="">
+      </td>
+    </tr>
+    <tr>
+      <th>Direcci&oacute;n del servidor DNS<BR>(servidor de nombres de dominio)</th>
+      <td>
+        <table>
+          <tr>
+            <td>Principal:</td>
+            <td>
+       			  <input type="text" name="InternetDNS1" size="20" maxlength="15" value="">
+       	    </td>
+          </tr>
+          <tr>
+            <td>Secundario:</td>
+            <td>
+       			  <input type="text" name="InternetDNS2" size="20" maxlength="15" value="">
+       	    </td>
+          </tr>
+        </table>
+      </td>
+    </tr>
+    <tr>
+      <th>Direcci&oacute;n MAC de la INTERNET</th>
+      <td>
+        <table>
+          <tr>
+            <td>
+     	        <input type="radio" value="1" name="InternetDefMacUse" onClick="manual_macaddr_change();" checked>
+            </td>
+            <td>
+        		Usar la direcci&oacute;n MAC predeterminada(F8:35:DD:BF:09:77)
+            </td>
+          </tr>
+          <tr>
+            <td>
+     	        <input type="radio" value="0" name="InternetDefMacUse" onClick="manual_macaddr_change();" >
+            </td>
+            <td>
+     	        Usar esta direcci&oacute;n
+     			    <input type="text" name="InternetMacAddr" size="20" maxlength="17" value="">
+            </td>
+          </tr>
+        </table>
+      </td>
+    </tr>
+    <tr>
+      <th>Tama&ntilde;o MTU del puerto INTERNET</th>
+      <td><input type="text" name="InternetMtu" size="10" maxlength="4" value="1500">Bytes
+      </td>
+    </tr>
+
+  </table>
+</div>
+  <p><input type="button" value="Aplicar" onclick="apply();"></p>
+</form>
+</body>
+
+<!-- Mirrored from 192.168.0.1/wan.html by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 11 Jan 2017 00:16:09 GMT -->
+</html>

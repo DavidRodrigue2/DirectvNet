@@ -1,0 +1,699 @@
+
+
+<html>
+
+<!-- Mirrored from 192.168.0.1/ddns.html by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 11 Jan 2017 00:16:09 GMT -->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta http-equiv="Pragma" content="no-cache">
+<meta http-equiv="Cache-Control" content="no-cache">
+<meta http-equiv="Expires" content="Thu, 01 Dec 1994 16:00:00 GMT"><META http-equiv="Content-Style-Type" content="text/css"><LINK rel="stylesheet" href="WHR-G300N-160149-style-ENG.css" type="text/css"><LINK rel="stylesheet" href="WHR-G300N-160149-style-ad-ENG.css" type="text/css">
+<script language="javascript" type="text/javascript" src="common.html"></script>
+<script language="JavaScript">
+<!--
+
+function init_start()
+{
+	top.frames[3].location.href = "help/help_ddns.html";
+
+//	var Region="";
+
+//	if (Region == "JP")
+//	{
+//		self.location.href='ddns_JP.html';
+//	}
+//	else
+//	{
+		document.getElementById("id_All").style.display = "block";
+		init();
+//	}
+}
+
+function set_display()
+{
+
+	var dnsmodeselect=document.getElementById("id_DDNSModuleSelect");
+
+	document.getElementById("id_ddns_ext_dyndns").style.display = "none";
+	document.getElementById("id_ddns_ext_custom").style.display = "none";
+	document.getElementById("id_ddns_ext_noip").style.display = "none";
+	document.getElementById("id_ddns_ext_tzo").style.display = "none";
+	document.getElementById("id_ddns_ext_dhs").style.display = "none";
+	document.getElementById("id_ddns_ext_dyndns").disabled = true;
+	document.getElementById("id_ddns_ext_custom").disabled = true;
+	document.getElementById("id_ddns_ext_noip").disabled = true;
+	document.getElementById("id_ddns_ext_tzo").disabled = true;
+	document.getElementById("id_ddns_ext_dhs").disabled = true;
+
+	if(dnsmodeselect.selectedIndex == 1){
+                document.getElementById("id_ddns_ext_dyndns").style.display = "";
+                document.getElementById("id_ddns_ext_dyndns").disabled = false;
+        }
+	if(dnsmodeselect.selectedIndex == 2){
+                document.getElementById("id_ddns_ext_custom").style.display = "";
+                document.getElementById("id_ddns_ext_custom").disabled = false;
+        }
+	if(dnsmodeselect.selectedIndex == 3){
+                document.getElementById("id_ddns_ext_noip").style.display = "";
+                document.getElementById("id_ddns_ext_noip").disabled = false;
+        }	
+	if(dnsmodeselect.selectedIndex == 4){
+                document.getElementById("id_ddns_ext_tzo").style.display = "";
+                document.getElementById("id_ddns_ext_tzo").disabled = false;
+        }
+	if(dnsmodeselect.selectedIndex == 5){
+                document.getElementById("id_ddns_ext_dhs").style.display = "";
+                document.getElementById("id_ddns_ext_dhs").disabled = false;
+        }
+}
+
+function sendselect()
+{
+	var dnsmodeselect=document.getElementById("id_DDNSModuleSelect");
+
+	 if(dnsmodeselect.selectedIndex == 0)
+	 {
+		document.form_main.DDNSUser.value = "";
+		document.form_main.DDNSPassword.value = "";
+	 }
+	
+}
+
+function init()
+{
+	var ModuleEnable="0";
+	var DnsType="dyndns";
+	var dnsmodeselect=document.getElementById("id_DDNSModuleSelect");
+	var DnsStatus="";
+	var status;
+
+	var USER = "";
+	var PWD = "";
+	var HOST = "";
+//	var UPDATE = "7";
+
+	if(DnsStatus=="0")
+		status="Error de actualizaci&oacute;n";
+	else if(DnsStatus=="1")
+		status="Actualizaci&oacute;n correcta";
+	else if(DnsStatus=="2")
+		status="Confirmando...";
+
+	if(ModuleEnable == "0")
+	{
+		dnsmodeselect.selectedIndex = 0;
+	//	document.getElementById("id_INFOADDR").innerHTML ="No se ha obtenido ninguna direcci&oacute;n IP";
+	//	document.getElementById("id_INFOHOST").innerHTML ="Deshabilitado";
+	//	document.getElementById("id_INFOSTATUS").innerHTML ="Deshabilitado";
+	}
+	else {
+		if(DnsType == "dyndns"){
+			dnsmodeselect.selectedIndex = 1;
+			document.getElementById("user_dyn").value = USER;
+              		document.getElementById("pwd_dyn").value = PWD;
+                	document.getElementById("host_dyn").value = HOST;
+//                	document.getElementById("day_dyn").value = UPDATE;
+		}else if(DnsType == "custom"){
+			dnsmodeselect.selectedIndex = 2;
+			document.getElementById("user_cus").value = USER;
+			document.getElementById("pwd_cus").value = PWD;
+			document.getElementById("host_cus").value = HOST;
+//			document.getElementById("day_cus").value = UPDATE;
+		}else if(DnsType == "noip"){
+			dnsmodeselect.selectedIndex = 3;
+			document.getElementById("user_noip").value = USER;
+               		document.getElementById("pwd_noip").value = PWD;
+               		document.getElementById("host_noip").value = HOST;
+//               		document.getElementById("day_noip").value = UPDATE;
+		}else if(DnsType == "tzo"){
+			dnsmodeselect.selectedIndex = 4;
+			document.getElementById("user_tzo").value = USER;
+                	document.getElementById("pwd_tzo").value = PWD;
+                	document.getElementById("host_tzo").value = HOST;
+  //            		document.getElementById("day_tzo").value = UPDATE;
+		}else if(DnsType == "dhs"){
+			dnsmodeselect.selectedIndex = 5;
+                        document.getElementById("user_dhs").value = USER;
+                        document.getElementById("pwd_dhs").value = PWD;
+                        document.getElementById("host_dhs").value = HOST;
+//                        document.getElementById("day_dhs").value = UPDATE;
+		}
+
+
+//		document.getElementById("id_INFOADDR").innerHTML ="192.168.100.129";
+  //              document.getElementById("id_INFOHOST").innerHTML ="";
+    //            if(DnsStatus.length==0)
+      //              document.getElementById("id_INFOSTATUS").innerHTML ="Error de actualizaci&oacute;n"
+         //       else
+           //             document.getElementById("id_INFOSTATUS").innerHTML =status;
+	}
+	set_display();
+}
+
+function check_domain(s)
+{
+	for (i=0; i<s.length; i++)
+	{
+		var c;
+			
+		c=s.charAt(i);
+		
+		if (((c>='0')&&(c<='9')) || ((c>='a')&&(c<='z')) || ((c>='A')&&(c<='Z')) || (c=='.') || (c=='-'))
+		{
+			continue;
+		}
+		else
+		{
+			return false;
+		}
+	}
+	return true;
+}
+
+function check_TZOmail(s)
+{
+	for (i=0; i<s.length; i++)
+	{
+		var c;
+			
+		c=s.charAt(i);
+		
+		//if (((c>='0')&&(c<='9')) || ((c>='a')&&(c<='z')) || ((c>='A')&&(c<='Z')) || (c=='@') || (c=='/') || (c=='*') || (c=='+') || (c=='_') || (c=='-') || (c=='!') || (c=='#') || (c=='$') || (c=='%') || (c=='.'))
+		if (((c>='0')&&(c<='9')) || ((c>='a')&&(c<='z')) || ((c>='A')&&(c<='Z')) || (c=='!') || (c=='@') || (c=='#') || (c=='$') || (c=='%') || (c=='^') || (c=='&') || (c=='*') || (c=='_') || (c=='-') || (c=='=') || (c=='+')|| (c=='{')|| (c=='}')|| (c=='|')|| (c=='.')|| (c==' ')|| (c=='index-2.html')|| (c=='?')|| (c=='~')|| (c=='`'))
+		{
+			continue;
+		}
+		else
+		{
+			return false;
+		}
+	}
+	
+//+++Eric add parsing E-mail
+	if(s.charAt(0) == '.' || s.charAt(s.length-1) == '.'){
+		return false;
+	}
+	if(s.charAt(s.search("@")+1) == '.' || s.charAt(s.search("@")-1) == '.'){
+		return false;
+	}	
+//---Eric add parsing E-mail
+
+	return true;
+}
+
+function check_mailaddrAT(s)
+{
+	var ATcount=0;
+	
+	for (i=0; i<s.length; i++)
+	{
+		var c;
+			
+		c=s.charAt(i);
+		
+		if (c=='@')
+		{
+			ATcount++;
+		}
+	}
+	if(ATcount>1)
+		return false;
+	else
+		return true;
+}
+
+function DoRefresh()
+{
+	window.location.assign(location);
+	
+}
+
+function btnApply(){
+
+	var dnsmodeselect=document.getElementById("id_DDNSModuleSelect");
+//	var Module_Enable = document.form_main.DDNSModuleEnable.value;
+//	var TYPE = document.form_main.DDNSSType.value;
+//	var USER = document.form_main.DDNSUser.value;
+//	var PWD = document.form_main.DDNSPassword.value;
+//	var HOST = document.form_main.DDNSDyndnsHost.value;
+//	var UPDATE = document.form_main.DDNSUpdateInterval.value;
+	
+	if(document.getElementById("id_DDNSModuleSelect").value == "none"){
+                document.form_main.DDNSModuleEnable.value = "0";
+                document.form_main.DDNSSType.value = "dyndns";
+                document.form_main.DDNSUser.value = "";
+                document.form_main.DDNSPassword.value = "";
+                document.form_main.DDNSDyndnsHost.value = "";
+//                document.form_main.DDNSUpdateInterval.value = "";
+        }
+	else if(document.getElementById("id_DDNSModuleSelect").value == "dyndns"){
+		document.form_main.DDNSModuleEnable.value = "1";
+		document.form_main.DDNSSType.value = "dyndns";
+		document.form_main.DDNSUser.value = document.getElementById("user_dyn").value;
+		document.form_main.DDNSPassword.value = document.getElementById("pwd_dyn").value;
+		document.form_main.DDNSDyndnsHost.value = document.getElementById("host_dyn").value;
+//		document.form_main.DDNSUpdateInterval.value = document.getElementById("day_dyn").value;
+	}
+	else if(document.getElementById("id_DDNSModuleSelect").value == "custom"){
+		document.form_main.DDNSModuleEnable.value = "1";
+		document.form_main.DDNSSType.value = "custom";
+                document.form_main.DDNSUser.value = document.getElementById("user_cus").value;
+                document.form_main.DDNSPassword.value = document.getElementById("pwd_cus").value;
+                document.form_main.DDNSDyndnsHost.value = document.getElementById("host_cus").value;
+//		document.form_main.DDNSUpdateInterval.value = document.getElementById("day_cus").value;
+        }
+	else if(document.getElementById("id_DDNSModuleSelect").value == "noip"){
+		document.form_main.DDNSModuleEnable.value = "1";
+		document.form_main.DDNSSType.value = "noip";
+                document.form_main.DDNSUser.value = document.getElementById("user_noip").value;
+                document.form_main.DDNSPassword.value = document.getElementById("pwd_noip").value;
+                document.form_main.DDNSDyndnsHost.value = document.getElementById("host_noip").value;
+//		document.form_main.DDNSUpdateInterval.value = document.getElementById("day_noip").value;
+        }
+	else if(document.getElementById("id_DDNSModuleSelect").value == "tzo"){
+		document.form_main.DDNSModuleEnable.value = "1";
+		document.form_main.DDNSSType.value = "tzo";
+                document.form_main.DDNSUser.value = document.getElementById("user_tzo").value;
+                document.form_main.DDNSPassword.value = document.getElementById("pwd_tzo").value;
+                document.form_main.DDNSDyndnsHost.value = document.getElementById("host_tzo").value;
+//		document.form_main.DDNSUpdateInterval.value = document.getElementById("day_tzo").value;
+        }
+	else if(document.getElementById("id_DDNSModuleSelect").value == "dhs"){
+                document.form_main.DDNSModuleEnable.value = "1";
+                document.form_main.DDNSSType.value = "dhs";
+                document.form_main.DDNSUser.value = document.getElementById("user_dhs").value;
+                document.form_main.DDNSPassword.value = document.getElementById("pwd_dhs").value;
+                document.form_main.DDNSDyndnsHost.value = document.getElementById("host_dhs").value;
+//                document.form_main.DDNSUpdateInterval.value = document.getElementById("day_dhs").value;
+        }
+
+	var Module_Enable = document.form_main.DDNSModuleEnable.value;
+	var TYPE = document.form_main.DDNSSType.value;
+	var USER = document.form_main.DDNSUser.value;
+	var PWD = document.form_main.DDNSPassword.value;
+	var HOST = document.form_main.DDNSDyndnsHost.value;
+//	var UPDATE = document.form_main.DDNSUpdateInterval.value;
+
+	if(Module_Enable == "1"){
+		if(USER.length==0 || PWD.length==0 || HOST.length==0 ){
+			alert("Not configured");
+			return false;
+		}
+
+		if(isBlank(USER) || isBlank(PWD) || !Escape_String(USER) || !Escape_String(PWD)){
+			alert("Invalid character");
+			return false;
+		}
+
+//		if(!check_domain(HOST) || HOST.charAt(0)=='-' || HOST.charAt(0)=='.'|| HOST.charAt(HOST.charAt(HOST.length-1) == '-') || HOST.charAt(HOST.charAt(HOST.length-1) == '.')){
+//			alert("Hostname, Invalid character");
+//			return false;
+//		}
+
+		if(!check_domain(PWD)){
+                        alert("Password, Invalid character");
+                        return false;
+                }
+		if(!check_domain(HOST)){
+			alert("Hostname, Invalid character");
+			return false;
+		}
+//		if(!check_integer(UPDATE)){
+//			alert("Invalid character");
+//			return false;
+//		}
+
+//		if(UPDATE>35){
+//			alert("The Update Period value is too large");
+//			return false;
+//		}
+	}
+	sendselect();
+        document.form_main.submit();
+}
+
+
+/*
+function DoSubmit()
+{
+	var dnsmodeselect=document.getElementById("id_DDNSModuleSelect");
+	if(dnsmodeselect.selectedIndex == 1)
+	{
+		if(document.form_main.DDNSUser.value.length==0)
+		{
+			Show_error("Nombre de usuario","No configurado");
+			return false;
+		}
+		else if(isBlank(document.form_main.DDNSUser.value))
+		{
+			Show_error("Nombre de usuario","No se puede usar este car&aacute;cter como car&aacute;cter inicial ni final");
+			return false;
+		}
+		else if(!Escape_String(document.form_main.DDNSUser.value))
+		{
+			Show_error("Nombre de usuario","Contiene un car&aacute;cter no v&aacute;lido");
+			return false;		
+		}		
+		else if(document.form_main.DDNSPassword.value.length==0)
+		{
+			Show_error("Contrase&ntilde;a","No configurado");
+			return false;
+		}
+		else if(isBlank(document.form_main.DDNSPassword.value))
+		{
+			Show_error("Contrase&ntilde;a","No se puede usar este car&aacute;cter como car&aacute;cter inicial ni final");
+			return false;
+		}
+		else if(!Escape_String(document.form_main.DDNSPassword.value))
+		{
+			Show_error("Contrase&ntilde;a","Contiene un car&aacute;cter no v&aacute;lido");
+			return false;		
+		}
+		else if(document.getElementById("id_DHost").value.length==0)
+		{
+			Show_error("Nombre de host","No configurado");
+			return false;
+		}
+		else if(!check_domain(document.getElementById("id_DHost").value))
+		{
+			Show_error("Nombre de host","Contiene un car&aacute;cter no v&aacute;lido");
+			return false;
+		}
+		else if ((document.getElementById("id_DHost").value.charAt(0)=='-')||(document.getElementById("id_DHost").value.charAt(0)=='.')||(document.getElementById("id_DHost").value.charAt(document.getElementById("id_DHost").value.length-1)=='-')||(document.getElementById("id_DHost").value.charAt(document.getElementById("id_DHost").value.length-1)=='.'))
+		{
+			Show_error("Nombre de host","No se puede usar este car&aacute;cter como car&aacute;cter inicial ni final");
+			return false;		
+		}
+		else if (document.getElementById("id_Dday").value.length==0)
+		{
+			Show_error("Periodo de actualizaci&oacute;n de direcciones IP","No configurado");
+			return false;		
+		}			
+		else if (!check_integer(document.getElementById("id_Dday").value))
+		{
+			Show_error("Periodo de actualizaci&oacute;n de direcciones IP","Contiene un car&aacute;cter no v&aacute;lido");
+			return false;		
+		}			
+		else if (document.getElementById("id_Dday").value>35)
+		{
+			Show_error("Periodo de actualizaci&oacute;n de direcciones IP","Valor introducido demasiado grande");
+			return false;		
+		}				
+	}
+	else if(dnsmodeselect.selectedIndex == 2)
+	{
+		if(document.form_main.DDNSEmail.value.length==0)
+		{
+			Show_error("Direcci&oacute;n de correo electr&oacute;nico","No configurado");
+			return false;
+		}
+		else if(isBlank(document.form_main.DDNSEmail.value))
+		{
+			Show_error("Direcci&oacute;n de correo electr&oacute;nico","No se puede usar este car&aacute;cter como car&aacute;cter inicial ni final");
+			return false;
+		}
+		else if(!check_TZOmail(document.form_main.DDNSEmail.value))
+		{
+			Show_error("Direcci&oacute;n de correo electr&oacute;nico","Contiene un car&aacute;cter no v&aacute;lido");
+			return false;
+		}
+		else if((document.form_main.DDNSEmail.value.charAt(0)=='@')||(document.form_main.DDNSEmail.value.charAt(document.form_main.DDNSEmail.value.length-1)=='@'))
+		{
+			Show_error("Direcci&oacute;n de correo electr&oacute;nico","No se puede usar este car&aacute;cter como car&aacute;cter inicial ni final");
+			return false;
+		}
+		else if(!check_mailaddrAT(document.form_main.DDNSEmail.value))
+		{
+			Show_error("Direcci&oacute;n de correo electr&oacute;nico","Contiene un car&aacute;cter no v&aacute;lido");
+			return false;
+		}
+
+		else if(document.form_main.DDNSKey.value.length==0)
+		{
+			Show_error("TZO Key","No configurado");
+			return false;
+		}
+		else if(isBlank(document.form_main.DDNSKey.value))
+		{
+			Show_error("TZO Key","No se puede usar este car&aacute;cter como car&aacute;cter inicial ni final");
+			return false;
+		}
+		else if(!Escape_String(document.form_main.DDNSKey.value))
+		{
+			Show_error("TZO Key","Contiene un car&aacute;cter no v&aacute;lido");
+			return false;		
+		}		
+		else if(document.getElementById("id_THost").value.length==0)
+		{
+			Show_error("Nombre de dominio","No configurado");
+			return false;
+		}
+		else if(!check_domain(document.getElementById("id_THost").value))
+		{
+			Show_error("Nombre de dominio","Contiene un car&aacute;cter no v&aacute;lido");
+			return false;
+		}
+		else if ((document.getElementById("id_THost").value.charAt(0)=='-')||(document.getElementById("id_THost").value.charAt(0)=='.')||(document.getElementById("id_THost").value.charAt(document.getElementById("id_THost").value.length-1)=='-')||(document.getElementById("id_THost").value.charAt(document.getElementById("id_THost").value.length-1)=='.'))
+		{
+			Show_error("Nombre de dominio","No se puede usar este car&aacute;cter como car&aacute;cter inicial ni final");
+			return false;		
+		}
+		else if (document.getElementById("id_Tday").value.length==0)
+		{
+			Show_error("Periodo de actualizaci&oacute;n de direcciones IP","No configurado");
+			return false;		
+		}			
+		else if (!check_integer(document.getElementById("id_Tday").value))
+		{
+			Show_error("Periodo de actualizaci&oacute;n de direcciones IP","Contiene un car&aacute;cter no v&aacute;lido");
+			return false;		
+		}			
+		else if (document.getElementById("id_Tday").value>99)
+		{
+			Show_error("Periodo de actualizaci&oacute;n de direcciones IP","Valor introducido demasiado grande");
+			return false;		
+		}					
+	}
+	sendselect();
+	
+	Hide_error();
+	document.form_main.submit();
+}
+*/
+
+//-->
+</script>
+</head>
+<body class="BFK_BODY" onload="init_start();">
+<br>
+<form name="form_main" method="POST">
+	<input type="hidden" name="DDNSModuleEnable" value="0">	
+	<input type="hidden" name="DDNSSType" value="dyndns">
+<!--	<input type="hidden" name="DDNSUpdateInterval" id="id_tmp_day" value="7"> -->
+	<input type="hidden" name="DDNSUser" value="">
+	<input type="hidden" name="DDNSPassword" value="">
+	<input type="hidden" name="DDNSDyndnsHost" value="">
+
+<div id="id_All" style="display:none;">
+	<div id="id_errtbl" class="C_ERR" style="display:none;">
+	</div>
+	
+     <table class="AD_SET">
+		     <tr>
+		     	<th>Servicio DNS din&aacute;mico</th>
+		     	<td>
+		     		<select size="1" id="id_DDNSModuleSelect" onChange="set_display();">
+		     			<option value= "none" selected>Deshabilitar</option>
+		     			<option value= "dyndns" selected>DynDNS(dynamic)</option>
+					<option value= "custom" >DynDNS(custom)</option>
+					<option value= "noip" >No-IP</option>
+		     			<option value= "tzo" >TZO</option>
+					<option value= "dhs" >Dhs</option>
+		     		</select>
+		     	</td>
+		     </tr>
+	 </table>
+	 
+	<div id="id_ddns_ext_dyndns" style="display:none;">	 
+	<table class="AD_SET">	
+	     <tr>
+	     	<th>Nombre de usuario</th>
+	     	<td>
+	     		<input type="text" id="user_dyn" size="45" maxlength="64">
+	     	</td>
+	     </tr>
+	     <tr>
+	     	<th>Contrase&ntilde;a</th>
+	     	<td>
+	     		<input type="password" id="pwd_dyn" size="45" maxlength="64" >
+	     	</td>
+	     </tr>
+	     <tr>
+	     	<th>Nombre de host</th>
+	     	<td>
+	     		<input type="text" id="host_dyn" size="45" maxlength="255">
+	     	</td>
+	     </tr>
+<!--		<tr>
+			<th>Periodo de actualizaci&oacute;n de direcciones IP</th>
+			<td>
+	     		<input type="text" size="3" maxlength="2" id="day_dyn">d&iacute;a(s)
+			</td>
+		</tr>
+-->
+	</table>
+	</div>
+
+	<div id="id_ddns_ext_custom" style="display:none;">
+        <table class="AD_SET">
+             <tr>
+                <th>Nombre de usuario</th>
+                <td>
+                        <input type="text" id="user_cus" size="45" maxlength="64">
+                </td>
+             </tr>
+             <tr>
+                <th>Contrase&ntilde;a</th>
+                <td>
+                        <input type="password" id="pwd_cus" size="45" maxlength="64" >
+                </td>
+             </tr>
+             <tr>
+                <th>Nombre de host</th>
+                <td>
+                        <input type="text" id="host_cus" size="45" maxlength="255">
+                </td>
+             </tr>
+<!--                <tr>
+                        <th>Periodo de actualizaci&oacute;n de direcciones IP</th>
+                        <td>
+                        <input type="text" size="3" maxlength="2" id="day_cus">d&iacute;a(s)
+                        </td>
+              </tr>
+-->
+        </table>
+        </div>
+
+	<div id="id_ddns_ext_noip" style="display:none;">
+        <table class="AD_SET">
+             <tr>
+                <th>Direcci&oacute;n de correo electr&oacute;nico</th>
+                <td>
+                        <input type="text" id="user_noip" size="45" maxlength="64">
+                </td>
+             </tr>
+             <tr>
+                <th>NoIP Key</th>
+                <td>
+                        <input type="password" id="pwd_noip" size="45" maxlength="64">
+                </td>
+             </tr>
+             <tr>
+                <th>Nombre de dominio</th>
+                <td>
+                        <input type="text" id="host_noip" size="45" maxlength="255">
+                </td>
+             </tr>
+<!--                <tr>
+                        <th>Periodo de actualizaci&oacute;n de direcciones IP</th>
+                        <td>
+                        <input type="text" size="3" maxlength="2" id="day_noip">d&iacute;a(s)
+                        </td>
+                </tr>
+-->
+        </table>
+        </div>
+
+
+	<div id="id_ddns_ext_tzo" style="display:none;">
+	<table class="AD_SET">	
+	     <tr>
+	     	<th>Direcci&oacute;n de correo electr&oacute;nico</th>
+	     	<td>
+	     		<input type="text" id="user_tzo" size="45" maxlength="64">
+	     	</td>
+	     </tr>
+	     <tr>
+	     	<th>TZO Key</th>
+	     	<td>
+	     		<input type="password" id="pwd_tzo" size="45" maxlength="64">
+	     	</td>
+	     </tr>
+	     <tr>
+	     	<th>Nombre de dominio</th>
+	     	<td>
+	     		<input type="text" id="host_tzo" size="45" maxlength="255">
+	     	</td>
+	     </tr>
+<!--		<tr>
+			<th>Periodo de actualizaci&oacute;n de direcciones IP</th>
+			<td>
+	     		<input type="text" size="3" maxlength="2" id="day_tzo">d&iacute;a(s)
+			</td>
+		</tr>
+-->
+	</table>
+	</div>
+	
+	<div id="id_ddns_ext_dhs" style="display:none;">
+        <table class="AD_SET">
+             <tr>
+                <th>Direcci&oacute;n de correo electr&oacute;nico</th>
+                <td>
+                        <input type="text" id="user_dhs" size="45" maxlength="64">
+                </td>
+             </tr>
+             <tr>
+                <th>Dhs Key</th>
+                <td>
+                        <input type="password" id="pwd_dhs" size="45" maxlength="64">
+                </td>
+             </tr>
+             <tr>
+                <th>Nombre de dominio</th>
+                <td>
+                        <input type="text" id="host_dhs" size="45" maxlength="255">
+                </td>
+             </tr>
+<!--                <tr>
+                        <th>Periodo de actualizaci&oacute;n de direcciones IP</th>
+                        <td>
+                        <input type="text" size="3" maxlength="2" id="day_dhs">d&iacute;a(s)
+                        </td>
+                </tr>
+-->
+        </table>
+        </div>	
+
+     <p><input type="button" value="Aplicar" name="action" onClick="btnApply()"></p>
+	<hr>
+<!--
+    <table class="AD_TTL2">
+		<tbody>
+			<tr><td>Informaci&oacute;n actual de DNS din&aacute;mico</td></tr>
+		</tbody>
+	</table>
+	<table class="AD_INFO">
+		<tr >
+			<th>Direcci&oacute;n IP de la INTERNET</th>
+			<td id="id_INFOADDR">192.168.100.129</td>
+		</tr>
+		<tr>
+			<th>Nombre de dominio</th>
+			<td id="id_INFOHOST"></td>
+		</tr>
+		<tr>
+			<th>Estado</th>
+			<td id="id_INFOSTATUS">Error de actualizaci&oacute;n</td>
+		</tr>
+	</table>	
+		
+     <p><input type="button" value="Actualizar" name="action" onClick="DoRefresh()"></p>
+-->
+</div>
+	 
+	</form>
+	</body>
+
+<!-- Mirrored from 192.168.0.1/ddns.html by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 11 Jan 2017 00:16:09 GMT -->
+</html>

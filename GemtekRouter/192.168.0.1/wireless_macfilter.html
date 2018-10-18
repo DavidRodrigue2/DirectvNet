@@ -1,0 +1,467 @@
+<!DOCTYPE html>
+<html>
+
+<!-- Mirrored from 192.168.0.1/wireless_macfilter.html by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 11 Jan 2017 00:16:09 GMT -->
+<head>
+<meta charset="utf-8" />
+<link rel="stylesheet" href="WHR-G300N-160149-style-ENG.css" />
+<link rel="stylesheet" href="WHR-G300N-160149-style-ad-ENG.css" />
+<title>Wireless Advanced</title>
+
+<script src="jquery-1.11.0.min.html"></script>
+<script src="language/es/language.html"></script>
+<script src="common.html"></script>
+
+<script>
+var Mode = 'Add';
+var OldMac = '';
+
+function add_ClientListToRegList(mac)
+{
+  if (!check_MacAddress(mac)) {
+    alert(translate_str("AlertWirelessMacFilter", 0));//Invalid Mac Address
+  } else {
+    if (!check_Duplicate(mac, '')) {
+      add_NewLineToRegList(mac);
+    }
+  }
+}
+
+function add_NewLineToRegList(mac)
+{
+  var table = document.getElementById('id_RegListTable');
+  var rowCount = table.rows.length;
+  var tr = table.insertRow(rowCount);
+
+  var td = tr.insertCell(0);
+  var element1 = document.createElement('input');
+  element1.type = 'button';
+  element1.value = translate_str("WirelessMacFilter", 10);//Edit
+  element1.setAttribute('onClick', 'edit_RegistrationList("' + mac + '")');
+  td.appendChild(element1);
+
+  var element2 = document.createElement('input');
+  element2.type = 'button';
+  element2.value = translate_str("WirelessMacFilter", 11);//Delete
+  element2.setAttribute('onClick', 'delete_RegRow("' + mac + '")');
+  td.appendChild(element2);
+
+  td = tr.insertCell(1);
+  td.innerHTML = mac;
+}
+
+function add_RegistrationList()
+{
+  Mode = 'Add';
+  document.getElementById('id_AddMac').value = '';
+  page_AddEdit();
+}
+
+function add_UserListToRegList()
+{
+  var mac = document.getElementById('id_AddMac').value;
+  if (!check_MacAddress(mac)) {
+    alert(translate_str("AlertWirelessMacFilter", 0));//Invalid Mac Address
+  } else {
+    if (!check_Duplicate(mac, '')) {
+      add_NewLineToRegList(mac);
+      page_MacFilter(); 
+    }
+  }
+}
+
+function apply_Button()
+{
+  var submit_Form = document.submit_Form;
+  submit_Form.WIFI_AccessPolicy0.value = document.getElementById('id_MacFilterMode').value;
+
+  var accesscontrollist = '';
+  var table = document.getElementById('id_RegListTable');
+  for (var i = 1; i < table.rows.length; i++) {
+    var tr = table.rows[i];
+    accesscontrollist += tr.cells[1].innerHTML;
+    
+    if (i != table.rows.length -1) {
+      accesscontrollist += ';';
+    }
+  }
+
+  submit_Form.WIFI_AccessControlList0.value = accesscontrollist;
+
+  submit_Form.submit();
+}
+
+function cancel_Button()
+{
+  location.href = 'wireless_macfilter.html';
+}
+
+function check_Duplicate(mac, excludemac)
+{
+  var table = document.getElementById('id_RegListTable');
+  for (var i = 1; i < table.rows.length; i++) {
+    var tr = table.rows[i];
+    var regmac = tr.cells[1].innerHTML;
+    if (mac == regmac && mac != excludemac) {
+      alert(translate_str("AlertWirelessMacFilter", 1));//Mac address is duplicate!
+      return true;
+    }
+  }
+  return false;
+}
+
+function check_MacAddress(mac) {
+  var c = '';
+  var i = 0, j = 0;
+
+  if (mac.toLowerCase() == 'ff:ff:ff:ff:ff:ff' || mac == '00:00:00:00:00:00') {
+    return false;
+  }
+
+  addrParts = mac.split(':');
+  if (addrParts.length != 6) {
+    return false;
+  }
+
+  for (i = 0; i < 6; i++) {
+    if (addrParts[i] == '') {
+      return false;
+    }
+    if (addrParts[i].length != 2) {
+      return false;
+    }
+    
+    for ( j = 0; j < addrParts[i].length; j++) {
+      c = addrParts[i].toLowerCase().charAt(j);        
+      if ((c >= '0' && c <= '9') || (c >= 'a' && c <= 'f')) {
+        continue;
+      } else {
+        return false;
+      }
+    }
+  }
+
+  if ((parseInt(addrParts[0], 16) & 1) || 
+      ((parseInt(addrParts[0], 16) & 
+        parseInt(addrParts[1], 16) & 
+        parseInt(addrParts[2], 16) & 
+        parseInt(addrParts[3], 16) & 
+        parseInt(addrParts[4], 16) & 
+        parseInt(addrParts[5], 16)) == 255) || 
+      ((parseInt(addrParts[0], 16) | 
+        parseInt(addrParts[1], 16) | 
+        parseInt(addrParts[2], 16) | 
+        parseInt(addrParts[3], 16) | 
+        parseInt(addrParts[4], 16) | 
+        parseInt(addrParts[5], 16)) == 0)) {
+    return false;
+  }
+
+  return true;
+}
+
+
+function create_ClientListTable(clientlist)
+{
+  var clientlistarray = clientlist.split(';');
+  var table = document.getElementById('id_ClientListTable');
+  if (clientlistarray != 'none') {
+    for (var i = 0; i < clientlistarray.length; i++) {
+      var rowCount = table.rows.length;
+      var tr = table.insertRow(rowCount);
+
+      var td = tr.insertCell(0);
+      var element1 = document.createElement('input');
+      element1.type = 'button';
+      element1.value = translate_str("WirelessMacFilter", 12);//Register
+      element1.id = 'id_RegButton' + i;
+      element1.setAttribute('onClick', 'add_ClientListToRegList("' + clientlistarray[i] + '")');
+      td.appendChild(element1);
+
+      td = tr.insertCell(1);
+      td.innerHTML = clientlistarray[i];
+    }
+  } else {
+    delete_ClientTable();
+  }
+}
+
+function create_RegistrationList()
+{
+  var reglistarray=''.split(';');
+  var table = document.getElementById('id_RegListTable');
+  if (reglistarray != '') { 
+    for (var i = 0; i < reglistarray.length; i++) {
+      var rowCount = table.rows.length;
+      var tr = table.insertRow(rowCount);
+
+      var td = tr.insertCell(0);
+      var element1 = document.createElement('input');
+      element1.type = 'button';
+      element1.value = translate_str("WirelessMacFilter", 10);//Edit
+      element1.setAttribute('onClick', 'edit_RegistrationList("' + reglistarray[i] + '")');
+      td.appendChild(element1);
+
+      var element2 = document.createElement('input');
+      element2.type = 'button';
+      element2.value = translate_str("WirelessMacFilter", 11);//Delete
+      element2.setAttribute('onClick', 'delete_RegRow("' + reglistarray[i] + '")');
+      td.appendChild(element2);
+
+      td = tr.insertCell(1);
+      td.innerHTML = reglistarray[i];
+    }
+  }
+}
+
+function delete_ClientTable()
+{
+  var table = document.getElementById('id_ClientListTable');
+  var rowCount = table.rows.length;
+
+  for (var i = 1; i < rowCount; i++) {
+    table.deleteRow(i);
+    rowCount--;
+    i--;
+  }
+}
+
+function delete_RegRow(delmac)
+{
+  var table = document.getElementById('id_RegListTable');
+  var rowCount = table.rows.length;
+
+  for (var i = 1; i < rowCount; i++) {
+    var tr = table.rows[i];
+    var mac = tr.cells[1].innerHTML;
+    
+    if (delmac == mac) {
+      var flag = confirm("Are you sure you want to delete this mac Address?");             
+      if (flag == true) {     
+        table.deleteRow(i);
+        rowCount--;
+        i--;
+      }
+    }
+  }
+}
+
+function edit_RegRow()
+{
+  var editmac = document.getElementById('id_AddMac').value;
+  
+  var table = document.getElementById('id_RegListTable');
+  var rowCount = table.rows.length;
+
+  if (!check_MacAddress(editmac)) {
+    alert(translate_str("AlertWirelessMacFilter", 0));//Invalid Mac Address
+    return;
+  } else {
+    if (check_Duplicate(editmac, OldMac)) {
+      return;
+    }
+  }
+  for (var i = 1; i < rowCount; i++) {
+    var tr = table.rows[i];
+    var mac = tr.cells[1].innerHTML;
+    if (OldMac == mac) {
+      table.deleteRow(i);
+
+      var tr = table.insertRow(i);
+
+      var td = tr.insertCell(0);
+      var element1 = document.createElement('input');
+      element1.type = 'button';
+      element1.value = translate_str("WirelessMacFilter", 10);//Edit
+      element1.setAttribute('onClick', 'edit_RegistrationList("' + editmac + '")');
+      td.appendChild(element1);
+
+      var element2 = document.createElement('input');
+      element2.type = 'button';
+      element1.value = translate_str("WirelessMacFilter", 11);//Delete
+      element2.setAttribute('onClick', 'delete_RegRow("' + editmac + '")');
+      td.appendChild(element2);
+
+      td = tr.insertCell(1);
+      td.innerHTML = editmac;
+    }
+  }
+  page_MacFilter();
+}
+
+function edit_RegistrationList(mac)
+{
+  Mode = 'Edit';
+  OldMac = mac;
+  document.getElementById('id_AddMac').value = mac;
+  page_AddEdit();
+}
+
+function get_AjaxClientList()
+{
+  try {
+    $.ajax (
+      {
+        url: "getclientlist.cgi",
+        type: "POST",
+        dataType: "text",
+        data: {
+          page: "wireless_macfilter.html",
+          action: "Start"
+        },
+        cache: false,
+        success: function(response) {
+          rebuilt_ClientTable(response);
+          setTimeout("get_AjaxClientList()", 2000);
+        },
+        timeout: 5*1000,
+        error: function(xhr, ajaxOptions, thrownError) {
+        }
+      }
+    );
+  } catch(e) {
+    setTimeout("get_AjaxClientList()", 2000);
+  }
+}
+
+function init()
+{
+  var clientlist = 'none';
+  var macfiltermode = '0';
+  document.getElementById('id_MacFilterMode').value = macfiltermode;
+
+  page_MacFilter();
+  create_ClientListTable(clientlist);
+  create_RegistrationList();
+
+  get_AjaxClientList();
+}
+
+function page_AddEdit()
+{
+  document.getElementById('id_MacFilterPage').style.display = 'none';
+  document.getElementById('id_AddPage').style.display = '';
+  document.getElementById('id_ButtonPage').style.display = 'none';
+  if (Mode == 'Add') {
+    document.getElementById('id_AddButton').style.display = '';
+    document.getElementById('id_EditButton').style.display = 'none';
+  } else {
+    document.getElementById('id_AddButton').style.display = 'none';
+    document.getElementById('id_EditButton').style.display = '';
+  }
+}
+
+function page_MacFilter()
+{
+  document.getElementById('id_MacFilterPage').style.display = '';
+  document.getElementById('id_AddPage').style.display = 'none';
+  document.getElementById('id_ButtonPage').style.display = '';
+}
+
+function rebuilt_ClientTable(response)
+{
+  var clientlist = 'none';
+  delete_ClientTable();
+  create_ClientListTable(clientlist);
+  //create_ClientListTable(response);
+  /* //judge browser for create table
+  var oBrowser = new detectBrowser(); 
+  if (oBrowser.isSa && !oBrowser.isChr)
+     create_ClientListTable(clientlist);
+  else
+     create_ClientListTable(response);
+  */
+}
+
+function detectBrowser()
+{ 
+  var sAgent = navigator.userAgent.toLowerCase(); 
+  this.isIE = (sAgent.indexOf("msie")!=-1); //IE6.0-7 
+  this.isFF = (sAgent.indexOf("firefox")!=-1);//firefox 
+  this.isSa = (sAgent.indexOf("safari")!=-1);//safari 
+  this.isOp = (sAgent.indexOf("opera")!=-1);//opera 
+  this.isNN = (sAgent.indexOf("netscape")!=-1);//netscape 
+  this.isChr = (sAgent.indexOf("chrom")!=-1);//Chrom
+  this.isMa = this.isIE;//marthon 
+  this.isOther = (!this.isIE && !this.isFF && !this.isSa && !this.isOp && !this.isNN && !this.isSa);//unknown Browser 
+}
+
+</script>
+</head>
+
+<body onLoad="init();"><br>
+<form name="gui_Form">
+  <div id="basic_content">
+    <div id="id_MacFilterPage">
+      <table class="AD_TTL2">
+        <tr>
+          <td><script>translate_strWrite("WirelessMacFilter", 0);</script></td><!--Wireless Mac Filter Settings-->
+        </tr>
+      </table>
+      
+      <table class="AD_SET">
+        <tr>
+          <th width="180"><script>translate_strWrite("WirelessMacFilter", 1);</script></th><!--Mac Filter Mode-->
+          <td width="400">
+            <select id="id_MacFilterMode">
+              <option value="0"><script>translate_strWrite("WirelessMacFilter", 2);</script></option><!--Disabled-->
+              <option value="1"><script>translate_strWrite("WirelessMacFilter", 3);</script></option><!--Allow List-->
+              <option value="2"><script>translate_strWrite("WirelessMacFilter", 4);</script></option><!--Deny List-->
+            </select>
+          </td>
+        </tr>
+      </table>
+
+      <script>translate_strWrite("WirelessMacFilter", 5);</script><!--List of all clients that are associated with this Device-->
+      <table class="AD_LIST" id="id_ClientListTable">
+        <tr>
+          <th width="180"><script>translate_strWrite("WirelessMacFilter", 6);</script></th><!--Customize-->
+          <th width="400"><script>translate_strWrite("WirelessMacFilter", 7);</script></th><!--MAC Address-->
+        </tr>
+      </table>
+
+      <script>translate_strWrite("WirelessMacFilter", 8);</script><!--Registration List-->
+      <input type="button" id='id_AddRegListButton' value="Add" onClick="add_RegistrationList();" />
+      <script>setButtonValue("id_AddRegListButton", "Button", 2);</script><!--Add-->
+      <table class="AD_LIST" id="id_RegListTable">
+        <tr>
+          <th width="180"><script>translate_strWrite("WirelessMacFilter", 6);</script></th><!--Customize-->
+          <th width="400"><script>translate_strWrite("WirelessMacFilter", 7);</script></th><!--MAC Address-->
+        </tr>
+      </table>
+    </div>
+
+    <div id="id_AddPage"> 
+      <table class="AD_SET">
+        <tr>
+          <th width="240"><script>translate_strWrite("WirelessMacFilter", 9);</script></th><!--MAC Addresses to be Registered-->
+          <td width="340">
+            <input type="text" id="id_AddMac" size="17" maxlength="17" />
+          </td>
+        </tr>
+      </table>
+      <input type="button" value="Add" id="id_AddButton" onClick="add_UserListToRegList();" />
+      <script>setButtonValue("id_AddButton", "Button", 2);</script><!--Add-->
+      <input type="button" value="Edit" id="id_EditButton" onClick="edit_RegRow();" />
+      <script>setButtonValue("id_EditButton", "Button", 3);</script><!--Edit-->
+      <input type="button" value="Cancel" id="id_CancelButton" onClick="page_MacFilter();" />
+      <script>setButtonValue("id_CancelButton", "Button", 1);</script><!--Edit-->
+    </div>
+
+    <div id="id_ButtonPage">
+      <input type="button" name="nosave_apply" id="id_nosave_apply" value="Apply" onclick="apply_Button();" />
+      <script>setButtonValue("id_nosave_apply", "Button", 0);</script><!--Apply-->
+      <input type="button" name="nosave_back" id="id_nosave_back" value="Cancel" onClick="cancel_Button();" />
+      <script>setButtonValue("id_nosave_back", "Button", 1);</script><!--Cancel-->
+    </div>
+  </div>
+</form>
+
+<form method="POST" name="submit_Form">
+  <input type="hidden" name="WIFI_AccessPolicy0" />
+  <input type="hidden" name="WIFI_AccessControlList0" />
+</form>
+</body>
+
+<!-- Mirrored from 192.168.0.1/wireless_macfilter.html by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 11 Jan 2017 00:16:10 GMT -->
+</html>

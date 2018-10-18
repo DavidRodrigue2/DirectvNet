@@ -1,0 +1,58 @@
+
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta http-equiv="Pragma" content="no-cache">
+
+<title>LAN | LAN Settings</title>
+
+<link rel="stylesheet" type="text/css" href="../css/style.css">
+</head>
+<body leftmargin="0" topmargin="0" marginheight="0" marginwidth="0" onload="init(LanSet);" class="bg">
+	<table width="100%" border="0" align="center" cellpadding="0" cellspacing="0">
+      <tbody><tr>
+        <td width="33">&nbsp;</td>
+        <td width="679" valign="top">
+		<table width="100%" border="0" align="center" cellpadding="0" cellspacing="0" height="100%">
+          <tbody><tr>
+            <td align="center" valign="top"><table width="98%" border="0" align="center" cellpadding="0" cellspacing="0" height="100%">
+                <tbody><tr>
+                  <td align="center" valign="top"><form name="LanSet" method="POST" action="http://192.168.1.254/goform/AdvSetLanip">
+                      <input type="hidden" name="GO" value="lan.asp"> 
+					  <table cellpadding="0" cellspacing="0" class="content2">                       
+					    <tbody><tr>
+                          <td colspan="2" align="left" valign="top">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <script>document.write(_("This page is used to set the basic network parameters for LAN"));</script>This page is used to set the basic network parameters for LAN.</td>
+                        </tr>
+					  </tbody></table>
+                      <table cellpadding="0" cellspacing="0" class="content1" id="table1" style="margin-top:0px;">
+                        <tbody><tr class="a1">
+                          <td width="150" align="right">LAN MAC address</td>
+                          <td>&nbsp;&nbsp;&nbsp;&nbsp;88:A5:BD:06:DF:38</td>
+                        </tr>
+                        <tr class="a2">
+                          <td width="150" align="right">IP address</td>
+                          <td>&nbsp;&nbsp;&nbsp;&nbsp;<input class="text" maxlength="15" name="LANIP" size="15" value="192.168.1.254"></td>
+                        </tr>
+                        <tr class="a1">
+                          <td width="150" align="right">Subnet Mask</td>
+                          <td>&nbsp;&nbsp;&nbsp;&nbsp;<input class="text" maxlength="15" name="LANMASK" size="15" value="255.255.255.0"></td>
+                        </tr>
+                      </tbody></table>
+                    <table width="75%" border="0" cellpadding="0" cellspacing="0" style="padding-top:20px;"><tbody><tr><td align="center"><input type="button" class="button1" value="Ok" onmouseover="style.color=&#39;#FF9933&#39;" onmouseout="style.color=&#39;#000000&#39;" onclick="preSubmit(document.LanSet)">&nbsp;&nbsp;&nbsp;&nbsp;<input type="button" class="button1" value="Cancel" onmouseover="style.color=&#39;#FF9933&#39;" onmouseout="style.color=&#39;#000000&#39;" onclick="init(document.LanSet)" style="color: rgb(0, 0, 0);"></td></tr></tbody></table>
+                  </form></td>
+                </tr>
+            </tbody></table></td>
+          </tr>
+        </tbody></table></td>
+        <td align="center" valign="top" height="100%">
+		<table border="0" cellpadding="0" cellspacing="0" class="left1" style="margin-top:25px;"><tbody><tr><td align="center"><b>Help information</b></td></tr><tr><td align="left">&nbsp;&nbsp;&nbsp;&nbsp;Set the router's LAN IP and Subnet Mask. The default IP Address is 192.168.1.254,and default Subnet Mask 255.255.255.0.</td></tr></tbody></table>		
+		</td>
+      </tr>
+    </tbody></table>
+
+
+
+
+
+
+
+
+</body></html>

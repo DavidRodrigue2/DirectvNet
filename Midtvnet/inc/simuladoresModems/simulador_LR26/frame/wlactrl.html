@@ -1,0 +1,63 @@
+
+<html>
+<head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<link rel="stylesheet" href="../css/styles.css" type="text/css">
+
+<title>Conexión inalámbricas Control de acceso</title>
+
+</head>
+<body marginwidth="0" marginheight="0">
+<blockquote>
+<h2>
+Wireless Control de acceso<p></p>
+</h2>
+
+<font size="2"><b>
+   	Modo de control de acceso inalámbrico: &nbsp;&nbsp;&nbsp;&nbsp;
+	<select size="1" name="wlanAcEnabled" onchange="updateState(this)">
+          <option value="0" selected="">Disable</option>
+          <option value="1">Permitir incluidos en la lista</option>
+          <option value="2">Rechazar incluidos en la lista</option>
+        </select></b></font><table border="0" width="100%" cellspacing="4" cellpadding="0" style="margin-bottom:15px">
+<tbody><tr><td><p>
+ Si selecciona "Permitir incluidos en la lista", sólo los clientes cuyas direcciones MAC inalámbricas se encuentren en la lista de control de acceso podrán conectarse al punto de acceso. Cuando se seleccione "Rechazar incluidos en la lista", los clientes inalámbricos de la lista no podrán conectarse al punto de acceso.
+</p></td></tr>
+
+<tr><td><hr></td></tr>
+
+<tr> 
+
+</tr>
+<tr><td>
+
+     <p><font size="2"><b>Dirección MAC: </b> <input type="text" name="mac" size="15" maxlength="12" >&nbsp;&nbsp;
+   	<b><font size="2">Comentario: </font></b><font size="2"> <input type="text" name="comment" size="16" maxlength="20" ></font>
+     </font></p><font size="2">
+     <br>
+     <p><input type="submit" value="Aplicar cambios" name="addFilterMac" onclick="return addClick()">&nbsp;&nbsp;
+        <input type="button" value="Restablecer" name="reset" onclick="resetForm();">&nbsp;&nbsp;&nbsp;
+        <input type="hidden" value="/wlactrl.htm" name="submit-url">
+     </p>
+  
+</font></td></tr></tbody></table>
+<br>
+<form>
+  <font size="2"><b>Lista actual de control de acceso:</b></font><table border="0" width="500" class="list">
+  <tbody><tr></tr>
+  <tr><th width="45%">Dirección MAC</th>
+<th width="35%">Comentario</th>
+<th width="20%">Seleccionar</th></tr>
+
+  </tbody></table>
+  <br>
+  <input type="submit" value="Eliminar selección" name="deleteSelFilterMac" onclick="return deleteClick()" disabled="">&nbsp;&nbsp;
+  <input type="submit" value="Eliminar todo" name="deleteAllFilterMac" onclick="return deleteAllClick()" disabled="">&nbsp;&nbsp;&nbsp;
+  <input type="reset" value="Restablecer" name="reset">
+  <input type="hidden" value="/wlactrl.htm" name="submit-url">
+
+</form>
+
+</blockquote>
+
+
+</body></html>

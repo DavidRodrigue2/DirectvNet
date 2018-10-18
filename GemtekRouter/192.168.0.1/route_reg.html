@@ -1,0 +1,431 @@
+<html>
+
+<!-- Mirrored from 192.168.0.1/route_reg.html by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 11 Jan 2017 00:16:09 GMT -->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta http-equiv="Pragma" content="no-cache">
+<meta http-equiv="Cache-Control" content="no-cache">
+<meta http-equiv="Expires" content="Thu, 01 Dec 1994 16:00:00 GMT">
+<META http-equiv="Content-Style-Type" content="text/css">
+<LINK rel="stylesheet" href="WHR-G300N-160149-style-ENG.css" type="text/css">
+<LINK rel="stylesheet" href="WHR-G300N-160149-style-ad-ENG.css" type="text/css">
+<script language="javascript" src="common.html"></script>
+<script language="JavaScript">
+<!--
+var nowEdit=0;
+var oldEdit;
+var exec=0;
+var rutenum="0";
+rutenum = parseInt(rutenum);
+function Init()
+{
+	if (rutenum>= 32)
+	{
+		document.getElementById("addrule_area").style.display="none";
+     		document.getElementById("overrule").style.display="";
+     	}
+     	else
+     	{
+     		document.getElementById("addrule_area").style.display="";
+     		document.getElementById("overrule").style.display="none";
+     	}
+     		
+}
+function enter(value, tmp)
+{
+	var selectvalue=document.getElementById(value);
+	var tmpvalue=document.getElementById(tmp);
+	
+	if (value == "id_rmask")
+	{
+		tmpvalue.innerHTML=selectvalue.value;
+	}
+	else
+		tmpvalue.innerHTML = selectvalue.value;
+}
+function show_tmp()
+{
+      document.getElementById("id_add_tmp").style.display="";
+      document.getElementById("rule_edit_button").style.display="";
+      document.getElementById("rule_add_button").style.display="none";
+      document.getElementById("id_TITLE").innerHTML ="Editar enrutamiento";
+      if(rutenum == 0)
+      	document.getElementById("r0").style.display="none";
+      	
+      document.getElementById("id_edit_index").value = rutenum+1;
+      document.getElementById("id_route_num").value = rutenum+1;
+      document.getElementById("id_route_num").disabled = false;
+}
+function RouteAdd(item)
+{
+	document.getElementById("id_errtbl").style.display="none";
+	var lanip="192.168.0.1";
+	var lanmask=document.getElementById("id_rmask");
+	var real_lanmask="255.255.255.0";
+	var wanip="192.168.100.129";
+	var wanmask="255.255.255.0";
+	
+	var ip=document.getElementById("id_rip");
+	var gateway=document.getElementById("id_rgateway");
+	var metric=document.getElementById("id_metric");
+	var i;
+	Hide_error();
+	
+	if (ip.value.length == 0)
+	{
+		Show_error("Direcci&oacute;n de destino", "No configurado");
+		if(item=="add")
+			show_tmp();
+		return;
+	}
+	if (gateway.value.length == 0)
+	{	
+		Show_error("Pasarela", "No configurado");
+		if(item=="add")
+			show_tmp();
+		return;
+	}
+	if (metric.value.length == 0)
+	{
+		Show_error("M&eacute;trica", "No configurado");
+		if(item=="add")
+			show_tmp();
+		return;
+	}
+	
+	if (ip.value.length != 0)
+	{
+		if (ip.value.length <= 6)
+		{
+			Show_error("Direcci&oacute;n de destino", "Longitud demasiado corta");
+			if(item=="add")
+				show_tmp();
+			return;
+		}
+		else
+		{
+			if (check_route_ip(ip.value, lanmask.value) == 1)
+			{
+				Show_error("Direcci&oacute;n de destino", "Contiene un car&aacute;cter no v&aacute;lido");
+				if(item=="add")
+					show_tmp();
+				return;
+			}
+			else if(check_route_ip(ip.value, lanmask.value) == 2)
+			{
+				Show_error("Direcci&oacute;n de destino", "Direcci&oacute;n IP no v&aacute;lida como direcci&oacute;n de red");
+				if(item=="add")
+					show_tmp();
+				return;
+			}
+			if (check_the_same_subnet(ip.value, lanip, lanmask.value))
+			{
+				Show_error("Direcci&oacute;n de destino", "No se puede especificar la direcci&oacute;n IP de la LAN de esta Device");
+				if(item=="add")
+					show_tmp();
+				return;
+			}
+			
+		}	
+		document.getElementById("id_rip").value = ip_normalize_0(document.getElementById("id_rip").value);
+	}
+	if (gateway.value.length != 0)
+	{
+		if (gateway.value.length <= 6)
+		{
+			Show_error("Pasarela", "Longitud demasiado corta");
+			if(item=="add")
+				show_tmp();
+			return;
+		}
+		else
+		{
+			if(gateway.value=='0.0.0.0')
+			{
+				Show_error("Pasarela", "No se puede usar la direcci&oacute;n reservada (0.0.0.0)");
+				if(item=="add")
+					show_tmp();
+				return;	
+			}
+			else if (check_ip(gateway.value) == 1)
+			{
+				Show_error("Pasarela", "Formato de direcci&oacute;n IP no v&aacute;lido");
+				if(item=="add")
+					show_tmp();
+				return;
+			}
+			else if(check_ip(gateway.value) == 2)
+			{
+				Show_error("Pasarela", "Contiene un car&aacute;cter no v&aacute;lido");
+				if(item=="add")
+					show_tmp();
+				return;
+			}
+			if (!check_the_same_subnet(gateway.value, lanip, real_lanmask) && (wanip!="" && !check_the_same_subnet(gateway.value, wanip, wanmask)))
+			{
+				Show_error("Pasarela", "Fuera del rango de direcciones de red de la LAN/Internet");
+				if(item=="add")
+					show_tmp();
+				return;
+			}
+			if("1"=="1")
+			{
+				if(ip_normalize_0(gateway.value)==lanip)
+				{
+					//Show_error("Pasarela", "No se puede especificar la direcci&oacute;n IP de la LAN de esta Device");
+					Show_error("Pasarela", "No se puede usar la direcci&oacute;n IP del rango de direcciones de red de la LAN");
+					if(item=="add")
+						show_tmp();
+					return;
+				}
+			}
+		}
+		document.getElementById("id_rgateway").value = ip_normalize_0(document.getElementById("id_rgateway").value);
+	}
+	if (metric.value.length != 0)
+	{
+		if (!check_integer_range(metric.value,1,15))
+		{
+			Show_error("M&eacute;trica", "Valor introducido incorrecto");
+			if(item=="add")
+				show_tmp();
+			return;
+		}
+	}
+	if (rutenum>0)
+	{	
+		for (i=1; i<=rutenum;i++)
+		{
+
+            var textHtml=document.getElementById("r_status"+i).innerHTML.substring(0,8);
+			var ipObj = document.getElementById("s_ip"+i);
+			var ip = (document.all)?ipObj.innerText:ipObj.textContent;
+			var maskObj = document.getElementById("s_mask"+i);
+			var mask = (document.all)?maskObj.innerText:maskObj.textContent;
+			var add_ip = document.getElementById("id_rip").value;
+			
+			//if (textHtml != "Editando")
+			if ((textHtml != "<CENTER>")&&(textHtml != "<center>"))
+    			{
+				if (check_the_same_subnet(ip, add_ip, mask))
+				{
+					Show_error("Direcci&oacute;n de destino", "Ya registrado");
+					if(item=="add")
+						show_tmp();
+					return;	
+				}
+			}		
+		}
+	}
+	if (item=="edit")
+		document.getElementById("id_selectItem").value = "edit";
+	else
+		document.getElementById("id_selectItem").value = "add";
+		
+	//alert(document.getElementById("id_selectItem").value);
+	document.getElementById("id_add_tmp").style.display="none";
+	if (exec==0)
+	{
+		exec=1;
+		document.forms[0].submit();
+	}
+}
+function restoreEdit(val)
+{
+	var r_statusObj = document.getElementById("r_status"+val);
+	document.getElementById("id_rip").value ="";
+	document.getElementById("id_rmask")[0].selected;
+	document.getElementById("id_rgateway").value ="";
+	document.getElementById("id_metric").value ="";
+	r_statusObj.innerHTML = oldEdit;
+}
+function RouteEdit(index)
+{
+	Hide_error();
+	document.getElementById("id_add_tmp").style.display="none";
+	document.getElementById("overrule").style.display="none";
+	document.getElementById("addrule_area").style.display="";
+	if (nowEdit!=index && nowEdit!=0)
+		restoreEdit(nowEdit);
+     	nowEdit=index;
+     	
+	var routeipObj = document.getElementById("s_ip"+index);
+	var routemaskObj = document.getElementById("s_mask"+index);
+	var routegwObj = document.getElementById("s_gw"+index);
+	var routemetricObj = document.getElementById("s_metric"+index);
+	var r_statusObj = document.getElementById("r_status"+index);
+	
+	var routeip = (document.all)?routeipObj.innerText:routeipObj.textContent;
+	var routemask = (document.all)?routemaskObj.innerText:routemaskObj.textContent;
+	var routegw = (document.all)?routegwObj.innerText:routegwObj.textContent;
+	var routemetric = (document.all)?routemetricObj.innerText:routemetricObj.textContent;
+	document.getElementById("id_rip").value = routeip;
+	
+	for (i=0; i<=31; i++)
+	{
+		var masklist = document.getElementById("id_rmask")[i].value;
+		if (routemask == masklist)
+			document.getElementById("id_rmask")[i].selected = true;
+	}
+	
+	document.getElementById("id_rgateway").value = routegw;
+	document.getElementById("id_metric").value = routemetric;
+	
+	document.getElementById("id_selectItem").value = "edit";
+	document.getElementById("id_edit_index").value = index;
+	document.getElementById("rule_add_button").style.display="none";
+    document.getElementById("rule_edit_button").style.display="";
+    document.getElementById("id_TITLE").innerHTML ="Editar enrutamiento";
+	oldEdit=r_statusObj.innerHTML;
+     	if(rutenum == 0)
+     		document.getElementById("r0").style.display="";
+	r_statusObj.innerHTML = "<center>Editando</center>"
+	r_statusObj.style.color="#FF0000";
+	document.getElementById("id_route_num").disabled = true;
+	
+}
+function RouteDelete(index)
+{
+	document.getElementById("id_selectItem").value = "delete";
+	document.getElementById("id_edit_index").value = index;
+	document.getElementById("id_route_num").disabled = true;
+	//alert(document.getElementById("id_edit_index").value);
+	//alert(document.getElementById("id_selectItem").value);
+	if (exec==0)
+	{
+		exec=1;
+		document.forms[0].submit();
+	}
+}
+//-->
+</script>
+</head>
+<body class="BFK_BODY" onload="Init();enter('id_rmask','s_mask_tmp');">
+
+<br>
+
+<form name="RouteSetting" method="POST">
+<div id="id_errtbl" class=C_ERR style="display:none;"></div>
+  <table class="AD_TTL2">
+    <tbody>
+      <tr><td id="id_TITLE">Agregar enrutamiento</td></tr>
+    </tbody>
+  </table>
+<div id="addrule_area">
+  <table class="AD_SET">
+    <tbody>
+    <tr>
+      <th>Direcci&oacute;n de destino</th>
+      <td>
+        <table>
+          <tr>
+            <td>Direcci&oacute;n IP</td>
+            <td>
+              <input type="text" name="IPAddress" id="id_rip" size="20" maxlength="15" value="" onChange="enter('id_rip','s_ip_tmp');">
+            </td>
+          </tr>
+          <tr>
+            <td>M&aacute;scara de subred</td>
+            <td>
+              <select size="1" name="Netmask" id="id_rmask" onClick="enter('id_rmask','s_mask_tmp');">
+		<option value="255.255.255.255" >HOST255.255.255.255</option>
+		<option value="255.255.255.254" >255.255.255.254</option>
+		<option value="255.255.255.252" >255.255.255.252</option>
+		<option value="255.255.255.248" >255.255.255.248</option>
+		<option value="255.255.255.240" >255.255.255.240</option>
+		<option value="255.255.255.224" >255.255.255.224</option>
+		<option value="255.255.255.19" >255.255.255.192</option>
+		<option value="255.255.255.128" >255.255.255.128</option>
+		<option value="255.255.255.0" selected>255.255.255.0</option>
+		<option value="255.255.254.0" >255.255.254.0</option>
+		<option value="255.255.252.0" >255.255.252.0</option>
+		<option value="255.255.248.0" >255.255.248.0</option>
+		<option value="255.255.240.0" >255.255.240.0</option>
+		<option value="255.255.224.0" >255.255.224.0</option>
+		<option value="255.255.192.0" >255.255.192.0</option>
+		<option value="255.255.128.0" >255.255.128.0</option>
+		<option value="255.255.0.0" >255.255.0.0</option>
+		<option value="255.254.0.0" >255.254.0.0</option>
+		<option value="255.252.0.0" >255.252.0.0</option>
+		<option value="255.248.0.0" >255.248.0.0</option>
+		<option value="255.240.0.0" >255.240.0.0</option>
+		<option value="255.224.0.0" >255.224.0.0</option>
+		<option value="255.192.0.0" >255.192.0.0</option>
+		<option value="255.128.0.0" >255.128.0.0</option>
+		<option value="255.0.0.0" >255.0.0.0</option>
+		<option value="254.0.0.0" >254.0.0.0</option>
+		<option value="252.0.0.0" >252.0.0.0</option>
+		<option value="248.0.0.0" >248.0.0.0</option>
+		<option value="240.0.0.0" >240.0.0.0</option>
+		<option value="224.0.0.0" >224.0.0.0</option>
+		<option value="192.0.0.0" >192.0.0.0</option>
+		<option value="128.0.0.0" >128.0.0.0</option>
+	      </select>
+ 	   </td>
+          </tr>
+        </table>
+      </td>
+    </tr>
+    <tr>
+      <th>Pasarela</th>
+      <td>
+        <input type="text" name="Gateway"  id="id_rgateway" size="20" maxlength="15" value="" onChange="enter('id_rgateway','s_gw_tmp');">
+      </td>
+    </tr>
+    <tr>
+      <th>M&eacute;trica</th>
+      <td>
+        <input type="text" name="Metric" id="id_metric" size="10" maxlength="2" value="15" onChange="enter('id_metric','s_metric_tmp');"> 
+      </td>
+    </tr>
+    </tbody>
+  </table>
+  <!--  -->
+  <p>
+  <div id="rule_add_button">
+     <input type="button" value="Agregar" name="Do_ADD" onClick="RouteAdd('add');">
+  </div>
+  <div id="rule_edit_button" style="display: none;">
+     <input type="button" value="Guardar" name="Do_EDIT" onClick="RouteAdd('edit');">
+     <input type="button" value="Cancelar" name="Do_EDCANSEL" onClick="location.href='route_reg.html'">
+  </div>
+  </p>
+</div>
+<div id="overrule" style="display: none;">
+	<p class=C_WARN>Ya est&aacute; registrado el n&uacute;mero m&aacute;ximo de n&uacute;meros.<br>Antes de agregar un elemento nuevo, elimine un elemento registrado.</p>
+</div>
+<hr>
+  <table class="AD_TTL2">
+    <tbody>
+    <tr><td>Informaci&oacute;n del enrutamiento </td></tr>
+    </tbody>
+  </table>
+
+  <table class="AD_LIST">
+    <tbody>
+    <tr>
+      <th>Direcci&oacute;n de destino</th>
+      <th>M&aacute;scara de subred</th>
+      <th>Pasarela</th>
+      <th>M&eacute;trica</th>
+      <th>Funcionamiento</th>
+    </tr>
+    <tr id='r0'><td colspan="6" class="NO_ENTRY">Configuraci&oacute;n de enrutamiento no registrada</td></tr>
+
+    <tr id="id_add_tmp" style="display:none;">
+	<td><span id="s_ip_tmp"></span></td>
+	<td><span id="s_mask_tmp"></span></td>
+	<td><span id="s_gw_tmp"></span></td>
+	<td><div class="DIGIT"><span id="s_metric_tmp">15</span></div></td>
+	<td style="color:#FF0000;"><center>Editando</center></td>
+    </tr>
+    </tbody>
+    <input type="hidden" id="id_edit_index" name="Editindex" value="">
+    <input type="hidden" id="id_selectItem" name="SelectItem" value="0">
+    <input type="hidden" id="id_route_num" name="RouteNum" value="0" disabled>
+</table>
+</form>
+</body>
+
+<!-- Mirrored from 192.168.0.1/route_reg.html by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 11 Jan 2017 00:16:09 GMT -->
+</html>

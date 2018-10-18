@@ -1,0 +1,307 @@
+
+<!-- saved from url=(0036)http://192.168.100.1/sp/tcpiplan.htm -->
+<html><!-- Copyright (c) Realtek Semiconductor Corp., 2003. All Rights Reserved. ---><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+<link rel="stylesheet" href="../css/styles.css" type="text/css">
+<meta http-equiv="Pragma" content="no-cache">
+<meta http-equiv="Cache-Control" content="no-cache">
+<meta http-equiv="Expires" content="Mon, 01 Jan 1990 00:00:01 GMT">
+
+<title>Configuración de la interfaz de LAN </title>
+
+<script type="text/javascript" src="../js/util_gw.js"> </script><style type="text/css"></style>
+<script>
+var initialDhcp;
+function checkMode()
+{
+	var opmode=0 ;
+
+	if( opmode > 3 )
+		disableTextField(document.tcpip.stp);
+}
+
+function dhcpChange(index)
+{
+	//var check_staticdhcp = document.tcpip.static_dhcp;
+	var dF = document.tcpip;
+  if ( index == 0 || index == 1) {
+	  disableTextField(document.tcpip.dhcpRangeStart);
+   	  disableTextField(document.tcpip.dhcpRangeEnd);
+   	  enableTextField(document.tcpip.lan_gateway);
+	  disableButton( document.tcpip.dhcpClientTbl );
+   	  disableTextField(document.tcpip.domainName);
+	  disableTextField(document.tcpip.dhcpLeaseTime);
+   	   //check_staticdhcp.disabled = true;
+   	   disableButton(dF.elements["staticdhcpTbl"]);		  	  
+  }
+  else {
+   	  enableTextField(document.tcpip.dhcpRangeStart);
+   	  enableTextField(document.tcpip.dhcpRangeEnd);
+   	  disableTextField(document.tcpip.lan_gateway);
+	  enableButton( document.tcpip.dhcpClientTbl );
+   	  enableTextField(document.tcpip.domainName);
+	  enableTextField(document.tcpip.dhcpLeaseTime);
+   	  //check_staticdhcp.disabled = false;	  
+   	  enableButton(dF.elements["staticdhcpTbl"]); 	  
+  }
+  if ( index == 1 ) {
+ 	  disableTextField(document.tcpip.lan_ip);
+	  disableTextField(document.tcpip.lan_mask);
+	  disableTextField(document.tcpip.lan_gateway);
+  }
+  else {
+ 	  enableTextField(document.tcpip.lan_ip);
+	  enableTextField(document.tcpip.lan_mask);
+   	  enableTextField(document.tcpip.lan_gateway);
+  }
+}
+
+function resetClick()
+{
+   dhcpChange( initialDhcp );
+   document.tcpip.reset;
+}
+
+
+function checkClientRange(start,end)
+{
+  start_d = getDigit(start,4);
+  start_d += getDigit(start,3)*256;
+  start_d += getDigit(start,2)*256;
+  start_d += getDigit(start,1)*256;
+
+  end_d = getDigit(end,4);
+  end_d += getDigit(end,3)*256;
+  end_d += getDigit(end,2)*256;
+  end_d += getDigit(end,1)*256;
+
+  if ( start_d < end_d )
+	return true;
+
+  return false;
+}
+
+
+function saveChanges()
+{
+
+  if ( checkIpAddr(document.tcpip.lan_ip, 'Invalid IP address value! ') == false )
+	    return false;
+
+  if (checkIPMask(document.tcpip.lan_mask) == false)
+  	return false ;
+
+  if ( document.tcpip.dhcp.selectedIndex == 1) {
+  	if ( checkIpAddr(document.tcpip.dhcpRangeStart, 'Invalid DHCP client start address! ') == false )
+	    return false;
+
+	if ( !checkSubnet(document.tcpip.lan_ip.value,document.tcpip.lan_mask.value,document.tcpip.dhcpRangeStart.value)) {
+		alert('Invalid DHCP client start address!\nIt should be located in the same subnet of current IP address.');
+		document.tcpip.dhcpRangeStart.value = document.tcpip.dhcpRangeStart.defaultValue;
+		document.tcpip.dhcpRangeStart.focus();
+		return false;
+	}
+  	if ( checkIpAddr(document.tcpip.dhcpRangeEnd, 'Invalid DHCP client End address! ') == false )
+	    return false;	
+
+	if ( !checkSubnet(document.tcpip.lan_ip.value,document.tcpip.lan_mask.value,document.tcpip.dhcpRangeEnd.value)) {
+		alert('Invalid DHCP client end address!\nIt should be located in the same subnet of current IP address.');
+		document.tcpip.dhcpRangeEnd.value = document.tcpip.dhcpRangeEnd.defaultValue;
+		document.tcpip.dhcpRangeEnd.focus();
+		return false;
+	}
+        if ( !checkClientRange(document.tcpip.dhcpRangeStart.value,document.tcpip.dhcpRangeEnd.value) ) {
+		alert('Invalid DHCP client address range!\nEnding address should be greater than starting address.');
+		document.tcpip.dhcpRangeStart.focus();
+		return false;
+        }
+   }
+   if ( document.tcpip.dhcp.selectedIndex != 1) {
+   	if ( document.tcpip.lan_gateway.value=="")
+		document.tcpip.lan_gateway.value = '0.0.0.0';
+	
+	if (document.tcpip.lan_gateway.value!="0.0.0.0") {
+		if ( checkIpAddr(document.tcpip.lan_gateway, 'Invalid DHCP client End address! ') == false )
+	    		return false;
+	    	if ( !checkSubnet(document.tcpip.lan_ip.value,document.tcpip.lan_mask.value,document.tcpip.lan_gateway.value)) {
+			alert('Invalid gateway address!\nIt should be located in the same subnet of current IP address.');
+			document.tcpip.lan_gateway.value = document.tcpip.lan_gateway.defaultValue;
+			document.tcpip.lan_gateway.focus();
+			return false;
+      		}
+	}
+  }
+
+  var str = document.tcpip.lan_macAddr.value;
+   if(str.length ==0){
+  	document.tcpip.lan_macAddr.value = "000000000000";
+ // 	return true;
+  }
+  if ( str.length > 0 && str.length < 12) {
+	alert("Input MAC address is not complete. It should be 12 digits in hex.");
+	document.tcpip.lan_macAddr.focus();
+	return false;
+  }
+  
+  if(parseInt(str.substr(0, 2), 16) & 0x01 != 0)
+  {
+	alert("Invalid MAC address. It should not be a multicast or broadcast mac address.");	
+	document.tcpip.lan_macAddr.focus();
+	return false;
+  }
+  
+  for (var i=0; i<str.length; i++) {
+    if ( (str.charAt(i) >= '0' && str.charAt(i) <= '9') ||
+			(str.charAt(i) >= 'a' && str.charAt(i) <= 'f') ||
+			(str.charAt(i) >= 'A' && str.charAt(i) <= 'F') )
+			continue;
+	alert("Invalid MAC address. It should be in hex number (0-9 or a-f).");
+	document.tcpip.lan_macAddr.focus();
+	return false;
+  }
+  if(!checkFieldDigitRange(document.tcpip.dhcpLeaseTime,1,10080,"dhcp lease time invalid!"))
+  	return false;  
+
+  var str = document.tcpip.domainName.value;
+  if(str.length == 0){
+  	document.tcpip.domainName.value = "Realtek";
+//	return true;
+  }
+  for(var i=0; i<str.length; i++){
+  	if( (str.charAt(i) >= '0' && str.charAt(i) <= '9') ||
+			(str.charAt(i) >= 'a' && str.charAt(i) <= 'z') ||
+			(str.charAt(i) >= 'A' && str.charAt(i) <= 'Z') )
+			continue;
+	alert("Invalid Domain Name! Please enter characters in A(a)~Z(z) or 0-9 without spacing.");
+	document.tcpip.domainName.focus();
+	return false;
+  	}
+  return true;
+}
+
+
+function dhcpTblClick(url) {
+	if ( document.tcpip.dhcp.selectedIndex == 2) {
+		openWindow(url, 'DHCPTbl',600, 400 );
+	}
+}
+function staticdhcpChange(index)
+{
+	var dF = document.tcpip;
+	 if ( index == 1 && dF.dhcp.selectedIndex==2 )
+		enableButton(dF.elements["staticdhcpTbl"]);
+	else
+		disableButton(dF.elements["staticdhcpTbl"]);	
+}
+function staticdhcpTblClick(url) {
+	if ( document.tcpip.dhcp.selectedIndex == 2) {
+		//openWindow(url, 'StaticDHCPTbl',820, 500 );
+		document.location.href = url;
+	}
+}
+</script>
+</head>
+
+<body onload="checkMode();" marginwidth="0" marginheight="0">
+<blockquote>
+ <h2>Configuración de la interfaz de LAN</h2>
+
+<form action="http://192.168.100.1/boafrm/formTcpipSetup" method="POST" name="tcpip">
+<p>
+    Esta página se utiliza para configurar los parámetros para la red de área local, que permite la conexión con el puerto LAN del punto de acceso. En esta sección, puede cambiar la configuración de dirección IP, máscara de subred, DHCP, etc...
+  </p><hr><table border="0" width="80%" cellspacing="4" cellpadding="0">
+  <tbody><tr></tr>
+  <tr></tr>
+
+  <tr>
+      <td width="30%"><font size="2"><b>Dirección IP:</b></font></td>
+      <td width="70%"><input type="text" name="lan_ip" size="15" maxlength="15" value="192.168.100.1"></td>
+  </tr>
+
+  <tr>
+      <td width="30%"><font size="2"><b>Máscara de subred:</b></font></td>
+      <td width="70%"><input type="text" name="lan_mask" size="15" maxlength="15" value="255.255.255.0"></td>
+  </tr>
+
+  <tr>
+      <td width="30%"><font size="2"><b>Puerta de enlace predeterminada:</b></font></td>
+      <td width="70%"><input type="text" name="lan_gateway" size="15" maxlength="15" value="0.0.0.0"></td>
+  </tr>
+
+  <tr>
+      <td width="30%"><font size="2"><b>DHCP:</b></font></td>
+      <td width="70%"><select size="1" name="dhcp" onchange="dhcpChange(document.tcpip.dhcp.selectedIndex)">
+       <option value="0">Desactivado</option><option value="1">Clientes</option><option selected="" value="2">Servidor</option>  
+	   </select>
+     </td>
+  </tr>
+
+  <tr>
+      <td width="30%"><font size="2"><b>Rango de clientes DHCP:</b></font></td>
+      <td width="70%"><input type="text" name="dhcpRangeStart" size="12" maxlength="15" value="192.168.100.2">
+      <font face="Arial" size="5">-</font> <input type="text" name="dhcpRangeEnd" size="12" maxlength="15" value="192.168.100.254">&nbsp;
+        <script language=javascript> 
+		function nuevaventana (URL){ 
+		   window.open("wifi_clientesactivos.html","ventana1","width=800,height=400,scrollbars=NO") 
+		} 
+		</script>
+		
+		<input type="button" value="Mostrar cliente" name="dhcpClientTbl" onclick="nuevaventana()";>
+		
+      </td>
+  </tr>
+
+  <tr>
+      <td width="30%"><font size="2"><b>Tiempo de concesión de DHCP:</b></font></td>
+      <td width="70%"><input type="text" name="dhcpLeaseTime" size="6" maxlength="5" value="1440"> <font size="2">(1 ~ 10080 minutes)</font></td>
+  </tr>
+<tr>
+      <td width="30%"><font size="2"><b>DHCP estático:</b></font></td>
+      <td width="70%">
+				<input type="button" value="Establecer DHCP estático" name="staticdhcpTbl" onclick="staticdhcpTblClick(&#39;/sp/tcpip_staticdhcp.htm&#39;)">    
+      </td>
+  </tr>
+
+  <tr>
+      <td width="30%"><font size="2"><b>Nombre de dominio:</b></font></td>
+      <td width="70%"><input type="text" name="domainName" size="15" maxlength="30" value=""></td>
+  </tr>
+
+  <tr>
+      <td width="30%"><font size="2"><b>Árbol de expansión 802.1d:</b></font></td>
+      <td width="70%"><select size="1" name="stp">
+      <script>
+      	if(0)      	
+      		document.write("\
+				<option value=\"0\" >Desactivado</option>\
+				<option value=\"1\" selected>Activado</option>");
+      	else
+			document.write("\
+				<option value=\"0\" selected>Desactivado</option>\
+				<option value=\"1\" >Activado</option>");
+     	  	
+   	  		
+   	  </script>				<option value="0" selected="">Desactivado</option>				<option value="1">Activado</option>
+	    </select>
+      </td>
+  </tr>
+
+  <tr>
+      <td width="30%"><font size="2"><b>Clonar dirección MAC:</b></font></td>
+      <td width="70%"><input type="text" name="lan_macAddr" size="15" maxlength="12" value="000000000000"></td>
+  </tr>
+
+  <script>
+  	initialDhcp = document.tcpip.dhcp.selectedIndex;
+	dhcpChange(initialDhcp);
+	//staticdhcpChange(document.tcpip.static_dhcp.selectedIndex)
+  </script>
+  </tbody></table>
+  <br>
+      <input type="submit" value="Aplicar cambios" name="save" onclick="return saveChanges()">&nbsp;&nbsp;
+      <input type="reset" value="Restablecer" name="reset" onclick="resetClick()">
+      <input type="hidden" value="/tcpiplan.htm" name="submit-url">
+ </form>
+</blockquote>
+
+</body></html>

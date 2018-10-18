@@ -1,0 +1,151 @@
+
+<html>
+	<head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+<link rel="stylesheet" href="../css/styles.css" type="text/css">
+
+
+<title>QoS</title>
+
+</head>
+
+<body marginwidth="0" marginheight="0">
+<blockquote>
+<h2>QoS</h2>
+<p>
+ Las entradas de esta tabla mejoran la experiencia de juegos en línea garantizando que el tráfico de los juegos tenga prioridad por sobre otro tráfico de la red, como FTP o Web. </p>
+ <hr>
+
+<table border="0" style="margin-bottom:20px">
+
+<input type="hidden" value="/ip_qos.htm" name="submit-url">
+<tbody><tr><td><font size="2"><b>
+	<input type="checkbox" name="enabled" value="ON" checked>&nbsp;&nbsp;Activar QoS</b><br>
+ </font></td></tr>
+
+<tr><td><font size="2"><b>
+	<input type="checkbox" name="automaticUplinkSpeed" value="ON" onclick="updateLinkState()" >&nbsp;&nbsp;Automatic Velocidad de enlace ascendente</b><br>
+ </font></td></tr>
+
+<tr><td><font size="2"><b>
+	<b>Manual Uplink Speed (Kbps):</b> <input type="text" name="manualUplinkSpeed" size="8" maxlength="8" value="512" >
+	<br><br>
+</b></font></td></tr>
+
+<tr><td><font size="2"><b>
+   	<input type="checkbox" name="automaticDownlinkSpeed" value="ON" checked="" onclick="updateLinkState()" >&nbsp;&nbsp;Automatic Velocidad de enlace descendente</b><br>
+ </font></td></tr>
+
+<tr><td><font size="2"><b>
+	<b>Manual Downlink Speed (Kbps):</b> <input type="text" name="manualDownlinkSpeed" size="8" maxlength="8" value="512" >
+	<br><br><br>
+</b></font></td></tr>
+
+</tbody></table>
+
+<table border="0">
+
+	<tbody><tr>
+      <td colspan="2"><font size="2"><b>Configuración de reglas de QoS:</b></font></td>
+  </tr>
+
+	<tr>
+		<td width="45%"><font size="2"><b>Dirección Type:</b></font></td>
+		<td>
+      <input type="radio" name="addressType" value="0" checked="" onclick="ipAddrClicked()" >IP&nbsp;&nbsp;
+      <input type="radio" name="addressType" value="1" onclick="macAddrClicked()" >MAC&nbsp;&nbsp;
+      <!--<input type="radio" name="addressType" value="2" ONCLICK=anyAddrClicked()>ANY -->
+		</td>
+	</tr>
+
+	<tr>
+		<td><font size="2"><b>Dirección IP local:</b></font></td>
+		<td>
+			<input type="text" name="ipStart" size="12" maxlength="15" value="" >
+      <font face="Arial" size="5">-</font>
+      <input type="text" name="ipEnd" size="12" maxlength="15" value="" >
+    </td>
+  </tr>
+
+  <tr>
+		<td><font size="2"><b>Dirección MAC:</b></font></td>
+		<td><input type="text" name="mac" size="12" maxlength="12" ></td>
+	</tr>
+    
+	<tr id="l7_qos_div" style="display: none;">
+		<td width="45%"><font size="2"><b>Nivel 7:</b></font></td>
+		<td>
+			<select size="1" name="l7_protocol">
+				<option value="Disable">Desactivar</option>
+      </select>
+		</td>
+	</tr>
+    
+	<tr>
+		<td width="45%"><font size="2"><b>Modo:</b></font></td>
+		<td>
+			<select size="1" name="mode" >
+      <option selected="" value="1">Ancho de banda mínimo garantizado</option>
+      	<option value="2">Ancho de banda máximo restringido</option>
+      </select>
+    </td>
+  </tr>
+  
+  <tr>
+		<td width="45%"><font size="2"><b>Ancho de banda de enlace ascendente (Kbps):</b></font></td>
+		<td><input type="text" name="bandwidth" size="8" ></td>
+	</tr>
+	
+	<tr>
+		<td width="45%"><font size="2"><b>Ancho de banda de enlace descendente (Kbps):</b></font></td>
+		<td><input type="text" name="bandwidth_downlink" size="8" ></td>
+	</tr>
+	
+	<tr>
+		<td width="45%"><font size="2"><b>Comentario:</b></font></td>
+		<td><input type="text" name="comment" size="10" maxlength="15" ></td>
+	</tr>
+</tbody></table>
+
+<div style="margin:20px 0 40px">
+		<input type="submit" value="Aplicar cambios" name="addQos" onclick="return addRuleClick()">&nbsp;&nbsp;
+    <input type="reset" value="Restablecer" name="reset">
+</div>
+
+  <script> updateQosState(); </script>
+
+
+
+
+<br>
+<form action="http://192.168.100.1/boafrm/formIpQoS" method="POST" name="formQosDel">
+<font size="2"><b>Tabla de reglas de QoS actuales:</b></font><table border="0" width="100%" class="list">
+  <tbody><tr></tr>
+  <tr><th>Dirección IP local</th>
+<th>Dirección MAC</th>
+<th>Modo</th>
+<th>Ancho de banda de enlace ascendente</th>
+<th>Ancho de banda de enlace descendente</th>
+<th>Comentario</th>
+<th>Seleccionar</th></tr>
+
+</tbody></table>
+
+ <div style="margin:20px 0 0">
+     <input type="submit" value="Eliminar selección" name="deleteSel" onclick="return deleteClick()" >&nbsp;&nbsp;
+     <input type="submit" value="Eliminar todo" name="deleteAll" onclick="return deleteAllClick()" >&nbsp;&nbsp;&nbsp;
+     <input type="reset" value="Restablecer" name="reset">
+ <script>
+	if ( 0 == 0 )
+		disableQosDelButton();
+ </script>
+     <input type="hidden" value="/ip_qos.htm" name="submit-url">
+ </div>
+</form>
+
+
+</blockquote>
+
+
+
+</body></html>

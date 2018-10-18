@@ -1,0 +1,1262 @@
+<html>
+
+<!-- Mirrored from 192.168.0.1/filter_ip.html by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 11 Jan 2017 00:16:10 GMT -->
+<head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+<meta http-equiv="Cache-Control" content="no-cache">
+<meta http-equiv="Content-Style-Type" content="text/css">
+<LINK rel="stylesheet" href="WHR-G300N-160149-style-ENG.css" type="text/css">
+<LINK rel="stylesheet" href="WHR-G300N-160149-style-ad-ENG.css" type="text/css">
+
+<script language="JavaScript" type="text/javascript" src="common.html"></script>
+<script language="JavaScript">
+<!--
+var nowEdit=0;
+var oldEdit;
+var err_flag=0;
+var exec=0;
+function init()
+{
+     var rluenum="0";
+     rluenum = parseInt(rluenum);
+     if (rluenum>=1)
+     {
+     	document.getElementById("rule_add_button").style.display="none";
+     	document.getElementById("rule_addorder_button").style.display="";
+     }
+     else
+     {
+     	document.getElementById("rule_add_button").style.display="";
+     	document.getElementById("rule_addorder_button").style.display="none";
+     }
+     if (rluenum>= 32)
+     {
+     	document.getElementById("addrule_area").style.display="none";
+     	document.getElementById("overrule").style.display="";
+     }
+     else
+     {
+     	document.getElementById("addrule_area").style.display="";
+     	document.getElementById("overrule").style.display="none";
+     }
+}
+function enter(value, tmp)
+{
+	var selectvalue=document.getElementById(value);
+	var tmpvalue=document.getElementById(tmp);
+	
+	if (value == "id_sel_direction")
+	{
+		if (selectvalue[0].selected == true)
+			tmpvalue.innerHTML="Internet<br>&rarr;LAN";
+		else if (selectvalue[1].selected == true)
+    			tmpvalue.innerHTML="LAN<br>&rarr;Internet";
+	}
+	else if(value =="id_sel_operation")
+	{
+		if (selectvalue[0].selected == true)
+   			tmpvalue.innerHTML="Omitida";
+  		else if (selectvalue[1].selected == true)
+   			tmpvalue.innerHTML="Rechazada";
+  		else if (selectvalue[2].selected == true)
+    			tmpvalue.innerHTML="Aceptada";
+	}
+    	else if (value == "H_prt")
+	{
+	  	if (document.form_main.H_prt[0].checked == true)
+    			tmpvalue.innerHTML="TODO";
+  		else if (document.form_main.H_prt[1].checked == true)
+    			tmpvalue.innerHTML="ICMP";
+    		else if (document.form_main.H_prt[2].checked == true)
+    			tmpvalue.innerHTML=document.getElementById("id_prtno").value;
+    	}
+    	else if (value == "id_porttype")
+	{
+		
+	  	if (selectvalue[0].selected == true)
+	  		tmpvalue.innerHTML="Puerto TCP:"+document.getElementById("id_portno").value;
+		else if (selectvalue[1].selected == true)
+	  		tmpvalue.innerHTML="Puerto UDP:"+document.getElementById("id_portno").value;
+	  	else if (selectvalue[2].selected == true)
+	  		tmpvalue.innerHTML="HTTP<br>(Puerto TCP: 80)";
+	  	else if (selectvalue[3].selected == true)
+	  		tmpvalue.innerHTML="FTP<br>(Puerto TCP: 20-21)";
+	  	else if (selectvalue[4].selected == true)
+	  		tmpvalue.innerHTML="TELNET<br>(Puerto TCP: 23)";
+	  	else if (selectvalue[5].selected == true)
+	  		tmpvalue.innerHTML="SSH<br>(Puerto TCP: 22)";
+	  	else if (selectvalue[6].selected == true)
+	  		tmpvalue.innerHTML="HTTPS<br>(Puerto TCP: 443)";
+	  	else if (selectvalue[7].selected == true)
+	  		tmpvalue.innerHTML="SMTP<br>(Puerto TCP: 25)";
+	  	else if (selectvalue[8].selected == true)
+	  		tmpvalue.innerHTML="POP3<br>(Puerto TCP: 110)";
+	  	else if (selectvalue[9].selected == true)
+	  		tmpvalue.innerHTML="NTP<br>(Puerto TCP: 123)";
+	  	else if (selectvalue[10].selected == true)
+	  		tmpvalue.innerHTML="NTP<br>(Puerto UDP: 123)";
+	  	else if (selectvalue[11].selected == true)
+	  		tmpvalue.innerHTML="IMAP<br>(Puerto TCP: 143)";	  		
+    	}
+    	else if (value == "id_sourip")
+	{
+    		if (selectvalue.value=="")
+    			tmpvalue.innerHTML ="TODO";
+    		else
+    			tmpvalue.innerHTML = selectvalue.value;
+    	}
+    	else if (value == "id_destip")
+	{
+    		if (selectvalue.value=="")
+    			tmpvalue.innerHTML ="TODO";
+    		else
+    			tmpvalue.innerHTML = selectvalue.value;
+    	}
+}
+function enabling()
+{
+     if(document.form_main.H_prt[2].checked == true){//"one"
+     	document.form_main.H_prt_no.disabled = 0;
+     }else{
+     	document.form_main.H_prt_no.disabled = 1;
+     }
+     if(document.form_main.H_prt[3].checked == true){// "tcp/udp"
+     	document.form_main.H_port_type.disabled = 0;
+     	if(document.form_main.H_port_type.value == "tcp" 
+     	|| document.form_main.H_port_type.value == "udp"){
+     		document.form_main.H_port_no.disabled = 0;
+     	}else{
+     		document.form_main.H_port_no.disabled = 1;
+     	}
+     }else{
+     	document.form_main.H_port_type.disabled = 1;
+     	document.form_main.H_port_no.disabled = 1;
+     }
+}
+
+function isAllowValue(s)
+{
+  var i;
+	for (i=0; i<s.length; i++)
+	{
+		var c;
+		
+		c=s.charAt(i);
+
+		if (((c>='0')&&(c<='9')) || (c=='-'))
+		{
+		  if ((c=='-') && ((i==0) || (i==s.length-1)))
+		  {
+		    Show_error("Puerto TCP/UDP manual", "No se puede usar un guión '-' como carácter inicial ni final");
+		    err_flag=1;
+		    show_tmp();
+		    return false;
+		  }
+		}
+		else
+		{
+		  Show_error("Puerto TCP/UDP manual", "Contiene un car&aacute;cter no v&aacute;lido");
+		  	err_flag=1;
+		  	show_tmp();
+			return false;
+		}
+	}
+	
+	return true;
+}
+
+function isAllowValueIP(s,item)
+{
+  var i;
+	for (i=0; i<s.length; i++)
+	{
+		var c;
+		
+		c=s.charAt(i);
+	
+		if (((c>='0')&&(c<='9')) || (c=='.'))
+		{
+      			continue;
+		}
+		else
+		{
+		  Show_error(item, "Contiene un car&aacute;cter no v&aacute;lido");
+		  err_flag=1;
+		  show_tmp();
+			return false;
+		}
+	}
+	
+	return true;
+}
+function show_tmp(tmp)
+{
+      //alert(err_flag+" : "+tmp);
+      var rluenum="0";
+      document.getElementById("id_add_tmp").style.display="none";
+      document.getElementById("id_err_button").style.display="none";
+      document.getElementById("rule_edit_button").style.display="none";
+      document.getElementById("rule_add_button").style.display="none";
+      document.getElementById("rule_addorder_button").style.display="none";
+      document.getElementById("id_TITLE").innerHTML ="Agregar filtro basado en direcci&oacute;n IP";
+      if (err_flag == 1)
+      {
+      	if(tmp != 'edit' && nowEdit==0)
+      	{
+      		document.getElementById("id_add_tmp").style.display="";
+      		document.getElementById("id_err_button").style.display="";
+            document.getElementById("id_TITLE").innerHTML ="Editar filtro basado en direcci&oacute;n IP";
+      	}
+      	else
+      	{
+      		document.getElementById("rule_edit_button").style.display="";
+            document.getElementById("id_TITLE").innerHTML ="Editar filtro basado en direcci&oacute;n IP";
+      	}
+      		
+      	if (rluenum==0)
+      		document.getElementById("id_no_tule").style.display="none";
+      }
+      /*
+      if ((err_flag == 1) && (tmp != 'edit'))
+      {
+      	document.getElementById("id_add_tmp").style.display="";
+      	document.getElementById("id_err_button").style.display="";
+      	document.getElementById("rule_add_button").style.display="none";
+      	document.getElementById("rule_addorder_button").style.display="none";
+      	if (rluenum==0)
+      		document.getElementById("id_no_tule").style.display="none";
+      }
+      else if (err_flag == 1)
+      {
+      	
+      	document.getElementById("rule_edit_button").style.display="none";
+      }
+      */
+}
+function SetAddOrder(tmp) //Candy edit 081214
+{
+  var n;
+  var ip;
+  var pro;
+  //var err_flag=0;
+  var rluenum="0";
+  Hide_error();
+  
+  if (document.getElementById("id_prtmanual").checked==true)
+  {
+    if (isEmpty(document.form_main.H_prt_no.value))
+    {
+      Show_error("N&uacute;mero de protocolo", "No configurado");
+      err_flag=1;
+      show_tmp(tmp);
+      return;
+    }
+    
+    var i_port=parseInt(document.form_main.H_prt_no.value, 10);
+    if (!check_integer(document.form_main.H_prt_no.value))
+    {
+      Show_error("N&uacute;mero de protocolo", "Contiene un car&aacute;cter no v&aacute;lido");
+      err_flag=1;
+      show_tmp(tmp);
+      return;
+    }
+    else if (!check_integer_range(document.form_main.H_prt_no.value,1,255))
+    {
+      if (i_port<1)
+      {
+        Show_error("N&uacute;mero de protocolo", "Valor introducido demasiado peque&ntilde;o");
+        err_flag=1;
+        show_tmp(tmp);
+        return;
+      }
+      else //if (document.form_main.H_prt_no.value>255)
+      {
+        Show_error("N&uacute;mero de protocolo", "Valor introducido demasiado grande");
+        err_flag=1;
+        show_tmp(tmp);
+        return;
+      }
+    }
+    document.form_main.H_prt_no.value=i_port;
+  }
+  
+  if (document.getElementById("id_prttcpudp").checked==true && ((document.getElementById("id_porttype").options[0].selected==true) || (document.getElementById("id_porttype").options[1].selected==true)))
+  {
+    if (isEmpty(document.form_main.H_port_no.value))
+    {		
+      Show_error("Puerto TCP/UDP manual", "No configurado");
+      err_flag=1;
+      show_tmp(tmp);
+      return;
+    }
+    
+    pro=document.form_main.H_port_no.value;
+    n=pro.split('-');
+    
+    if(n.length==2)
+    {
+      if (n[0]=="" || n[1]=="")
+      {
+        Show_error("Puerto TCP/UDP manual", "No se puede usar un guión '-' como carácter inicial ni final");
+        err_flag=1;
+        show_tmp(tmp);
+        return;
+      }
+      
+      if (!check_integer_range(n[0],1,65535) || !check_integer_range(n[1],1,65535) || (parseInt(n[0], 10))>(parseInt(n[1], 10)))
+      {
+        n[0]=parseInt(n[0], 10);
+        n[1]=parseInt(n[1], 10);
+        
+        if (n[0]<1 || n[1]<1)
+        {
+          Show_error("Puerto TCP/UDP manual", "Valor introducido demasiado peque&ntilde;o");
+          err_flag=1;
+          show_tmp(tmp);
+          return;
+        }
+        else if (n[0]>65535 || n[1]>65535)
+        {
+          Show_error("Puerto TCP/UDP manual", "Valor introducido demasiado grande");
+          err_flag=1;
+          show_tmp(tmp);
+          return;
+        }
+        else if (n[0]>n[1])
+        {
+          Show_error("Puerto TCP/UDP manual", "Los valores primero y &uacute;ltimo son iguales o el orden est&aacute; invertido");
+          err_flag=1;
+          show_tmp(tmp);
+          return;
+        }
+        
+        if ((n[0]>=1 && n[0]<=65535) && (n[1]>=1 && n[1]<=65535))
+        {
+        	document.form_main.H_port_no.value = n[0] + "-" + n[1];
+        }
+        else
+        {
+        	Show_error("Puerto TCP/UDP manual", "Contiene un car&aacute;cter no v&aacute;lido");
+          	err_flag=1;
+          	show_tmp(tmp);
+          	return;
+        }
+      }        
+    }
+    else if (n.length==1)
+    {
+      if (!isAllowValue(n[0]))
+      {
+      	return;
+      }
+      else{
+        n[0]=parseInt(n[0], 10);
+        
+        if (n[0]<1)
+        {
+          Show_error("Puerto TCP/UDP manual", "Valor introducido demasiado peque&ntilde;o");
+          err_flag=1;
+          show_tmp(tmp);
+          return;
+        }
+        else if (n[0]>65535)
+        {
+          Show_error("Puerto TCP/UDP manual", "Valor introducido demasiado grande");
+          err_flag=1;
+          show_tmp(tmp);
+          return;
+        }
+        if (n[0]<=65535 && n[0]>=1)
+        {
+        	document.form_main.H_port_no.value = n[0];
+        }
+        else
+        {
+        	Show_error("Puerto TCP/UDP manual", "Contiene un car&aacute;cter no v&aacute;lido");
+          	err_flag=1;
+          	show_tmp(tmp);
+          	return;
+        }
+      }
+        document.form_main.H_port_no.value=parseInt(n[0],10);   
+    }
+    else //if (n.length>2)
+    {
+      Show_error("Puerto TCP/UDP manual", "Contiene un car&aacute;cter no v&aacute;lido");
+      err_flag=1;
+      show_tmp(tmp);
+      return;
+    }
+  }
+
+  if (document.form_main.H_sour_ip.value!="")
+  {
+    ip=document.form_main.H_sour_ip.value;
+    n = ip.split('index-2.html');
+    
+    if (n.length==1)
+    {
+      if (!isAllowValueIP(document.form_main.H_sour_ip.value,"Direcci&oacute;n de origen"))
+        return;
+
+      if (!check_ip_format(document.form_main.H_sour_ip.value,"Direcci&oacute;n de origen"))
+       	return;
+		document.form_main.H_sour_ip.value=ip_normalize_0(document.form_main.H_sour_ip.value);
+    }
+    else if (n.length==2)
+    {
+      if (!isAllowValueIP(n[0],"Direcci&oacute;n de origen"))
+        return;
+        
+      if (!check_ip_format(n[0],"Direcci&oacute;n de origen"))
+        return;
+      if (n[1].length!=0)
+      {
+      	if (!check_integer_range(n[1],1,31) || n[1]=="")
+      	{
+      	  Show_error("Direcci&oacute;n de origen", "Contiene un car&aacute;cter no v&aacute;lido");
+      	  err_flag=1;
+      	  show_tmp(tmp);
+      	  return;
+      	}
+      }
+      else
+      {
+      	  Show_error("Direcci&oacute;n de origen", "Contiene un car&aacute;cter no v&aacute;lido");
+      	  err_flag=1;
+      	  show_tmp(tmp);
+      	  return;
+      }
+	  
+	  document.form_main.H_sour_ip.value=ip_normalize_0(n[0]) + '/' + n[1] ;
+	  
+    }
+    else// if (n.length>2)
+    {
+      Show_error("Direcci&oacute;n de origen", "Contiene un car&aacute;cter no v&aacute;lido");
+      err_flag=1;
+      show_tmp(tmp);
+      return;
+    }
+  }
+  
+  if (document.form_main.H_dest_ip.value!="")
+  {
+    ip=document.form_main.H_dest_ip.value;
+    n = ip.split('index-2.html');
+    
+    if (n.length==1)
+    {
+      if (!isAllowValueIP(document.form_main.H_dest_ip.value,"Direcci&oacute;n de destino"))
+        return;
+
+      if (!check_ip_format(document.form_main.H_dest_ip.value,"Direcci&oacute;n de destino"))
+        return;
+    
+		document.form_main.H_dest_ip.value = ip_normalize_0(document.form_main.H_dest_ip.value);
+	}
+    else if (n.length==2)
+    {
+      if (!isAllowValueIP(n[0],"Direcci&oacute;n de destino"))
+        return;
+      if (!check_ip_format(n[0],"Direcci&oacute;n de destino"))
+        return;
+      if (!check_integer_range(n[1],1,31) || n[1]=="")
+      {
+        Show_error("Direcci&oacute;n de destino", "Contiene un car&aacute;cter no v&aacute;lido");
+        err_flag=1;
+        show_tmp(tmp);
+        return;
+      }
+	  
+	  document.form_main.H_dest_ip.value = ip_normalize_0(n[0])+ '/' + n[1];
+	  
+    }
+    else// if (n.length>2)
+    {
+      Show_error("Direcci&oacute;n de destino", "Contiene un car&aacute;cter no v&aacute;lido");
+      err_flag=1;
+      show_tmp(tmp);
+      return;
+    }
+  }
+  if((document.form_main.H_sour_ip.value!="")&&(document.form_main.H_dest_ip.value!=""))
+  {
+      if(document.form_main.H_sour_ip.value == document.form_main.H_dest_ip.value)
+      {
+      	Show_error("Direcci&oacute;n IP", "No se puede usar la misma direcci&oacute;n para origen y destino");
+      	err_flag=1;
+      	show_tmp(tmp);
+      	return;
+      }
+  }
+
+	if(document.form_main.H_sched.value==""){
+
+		Show_error("Schedule","Choose one schedule rule");
+		return;
+	}
+
+  	
+  if (check_same_rule())
+  {
+    Show_error("Configuraci&oacute;n del filtro de IP", "Ya registrado");
+    err_flag=1;
+    show_tmp(tmp);
+    return;
+  }
+
+  document.getElementById("id_action").value = tmp;
+  //alert(document.getElementById("id_action").value);
+  document.getElementById("id_add_tmp").style.display="none"; 
+  if (exec==0)
+  {
+  	exec=1;
+  	document.form_main.submit();
+  }
+}
+
+function check_same_rule()
+{
+  var i;
+  var rule_count_string='0';
+  var rule_count=parseInt(rule_count_string, 10);
+  var operation="";
+  var direction="";
+  var source="";
+  var destination="";
+  var protocol="";
+  var porttype="";
+  var port="";
+  var port2="";
+  
+  if (document.getElementById("id_sel_operation").options[0].selected == true)
+	  operation="Omitida";
+  else if (document.getElementById("id_sel_operation").options[1].selected == true)
+	  operation="Rechazada";
+  else if (document.getElementById("id_sel_operation").options[2].selected == true)
+	  operation="Aceptada";
+
+  if (document.getElementById("id_sel_direction").options[0].selected == true)
+	  direction="Internet";
+  else if (document.getElementById("id_sel_direction").options[1].selected == true)
+	  direction="LAN";
+
+  if (document.form_main.H_sour_ip.value=="")
+	  source="TODO";
+  else
+	  source=document.form_main.H_sour_ip.value;
+
+  if (document.form_main.H_dest_ip.value=="")
+	  destination="TODO";
+  else
+	  destination=document.form_main.H_dest_ip.value;
+
+  if (document.getElementById("id_prtall").checked==true)
+	  protocol="TODO";
+  if (document.getElementById("id_prticpm").checked==true)
+	  protocol="ICMP";
+  else if (document.getElementById("id_prtmanual").checked==true)
+	  protocol=document.form_main.H_prt_no.value;
+  else if (document.getElementById("id_prttcpudp").checked==true)
+  {
+
+	  port=document.form_main.H_port_no.value;
+
+	  if (document.getElementById("id_porttype").options[0].selected == true)
+		  protocol="TCP";
+	  else if (document.getElementById("id_porttype").options[1].selected == true)
+		  protocol="UDP";
+	  else
+	  {
+		  porttype="TCP";
+
+		  if (document.getElementById("id_porttype").options[2].selected == true)
+		  {
+			  protocol="HTTP";
+			  port="80";
+		  }
+		  else if (document.getElementById("id_porttype").options[3].selected == true)
+		  {
+			  protocol="FTP";
+			  port="20-21";
+		  }
+		  else if (document.getElementById("id_porttype").options[4].selected == true)
+		  {
+			  protocol="TELNET";
+			  port="23";
+		  }
+		  else if (document.getElementById("id_porttype").options[5].selected == true)
+		  {
+			  protocol="SSH";
+			  port="22";
+		  }
+		  else if (document.getElementById("id_porttype").options[6].selected == true)
+		  {
+			  protocol="HTTPS";
+			  port="443";
+		  }
+		  else if (document.getElementById("id_porttype").options[7].selected == true)
+		  {
+			  protocol="SMTP";
+			  port="25";
+		  }
+		  else if (document.getElementById("id_porttype").options[8].selected == true)
+		  {
+			  protocol="POP3";
+			  port="110";
+		  }
+		  else if (document.getElementById("id_porttype").options[9].selected == true)
+		  {
+			  protocol="NTP";
+			  porttype="UDP";
+			  port="123";
+		  }
+		  else if (document.getElementById("id_porttype").options[10].selected == true)
+		  {
+			  protocol="NTP";
+			  port="123";
+		  }
+		  else if (document.getElementById("id_porttype").options[11].selected == true)
+		  {
+			  protocol="IMAP";
+			  port="143";
+		  }
+	  }
+  }
+
+  for(i=1;i<=rule_count;i++)
+  {
+	  var string="Editando";
+	  var stringlen=string.length;
+	  var textHtml=document.getElementById("filter_status"+i).innerHTML.substring(8,8+stringlen);
+	  if (textHtml != "Editando")
+	  {
+		  if (operation==document.getElementById("id_op"+i).innerHTML && direction==document.getElementById("s_dir"+i).innerHTML &&
+				  source==document.getElementById("s_srcip"+i).innerHTML && destination==document.getElementById("s_dstip"+i).innerHTML &&
+				  protocol==document.getElementById("s_prototype"+i).innerHTML)
+		  {
+			  if (document.getElementById("s_porttype"+i))
+			  {
+				  if (porttype!=document.getElementById("s_porttype"+i).innerHTML)
+					  continue;
+			  }
+			  if (document.getElementById("s_portno"+i))
+			  {
+				  if (port!=document.getElementById("s_portno"+i).innerHTML)
+					  continue;
+			  }
+
+			  return true;
+		  }
+		  else if (operation==document.getElementById("id_op"+i).innerHTML && direction==document.getElementById("s_dir"+i).innerHTML &&
+				  source==document.getElementById("s_srcip"+i).innerHTML && destination==document.getElementById("s_dstip"+i).innerHTML)
+		  {
+			  if (protocol=="TCP" && (port=="80" || port=="20-21" || port=="23" || port=="22" || port=="443" || port=="25" || port=="110" || port=="123" || port=="143"))
+			  {
+				  if (document.getElementById("s_porttype"+i))
+				  {
+					  if (protocol!=document.getElementById("s_porttype"+i).innerHTML)
+						  continue;
+				  }
+				  if (document.getElementById("s_portno"+i))
+				  {
+					  if (port!=document.getElementById("s_portno"+i).innerHTML)
+						  continue;
+				  }
+				  return true;
+			  }
+			  else if (protocol=="UDP" && port=="123")
+			  {
+				  if (document.getElementById("s_porttype"+i))
+					  if (protocol!=document.getElementById("s_porttype"+i).innerHTML)
+						  continue;
+				  if (document.getElementById("s_portno"+i))
+					  if (port!=document.getElementById("s_portno"+i).innerHTML)
+						  continue;
+				  return true;
+			  }
+		  }
+	  }
+  }
+
+  return false;
+}
+function isEmpty(s)
+{
+	if(s.length==0)
+	{
+		return true;
+	}
+	else
+	{
+		return false;
+	}
+}
+
+function check_initial_zero(tmp)
+{	
+	if(tmp.length>1&&tmp.charAt(0)=="0")
+	{
+		return true;
+	}
+	return false;
+}
+function check_ip_format(ip, item)
+{
+	var n;
+	var lanip='192.168.0.1';
+	var lanmask='255.255.255.0';
+	var dir_type=document.getElementById("id_sel_direction").value;
+	
+	if (ip=="0.0.0.0")
+	{
+    Show_error(item, "No se puede usar la direcci&oacute;n reservada (0.0.0.0)");
+    err_flag=1;
+    show_tmp();
+    return false;
+  }
+  if (ip=="255.255.255.255")
+  {
+    Show_error(item, "No se puede usar la direcci&oacute;n reservada (255.255.255.255)");
+    err_flag=1;
+    show_tmp();
+    return false;
+  }
+
+/* //Marked for #53566
+  if (ip==lanip)
+  {
+    Show_error(item, "No se puede especificar la direcci&oacute;n IP de la LAN de esta Device");
+    err_flag=1;
+    show_tmp();
+    return false;
+  }
+*/
+	if (!isBlank(ip))
+	{
+		n = ip.split('.');
+		
+		if (n.length!=4)
+		{
+      Show_error(item, "Formato de direcci&oacute;n IP no v&aacute;lido");
+      err_flag=1;
+      show_tmp();
+      return false;
+    }
+		if(isBlank(n[0]))
+		{
+		  Show_error(item, "Formato de direcci&oacute;n IP no v&aacute;lido");
+		  err_flag=1;
+		  show_tmp();
+      return false;
+    }	
+		//else if((isNaN(n[0]))||(n[0]<=0)||!check_integer(n[0])||check_initial_zero(n[0])) 
+		else if((isNaN(n[0]))||(n[0]<=0)||!check_integer(n[0])) 
+		{
+      Show_error(item, "Formato de direcci&oacute;n IP no v&aacute;lido");
+      err_flag=1;
+      show_tmp();
+      return false; 
+    }
+    else if (n[0]==127)
+    {
+      Show_error(item, "No se puede usar la direcci&oacute;n de bucle invertido (127.XXX.XXX.XXX)");
+      err_flag=1;
+      show_tmp();
+      return false;
+    }
+    else if (n[0]>=224 && n[0]<=239)
+    {
+      Show_error(item, "No se puede usar la direcci&oacute;n de prueba (de 224.XXX.XXX.XXX a 239.XXX.XXX.XXX)");
+      err_flag=1;
+      show_tmp();
+      return false;
+    }	
+    else if (n[0]>=240 && n[0]<=255)
+    {
+      Show_error(item, "No se puede usar la direcci&oacute;n de prueba (de 240.XXX.XXX.XXX a 255.XXX.XXX.XXX)");
+      err_flag=1;
+      show_tmp();
+      return false;
+    }	
+			
+		if(isBlank(n[1]))
+		{
+      Show_error(item, "Formato de direcci&oacute;n IP no v&aacute;lido");
+      err_flag=1;
+      show_tmp();
+      return false;
+    }
+		//else if((isNaN(n[1]))||(n[1]<0)||(n[1]>255)||!check_integer(n[1])||check_initial_zero(n[1])) 
+		else if((isNaN(n[1]))||(n[1]<0)||(n[1]>255)||!check_integer(n[1])) 
+		{
+      Show_error(item, "Formato de direcci&oacute;n IP no v&aacute;lido");
+      err_flag=1;
+      show_tmp();
+      return false; 
+    }		
+		
+		if(isBlank(n[2]))
+		{
+      Show_error(item, "Formato de direcci&oacute;n IP no v&aacute;lido");
+      err_flag=1;
+      show_tmp();
+      return false;
+    }
+		//else if((isNaN(n[2]))||(n[2]<0)||(n[2]>255)||!check_integer(n[2])||check_initial_zero(n[2])) 
+		else if((isNaN(n[2]))||(n[2]<0)||(n[2]>255)||!check_integer(n[2])) 
+		{
+      Show_error(item, "Formato de direcci&oacute;n IP no v&aacute;lido");
+      err_flag=1;
+      show_tmp();
+      return false; 
+    }
+		
+		if(isBlank(n[3]))
+		{
+      Show_error(item, "Formato de direcci&oacute;n IP no v&aacute;lido");
+      err_flag=1;
+      show_tmp();
+      return false;
+    }
+		//else if((isNaN(n[3]))||(n[3]<=0)||(n[3]>=255)||!check_integer(n[3])||check_initial_zero(n[3])) 
+		//else if((isNaN(n[3]))||(n[3]<=0)||(n[3]>=255)||!check_integer(n[3])) 
+		else if((isNaN(n[3]))||(n[3]<0)||(n[3]>=255)||!check_integer(n[3]))
+		{
+      Show_error(item, "Formato de direcci&oacute;n IP no v&aacute;lido");
+      err_flag=1;
+      show_tmp();
+      return false; 
+    }
+    
+    if (!isBlank(lanip))
+    {
+      if ((dir_type=="0")&&(item == "Direcci&oacute;n de origen"))
+      {
+        if (check_the_same_subnet(ip,lanip,lanmask))
+        {
+          Show_error(item, "Si la direcci&oacute;n es INTERNET->LAN, no se puede usar una direcci&oacute;n IP del rango de direcciones de red de la LAN");
+          err_flag=1;
+          show_tmp();
+          return false;
+        }
+      }
+      if ((dir_type=="1")&&(item == "Direcci&oacute;n de destino"))
+      {
+        if (check_the_same_subnet(ip,lanip,lanmask))
+        {
+          Show_error(item, "Si la direcci&oacute;n es LAN->INTERNET, no se puede usar una direcci&oacute;n IP del rango de direcciones de red de la LAN");
+          err_flag=1;
+          show_tmp();
+          return false;
+        }
+      }
+    }
+	}
+
+	return true;
+}
+
+function ChangeRuleOrder(action, index)
+{	//Edit
+	var f_main = document.getElementById("id_form_main");
+	document.getElementById("id_action").value = action;
+	document.getElementById("id_change_order").value = index;
+
+	if (action == "edit")
+		EditRule(index);
+	else
+		f_main.submit();
+}
+function restoreEdit(val)
+{
+	document.getElementById("id_sel_operation").options[0].selected = true;
+	document.getElementById("id_sel_direction").options[0].selected = true;
+	document.getElementById("id_sourip").value = "";
+	document.getElementById("id_destip").value = "";
+	document.getElementById("id_prttcpudp").checked = true;
+	document.getElementById("id_porttype").options[0].selected = true;
+	var filter_statusObj = document.getElementById("filter_status"+val);
+	filter_statusObj.innerHTML = oldEdit;
+}
+
+function EditRule(index)
+{
+     if (nowEdit!=index && nowEdit!=0)
+	restoreEdit(nowEdit);
+     nowEdit=index;
+     
+     Hide_error();
+     document.getElementById("id_err_button").style.display="none";
+     document.getElementById("id_add_tmp").style.display="none";
+     document.getElementById("id_edittype").value = "1";
+     var op_valueObj=document.getElementById("id_op"+index);
+     var dir_valueObj = document.getElementById("s_dir"+index);
+     var srcip_valueObj = document.getElementById("s_srcip"+index);
+     var dstip_valueObj = document.getElementById("s_dstip"+index);
+     var proto_valueObj = document.getElementById("s_prototype"+index);
+     var sched_valueObj = document.getElementById("id_sched"+index);
+ 
+     var t_souripObj = document.getElementById("id_sourip");
+     var t_destipObj = document.getElementById("id_destip");
+     var proto_contentObj = document.getElementById("id_proto_content"+index);
+    
+     var op_value= (document.all)?op_valueObj.innerText:op_valueObj.textContent;
+     var dir_value= (document.all)?dir_valueObj.innerText:dir_valueObj.textContent;
+     var srcip_value= (document.all)?srcip_valueObj.innerText:srcip_valueObj.textContent;
+     var dstip_value= (document.all)?dstip_valueObj.innerText:dstip_valueObj.textContent;
+     var proto_value= (document.all)?proto_valueObj.innerText:proto_valueObj.textContent;
+   
+     //var t_sourip= (document.all)?t_souripObj.innerText:t_souripObj.textContent;
+     //var t_destip= (document.all)?t_destipObj.innerText:t_destipObj.textContent;
+     var proto_content= (document.all)?proto_contentObj.innerText:proto_contentObj.textContent;
+     
+     var sched_value = (document.all)?sched_valueObj.innerText:sched_valueObj.textContent;
+
+	//alert(sched_value);
+    
+	if(sched_value == "None")
+		document.getElementById("H_sched").value = "0";
+	else
+		document.getElementById("H_sched").value = sched_value;
+ 
+     //alert(proto_value);
+     if (op_value == "Omitida")
+     	document.getElementById("id_sel_operation").options[0].selected = true;
+     else if (op_value == "Aceptada")
+     	document.getElementById("id_sel_operation").options[2].selected = true;
+     else if (op_value == "Rechazada")
+     	document.getElementById("id_sel_operation").options[1].selected = true;
+
+     
+     if (dir_value == "Internet")
+     	document.getElementById("id_sel_direction").options[0].selected = true;
+     else 
+     	document.getElementById("id_sel_direction").options[1].selected = true;
+
+     if (srcip_value != "TODO")
+     	t_souripObj.value = srcip_value;
+     if (dstip_value != "TODO")
+     	t_destipObj.value = dstip_value;
+     
+     if (proto_content == "TODO")
+  	document.getElementById("id_prtall").checked = true;	
+     else if (proto_content == "ICMP")
+     	document.getElementById("id_prticpm").checked = true;
+     else
+     {
+     	if (proto_value == "TCP")
+     	{  	
+     		var proto_numObj = document.getElementById("s_portno"+index);
+     		var proto_num= (document.all)?proto_numObj.innerText:proto_numObj.textContent;
+     		document.getElementById("id_prttcpudp").checked = true;
+     		document.getElementById("id_porttype").options[0].selected = true;
+     		document.getElementById("id_portno").value = proto_num;
+     	}
+     	else if (proto_value == "UDP")
+     	{
+     	   var proto_numObj = document.getElementById("s_portno"+index);
+     		var proto_num= (document.all)?proto_numObj.innerText:proto_numObj.textContent;
+     		document.getElementById("id_prttcpudp").checked = true;
+     		document.getElementById("id_porttype").options[1].selected = true;
+     		document.getElementById("id_portno").value = proto_num;
+     	}
+     	else if (proto_value == "HTTP")
+     	{
+     		var proto_numObj = document.getElementById("s_portno"+index);
+     		var proto_num= (document.all)?proto_numObj.innerText:proto_numObj.textContent;
+     		document.getElementById("id_portno").value = proto_num;
+     		document.getElementById("id_prttcpudp").checked = true;
+     		document.getElementById("id_porttype").options[2].selected = true;
+     	}
+     	else if (proto_value == "FTP")
+     	{
+     		var proto_numObj = document.getElementById("s_portno"+index);
+     		var proto_num= (document.all)?proto_numObj.innerText:proto_numObj.textContent;
+     		document.getElementById("id_portno").value = proto_num;
+     		document.getElementById("id_prttcpudp").checked = true;
+     		document.getElementById("id_porttype").options[3].selected = true;
+     	}
+     	else if (proto_value == "TELNET")
+     	{
+     		var proto_numObj = document.getElementById("s_portno"+index);
+     		var proto_num= (document.all)?proto_numObj.innerText:proto_numObj.textContent;
+     		document.getElementById("id_portno").value = proto_num;
+     		document.getElementById("id_prttcpudp").checked = true;
+     		document.getElementById("id_porttype").options[4].selected = true;
+     	}
+     	else if (proto_value == "SSH")
+     	{
+     		var proto_numObj = document.getElementById("s_portno"+index);
+     		var proto_num= (document.all)?proto_numObj.innerText:proto_numObj.textContent;
+     		document.getElementById("id_portno").value = proto_num;
+     		document.getElementById("id_prttcpudp").checked = true;
+     		document.getElementById("id_porttype").options[5].selected = true;
+     	}
+     	else if (proto_value == "HTTPS")
+     	{
+     		var proto_numObj = document.getElementById("s_portno"+index);
+     		var proto_num= (document.all)?proto_numObj.innerText:proto_numObj.textContent;
+     		document.getElementById("id_portno").value = proto_num;
+     		document.getElementById("id_prttcpudp").checked = true;
+     		document.getElementById("id_porttype").options[6].selected = true;
+     	}
+     	else if (proto_value == "SMTP")
+     	{
+     		var proto_numObj = document.getElementById("s_portno"+index);
+     		var proto_num= (document.all)?proto_numObj.innerText:proto_numObj.textContent;
+     		document.getElementById("id_portno").value = proto_num;
+     		document.getElementById("id_prttcpudp").checked = true;
+     		document.getElementById("id_porttype").options[7].selected = true;
+     	}
+     	else if (proto_value == "POP3")
+     	{
+     		var proto_numObj = document.getElementById("s_portno"+index);
+     		var proto_num= (document.all)?proto_numObj.innerText:proto_numObj.textContent;
+     		document.getElementById("id_portno").value = proto_num;
+     		document.getElementById("id_prttcpudp").checked = true;
+     		document.getElementById("id_porttype").options[8].selected = true;
+     	}
+     	else if (proto_value == "NTP")
+     	{
+     	   var proto_numObj = document.getElementById("s_portno"+index);
+     		var proto_num= (document.all)?proto_numObj.innerText:proto_numObj.textContent;
+     		document.getElementById("id_portno").value = proto_num;
+     	   var porttypeObj = document.getElementById("s_porttype"+index);
+     	   var porttype= (document.all)?porttypeObj.innerText:porttypeObj.textContent;
+     	   
+     		document.getElementById("id_prttcpudp").checked = true;
+     		if (porttype == "TCP")
+     			document.getElementById("id_porttype").options[10].selected = true;
+     		else
+     			document.getElementById("id_porttype").options[9].selected = true;
+     	}
+     	else if (proto_value == "IMAP")
+     	{
+     		var proto_numObj = document.getElementById("s_portno"+index);
+     		var proto_num= (document.all)?proto_numObj.innerText:proto_numObj.textContent;
+     		document.getElementById("id_portno").value = proto_num;
+     		document.getElementById("id_prttcpudp").checked = true;
+     		document.getElementById("id_porttype").options[11].selected = true;
+     	}
+     	else
+     	{
+     		document.getElementById("id_prtmanual").checked = true;
+     		document.getElementById("id_prtno").value = proto_value;
+     	}
+     }
+     enabling();
+     document.getElementById("id_action").value = "edit";
+     document.getElementById("id_change_order").value = index;
+     //alert(document.getElementById("id_action").value);
+     //alert(document.getElementById("id_change_order").value);
+     
+     var filter_statusObj = document.getElementById("filter_status"+index);
+     oldEdit=filter_statusObj.innerHTML;
+     filter_statusObj.innerHTML = "<center>Editando</center>"
+     filter_statusObj.style.color="#FF0000";
+     
+     document.getElementById("rule_add_button").style.display="none";
+     document.getElementById("rule_addorder_button").style.display="none";
+     document.getElementById("rule_edit_button").style.display="";
+     document.getElementById("id_TITLE").innerHTML ="Editar filtro basado en direcci&oacute;n IP";
+}
+function DeleteRule(index)
+{
+	//Delete
+	document.getElementById("id_action").value = "delete";
+	document.getElementById("id_change_order").value = index;
+	if (exec==0)
+	{
+		exec=1;
+		document.form_main.submit();
+	}
+}
+
+function logoutput(item)
+{
+	if(document.getElementById(item).checked == true)
+		document.getElementById(item+"_tmp").value = 1;
+	else
+		document.getElementById(item+"_tmp").value = 0;
+	if (exec==0)
+  {
+  	exec=1;
+  	document.form_log.submit();
+  }
+}
+
+//-->
+</script>
+</head>
+
+<body class="BFK_BODY" onLoad="enabling();init();">
+<br>
+<br>
+<form name="form_log" method="POST">
+<div id="id_errtbl" class="C_ERR" style="display:none;"></div>
+  <table class="AD_SET">
+    <tr>
+      <th>Resultado del registro</th>
+      <td>
+        <input type="checkbox" id="log_filter" >Habilitar
+        <input type="hidden" name="LogIPFilterEnable" id="log_filter_tmp" value="0">
+      </td>
+    </tr>
+  </table>
+  <p><input type="button" value="Aplicar" name="SETUP" onClick="logoutput('log_filter');"></p>
+</form>
+<hr>
+<form  name="form_main" id="id_form_main" method="POST">
+
+  <table class="AD_TTL2">
+  <tbody>
+    <tr><td id="id_TITLE">Agregar filtro basado en direcci&oacute;n IP</td></tr>
+  </tbody>
+  </table>
+  <div id="addrule_area"> 	
+  <table class="AD_SET">
+    <tr>
+      <th>Funcionamiento</th>
+      <td colspan="2">
+     	<select size="1" name="sel_operation" id="id_sel_operation" onchange="enter('id_sel_operation','id_op_tmp');">
+          <option value="0" >Omitida</option>
+          <option value="2" >Rechazada</option>
+          <option value="1" >Aceptada</option>
+        </select>
+      </td>
+    </tr>
+    <tr>
+      <th>Direcci&oacute;n</th>
+      <td colspan="2">
+        <select size="1" name="sel_direction" id="id_sel_direction" onclick="enter('id_sel_direction','s_dir_tmp');">
+          <option value="0" >INTERNET→LAN</option>
+          <option value="1" >LAN→INTERNET</option>
+        </select>
+      </td>
+    </tr>
+    <tr>
+      <th>Direcci&oacute;n IP</th>
+      <td colspan="2">
+        Direcci&oacute;n de origen<input type="text" name="H_sour_ip" id="id_sourip" size="22" maxlength="18" value="" onChange="enter('id_sourip','s_srcip_tmp');">
+        &nbsp;→ Destino:<input type="text" name="H_dest_ip" id="id_destip"size="22" maxlength="18" value="" onChange="enter('id_destip','s_dstip_tmp');">
+      </td>
+    </tr>
+    <tr>
+      <th rowspan="4">Protocolo</th>
+        <td><input type="radio" value="all" name="H_prt" id="id_prtall" onClick="enabling();enter('H_prt','id_proto_content_tmp');">Todo</td>
+        <td></td>
+    </tr>
+    <tr>
+        <td><input type="radio" value="icmp" name="H_prt" id="id_prticpm" onClick="enabling();enter('H_prt','id_proto_content_tmp');">ICMP</td>
+        <td></td>
+    </tr>
+    <tr>
+        <td><input type="radio" value="manual" name="H_prt" id="id_prtmanual" onClick="enabling();enter('H_prt','id_proto_content_tmp');">Manual</td>
+        <td>N&uacute;mero de protocolo:<input type="text" name="H_prt_no" id="id_prtno" size="10" maxlength="3" value="" onChange="enter('H_prt','id_proto_content_tmp');"></td>
+    </tr>
+    <tr>
+        <td><input type="radio" value="tcpudp" name="H_prt" id="id_prttcpudp" onClick="enabling();enter('H_prt','id_proto_content_tmp');" checked>TCP/UDP</td>
+        <td>
+          <select size="1" name="H_port_type" id="id_porttype" onChange="enabling();" onClick="enter('id_porttype','id_proto_content_tmp');">
+        	<option value="tcp" selected>Configuraci&oacute;n manual del puerto TCP</option>
+        	<option value="udp" >Configuraci&oacute;n manual del puerto UDP</option>
+        	<option value="tcp:80" >HTTP (Puerto TCP: 80)</option>
+        	<option value="tcp:20-21" >FTP (Puerto TCP: 20-21)</option>
+        	<option value="tcp:23" >TELNET (Puerto TCP: 23)</option>
+        	<option value="tcp:22" >SSH (Puerto TCP: 22)</option>
+        	<option value="tcp:443" >HTTPS (Puerto TCP: 443)</option>
+        	<option value="tcp:25" >SMTP (Puerto TCP: 25)</option>
+        	<option value="tcp:110" >POP3 (Puerto TCP: 110)</option>
+        	<option value="udp:123" >NTP (Puerto UDP: 123)</option>
+        	<option value="tcp:123" >NTP (Puerto TCP: 123)</option>
+        	<option value="tcp:143" >IMAP (Puerto TCP: 143)</option>
+          </select>
+      		<a href="help/help_filter_ip.html#port" target="help">M&eacute;todo de especificaci&oacute;n</a>
+      		<br>N&uacute;mero de puerto: <input type="text" name="H_port_no" id="id_portno" size="20" maxlength="11" value="" onChange="enter('id_porttype','id_proto_content_tmp');">
+        </td>
+    </tr>
+    <tr>
+	<th>Schedule</th>
+	<td colspan="2">
+	<script language="JavaScript">
+		var schedule_entry="";
+		var sched_parts=schedule_entry.split("|");
+		document.write("<select name='H_sched' id='H_sched' onchange='' >");
+		document.write("<option value='0' selected>None</option>");
+		for(i=0;i<sched_parts.length-1;i++){
+			var rule_name=sched_parts[i].split(",");
+			document.write("<option value='"+rule_name[0]+"'>"+rule_name[0]+"</option>");
+		}
+		document.write("</select>");
+	</script>
+	</td>
+    </tr>
+  </table>
+  
+  <p>    	
+  	<div id="rule_add_button"><input type="button" value="Agregar regla" name="Do_ADDtop" onClick="SetAddOrder('up')"></div> 
+  	<div id="rule_addorder_button" style="display: none;">
+  	     <input type="button" value="Agregar (primero)" name="Do_ADDtop" id="id_ADDtop" onClick="SetAddOrder('up')">
+     	     <input type="button" value="Agregar (&uacute;ltimo)" name="Do_ADD" id="id_ADD" onClick="SetAddOrder('down')">
+     	</div>   
+     	<div id="rule_edit_button" style="display: none;">
+     		<input type="button" value="Guardar" name="Do_EDIT" onClick="SetAddOrder('edit')">
+     		<input type="button" value="Cancelar" name="Do_EDCANSEL" onClick="location.href='filter_ip.html'">
+     	</div>
+     	<div id="id_err_button" style="display: none;">
+     		<input type="button" value="Guardar" name="Do_EDIT" onClick="SetAddOrder('')">
+     		<input type="button" value="Cancelar" name="Do_EDCANSEL" onClick="location.href='filter_ip.html'">
+     	</div>
+  </p>
+  </div>
+  <div id="overrule" style="display: none;">
+  <p class="C_WARN">
+     Antes de agregar un elemento nuevo, elimine un elemento registrado.<br>
+     <!--Internet -->
+  </p>
+  </div>
+<hr>
+  <table class="AD_TTL2">
+  <tbody>
+
+    <tr><td>Informaci&oacute;n del filtro de IP </td></tr>
+
+  </tbody>
+  </table>
+  <table class="AD_LIST">
+  <tbody>
+    <tr>
+      <th>Funcionamiento</th>
+      <th>Direcci&oacute;n</th>
+      <th>Direcci&oacute;n de origen<br>
+          Direcci&oacute;n de destino</th>
+      <th>Protocolo</th>
+      <th>Recuento</th>
+      <th>Personalizar</th>
+      <th>Schedule</th>
+    </tr>
+     <tr id="id_no_tule"><td colspan=7 class="NO_ENTRY">A&uacute;n no se ha configurado el filtro de IP</td></tr>
+
+     <tr id="id_add_tmp" style="display:none;">
+       <td id="id_op_tmp">Omitida</td>
+  	<td><span id="s_dir_tmp">Internet<br>&rarr;LAN</td>
+  	<td><span id="s_srcip_tmp">TODO</span><br><span id="s_dstip_tmp">TODO</span></td>
+  	<td id="id_proto_content_tmp"><span id="s_prototype_tmp">Puerto TCP: </span>
+	</td>
+  	<td id="id_count_tmp" class="DIGIT">0</td>
+  	<td id="filter_status_tmp" style="color:#FF0000;"><center>Editando</center></td>
+      </tr>
+
+  </tbody>
+  </table>
+  <input type="hidden" id="id_action" name="Action" value="down">
+  <input type="hidden" id="id_change_order" name="ChangeNum" value="0">
+  <input type="hidden" id="id_edittype" value="0">
+ 
+</form>
+</body>
+
+<!-- Mirrored from 192.168.0.1/filter_ip.html by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 11 Jan 2017 00:16:10 GMT -->
+</html>

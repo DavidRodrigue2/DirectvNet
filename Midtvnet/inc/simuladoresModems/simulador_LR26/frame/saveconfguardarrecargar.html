@@ -1,0 +1,47 @@
+
+<html>
+	<head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+<link rel="stylesheet" href="../css/styles.css" type="text/css">
+
+<title>Guardar/recargar configuración</title>
+<script type="text/javascript" src="util_gw.js"> </script><style type="text/css"></style>
+
+</head>
+<body marginwidth="0" marginheight="0">
+<blockquote>
+<h2>Guardar/recargar configuración</h2>
+  <p>
+ Esta página le permite guardar la configuración actual en un archivo o volver a cargar la configuración desde el archivo guardado previamente. Además, puede restablecer la configuración actual a los valores predeterminados de fábrica.</p><hr><table border="0" cellspacing="4">
+  <tbody><tr>
+  </tr>
+  <tr></tr>
+  <form method="POST" name="saveConfig"></form>
+  <tr>
+    <td><font size="2"><b>Guardar configuración en archivo:</b></font></td>
+    <td><font size="2">
+        <input type="submit" value="Guardar..." name="save" onclick="return saveClick(&#39;/config.dat&#39;)">
+   </font></td></tr>
+  
+  <form method="post" enctype="multipart/form-data" name="uploadConfig"></form>
+  	<input type="hidden" value="/saveconf.htm" name="submit-url">
+  <tr>
+    <td><font size="2"><b>Cargar configuración desde el archivo:</b></font></td>
+    <td><font size="2"><input type="file" name="binary" id="binary" size="24"></font></td>
+    <td><font size="2"><input type="submit" value="Cargar" name="load" onclick="return fileCheck()"></font></td>
+  </tr>
+  
+  <form method="POST" name="saveConfig"></form>
+  <tr>
+    <td><font size="2"><b>Restablecer Settings to Default:</b></font></td>
+    <td>
+    <font size="2"><input type="submit" value="Restablecer" name="reset_btn" onclick="return resetClick()">
+    <input type="hidden" value="Reset" name="reset">
+    </font></td>
+  </tr>
+  
+</tbody></table>
+</blockquote>
+
+
+</body></html>

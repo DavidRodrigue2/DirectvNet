@@ -1,0 +1,51 @@
+
+
+<html>
+
+
+<!-- Mirrored from 192.168.0.1/upnp.html by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 11 Jan 2017 00:16:10 GMT -->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta http-equiv="Pragma" content="no-cache">
+<meta http-equiv="Cache-Control" content="no-cache">
+<meta http-equiv="Expires" content="Thu, 01 Dec 1994 16:00:00 GMT">
+<META http-equiv="Content-Style-Type" content="text/css">
+<LINK rel="stylesheet" href="WHR-G300N-160149-style-ENG.css" type="text/css">
+<LINK rel="stylesheet" href="WHR-G300N-160149-style-ad-ENG.css" type="text/css">
+<meta http-equiv="Content-Script-Type" content="text/javascript">
+<script src="OpenHelp.html"></script>
+<script type="text/javascript">
+<!-- 
+function UPnPEnable()
+{
+	if(document.getElementById("id_upnpeon").checked==true)
+		document.getElementById("id_upnpenable").value="1";
+	else
+		document.getElementById("id_upnpenable").value="0";
+		
+}
+  // -->
+</script>
+<script src="OnceOnly.html"></script>
+</head>
+
+<body  class="BFK_BODY">
+<br>
+<form   onsubmit="return onceOnly(this);"  method="POST" action="http://admin:admin@192.168.0.1/upnp.html">
+  <table class="AD_SET">
+    <tr>
+      <th>UPnP</th>
+      <td>
+        <input type="checkbox" id="id_upnpeon" value="on" onclick="UPnPEnable()" checked>Habilitar
+      </td>
+    </tr>
+  </table>
+  <p><input type="submit" value="Aplicar" name="nosave_SETUP">
+  </p>
+<input type=hidden name=UPnPIGDEnable id="id_upnpenable" value="1">
+</form>
+
+</body>
+
+<!-- Mirrored from 192.168.0.1/upnp.html by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 11 Jan 2017 00:16:10 GMT -->
+</html>

@@ -1,0 +1,104 @@
+
+<!-- saved from url=(0038)http://192.168.1.254/system_backup.asp -->
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta http-equiv="Pragma" content="no-cache">
+
+<title>System | Backup/Restore</title>
+<script type="text/javascript" src="b28n.js"></script><style type="text/css"></style>
+<script language="JavaScript" src="gozila.js"></script>
+<script language="JavaScript" src="menu.js"></script>
+<script language="JavaScript" src="table.js"></script>
+<script language="JavaScript">
+Butterlate.setTextDomain("system_tool");
+function initTranslate(){
+	var e=document.getElementById("backup");
+	e.value=_("Backup");
+	var e1=document.getElementById("restore");
+	e1.value=_("Restore");
+}
+function init()
+{
+ initTranslate();
+}
+function UpLoadCfg()
+{
+	if (document.frmSetup.fileCfg.value == "")
+	{
+		alert(_("Please select the file you want to import"));
+		return ;
+	}
+	if(confirm(_("You need to restart after importing")))
+	{
+		document.frmSetup.submit() ;
+	}
+}
+function DownLoadCfg()
+{
+	if(confirm(_("Export the configured parameters and specify a path to save them")))
+	{
+		refresh("/cgi-bin/DownloadCfg/RouterCfm.cfg");
+	}
+}
+</script>
+<link rel="stylesheet" type="text/css" href="../css/style.css">
+</head>
+<body leftmargin="0" topmargin="0" marginheight="0" marginwidth="0" class="bg" onload="init();">
+	<table width="100%" border="0" align="center" cellpadding="0" cellspacing="0">
+      <tbody><tr>
+        <td width="33">&nbsp;</td>
+        <td width="679" valign="top">
+		<table width="100%" border="0" align="center" cellpadding="0" cellspacing="0" height="100%">
+          <tbody><tr>
+            <td align="center" valign="top">
+			<table width="98%" border="0" align="center" cellpadding="0" cellspacing="0" height="100%">
+              <tbody><tr>
+                <td align="center" valign="top">
+		<input type="hidden" name="GO" value="system_backup.asp">
+          <table class="space" width="100%">
+            <tbody><tr>
+              <td><div align="center" id="waitfor"> 
+			      <table cellpadding="0" cellspacing="0" class="content2">
+			        <tbody><tr>
+                      <td colspan="2" valign="top">&nbsp;&nbsp;<script>document.write(_("backup restore current configuration"));</script>You can backup/restore the router’s current configuration.</td>
+                    </tr>
+				  </tbody></table>
+                  <table cellpadding="0" cellspacing="0" class="content3" id="table1"> 
+                    <tbody><tr class="a1">
+                      <td height="30">&nbsp;&nbsp;<script>document.write(_("Select the file directory to save the configured parameters"));</script>Select the file directory to save the configured parameters:
+                        <input type="button" id="backup" class="button2" value="Backup" onmouseover="style.color=&#39;#FF9933&#39;" onmouseout="style.color=&#39;#000000&#39;" onclick="DownLoadCfg()"></td>
+                    </tr> 
+					<form name="frmSetup" method="POST" action="http://192.168.1.254/cgi-bin/UploadCfg" enctype="multipart/form-data"></form>
+                    <tr class="a2">
+                      <td>&nbsp;&nbsp;<script>document.write(_("Select the configured file you want to import"));</script>Select the configured file you want to import:<br>         
+					  &nbsp;&nbsp;<input type="file" name="fileCfg" id="fileCfg">&nbsp;&nbsp;
+					  <input id="restore" class="button2" type="button" value="Restore" onmouseover="style.color=&#39;#FF9933&#39;" onmouseout="style.color=&#39;#000000&#39;" onclick="UpLoadCfg()">
+					</td></tr>
+                  </tbody></table>
+              </div></td>
+            </tr>
+            <tr>
+              <td></td>
+            </tr>
+          </tbody></table>
+				</td>
+              </tr>
+            </tbody></table></td>
+          </tr>
+        </tbody></table></td>
+        <td align="center" valign="top" height="100%">
+		<script>helpInfo(_("system_backup_Help_Inf"));</script><table border="0" cellpadding="0" cellspacing="0" class="left1" style="margin-top:25px;"><tbody><tr><td align="center"><b>Help information</b></td></tr><tr><td align="left">&nbsp;&nbsp;&nbsp;&nbsp;Click "Backup" to back up the current configuration to the corresponding directory and form a system configured backup file.In the same way, you only need to click "Browse" to select the configured file from the corresponding directory, click "Restore" and restart the router after finishing, the system configuration you need can be restored.</td></tr></tbody></table>
+		</td>
+      </tr>
+    </tbody></table>
+	<script type="text/javascript">
+	  table_onload('table1');
+    </script>
+
+
+
+
+
+
+
+
+</body></html>

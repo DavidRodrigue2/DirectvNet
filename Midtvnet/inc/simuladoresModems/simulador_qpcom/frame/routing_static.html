@@ -1,0 +1,158 @@
+
+<!-- saved from url=(0039)http://192.168.1.254/routing_static.asp -->
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta http-equiv="Pragma" content="no-cache">
+
+<title>Routing | Static Routing</title>
+<script type="text/javascript" src="b28n.js"></script><style type="text/css"></style>
+<script language="JavaScript" src="gozila.js"></script>
+<script language="JavaScript" src="menu.js"></script>
+<script language="JavaScript" src="table.js"></script>
+<script language="JavaScript">
+var list = "";
+var resList;
+var max = 5;
+Butterlate.setTextDomain("index_routing_virtual");
+function initTranslate(){
+	var e=document.getElementById("add");
+	e.value=_("add");
+}
+function init(f){
+    initTranslate();
+	resList = list.split(" ");
+	showRT();
+}
+function showRT()
+{
+	var i;
+	var m='<table border=1 cellspacing=0 class="content1" id=showTab>';
+	for (i=0;i<resList.length;i++) {
+		var rt=resList[i];
+		var s=rt.split(":");
+		if (s.length!=4) continue;
+		m+='<tr align=center>';
+		m+='<td>'+s[0];
+		m+='</td>';
+		m+='<td>'+s[1];
+		m+='</td>';
+		m+='<td>'+s[2];
+		m+='</td>';
+		m+='<td>';
+		m+='<input class=button2 type=button value='+_("Delete")+' onMouseOver="style.color=\'#FF9933\'" onMouseOut="style.color=\'#000000\'"  onClick=delRte(this,' + i +  ')></td>';
+		m+='</tr>';
+	}
+	m+='</table>';
+	document.getElementById("routeList").innerHTML = m;
+}
+function delRte(obj,dex)
+{
+	document.getElementById("showTab").deleteRow(dex-1);
+	var i=0;
+	for(i=dex;i<resList.length;i++)
+	{
+		resList[i] = resList[eval(i+1)];
+	}
+	resList.length--;
+	showRT();
+}
+function addRte(f) {
+	var info;
+	if (!verifyIP2(f.ip,_("Destination IP"),1)) return ;
+	if (!ipMskChk(f.nm,_("Subnet mask"))) return ;
+	if (!verifyIP2(f.gw,_("Gateway"))) return ;
+	f.ip.value = clearInvalidIpstr(f.ip.value);
+	f.nm.value = clearInvalidIpstr(f.nm.value);
+	f.gw.value = clearInvalidIpstr(f.gw.value);
+	
+	info = f.ip.value+':'+f.nm.value+':'+f.gw.value+':'+'1';
+	  if(resList.length >= max+1)
+	    {
+	        window.alert(_("Max.")+max+_("static routing"));
+		 	return;
+	    }
+	    for(var i=0; i<resList.length; i++)
+	    {
+			if(resList[i] == info)
+			{
+				window.alert(_("the specified static routing already exists"));
+				return;
+			}
+	    }
+	resList[resList.length]=info;
+	showRT();
+}
+function preSubmit(f) 
+{
+	var loc = "/goform/RouteStatic?GO=routing_static.asp";
+	loc += "&wan0_route=";
+	for(var j=0; j<resList.length; j++)
+	{
+		loc +=  resList[j] +" ";
+	}
+	var code = 'location="' + loc + '"';
+	eval(code);
+}
+</script>
+<link rel="stylesheet" type="text/css" href="../css/style.css">
+</head>
+<body leftmargin="0" topmargin="0" marginheight="0" marginwidth="0" onload="init(document.frmSetup);table_onload(&#39;showTab&#39;);" class="bg">
+	<table width="100%" border="0" align="center" cellpadding="0" cellspacing="0">
+      <tbody><tr>
+        <td width="33">&nbsp;</td>
+        <td width="679" valign="top">
+		<table width="100%" border="0" align="center" cellpadding="0" cellspacing="0" height="100%">
+          <tbody><tr>
+            <td align="center" valign="top">
+			<table width="98%" border="0" align="center" cellpadding="0" cellspacing="0" height="100%">
+              <tbody><tr>
+                <td align="center" valign="top">
+				<form name="frmSetup" method="POST" action="http://192.168.1.254/goform/RouteStatic">
+				<input type="hidden" name="GO" value="routing_static.asp">
+					<input type="hidden" name="cmd">
+					<table border="0" class="content1" cellspacing="0" id="table1">
+						<tbody><tr class="a1" align="center" height="30" style="line-height:20px;">
+						  <th><script>document.write(_("Destination network IP address"));</script>Destination network IP address</th>
+						  <th><script>document.write(_("Subnet mask"));</script>Subnet mask</th> 
+						  <th><script>document.write(_("Gateway"));</script>Gateway</th>
+						  <th><script>document.write(_("Operate"));</script>Operate</th>
+						</tr>
+						<tr align="center" class="a2">
+						  <td nowrap="">
+							<input name="ip" size="15" maxlength="15">         
+						  </td>
+						  <td nowrap="">
+							<input name="nm" size="15" maxlength="15">
+						  </td>
+						  <td nowrap="">
+							<input name="gw" size="15" maxlength="15">
+						  </td>
+						  <td><input id="add" class="button2" type="button" name="staticAdd" value="add" onmouseover="style.color=&#39;#FF9933&#39;" onmouseout="style.color=&#39;#000000&#39;" onclick="addRte(this.form)"></td>
+						</tr>
+					</tbody></table>
+					<div id="routeList" style="position:relative;visibility:visible;"><table border="1" cellspacing="0" class="content1" id="showTab"></table></div> 
+					<script>
+						tbl_tail_save("document.frmSetup");
+					</script><table width="75%" border="0" cellpadding="0" cellspacing="0" style="padding-top:20px;"><tbody><tr><td align="center"><input type="button" class="button1" value="Ok" onmouseover="style.color=&#39;#FF9933&#39;" onmouseout="style.color=&#39;#000000&#39;" onclick="preSubmit(document.frmSetup)">&nbsp;&nbsp;&nbsp;&nbsp;<input type="button" class="button1" value="Cancel" onmouseover="style.color=&#39;#FF9933&#39;" onmouseout="style.color=&#39;#000000&#39;" onclick="init(document.frmSetup)"></td></tr></tbody></table>
+				</form>
+				</td>
+              </tr>
+            </tbody></table></td>
+          </tr>
+        </tbody></table></td>
+        <td align="center" valign="top" height="100%">
+		<script>helpInfo(_("routing_static_Help_Inf1")+_("routing_static_Help_Inf2"));</script><table border="0" cellpadding="0" cellspacing="0" class="left1" style="margin-top:25px;"><tbody><tr><td align="center"><b>Help information</b></td></tr><tr><td align="left">&nbsp;&nbsp;&nbsp;&nbsp;Static Routing: When there are several routers in the network, you need to set static routing. It makes sure the data go through the router’s path. You can use this feature to allow different IP domain name users to access the Internet via this device. Please be cautious while setting.In most cases, dynamic routing is recommended, because this feature allows the router to detect the physical changes of the network layout automatically. If you want to use static routing, make sure the router’s DHCP function is disabled. The settings will be effective after rebooting the router.</td></tr></tbody></table>
+		</td>
+      </tr>
+    </tbody></table>
+	<script type="text/javascript">
+	  table_onload('table1');	  
+    </script>
+
+
+
+
+
+
+
+
+</body></html>

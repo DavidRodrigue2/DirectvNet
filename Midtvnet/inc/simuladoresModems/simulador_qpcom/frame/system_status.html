@@ -1,0 +1,115 @@
+
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta http-equiv="Pragma" content="no-cache">
+
+<title>System | Status</title>
+
+
+<link rel="stylesheet" type="text/css" href="../css/style.css">
+</head>
+<body leftmargin="0" topmargin="0" marginheight="0" marginwidth="0" class="bg" onload="initTranslate();">
+	<table width="100%" border="0" align="center" cellpadding="0" cellspacing="0">
+      <tbody><tr>
+        <td width="33">&nbsp;</td>
+        <td width="679" valign="top">
+		<table width="100%" border="0" align="center" cellpadding="0" cellspacing="0" height="100%">
+          <tbody><tr>
+            <td align="center" valign="top"><table width="98%" border="0" align="center" cellpadding="0" cellspacing="0" height="100%">
+                <tbody><tr>
+                  <td align="center" valign="top">
+				  <form name="systemStatus" method="POST" action="">
+				  <input type="hidden" name="CMD" value="WAN_CON">
+				  <input type="hidden" name="GO" value="system_status.asp">
+				  <input type="hidden" name="action">
+				  <table border="0" align="center" cellpadding="0" cellspacing="0" class="content1">
+                    <tbody><tr>
+                      <td colspan="2" bgcolor="#d3d3d4">&nbsp;&nbsp;<strong>WAN status:</strong></td>
+                    </tr>
+				</tbody></table>
+				<div style="width:80%; height:1px; background-color:#c0c7cd; overflow:hidden; padding:0px; margin-top:1px;"></div>
+				<table border="0" align="center" cellpadding="0" cellspacing="0" class="content3" id="table1">
+                    <tbody><tr class="a2">
+                      <td width="150" align="right">Connection status</td>
+                      <td>&nbsp;&nbsp;&nbsp;&nbsp;Disconnected</td>
+                    </tr>
+                    <tr class="a1">
+                      <td width="150" align="right">WAN IP</td>
+                      <td>&nbsp;&nbsp;&nbsp;&nbsp;</td>
+                    </tr>
+                    <tr class="a2">
+                      <td width="150" align="right">Subnet Mask</td>
+                      <td>&nbsp;&nbsp;&nbsp;&nbsp;</td>
+                    </tr>
+                    <tr class="a1">
+                      <td width="150" align="right">Gateway</td>
+                      <td>&nbsp;&nbsp;&nbsp;&nbsp;</td>
+                    </tr>
+                    <tr class="a2">
+                      <td width="150" align="right">DNS server</td>
+                      <td>&nbsp;&nbsp;&nbsp;&nbsp;</td>
+                    </tr>
+                    <tr class="a1">
+                      <td width="150" align="right">Alternate DNS server</td>
+                      <td>&nbsp;&nbsp;&nbsp;&nbsp;</td>
+                    </tr>
+                    <tr class="a2">
+                      <td width="150" align="right">Connection type</td>
+                      <td>&nbsp;&nbsp;&nbsp;&nbsp;PPPoE</td>
+                    </tr>
+					<tr class="a1"><td align="right" width="150">Connection time</td><td>&nbsp;&nbsp;&nbsp;&nbsp;00:00:00</td></tr>
+                    </tbody></table>
+					<table border="0" align="center" cellpadding="0" cellspacing="0" class="content3">
+                      <tbody><tr height="30"><td colspan="2">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <input id="Connect" type="button" class="button2" value="Connect" onclick="preSubmit(3);">&nbsp;&nbsp;&nbsp;&nbsp; <input id="Disconnect" type="button" class="button2" value="Disconnect" disabled="disabled"></td></tr>  
+                  </tbody></table>
+					<table border="0" align="center" cellpadding="0" cellspacing="0" class="content1">
+					  <tbody><tr>
+						<td colspan="2" bgcolor="#d3d3d4">&nbsp;&nbsp;<strong>System status:</strong></td>
+					  </tr>
+					</tbody></table>
+					<div style="width:80%; height:1px; background-color:#c0c7cd; overflow:hidden; padding:0px; margin-top:1px;"></div>
+					<table border="0" align="center" cellpadding="0" cellspacing="0" class="content3" id="table2">
+					  <tbody><tr class="a2">
+					    <td width="150" align="right">LAN MAC address</td>
+					    <td>&nbsp;&nbsp;&nbsp;&nbsp;88:A5:BD:06:DF:38</td>
+				      </tr>
+					  <tr class="a1">
+					    <td width="150" align="right">WAN MAC address</td>
+					    <td>&nbsp;&nbsp;&nbsp;&nbsp;88:A5:BD:06:DF:38</td>
+				      </tr>
+					  <tr class="a2">
+					  <td width="150" align="right">System time</td>
+					  <td>&nbsp;&nbsp;&nbsp;&nbsp;2011-04-01 00:08:19</td>
+					</tr>
+					 <tr class="a1">
+					  <td width="150" align="right">Running time</td>
+					  <td>&nbsp;&nbsp;&nbsp;&nbsp;00:08:19</td>
+					</tr>
+					<tr class="a2">
+					  <td width="150" align="right">Connected client</td> 
+					  <td>
+						&nbsp;&nbsp;&nbsp;&nbsp;1		  </td>
+					</tr>
+					<tr class="a1">
+					  <td width="150" align="right">Software version</td> 
+					  <td>
+						&nbsp;&nbsp;&nbsp;&nbsp;V5.07.43_en_QPC01		  </td>
+					</tr>
+					<tr class="a2">
+					  <td width="150" align="right">Hardware version</td> 
+					  <td>
+						&nbsp;&nbsp;&nbsp;&nbsp;V3.0		  </td>
+					</tr>
+					</tbody></table>
+					</form>
+					</td>
+                </tr>
+            </tbody></table></td>
+          </tr>
+        </tbody></table></td>
+        <td align="center" valign="top" height="100%">
+		<table border="0" cellpadding="0" cellspacing="0" class="left1" style="margin-top:25px;"><tbody><tr><td align="center"><b>Help information</b></td></tr><tr><td align="left">&nbsp;&nbsp;&nbsp;&nbsp;Connection type: It displays the current WAN connection type.<br>&nbsp;&nbsp;&nbsp;&nbsp;Connection time: The connected time of the router’s WAN port when the connection type is dynamic IP, static IP, PPTP, P2TP or PPPoE.<br>&nbsp;&nbsp;&nbsp;&nbsp;Running time: The time that the router has been enabled.<br>&nbsp;&nbsp;&nbsp;&nbsp;System version :The router’s firmware version.</td></tr></tbody></table>		
+		</td>
+      </tr>
+    </tbody></table>
+
+</body></html>

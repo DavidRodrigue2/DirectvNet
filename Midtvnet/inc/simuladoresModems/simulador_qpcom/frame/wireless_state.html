@@ -1,0 +1,76 @@
+
+<!-- saved from url=(0039)http://192.168.1.254/wireless_state.asp -->
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta http-equiv="Pragma" content="no-cache">
+
+<title>Wireless | State</title>
+<script type="text/javascript" src="b28n.js"></script><style type="text/css"></style>
+<script language="JavaScript" src="gozila.js"></script>
+<script language="JavaScript" src="menu.js"></script>
+<script language="JavaScript" src="table.js"></script>
+
+<link rel="stylesheet" type="text/css" href="../css/style.css">
+</head>
+<body leftmargin="0" topmargin="0" marginheight="0" marginwidth="0" onload="init();" class="bg">
+	<table width="100%" border="0" align="center" cellpadding="0" cellspacing="0">
+      <tbody><tr>
+        <td width="33">&nbsp;</td>
+        <td width="679" valign="top">
+		<table width="100%" border="0" align="center" cellpadding="0" cellspacing="0" height="100%">
+          <tbody><tr>
+            <td align="center" valign="top">
+			<table width="98%" border="0" align="center" cellpadding="0" cellspacing="0" height="100%">
+              <tbody><tr>
+                <td align="center" valign="top">
+				<form name="formLan" action="http://192.168.1.254/cgi-bin/cgi_soho" method="post" onsubmit="return doSubmit();">
+					<table class="content1">
+					   <tbody><tr> <td valign="top"><script>document.write(_("This page displays the connection information of the wireless router"));</script>This page displays the connection information of the wireless router.
+					   </td></tr>
+						<tr> <td><script>document.write(_("The currently connected hosts list"));</script>The currently connected hosts list:
+							  <input id="refresh_btn" type="button" class="button2" value="Refresh" onmouseover="style.color=&#39;#FF9933&#39;" onmouseout="style.color=&#39;#000000&#39;" onclick="refresh(&quot;wireless_state.asp&quot;)"></td>
+						</tr>
+							<tr><td>	
+							 <table align="center" cellpadding="0" cellspacing="0" width="450">
+									<tbody>
+									  <tr>
+										<td width="450"><table align="center" border="1" cellpadding="0" cellspacing="0" class="content1" style="margin-top:0px;" id="table1">
+											<tbody>
+											  <tr style="line-height:20px;" class="a1">
+												<td align="middle" width="20%"><script>document.write(_("NO."));</script>NO.</td>
+												<td align="middle" width="50%"><script>document.write(_("MAC address"));</script>MAC address</td>
+												<td align="middle" width="30%"><script>document.write(_("Bandwidth"));</script>Bandwidth</td>
+											  </tr> 
+                              
+											</tbody>
+										</table></td>
+									  </tr>
+								  </tbody></table>
+								  <br>
+								  </td>
+								<td class="vline" rowspan="15" width="27"><br></td>
+							  </tr>			
+							 <tr><td class="hline"></td></tr>   
+						   </tbody>
+						</table>
+				</form>
+				</td>
+              </tr>
+            </tbody></table></td>
+          </tr>
+        </tbody></table></td>
+        <td align="center" valign="top" height="100%">
+		<script>helpInfo(_("Wireless_state_helpinfo1")+"<br>"+_("Wireless_state_helpinfo2"));</script><table border="0" cellpadding="0" cellspacing="0" class="left1" style="margin-top:25px;"><tbody><tr><td align="center"><b>Help information</b></td></tr><tr><td align="left">&nbsp;&nbsp;&nbsp;&nbsp;On this page,you can view the information of the connected wireless clients.<br>MAC Address:the wireless MAC bandwidth of the current host:channel frequency width.</td></tr></tbody></table>
+		</td>
+      </tr>
+    </tbody></table>
+	<script type="text/javascript">
+	  table_onload('table1');
+    </script>
+
+
+
+
+
+
+
+</body></html>

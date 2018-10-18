@@ -1,0 +1,205 @@
+<html>
+
+
+<!-- Mirrored from 192.168.0.1/log.html by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 11 Jan 2017 00:16:11 GMT -->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta http-equiv="Pragma" content="no-cache">
+<meta http-equiv="Cache-Control" content="no-cache">
+<meta http-equiv="Expires" content="Thu, 01 Dec 1994 16:00:00 GMT"><META http-equiv="Content-Style-Type" content="text/css"><LINK rel="stylesheet" href="WHR-G300N-160149-style-ENG.css" type="text/css"><LINK rel="stylesheet" href="WHR-G300N-160149-style-ad-ENG.css" type="text/css">
+<script src="OpenHelp.html"></script>
+<script language="javascript" type="text/javascript" src="common.html"></script>
+<script language="JavaScript">
+<!--
+var RMode='1';
+
+function syslogd_select()
+{
+     if (document.getElementById("id_logItem0").checked)
+     {
+     	document.getElementById("id_SaveItem0").value=1;
+     	document.logForm.RlogServer.disabled = 0;
+     }
+     else
+     {
+     	document.getElementById("id_SaveItem0").value=0;
+     	document.logForm.RlogServer.disabled = 1;
+     }
+}
+
+function SetCheckboxState(start,end,val)
+{
+	var i;
+	for (i=start;i<=end;i++)
+	{
+		if(RMode==0)
+		{
+			if((i==1)||(i==3)||(i==4)||(i==5)||(i==7))
+				continue;
+		}
+		document.getElementById("id_logItem"+i).checked=val;
+	}
+}
+function CheckAll()
+{
+	SetCheckboxState(1,14,true);
+}
+
+function ClearAll()
+{
+	SetCheckboxState(1,14,false);
+}
+
+function setValueToHidden()
+{
+	var i;
+	for (i=0;i<=14;i++)
+	{
+		if (document.getElementById("id_logItem"+i).checked)
+			document.getElementById("id_SaveItem"+i).value="1";
+		else
+			document.getElementById("id_SaveItem"+i).value="0";
+	}
+}
+
+function check_domain_ip(s)
+{
+	for (i=0; i<s.length; i++)
+	{
+		var c;
+			
+		c=s.charAt(i);
+		
+		if (((c>='0')&&(c<='9')) || ((c>='a')&&(c<='z')) || ((c>='A')&&(c<='Z')) || (c=='.') || (c=='-'))
+		{
+			continue;
+		}
+		else
+		{
+			return false;
+		}
+	}
+	return true;
+}
+
+function DoSubmit()
+{
+	var LS=document.getElementById("id_LogServer");
+	var LSnum=LS.value.length;
+	var LSname="Servidor Syslog";
+	var lanip="192.168.0.1";
+	var lanmask="255.255.255.0";
+	var n;
+	n=LS.value.split('.');
+	Hide_error();
+	
+	if (document.getElementById("id_logItem0").checked)
+	{
+		if(LSnum!=0)
+		{
+			if (!check_domain_ip(LS.value))
+			{
+				Show_error(LSname,"Contiene un car&aacute;cter no v&aacute;lido");
+				return false;	
+			}
+			else if (LS.value=="0.0.0.0")
+			{
+			    Show_error(LSname, "No se puede usar la direcci&oacute;n reservada (0.0.0.0)");
+			    return false;
+			 }
+			else if (LS.value=="255.255.255.255")
+			{
+			    Show_error(LSname, "No se puede usar la direcci&oacute;n reservada (255.255.255.255)");
+			    return false;
+			}
+			else if (LS.value==lanip)
+			{
+				Show_error(LSname, "No se puede especificar la direcci&oacute;n IP de la LAN de esta Device");
+			    return false;
+			}
+			else if(check_the_same_subnet(LS.value,lanip,lanmask))
+			{
+				Show_error(LSname, "No se puede usar la direcci&oacute;n IP del rango de direcciones de red de la LAN");
+				return false;
+			}
+			else if(n.length==4)
+			{
+				if((n[0]>=240)&&(n[0]<=255)&&(check_integer(n[1]))&&(check_integer(n[2]))&&(check_integer(n[3])))
+				{
+					Show_error(LSname, "No se puede usar la direcci&oacute;n de prueba (de 240.XXX.XXX.XXX a 255.XXX.XXX.XXX)");
+					return false;
+				}
+				else if((n[0]>=224)&&(n[0]<=239)&&(check_integer(n[1]))&&(check_integer(n[2]))&&(check_integer(n[3])))
+				{
+					Show_error(LSname, "No se puede usar la direcci&oacute;n de prueba (de 224.XXX.XXX.XXX a 239.XXX.XXX.XXX)");
+					return false;
+				}
+				else if((n[0]==127)&&(check_integer(n[1]))&&(check_integer(n[2]))&&(check_integer(n[3])))
+				{
+					Show_error(LSname, "No se puede usar la direcci&oacute;n de bucle invertido (127.XXX.XXX.XXX)");
+					return false;
+				}
+				else if((check_integer(n[0]))&&(check_integer(n[1]))&&(check_integer(n[2]))&&(check_integer(n[3])))
+				{
+					if((n[0]>255) || (n[1]>255) || (n[2]>255) || (n[3]>255))
+					{
+						Show_error(LSname, "Formato de direcci&oacute;n IP no v&aacute;lido");
+						return false
+					}
+				}
+			}		
+			else if ((LS.value.charAt(0)=='-')||(LS.value.charAt(0)=='.')||(LS.value.charAt(LSnum-1)=='.'))
+			{
+				Show_error(LSname,"No se puede usar este car&aacute;cter como car&aacute;cter inicial ni final");
+				return false;		
+			}	
+		}else
+		{
+			Show_error(LSname,"No configurado");
+			return false;
+		}
+	}
+
+	//setValueToHidden();
+	document.logForm.submit();	
+
+}
+//-->
+</script>
+</head>
+
+<body class="BFK_BODY" onLoad="syslogd_select()">
+
+<br>
+
+
+<form name="logForm" method="POST" onsubmit="return DoSubmit();">
+<div id="id_errtbl" class="C_ERR" style="display:none;">
+</div>
+  <table class="AD_SET">
+    <tr>
+      <th>Transferencia de registros</th>
+      <td>
+        <input type="checkbox" id="id_logItem0" value="1"   onClick="syslogd_select();">Habilitar
+      </td>
+    </tr>
+    <tr>
+      <th>Servidor Syslog</th>
+      <td>
+      <input type="text" name="RlogServer" id="id_LogServer" size="20" maxlength="255" value=''> 
+       <!--   <input type="text" name="RlogServer" id="id_LogServer" size="20" maxlength="64" value="0">-->
+		
+      </td>
+    </tr>
+  </table>
+
+  <p>
+    <input type="hidden" name="RlogEnable" id="id_SaveItem0" value='0'>
+    <input type="button" value="Aplicar" name="action" onClick="DoSubmit()">
+  </p>
+</form>
+
+</body>
+
+<!-- Mirrored from 192.168.0.1/log.html by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 11 Jan 2017 00:16:11 GMT -->
+</html>

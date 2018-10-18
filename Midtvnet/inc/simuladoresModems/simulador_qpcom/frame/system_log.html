@@ -1,0 +1,120 @@
+
+<!-- saved from url=(0035)http://192.168.1.254/system_log.asp -->
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta http-equiv="Pragma" content="no-cache">
+
+<title>System | System Log</title>
+<script type="text/javascript" src="b28n.js"></script><style type="text/css"></style>
+<script language="JavaScript" src="gozila.js"></script>
+<script language="JavaScript" src="menu.js"></script>
+<script language="JavaScript" src="table.js"></script>
+<script language="JavaScript">
+Butterlate.setTextDomain("system_tool");
+var  syslog_list = "<tr><td width=20>&nbsp;1</td><td width=120>&nbsp;2011-04-01 00:00:00</td><td width=50>&nbsp;main</td><td>&nbsp;System start</td ></tr><tr><td width=20>&nbsp;2</td><td width=120>&nbsp;2011-04-01 00:06:56</td><td width=50>&nbsp;pppoe0</td><td>&nbsp;pppoe_init(ppp0)</td ></tr><tr><td width=20>&nbsp;3</td><td width=120>&nbsp;2011-04-01 00:06:56</td><td width=50>&nbsp;pppoe0</td><td>&nbsp;pppoe_fsm_up(ppp0)</td ></tr><tr><td width=20>&nbsp;4</td><td width=120>&nbsp;2011-04-01 00:06:56</td><td width=50>&nbsp;pppoe0</td><td>&nbsp;ppp0 send PADI</td ></tr><tr><td width=20>&nbsp;5</td><td width=120>&nbsp;2011-04-01 00:07:01</td><td width=50>&nbsp;pppoe0</td><td>&nbsp;ppp0 send PADI</td ></tr><tr><td width=20>&nbsp;6</td><td width=120>&nbsp;2011-04-01 00:07:10</td><td width=50>&nbsp;pppoe0</td><td>&nbsp;ppp0 send PADI</td ></tr><tr><td width=20>&nbsp;7</td><td width=120>&nbsp;2011-04-01 00:07:27</td><td width=50>&nbsp;pppoe0</td><td>&nbsp;ppp0 send PADI</td ></tr><tr><td width=20>&nbsp;8</td><td width=120>&nbsp;2011-04-01 00:08:00</td><td width=50>&nbsp;pppoe0</td><td>&nbsp;ppp0 send PADI</td ></tr><tr><td width=20>&nbsp;9</td><td width=120>&nbsp;2011-04-01 00:08:05</td><td width=50>&nbsp;pppoe0</td><td>&nbsp;ppp0 send PADI</td ></tr><tr><td width=20>&nbsp;10</td><td width=120>&nbsp;2011-04-01 00:08:05</td><td width=50>&nbsp;pppoe0</td><td>&nbsp;pppoe_shutdown(ppp0)</td ></tr>";
+var  cnt = "13";
+var  curCnt = 1-1;
+var pageBtn = "";
+cnt = cnt/10;
+for(var i=0;i<cnt;i++)
+{
+	if(i == curCnt)
+	{
+		pageBtn += "<a href=# target=mainFrame class=content style=\"color:#FF6633\" onClick=\"onClickCurPage(" + eval(i+1) + ")\">[" + eval(i+1) + "]</a>";				
+	}
+	else
+	{
+		pageBtn += "<a href=# target=mainFrame class=content style=\"color:#000000\" onClick=\"onClickCurPage(" + eval(i+1) + ")\">[" + eval(i+1) + "]</a>";				
+	}
+}	
+function initTranslate(){
+	var e=document.getElementById("Refresh_btn");
+	e.value=_("Refresh");
+	var e1=document.getElementById("Clear_btn");
+	e1.value=_("Clear");
+}
+function print_systemlog()
+{
+	document.write(syslog_list);
+}
+function preClear(f) 
+{
+	if(cnt == 0)
+	{
+		refresh("system_log.asp");
+		return ;
+	}
+   document.getElementById("TYPE").value = 0;
+   f.submit() ;
+}
+function onClickCurPage(n)
+{
+	document.getElementById("curPage").value = n;
+	document.getElementById("TYPE").value = 1;
+	document.frmSetup.submit();
+}
+</script>
+<link rel="stylesheet" type="text/css" href="../css/style.css">
+</head>
+<body leftmargin="0" topmargin="0" marginheight="0" marginwidth="0" class="bg" onload="initTranslate();">
+	<table width="100%" border="0" align="center" cellpadding="0" cellspacing="0">
+      <tbody><tr>
+        <td width="33">&nbsp;</td>
+        <td width="679" valign="top">
+		<table width="100%" border="0" align="center" cellpadding="0" cellspacing="0" height="100%">
+          <tbody><tr>
+            <td align="center" valign="top">
+			<table width="98%" border="0" align="center" cellpadding="0" cellspacing="0" height="100%">
+              <tbody><tr>
+                <td align="center" valign="top">
+				<form name="frmSetup" method="POST" action="http://192.168.1.254/goform/SysToolSysLog">
+					<input type="hidden" name="GO" value="system_log.asp">
+					<input type="hidden" id="TYPE" name="TYPE">
+					<input type="hidden" id="curPage" name="curPage">
+				<table class="content2">
+					<tbody><tr>
+					<td width="10%" align="center" valign="top"><script>document.write(_("the"));</script>The<font color="#FF6633" size="+1">
+					  <script>document.write(curCnt+1);</script>1</font>&nbsp;&nbsp;<script>document.write(_("page log contents"));</script>page log contents</td>
+					</tr>
+				</tbody></table>
+				<table class="content1" border="1" cellspacing="0" style="margin-top:0px;" id="table1">
+					<script> 
+					   print_systemlog(); 
+					</script><tbody><tr class="a1"><td width="20">&nbsp;1</td><td width="120">&nbsp;2011-04-01 00:00:00</td><td width="50">&nbsp;main</td><td>&nbsp;System start</td></tr><tr class="a2"><td width="20">&nbsp;2</td><td width="120">&nbsp;2011-04-01 00:06:56</td><td width="50">&nbsp;pppoe0</td><td>&nbsp;pppoe_init(ppp0)</td></tr><tr class="a1"><td width="20">&nbsp;3</td><td width="120">&nbsp;2011-04-01 00:06:56</td><td width="50">&nbsp;pppoe0</td><td>&nbsp;pppoe_fsm_up(ppp0)</td></tr><tr class="a2"><td width="20">&nbsp;4</td><td width="120">&nbsp;2011-04-01 00:06:56</td><td width="50">&nbsp;pppoe0</td><td>&nbsp;ppp0 send PADI</td></tr><tr class="a1"><td width="20">&nbsp;5</td><td width="120">&nbsp;2011-04-01 00:07:01</td><td width="50">&nbsp;pppoe0</td><td>&nbsp;ppp0 send PADI</td></tr><tr class="a2"><td width="20">&nbsp;6</td><td width="120">&nbsp;2011-04-01 00:07:10</td><td width="50">&nbsp;pppoe0</td><td>&nbsp;ppp0 send PADI</td></tr><tr class="a1"><td width="20">&nbsp;7</td><td width="120">&nbsp;2011-04-01 00:07:27</td><td width="50">&nbsp;pppoe0</td><td>&nbsp;ppp0 send PADI</td></tr><tr class="a2"><td width="20">&nbsp;8</td><td width="120">&nbsp;2011-04-01 00:08:00</td><td width="50">&nbsp;pppoe0</td><td>&nbsp;ppp0 send PADI</td></tr><tr class="a1"><td width="20">&nbsp;9</td><td width="120">&nbsp;2011-04-01 00:08:05</td><td width="50">&nbsp;pppoe0</td><td>&nbsp;ppp0 send PADI</td></tr><tr class="a2"><td width="20">&nbsp;10</td><td width="120">&nbsp;2011-04-01 00:08:05</td><td width="50">&nbsp;pppoe0</td><td>&nbsp;pppoe_shutdown(ppp0)</td></tr>
+				</tbody></table>
+				<br>
+				<table border="0" class="content1" style="margin-top:0px;">
+				<tbody><tr><td align="right">
+					<script> 
+					   document.write(pageBtn); 
+					</script><a href="http://192.168.1.254/system_log.asp#" target="mainFrame" class="content" style="color:#FF6633" onclick="onClickCurPage(1)">[1]</a><a href="http://192.168.1.254/system_log.asp#" target="mainFrame" class="content" style="color:#000000" onclick="onClickCurPage(2)">[2]</a>		
+				</td></tr></tbody></table>
+					<script>
+						var bb='<input id="Refresh_btn" class=button2 onclick=refresh("system_log.asp") onMouseOver="style.color=\'#FF9933\'" onMouseOut="style.color=\'#000000\'" value="" type=button>&nbsp;';
+							bb+='<input id="Clear_btn" class=button2 onclick="preClear(document.frmSetup);" onMouseOver="style.color=\'#FF9933\'" onMouseOut="style.color=\'#000000\'"  value="" type=button>';
+							bb+='<input name=page value=log type=hidden>';
+							bb+='<input name=op value=0 type=hidden>';
+						tbl_tail(bb);
+					</script><table width="75%" border="0" cellpadding="0" cellspacing="0"><tbody><tr><td height="40">&nbsp;<input id="Refresh_btn" class="button2" onclick="refresh(&quot;system_log.asp&quot;)" onmouseover="style.color=&#39;#FF9933&#39;" onmouseout="style.color=&#39;#000000&#39;" value="Refresh" type="button">&nbsp;<input id="Clear_btn" class="button2" onclick="preClear(document.frmSetup);" onmouseover="style.color=&#39;#FF9933&#39;" onmouseout="style.color=&#39;#000000&#39;" value="Clear" type="button"><input name="page" value="log" type="hidden"><input name="op" value="0" type="hidden"></td></tr></tbody></table>
+					</form>
+				</td>
+              </tr>
+            </tbody></table></td>
+          </tr>
+        </tbody></table></td>
+        <td align="center" valign="top" height="100%">
+		<script>helpInfo(_("system_log_Help_Inf1")+"<br>&nbsp;&nbsp;&nbsp;&nbsp;"+_("system_log_Help_Inf2"));</script><table border="0" cellpadding="0" cellspacing="0" class="left1" style="margin-top:25px;"><tbody><tr><td align="center"><b>Help information</b></td></tr><tr><td align="left">&nbsp;&nbsp;&nbsp;&nbsp;View  history  records<br>&nbsp;&nbsp;&nbsp;&nbsp;Note : The logs will clear automatically when cover 15 pages(namely 150 records).</td></tr></tbody></table>
+		</td>
+      </tr>
+    </tbody></table>
+	<script type="text/javascript">
+	  table_onload('table1');
+    </script>
+
+
+
+
+
+
+
+
+</body></html>

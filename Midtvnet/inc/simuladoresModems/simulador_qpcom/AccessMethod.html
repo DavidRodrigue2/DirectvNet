@@ -1,0 +1,101 @@
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+<title>Wireless N Router 150Mbps</title>
+<script language="JavaScript">
+
+function onIspchange(x)
+{
+ if(x==0)
+ {
+  document.basicset.isp[0].checked = true;
+  document.getElementById("PUN").disabled=false;
+  document.getElementById("PPW").disabled=false;
+  document.getElementById("pppoeset").style.display="";
+ }
+ if(x==1)
+ {
+  document.basicset.isp[1].checked = true;
+  document.getElementById("PUN").disabled=true;
+  document.getElementById("PPW").disabled=true;
+  document.getElementById("pppoeset").style.display="none";
+ }
+}
+</script>
+<link rel="stylesheet" type="text/css" href="css/style.css">
+
+</head>
+<body>
+<table width="100%" border="0" align="center" cellpadding="0" cellspacing="0" height="100%">  
+  <tbody><tr>
+    <td valign="top">
+	<!-- cabecera -->
+	<table width="100%" align="center" cellpadding="0" cellspacing="0" class="top"> 
+		<tbody><tr>
+			<td height="25" align="right" valign="bottom"><a href="advanced-System.html">Advanced Settings</a></td>
+			<td width="10" align="right" valign="bottom">&nbsp;</td>
+		</tr></tbody>
+	</table>
+	<div style="width:100%; height:1px; background-color:#c0c7cd; overflow:hidden; padding:0px; margin:0px;"></div>
+	<!-- FIN cabecera -->
+		
+	
+	<table width="897" border="0" align="center" cellpadding="0" cellspacing="0">
+		<tbody><tr>
+		<td height="118" colspan="2" valign="top">
+			<table width="100%" border="0" align="center" cellpadding="0" cellspacing="0">
+				<tbody><tr>
+				<td height="100" align="center" valign="bottom"><img src="img/qpcom.gif" width="500" height="150"></td>
+				</tr>
+				</tbody>
+			</table>
+		<form name="basicset" method="post">
+		
+		<br>
+		<table width="60%" border="0" align="center" cellpadding="0" cellspacing="0" class="basicset">
+			<tbody><tr>
+			  <td height="45" colspan="2" align="center"><span class="STYLE1">Internet Connection Settings</span></td>
+			</tr>
+			</tbody>
+		</table>
+		
+		<table width="60%" border="0" align="center" cellpadding="0" cellspacing="0" class="basicset">
+			<tbody><tr>
+			  <td width="210" align="right">Connection Type:</td>
+			  <td width="328" align="left">&nbsp;&nbsp;&nbsp;<input name="isp" value="3" type="radio" checked onclick="onIspchange(0)">
+			  PPPoE&nbsp;
+			  <input name="isp" value="2" type="radio" onclick="onIspchange(1)">					  
+			  DHCP</td>
+			  </tr>
+		</tbody>
+		</table>
+		
+		<div id="pppoeset">
+		<table width="60%" border="0" align="center" cellpadding="0" cellspacing="0" class="basicset">
+			<tbody><tr>
+			  <td width="210" align="right">User Name:</td>
+			  <td width="328" align="left" id="td_PUM">&nbsp;&nbsp;<input class="text1" maxlength="50" name="PUN" id="PUN" size="25" value="admin"></td>
+			</tr>
+			<tr>
+			  <td width="210" align="right">Password:</td>
+			  <td align="left" id="td_PPW">&nbsp;&nbsp;<input name="PPW" id="PPW" maxlength="50" type="password" class="text1" size="25" onfocus="chgPPW(this.value)" value="admin"></td>
+			</tr>
+		</tbody></table>
+		</div>
+
+		<table width="60%" border="0" align="center" cellpadding="0" cellspacing="0" class="basicset">
+			<tbody>
+			<tr>
+			  <td align="center"><span class="STYLE2">For other connection types ,go to "<a id="color1" href="advanced-System.html" style="font-size: 12px; color: rgb(0, 0, 255);" onmouseover="style.color=&#39;#FF9933&#39;" onmouseout="style.color=&#39;#0000FF&#39;">Advanced Settings</a></span></td>
+			</tr>
+			</tbody>
+		</table>
+		<br>
+		<hr width="50%" color="#dedfe1">
+
+		</form>
+	</td>
+	</tr></tbody></table>
+	</td>
+	</tr></tbody></table>
+
+</body></html>

@@ -1,0 +1,55 @@
+
+<html xmlns="http://www.w3.org/1999/xhtml"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+<title>WAN | MAC Clone</title>
+
+<link rel="stylesheet" type="text/css" href="../css/style.css">
+</head>
+
+<body leftmargin="0" topmargin="0" marginheight="0" marginwidth="0" onload="init(document.frmSetup);" class="bg">
+<table width="100%" border="0" align="center" cellpadding="0" cellspacing="0">
+      <tbody><tr>
+        <td width="33">&nbsp;</td>
+        <td width="679" valign="top">
+		<table width="100%" border="0" align="center" cellpadding="0" cellspacing="0" height="100%">
+          <tbody><tr>
+            <td align="center" valign="top"><table width="98%" border="0" align="center" cellpadding="0" cellspacing="0" height="100%">
+                <tbody><tr>
+                  <td align="center" valign="top">
+					<form name="frmSetup" method="POST" action="http://192.168.1.254/goform/AdvSetMacClone">
+					<input type="hidden" name="GO" value="mac_clone.asp">
+					<!--<input type="hidden" id="rebootTag" name="rebootTag">-->
+		
+					<table cellpadding="0" cellspacing="0" class="content2">   
+					<tbody><tr><td colspan="2" align="left" valign="top">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;MAC Address Clone</td></tr>
+					</tbody></table>
+
+					<table cellpadding="0" cellspacing="0" class="content1" id="table1" style="margin-top:2px">
+					<tbody><tr class="a1">
+						<td width="271" align="right">MAC Address:</td> 
+			<input type="hidden" name="cloneEn" value="1">
+							<td width="259" align="left" valign="middle">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+					    <input class="text" name="WMAC" size="17" maxlength="17" value="88:A5:BD:06:DF:38"></td>
+                     </tr>
+                     <tr class="a2">
+						<td colspan="2" valign="middle" align="center" height="30">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="button" value="Restore Default MAC" onmouseover="style.color=&#39;#FF9933&#39;" onmouseout="style.color=&#39;#000000&#39;" onclick="defMac(this.form);" id="default_mac">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="button" value="Clone MAC Address" onmouseover="style.color=&#39;#FF9933&#39;" onmouseout="style.color=&#39;#000000&#39;" onclick="cloneMac(this.form);" id="clone_mac"></td>
+                      </tr>
+					</tbody></table>
+	
+					<script>tbl_tail_save("document.frmSetup");</script><table width="75%" border="0" cellpadding="0" cellspacing="0" style="padding-top:20px;"><tbody><tr><td align="center"><input type="button" class="button1" value="Ok" onmouseover="style.color=&#39;#FF9933&#39;" onmouseout="style.color=&#39;#000000&#39;" onclick="preSubmit(document.frmSetup)">&nbsp;&nbsp;&nbsp;&nbsp;<input type="button" class="button1" value="Cancel" onmouseover="style.color=&#39;#FF9933&#39;" onmouseout="style.color=&#39;#000000&#39;" onclick="init(document.frmSetup)"></td></tr></tbody></table>
+
+					</form>
+                    </td>
+                </tr>
+            </tbody></table></td>
+          </tr>
+        </tbody></table></td>
+        <td align="center" valign="top" height="100%">
+		<table border="0" cellpadding="0" cellspacing="0" class="left1" style="margin-top:25px;"><tbody><tr><td align="center"><b>Help information</b></td></tr><tr><td align="left">&nbsp;&nbsp;&nbsp;&nbsp;MAC Address clone: Some Internet service providers require end-user's MAC address to access their network. This feature copies the MAC address of your network device to the router.<br>&nbsp;&nbsp;&nbsp;&nbsp;MAC Address: The MAC address to be registered with your Internet service provider.<br>&nbsp;&nbsp;&nbsp;&nbsp;Restore Default MAC: Restore the default hardware MAC address.<br>&nbsp;&nbsp;&nbsp;&nbsp;Clone MAC: Register your PC's MAC address.</td></tr></tbody></table>	
+		</td>
+      </tr>
+    </tbody></table>
+
+
+
+</body></html>

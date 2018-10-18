@@ -1,0 +1,887 @@
+<html>
+
+<!-- Mirrored from 192.168.0.1/pptp_l2tp.html by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 11 Jan 2017 00:16:09 GMT -->
+<head>
+<meta http-equiv="Pragma" content="no-cache">
+<meta http-equiv="Cache-Control" content="no-cache">
+<META http-equiv=Content-Type content="text/html; charset=UTF-8">
+<link rel="stylesheet" type="text/css" href="WHR-G300N-160149-style-ENG.css">   
+<link rel="stylesheet" type="text/css" href="WHR-G300N-160149-style-ad-ENG.css">
+<script language="javascript" src="common.html"></script>
+<script language="JavaScript">
+<!--
+var wan_method = '1';
+
+var pptp_id_tmp = '';
+var pptp_username_tmp = '';
+var pptp_passwd_tmp = '';
+var pptp_static_tmp = '0';
+var pptp_staticip_tmp = '';
+var pptp_mtu_tmp = '1460';
+var pptp_demand_tmp = 'always';
+var pptp_idle_tmp = '5';
+var pptp_localip_tmp = '';
+var pptp_netmask_tmp = '';
+var pptp_server_tmp = '';
+var pptp_gateway_tmp = '';
+var pptp_autodns_tmp = '1';
+var pptp_dns1_tmp = ''; 
+var pptp_dns2_tmp = '';
+
+var l2tp_id_tmp = '';
+var l2tp_username_tmp = '';
+var l2tp_passwd_tmp = '';
+var l2tp_static_tmp = '0';
+var l2tp_staticip_tmp = '';
+var l2tp_mtu_tmp = '1460';
+var l2tp_demand_tmp = 'always';
+var l2tp_idle_tmp = '5';
+var l2tp_localip_tmp = '';
+var l2tp_netmask_tmp = '';
+var l2tp_server_tmp = '';
+var l2tp_gateway_tmp = '';
+var l2tp_autodns_tmp = '1';
+var l2tp_dns1_tmp = ''; 
+var l2tp_dns2_tmp = '';
+
+var TAB_CODE=9;
+var DEL_CODE=46;
+var BS_CODE=8;
+var SP_CODE=32;
+var DOT_CODE=190;
+var DOT2_CODE=110;
+var LEFT_CODE=37;
+var RIGHT_CODE=39;
+
+function ChangeMode() {
+	with (document.forms[0] ) {
+
+		CleanColumn();
+ 
+		if (document.getElementById("SELECT_ConnType").value=="PPTP"){
+			PptpMode();
+		}
+		else if (document.getElementById("SELECT_ConnType").value=="L2TP"){
+			L2tpMode();
+		}
+		else //default
+                {
+                        SELECT_ConnType[0].selected=true;
+                        PptpMode();
+                }
+
+		INPUT_ServerFromIsp.disabled=false;
+		DNSModeChange();
+	//	MACCloneChange();
+	}
+}
+
+function CleanColumn() {
+	with (document.forms[0]) {
+		id_ConnID.value = "";
+                Username.value = "";
+                Password.value = "";
+                PPassConfirm.value = "";
+                PIPFixed.value = "";
+                SELECT_ConnMode.value = "";
+                IdleTimeout.value = "";
+                Mtusize.value = "";
+                Server.value = "";
+
+		for (var i=0;i<=3;i++){
+                        var j=i+1;
+                        eval('INPUTStaticIpAddr_'+j+'.value="";');
+                        eval('INPUTIpAddr_'+j+'.value="";');
+                        eval('INPUTSubnetAddr_'+j+'.value="";');
+                        eval('INPUTGatewayAddr_'+j+'.value="";');
+                }
+	}
+}
+
+function PptpMode() {
+	with (document.forms[0]) {
+		id_ConnID.value = pptp_id_tmp;
+                Username.value = pptp_username_tmp;
+                Password.value = pptp_passwd_tmp;
+                PPassConfirm.value = Password.value;
+                PIPFixed.value = pptp_static_tmp;
+                SELECT_ConnMode.value = pptp_demand_tmp;
+                IdleTimeout.value = pptp_idle_tmp;
+                Mtusize.value = pptp_mtu_tmp;
+                Server.value = pptp_server_tmp;
+
+		if (document.getElementById("id_PIPFixed").value=="1")
+                        document.getElementById("id_PIPFixedTmp").checked=true;
+                else
+                        document.getElementById("id_PIPFixedTmp").checked=false;
+                EnIPFixed('PIPFixed');
+
+		if(pptp_autodns_tmp=='1')
+                        INPUT_ServerAsg[0].checked = true;
+                else
+                        INPUT_ServerAsg[1].checked = true;
+
+		if(pptp_demand_tmp != "demand")
+			IdleTimeout.disabled = 1; //gray
+		else
+			IdleTimeout.disabled = 0;
+
+		if(pptp_staticip_tmp!="" && pptp_staticip_tmp!="..."){
+                        var staticaddrParts = pptp_staticip_tmp.split('.');
+                        for (var i=0;i<=3;i++){
+                                var j=i+1;
+                                eval('INPUTStaticIpAddr_'+j+'.value=staticaddrParts['+i+'];');
+                        }
+                }
+
+                if(pptp_localip_tmp!=""&&pptp_localip_tmp!="..."){
+                        var localaddrParts = pptp_localip_tmp.split('.');
+                        for (var i=0;i<=3;i++){
+                                var j=i+1;
+                                eval('INPUTIpAddr_'+j+'.value=localaddrParts['+i+'];');
+                        }
+                }
+        
+                if(pptp_netmask_tmp!="" && pptp_netmask_tmp!="..."){
+                        var wannetmaskParts = pptp_netmask_tmp.split('.');
+                        for (var i=0;i<=3;i++){
+                                var j=i+1;
+                                eval('INPUTSubnetAddr_'+j+'.value=wannetmaskParts['+i+'];');
+                        }
+                }
+
+                if(pptp_gateway_tmp!=""&&pptp_gateway_tmp!="..."){
+                        var wangatewayParts = pptp_gateway_tmp.split('.');
+                        for (var i=0;i<=3;i++){
+                                var j=i+1;
+                                eval('INPUTGatewayAddr_'+j+'.value=wangatewayParts['+i+'];');
+                        }
+                }
+
+	}
+}
+
+function L2tpMode() {
+	with (document.forms[0]) {
+		id_ConnID.value = l2tp_id_tmp;
+		Username.value = l2tp_username_tmp;
+		Password.value = l2tp_passwd_tmp;
+		PPassConfirm.value = Password.value;
+		PIPFixed.value = l2tp_static_tmp;
+		SELECT_ConnMode.value = l2tp_demand_tmp;
+		IdleTimeout.value = l2tp_idle_tmp;
+		Mtusize.value = l2tp_mtu_tmp;
+		Server.value = l2tp_server_tmp;
+
+/*		var staticaddrParts = l2tp_staticip_tmp.split('.');
+		var localaddrParts = l2tp_localip_tmp.split('.');
+                var wannetmaskParts = l2tp_netmask_tmp.split('.');
+                var wangatewayParts = l2tp_gateway_tmp.split('.');
+
+                for (var i=0;i<=3;i++){
+                        var j=i+1;
+                        eval('INPUTStaticIpAddr_'+j+'.value=staticaddrParts['+i+'];');
+			eval('INPUTIpAddr_'+j+'.value=localaddrParts['+i+'];');
+                        eval('INPUTSubnetAddr_'+j+'.value=wannetmaskParts['+i+'];');
+                        eval('INPUTGatewayAddr_'+j+'.value=wangatewayParts['+i+'];');
+                }
+*/
+		if (document.getElementById("id_PIPFixed").value=="1")
+			document.getElementById("id_PIPFixedTmp").checked=true;
+		else
+			document.getElementById("id_PIPFixedTmp").checked=false;
+		EnIPFixed('PIPFixed');
+
+		if(l2tp_autodns_tmp=='1')
+                        INPUT_ServerAsg[0].checked = true;
+                else
+                        INPUT_ServerAsg[1].checked = true;
+
+		if(l2tp_demand_tmp != "demand")
+                        IdleTimeout.disabled = 1; //gray
+                else
+                        IdleTimeout.disabled = 0;
+
+		if(l2tp_staticip_tmp!="" && l2tp_staticip_tmp!="..."){
+			var staticaddrParts = l2tp_staticip_tmp.split('.');
+			for (var i=0;i<=3;i++){
+                        	var j=i+1;
+                        	eval('INPUTStaticIpAddr_'+j+'.value=staticaddrParts['+i+'];');
+                	}
+		}
+
+		if(l2tp_localip_tmp!=""&&l2tp_localip_tmp!="..."){
+			var localaddrParts = l2tp_localip_tmp.split('.');
+			for (var i=0;i<=3;i++){
+				var j=i+1;
+				eval('INPUTIpAddr_'+j+'.value=localaddrParts['+i+'];');
+			}
+		}
+	
+		if(l2tp_netmask_tmp!="" && l2tp_netmask_tmp!="..."){
+			var wannetmaskParts = l2tp_netmask_tmp.split('.');
+			for (var i=0;i<=3;i++){
+				var j=i+1;
+				eval('INPUTSubnetAddr_'+j+'.value=wannetmaskParts['+i+'];');
+			}
+		}
+
+		if(l2tp_gateway_tmp!=""&&l2tp_gateway_tmp!="..."){
+			var wangatewayParts = l2tp_gateway_tmp.split('.');
+			for (var i=0;i<=3;i++){
+				var j=i+1;
+				eval('INPUTGatewayAddr_'+j+'.value=wangatewayParts['+i+'];');
+			}
+		}
+	}
+}
+
+
+function DNSModeChange() {
+	with (document.forms[0]) {
+		if(INPUT_ServerAsg[0].checked == false)
+		{
+			for (var i=1;i<=4;i++)
+			{
+				eval('INPUTDNSPrimaryAddr_'+i+'.disabled = 0;');
+				eval('INPUTDNSSecondaryAddr_'+i+'.disabled = 0;');
+			}
+		}
+		else
+		{
+			for (var i=1;i<=4;i++)
+			{
+				eval('INPUTDNSPrimaryAddr_'+i+'.disabled = 1;');
+				eval('INPUTDNSSecondaryAddr_'+i+'.disabled = 1;');
+			}
+
+		}
+	}
+}
+/*
+function MACCloneChange() {
+	with (document.forms[0]) {
+		if(nameMACSelect[0].checked == true){
+			INPUT_CrtMacAddr.disabled=1;
+			INPUT_CrtMacAddr.value=defmac;
+		}
+		else if (nameMACSelect[1].checked == true){
+			INPUT_CrtMacAddr.disabled=1;
+			INPUT_CrtMacAddr.value=newmac;                  
+		}
+		else{
+			INPUT_CrtMacAddr.disabled=0;
+			INPUT_CrtMacAddr.value=wan_mac;
+		}
+	}
+}
+*/
+function uiDiabledIdleTime() {
+	with (document.forms[0]) {
+		if (document.getElementById("SELECT_ConnMode").value=="demand")
+			IdleTimeout.disabled=false;
+		else
+			IdleTimeout.disabled=true;
+	}
+}
+
+function space_check(item_string){
+        if(item_string.charAt(0) == ' ' || item_string.charAt(item_string.length-1) == ' ')
+                return false;
+        else
+                return true;
+}
+
+function btnApply() {
+
+	var cf = document.forms[0];
+	var frm = document.forms[1];
+	var wan_staticip_tmp = "";
+	var wan_localip_tmp = ""; 
+	var wan_netmask_tmp = ""; 
+	var wan_gateway_tmp = ""; 
+	var wan_dns0_tmp = ""; 
+	var wan_dns1_tmp = "";
+	
+	if(document.getElementById("id_ConnID").value==""){
+		alert("The connection name is not configured.");
+		return false;
+	}
+	if(!Escape_String(document.getElementById("id_ConnID").value)){
+		alert("Invalid format.");
+		return false;                   
+	}
+
+	if(!Escape_String(document.getElementById("id_Username").value)){
+		alert("Username, Invalid format.");
+		return false;                   
+	}
+	if(!space_check(document.getElementById("id_Username").value)){
+		alert("Username, Invalid format.");
+		return false;                   
+	}
+
+
+	if(document.getElementById("id_Password").value!=document.getElementById("id_PPassConfirm").value){
+		alert("Please confirm your password.");
+		return false;
+	}
+
+	if(document.getElementById("id_Mtusize").value=="" || !check_integer_range(document.getElementById("id_Mtusize").value,578,1500)){
+		alert("Invalid MTU size.");
+        	return false;
+	}
+
+	if(document.getElementById("id_IdleTimeout").value=="" || !check_integer_range(document.getElementById("id_IdleTimeout").value,0,1440)){
+		Show_error("Periodo de inactividad", "Periodo de inactividad no v&aacute;lido");
+		alert("Invalid Idle Timeout.");
+		return false;
+	} 
+	
+
+	for(i=1;i<=3;i++){
+		eval('wan_staticip_tmp+=cf.INPUTStaticIpAddr_'+i+'.value+".";');
+		eval('wan_localip_tmp+=cf.INPUTIpAddr_'+i+'.value+".";');
+		eval('wan_netmask_tmp+=cf.INPUTSubnetAddr_'+i+'.value+".";');
+		eval('wan_gateway_tmp+=cf.INPUTGatewayAddr_'+i+'.value+".";');
+	}
+
+	wan_staticip_tmp+=cf.INPUTStaticIpAddr_4.value;
+	wan_localip_tmp+=cf.INPUTIpAddr_4.value;
+	wan_netmask_tmp+=cf.INPUTSubnetAddr_4.value;
+       	wan_gateway_tmp+=cf.INPUTGatewayAddr_4.value;
+               
+	if(cf.SELECT_ConnType.value == "PPTP"){
+
+		frm.pptp_id.value = cf.id_ConnID.value;
+                frm.pptp_username.value = cf.Username.value;
+                frm.pptp_passwd.value = cf.Password.value;
+                frm.pptp_static.value = cf.PIPFixed.value;
+                frm.pptp_staticip.value = wan_staticip_tmp;
+                frm.pptp_opmode.value = cf.SELECT_ConnMode.value;
+                frm.pptp_idle.value = cf.IdleTimeout.value;
+                frm.pptp_mtu.value = cf.Mtusize.value;
+                frm.pptp_dialip.value = wan_localip_tmp;
+                frm.pptp_mask.value = wan_netmask_tmp;
+                frm.pptp_serverip.value = cf.Server.value;
+                frm.pptp_gatewayip.value = wan_gateway_tmp;
+
+		//disabled
+		frm.l2tp_id.disabled = 1;
+                frm.l2tp_username.disabled = 1;
+                frm.l2tp_passwd.disabled = 1;
+                frm.l2tp_static.disabled = 1;
+                frm.l2tp_staticip.disabled = 1;
+                frm.l2tp_opmode.disabled = 1;
+                frm.l2tp_idle.disabled = 1;
+                frm.l2tp_mtu.disabled = 1;
+                frm.l2tp_dialip.disabled = 1;
+                frm.l2tp_mask.disabled = 1;
+                frm.l2tp_serverip.disabled = 1;
+                frm.l2tp_gatewayip.disabled = 1;
+		frm.l2tp_autodns.disabled = 1;
+		frm.l2tp_dns1.disabled = 1;
+		frm.l2tp_dns2.disabled = 1;
+
+		if(cf.PIPFixed.value == "1"){
+			frm.WANStaticIP.value = frm.pptp_staticip.value;
+			frm.WANStaticMASK.value = "255.255.255.0";
+			frm.InternetMtu.value = frm.pptp_mtu.value;
+
+			if ( isValidIpAddressnew(wan_staticip_tmp) == false ) {
+				alert('Static IP Address is invalid IP address.');
+				return;
+			}
+		}else{
+			frm.WANStaticIP.disabled = 1;
+			frm.WANStaticMASK.disabled = 1;
+			frm.InternetMtu.disabled = 1;
+			frm.pptp_staticip.disabled = 1;
+		}
+		
+		if(cf.INPUT_ServerAsg[0].checked == true){
+			frm.pptp_dns1.disabled = 1;
+			frm.pptp_dns2.disabled = 1;
+			frm.InternetDNS1.disabled = 1;
+                        frm.InternetDNS2.disabled = 1;    
+			frm.pptp_autodns.value = "1";
+		}else{
+			frm.pptp_autodns.value = "0";
+			for(i=1;i<=3;i++){                               
+				eval('wan_dns0_tmp+=cf.INPUTDNSPrimaryAddr_'+i+'.value+".";');
+				eval('wan_dns1_tmp+=cf.INPUTDNSSecondaryAddr_'+i+'.value+".";');
+			}
+			wan_dns0_tmp+=cf.INPUTDNSPrimaryAddr_4.value;
+			wan_dns1_tmp+=cf.INPUTDNSSecondaryAddr_4.value;
+
+			if ( isValidIpAddressnew(wan_dns0_tmp) == false ) {
+                                alert('invalid Primary DNS.');
+                                return;
+                        }
+/*
+			if ( isValidIpAddressnew(wan_staticip_tmp) == false ) {
+                                alert('invalid Secondary DNS.');
+                                return;
+                        }
+*/
+			frm.pptp_dns1.value = wan_dns0_tmp;
+			frm.pptp_dns2.value = wan_dns1_tmp;
+
+			frm.InternetDNS1.value = wan_dns0_tmp;
+                        frm.InternetDNS2.value = wan_dns1_tmp;
+		}
+
+	} else {
+
+		frm.l2tp_id.value = cf.id_ConnID.value;
+		frm.l2tp_username.value = cf.Username.value;
+		frm.l2tp_passwd.value = cf.Password.value;
+		frm.l2tp_static.value = cf.PIPFixed.value;
+		frm.l2tp_staticip.value = wan_staticip_tmp;
+		frm.l2tp_opmode.value =	cf.SELECT_ConnMode.value;
+		frm.l2tp_idle.value = cf.IdleTimeout.value;
+		frm.l2tp_mtu.value = cf.Mtusize.value;
+		frm.l2tp_dialip.value = wan_localip_tmp;
+		frm.l2tp_mask.value = wan_netmask_tmp;
+		frm.l2tp_serverip.value = cf.Server.value;
+		frm.l2tp_gatewayip.value = wan_gateway_tmp;
+
+		//disabled
+		frm.pptp_id.disabled = 1;
+		frm.pptp_username.disabled = 1;
+                frm.pptp_passwd.disabled = 1;
+                frm.pptp_static.disabled = 1;
+                frm.pptp_staticip.disabled = 1;
+                frm.pptp_opmode.disabled = 1;
+                frm.pptp_idle.disabled = 1;
+                frm.pptp_mtu.disabled = 1;
+                frm.pptp_dialip.disabled = 1;
+                frm.pptp_mask.disabled = 1;
+                frm.pptp_serverip.disabled = 1;
+                frm.pptp_gatewayip.disabled = 1;
+		frm.pptp_autodns.disabled = 1;
+                frm.pptp_dns1.disabled = 1;
+                frm.pptp_dns2.disabled = 1;
+
+		if(cf.PIPFixed.value == "1"){
+                        frm.WANStaticIP.value = frm.l2tp_staticip.value;
+                        frm.WANStaticMASK.value = "255.255.255.0";
+                        frm.InternetMtu.value = frm.l2tp_mtu.value;
+
+			if ( isValidIpAddressnew(wan_staticip_tmp) == false ) {
+				alert('Static IP Address is invalid IP address.');
+				return;
+			}
+                }else{
+                        frm.WANStaticIP.disabled = 1;
+                        frm.WANStaticMASK.disabled = 1;
+                        frm.InternetMtu.disabled = 1;
+			frm.l2tp_staticip.disabled = 1;
+                }
+                
+                if(cf.INPUT_ServerAsg[0].checked == true){
+                        frm.l2tp_dns1.disabled = 1;
+                        frm.l2tp_dns2.disabled = 1;
+			frm.InternetDNS1.disabled = 1;
+			frm.InternetDNS2.disabled = 1;       
+                        frm.l2tp_autodns.value = "1";
+                }else{
+                        frm.l2tp_autodns.value = "0";
+                        for(i=1;i<=3;i++){                               
+                                eval('wan_dns0_tmp+=cf.INPUTDNSPrimaryAddr_'+i+'.value+".";');
+                                eval('wan_dns1_tmp+=cf.INPUTDNSSecondaryAddr_'+i+'.value+".";');
+                        }
+                        wan_dns0_tmp+=cf.INPUTDNSPrimaryAddr_4.value;
+                        wan_dns1_tmp+=cf.INPUTDNSSecondaryAddr_4.value;
+
+			if ( isValidIpAddressnew(wan_dns0_tmp) == false ) {
+                                alert('invalid Primary DNS.');
+                                return;
+                        }
+/*
+                        if ( isValidIpAddressnew(wan_staticip_tmp) == false ) {
+                                alert('invalid Secondary DNS.');
+                                return;
+                        }
+*/
+                        frm.l2tp_dns1.value = wan_dns0_tmp;
+                        frm.l2tp_dns2.value = wan_dns1_tmp;
+
+			frm.InternetDNS1.value = wan_dns0_tmp;
+			frm.InternetDNS2.value = wan_dns1_tmp;
+                }
+	}
+
+	if ( isValidIpAddressnew(wan_localip_tmp) == false ) {
+                alert('My IP Address is invalid IP address.');
+                return;
+        }
+
+        if ( isValidSubnetMasknew(wan_netmask_tmp) == false ) {
+                alert('invalid subnet mask.');
+                return;
+        }
+
+        if ( isValidIpAddressnew(wan_gateway_tmp) == false ) {
+                alert('Gateway address is invalid IP address.');
+                return;
+        }
+
+	frm.submit();
+}
+
+function IPKeyUp(e,v)
+{
+	var prefix=(v.id).split('_')[0]+'_';
+	var idx=(v.id).split('_')[1];
+
+	var obj=document.getElementById(prefix+idx);
+	var len;
+	var nextidx = Number(idx) + 1;
+	var keynum;
+
+	if(window.event)
+		keynum = event.keyCode;
+	else if(e.which) // Netscape/Firefox/Opera
+		keynum = e.which;
+
+
+	if(keynum == TAB_CODE || keynum == BS_CODE) return;
+
+	len = obj.value.length;
+
+	if(len == 3 || keynum == DOT_CODE || keynum == DOT2_CODE || keynum == SP_CODE)
+	{       
+		if(len == 0) return;
+		obj=document.getElementById(prefix+nextidx);
+		if(obj) obj.focus();
+		return;
+	}
+}
+
+function IPKeyDown(e,v)
+{
+	var prefix=(v.id).split('_')[0]+'_';
+	var idx=(v.id).split('_')[1];
+	var obj=document.getElementById(prefix+idx);
+	var previdx = Number(idx) - 1;
+	var keynum;
+	if(window.event)
+		keynum = event.keyCode;
+	else if(e.which) // Netscape/Firefox/Opera
+		keynum = e.which;
+
+	if((keynum == TAB_CODE) || (keynum == DEL_CODE) || (keynum == BS_CODE))
+	{
+		if(obj.value.length == 0 && keynum == BS_CODE)
+		{
+			obj=document.getElementById(prefix+previdx);
+			if(obj) obj.focus();
+		}
+		return 1;
+	}
+	return CheckNum(keynum);
+}       
+
+function CheckNum(keynum)
+{
+	if( ((keynum >= 96) && keynum <= 105) 
+			||((keynum >= 48) && keynum <= 57)
+	  )
+		return true;
+	return false;
+}
+
+function EnIPFixed(item)
+{
+	var cf = document.forms[0];
+	if (document.getElementById("id_"+item+"Tmp").checked==true){
+		document.getElementById("id_"+item).value="1";
+		for (var i=1;i<=4;i++){
+			eval('cf.INPUTStaticIpAddr_'+i+'.disabled = 0;');
+		}
+
+	}       
+	else{
+		document.getElementById("id_"+item).value="0";
+		for (var i=1;i<=4;i++){
+                        eval('cf.INPUTStaticIpAddr_'+i+'.disabled = 1;');
+                }
+	}
+}
+
+function Init()
+{
+	var cf = document.forms[0];
+
+	if(wan_method == "5"){ //L2TP
+		cf.SELECT_ConnType.value = "L2TP";
+	}else if(wan_method == "6"){ //PPTP
+		cf.SELECT_ConnType.value = "PPTP";
+	}else
+		cf.SELECT_ConnType.value = "PPTP";
+
+	ChangeMode();	
+}
+
+//-->
+</script>
+</head>
+<body class="BFK_BODY" onload="Init();">
+<br>
+<div id="id_errtbl" class=C_ERR style="display:none;"></div>
+<form method="POST" name="PPPoEReg_from">
+<input type="hidden" name="nosave_EditRule" id="id_EditRule" value="" disabled>
+  <table class="AD_TTL2">
+    <tr>
+      <td id="t_cintent">PPTP/L2TP Setting</td>
+    </tr>
+  </table>
+  <table class=AD_SET>
+    <tr>
+	<th>Internet Service Provider</th>
+	<td>
+		<select size="1" name="SELECT_ConnType" id="SELECT_ConnType" onchange="ChangeMode();">
+          		<option value="PPTP" selected>PPTP</option>
+          		<option value="L2TP">L2TP</option>
+        	</select>
+	</td>
+    </tr>
+
+    <tr>
+      <th>Connection ID</th>
+      <td>
+        <input type="text" name="ConnID" id="id_ConnID" size="45" maxlength="32">
+      </td>
+    </tr>
+
+    <tr>
+      <th>Username</th>
+      <td>
+        <input type="text" name="Username" id="id_Username" size="45" maxlength="64">
+      </td>
+    </tr>
+
+    <tr>
+      <th>Password</th>
+      <td>
+       	<input type="password" name="Password" id="id_Password" size="45" maxlength="64" onClick="rm_start('id_Password');rm_start('id_PPassConfirm');">
+        <br>
+        <input type="password" name="PPassConfirm" id="id_PPassConfirm" size="45" maxlength="64" onClick="rm_start('id_PPassConfirm');"> &#x28;Confirmation&#x29;
+      </td>
+    </tr>
+
+    <tr>
+	<th>Static IP</th>
+      	<td>
+         	<input type="hidden" name="PIPFixed" id="id_PIPFixed" value="0">
+         	<input type="checkbox" id="id_PIPFixedTmp" onClick="EnIPFixed('PIPFixed');" >	
+      </td>
+    </tr>
+
+    <tr>
+	<th>IP Address</th>
+      	<td>
+		<input type='text' id="INPUTStaticIpAddr_1" maxlength=3 style="width:30px"  onfocus="this.select();" onkeyup="IPKeyUp(event,this);" onkeydown="return IPKeyDown(event, this)" />.
+                <input type='text' id="INPUTStaticIpAddr_2" maxlength=3 style="width:30px" onfocus="this.select();" onkeyup="IPKeyUp(event,this);" onkeydown="return IPKeyDown(event, this)" />.
+                <input type='text' id="INPUTStaticIpAddr_3" maxlength=3 style="width:30px" onfocus="this.select();" onkeyup="IPKeyUp(event,this);" onkeydown="return IPKeyDown(event, this)" />.
+                <input type='text' id="INPUTStaticIpAddr_4" maxlength=3 style="width:30px"  onfocus="this.select();" onkeyup="IPKeyUp(event,this);" onkeydown="return IPKeyDown(event, this)"/>
+      </td>
+    </tr>
+
+    <tr>
+      <th>Connection Mode</th>
+	<td>
+		<select size="1" name="SELECT_ConnMode" id="SELECT_ConnMode" onchange="uiDiabledIdleTime();">
+                        <option value="always">Always On</option>
+                        <option value="demand">Dial On Demand</option>
+			<option value="manual">Manually Connect</option>
+                </select>		
+	</td>
+    </tr>
+
+    <tr>
+      <th>Idle Timeout (In minutes)</th>
+     	<td>
+		<input type="text" name="IdleTimeout" id="id_IdleTimeout" maxlength="3"/>
+	</td>
+    </tr>
+
+    <tr>
+      <th>MTU Size</th>
+        <td>
+               	<input type="text" name="Mtusize" id="id_Mtusize" maxlength="5"/>Bytes
+        </td>
+    </tr>
+
+    <tr>
+      <th>My IP Address</th>
+	<td>
+		<input type='text' id="INPUTIpAddr_1" maxlength=3 style="width:30px"  onfocus="this.select();" onkeyup="IPKeyUp(event,this);" onkeydown="return IPKeyDown(event, this)" />.
+		<input type='text' id="INPUTIpAddr_2" maxlength=3 style="width:30px" onfocus="this.select();" onkeyup="IPKeyUp(event,this);" onkeydown="return IPKeyDown(event, this)" />.
+		<input type='text' id="INPUTIpAddr_3" maxlength=3 style="width:30px" onfocus="this.select();" onkeyup="IPKeyUp(event,this);" onkeydown="return IPKeyDown(event, this)" />.
+		<input type='text' id="INPUTIpAddr_4" maxlength=3 style="width:30px"  onfocus="this.select();" onkeyup="IPKeyUp(event,this);" onkeydown="return IPKeyDown(event, this)"/>
+	</td>
+    </tr>
+
+    <tr>
+      <th>Subnet Mask</th>
+        <td>
+		<input type='text' id="INPUTSubnetAddr_1" maxlength=3 style="width:30px"  onfocus="this.select();" onkeyup="IPKeyUp(event,this);" onkeydown="return IPKeyDown(event, this)" />.
+		<input type='text' id="INPUTSubnetAddr_2" maxlength=3 style="width:30px" onfocus="this.select();" onkeyup="IPKeyUp(event,this);" onkeydown="return IPKeyDown(event, this)" />.
+		<input type='text' id="INPUTSubnetAddr_3" maxlength=3 style="width:30px" onfocus="this.select();" onkeyup="IPKeyUp(event,this);" onkeydown="return IPKeyDown(event, this)" />.
+		<input type='text' id="INPUTSubnetAddr_4" maxlength=3 style="width:30px"  onfocus="this.select();" onkeyup="IPKeyUp(event,this);" onkeydown="return IPKeyDown(event, this)" />
+        </td>
+    </tr>
+
+    <tr>
+      <th>Server Address</th>
+        <td>
+		<input type="text" name="Server" id="INPUT_Server" />
+        </td>
+    </tr>
+
+    <tr>
+      <th>Gateway IP Address</th>
+        <td>
+		<input type='text' id="INPUTGatewayAddr_1" maxlength=3 style="width:30px"  onfocus="this.select();" onkeyup="IPKeyUp(event,this);" onkeydown="return IPKeyDown(event, this)" />.
+		<input type='text' id="INPUTGatewayAddr_2" maxlength=3 style="width:30px" onfocus="this.select();" onkeyup="IPKeyUp(event,this);" onkeydown="return IPKeyDown(event, this)" />.
+		<input type='text' id="INPUTGatewayAddr_3" maxlength=3 style="width:30px" onfocus="this.select();" onkeyup="IPKeyUp(event,this);" onkeydown="return IPKeyDown(event, this)" />.
+		<input type='text' id="INPUTGatewayAddr_4" maxlength=3 style="width:30px"  onfocus="this.select();" onkeyup="IPKeyUp(event,this);" onkeydown="return IPKeyDown(event, this)" />
+        </td>
+    </tr>
+
+  </table>
+<table class="AD_TTL2">
+  <tr>
+    <td>Domain Name Server (DNS) Address</td>
+  </tr>
+</table>
+<table class="AD_SET">
+   <tbody>
+   <tr>
+	<td>
+		<input type="radio" name="INPUT_ServerAsg" value="0" checked="checked" onclick="DNSModeChange();" id="INPUT_ServerFromIsp"/>
+        	<span id="idDNSAutomatically">Get Automatically From ISP</span>
+	</td>
+	<td>&nbsp;</td>
+   </tr>
+
+   <tr>
+        <td>
+                <input type="radio" name="INPUT_ServerAsg" value="1" onclick="DNSModeChange();" id="INPUT_ServerFromIsp"/>
+                <span id="idDNSManually">Use These DNS Servers</span>
+        </td>
+	<td>&nbsp;</td>
+   </tr>
+
+   <tr>
+	<td><span id="idDNSPrimaryContext" style="padding-left:20px">Primary DNS</span></td>
+        <td>
+              <div id="idBlockDNSZone1">&nbsp;
+		<input name="text" type='text' id="INPUTDNSPrimaryAddr_1" style="width:30px"  onfocus="this.select();" onkeydown="return IPKeyDown(event, this)" onkeyup="IPKeyUp(event,this);" maxlength=3 />.
+		<input type='text' id="INPUTDNSPrimaryAddr_2" maxlength=3 style="width:30px" onfocus="this.select();" onkeyup="IPKeyUp(event,this);" onkeydown="return IPKeyDown(event, this)" />.
+		<input type='text' id="INPUTDNSPrimaryAddr_3" maxlength=3 style="width:30px" onfocus="this.select();" onkeyup="IPKeyUp(event,this);" onkeydown="return IPKeyDown(event, this)" />.
+		<input type='text' id="INPUTDNSPrimaryAddr_4" maxlength=3 style="width:30px"  onfocus="this.select();" onkeyup="IPKeyUp(event,this);" onkeydown="return IPKeyDown(event, this)" />
+                 </div>
+	</td>
+  </tr>
+
+  <tr>
+    	<td><span id="idDNSSecondaryContext" style="padding-left:20px">Secondary DNS</span></td>
+     	<td>
+        	<div id="idBlockDNSZone2">&nbsp;
+		<input type='text' id="INPUTDNSSecondaryAddr_1" maxlength=3 style="width:30px"  onfocus="this.select();" onkeyup="IPKeyUp(event,this);" onkeydown="return IPKeyDown(event, this)" />.
+      		<input type='text' id="INPUTDNSSecondaryAddr_2" maxlength=3 style="width:30px" onfocus="this.select();" onkeyup="IPKeyUp(event,this);" onkeydown="return IPKeyDown(event, this)" />.
+   		<input type='text' id="INPUTDNSSecondaryAddr_3" maxlength=3 style="width:30px" onfocus="this.select();" onkeyup="IPKeyUp(event,this);" onkeydown="return IPKeyDown(event, this)" />.
+		<input type='text' id="INPUTDNSSecondaryAddr_4" maxlength=3 style="width:30px"  onfocus="this.select();" onkeyup="IPKeyUp(event,this);" onkeydown="return IPKeyDown(event, this)" />
+                </div>
+    	</td>
+  </tr>
+  </tbody>
+</table>
+<!--
+<table class="AD_TTL2">
+  <tr>
+    <td>Router MAC Address</td>
+  </tr>
+</table>
+
+<table class="AD_SET">
+  <tbody>
+  <tr>
+  	<td>
+		<input type="radio" name="nameMACSelect" value="macDefault" checked="checked" onclick="MACCloneChange();" />
+		<span id="idMacDefault">Use Default Address</span></td>
+  	<td>&nbsp;</td>
+  </tr>
+  <tr>
+  	<td><input type="radio" name="nameMACSelect" value="macComputer" onclick="MACCloneChange();" />
+	<span id="idMacComputer">Use Computer MAC Address</span></td>
+  	<td>&nbsp;</td>
+  </tr>
+  <tr>
+  	<td>
+		<input type="radio" name="nameMACSelect" value="macThis" onclick="MACCloneChange();" />
+		<span id="idMacThis">Use This MAC Address</span></td>
+  	<td>
+		<div id="idMACCloneInputZone">&nbsp;
+		<input type="text" id="INPUT_CrtMacAddr" value="" />
+		</div>
+	</td>
+  </tr>
+  </tbody>
+</table>
+-->
+   <p>
+     <input type="button" value="Apply" onClick="btnApply();">	  
+   </p>
+   </form>
+
+   <form method="POST">
+	<input type="hidden" name="pptp_id">
+        <input type="hidden" name="pptp_username">
+        <input type="hidden" name="pptp_passwd">
+        <input type="hidden" name="pptp_static">
+        <input type="hidden" name="pptp_staticip">
+        <input type="hidden" name="pptp_opmode">
+        <input type="hidden" name="pptp_idle">
+        <input type="hidden" name="pptp_mtu">
+        <input type="hidden" name="pptp_dialip">
+        <input type="hidden" name="pptp_mask">
+        <input type="hidden" name="pptp_serverip">
+        <input type="hidden" name="pptp_gatewayip">
+        <input type="hidden" name="pptp_autodns">
+        <input type="hidden" name="pptp_dns1">
+        <input type="hidden" name="pptp_dns2">
+
+	<input type="hidden" name="l2tp_id">
+	<input type="hidden" name="l2tp_username">
+	<input type="hidden" name="l2tp_passwd">
+	<input type="hidden" name="l2tp_static">
+	<input type="hidden" name="l2tp_staticip">
+	<input type="hidden" name="l2tp_opmode">
+	<input type="hidden" name="l2tp_idle">
+	<input type="hidden" name="l2tp_mtu">
+	<input type="hidden" name="l2tp_dialip">
+	<input type="hidden" name="l2tp_mask">
+	<input type="hidden" name="l2tp_serverip">
+	<input type="hidden" name="l2tp_gatewayip">
+	<input type="hidden" name="l2tp_autodns">
+        <input type="hidden" name="l2tp_dns1">
+        <input type="hidden" name="l2tp_dns2">
+
+
+	<input type="hidden" name="WANStaticIP">
+	<input type="hidden" name="WANStaticMASK">
+	<input type="hidden" name="InternetMtu">
+
+	<input type="hidden" name="InternetDNS1">
+	<input type="hidden" name="InternetDNS2">
+
+   </form>
+
+</body>
+
+<!-- Mirrored from 192.168.0.1/pptp_l2tp.html by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 11 Jan 2017 00:16:09 GMT -->
+</html>

@@ -1,0 +1,84 @@
+
+<!-- saved from url=(0036)http://192.168.1.254/ddns_config.asp -->
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta http-equiv="Pragma" content="no-cache">
+
+<title>DDNS | Settings</title>
+
+<script language="JavaScript">
+
+
+function OnSel()
+{
+	if(document.frmSetup.ddnsEnable[1].checked)
+	{
+		document.getElementById("userName").disabled = true;
+		document.getElementById("password").disabled = true;
+		document.getElementById("domain").disabled = true;
+	}else{
+		document.getElementById("userName").disabled = false;
+		document.getElementById("password").disabled = false;
+		document.getElementById("domain").disabled = false;
+	}
+}
+</script>
+<link rel="stylesheet" type="text/css" href="../css/style.css">
+</head>
+<body leftmargin="0" topmargin="0" marginheight="0" marginwidth="0" onload="init(document.frmSetup);" class="bg">
+	<table width="100%" border="0" align="center" cellpadding="0" cellspacing="0">
+      <tbody><tr>
+        <td width="33">&nbsp;</td>
+        <td width="679" valign="top">
+		<table width="100%" border="0" align="center" cellpadding="0" cellspacing="0" height="100%">
+          <tbody><tr>
+            <td align="center" valign="top"> 
+			<table width="98%" border="0" align="center" cellpadding="0" cellspacing="0" height="100%">
+              <tbody><tr>
+                <td align="center" valign="top">
+				<form name="frmSetup" method="POST" action="http://192.168.1.254/goform/SysToolDDNS">
+				<input type="hidden" name="GO" value="ddns_config.asp">
+				<table cellpadding="0" cellspacing="0" class="content1" id="table1">
+					<tbody><tr class="a1">
+					  <td width="150" align="right">DDNS Service</td>
+					  <td>
+						&nbsp;&nbsp;&nbsp;&nbsp;<input name="ddnsEnable" value="1" type="radio" class="radio" onclick="OnSel()"> Enable 
+						<input name="ddnsEnable" value="0" type="radio" class="radio" onclick="OnSel()" checked="">Disable </td></tr>
+					<tr class="a2">
+					  <td align="right">Service Provider</td>
+					<td nowrap="">
+					  &nbsp;&nbsp;&nbsp;&nbsp;<select name="serverName" size="1">
+						<option value="1">dyndns.org</option> 
+						<option value="5">no-ip.com</option>
+					  </select> 
+					  <a class="content" href="http://192.168.1.254/ddns_config.asp#" onclick="reg()" style="color:#000000">Sign up</a></td>
+					</tr>
+					<tr class="a1">
+						<td align="right">Username</td>
+						<td>&nbsp;&nbsp;&nbsp;&nbsp;<input name="userName" class="text" maxlength="40" id="userName" size="15" disabled=""></td></tr>
+					<tr class="a2">
+						<td align="right">Password</td>
+						<td>&nbsp;&nbsp;&nbsp;&nbsp;<input name="password" class="text" id="password" size="15" maxlength="20" type="text" disabled="">
+						</td>
+					</tr>
+					<tr class="a1">
+						<td align="right">Domain Name</td>
+						<td>&nbsp;&nbsp;&nbsp;&nbsp;<input class="text" maxlength="40" id="domain" name="hostName" size="15" disabled="">
+						</td>
+					</tr>
+				</tbody></table>
+					<table width="75%" border="0" cellpadding="0" cellspacing="0" style="padding-top:20px;"><tbody><tr><td align="center"><input type="button" class="button1" value="Ok" onmouseover="style.color=&#39;#FF9933&#39;" onmouseout="style.color=&#39;#000000&#39;" onclick="preSubmit(document.frmSetup)">&nbsp;&nbsp;&nbsp;&nbsp;<input type="button" class="button1" value="Cancel" onmouseover="style.color=&#39;#FF9933&#39;" onmouseout="style.color=&#39;#000000&#39;" onclick="init(document.frmSetup)"></td></tr></tbody></table>
+				</form>
+				</td>
+              </tr>
+            </tbody></table></td>
+          </tr>
+        </tbody></table></td>
+        <td align="center" valign="top" height="100%">
+<table border="0" cellpadding="0" cellspacing="0" class="left1" style="margin-top:25px;"><tbody><tr><td align="center"><b>Help information</b></td></tr><tr><td align="left">&nbsp;&nbsp;&nbsp;&nbsp;DDNS (Dynamic DNS) Service allows you to assign a fixed domain name for dynamic WAN IP so as to monitor your LAN Web, TCP/IP FTP or other TCP/IP .Before setting the DDNS, you need to click <sign up=""> and go to the corresponding website to register a domain name.<br>&nbsp;&nbsp;&nbsp;&nbsp;DDNS Service: Select the corresponding DDNS service provider from the drop-down menu and enter the username, password and hostname to enable the service.</sign></td></tr></tbody></table>
+		</td>
+      </tr>
+    </tbody></table>
+
+
+
+</body></html>

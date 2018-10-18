@@ -1,0 +1,342 @@
+<!DOCTYPE html>
+<html>
+
+<!-- Mirrored from 192.168.0.1/wizard_func_wireless_basic.html by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 11 Jan 2017 00:15:39 GMT -->
+<head>
+<meta charset="utf-8" />
+<link rel="stylesheet" href="WHR-G300N-160149-style-ENG.css" />
+<link rel="stylesheet" href="WHR-G300N-160149-style-ad-ENG.css" />
+<title>Wizard Wireless Basic</title>
+
+<script src="common.html"></script>
+
+<script>
+
+function apply_Button()
+{
+  if (document.getElementById('id_WirelessSsid1').value == "" || !check_char(document.getElementById('id_WirelessSsid1').value)) {
+    alert('SSID can not null!');
+    return false;
+  }
+
+  if (document.getElementById('id_WirelessAuthType1').value == "") {
+    alert('You should select an authentication!');
+    return false;
+  }
+
+  if (document.getElementById('id_WirelessEncrypType1').value == "") {
+    alert('You should select an encryption!');
+    return false;
+  }
+
+  var auth_type = document.getElementById('id_WirelessAuthType1').value;
+  if (auth_type == 'WPAPSK' || auth_type == 'WPA2PSK' || auth_type == 'WPAPSKWPA2PSK') {
+    var key_value = document.getElementById('id_WirelessWPAPSK1').value;
+    if (key_value.length < 8 || key_value.length > 64 || (key_value.length == 64 && !check_0Tof(key_value)) || (!wifipskcheck(key_value))) {
+      alert('WPA-PSK pre-shared key must be between 8 and 63 ASCII characters or 64 hexadecimal digits');
+      return false;
+    }
+  }
+
+  var submit_Form = document.submit_Form;
+
+  submit_Form.WIFI_Enable.value = '1';
+  submit_Form.WIFI_WirelessMode.value = '9';
+  submit_Form.WIFI_Channel.value = document.getElementById('id_WirelessChannel').value;
+  if (document.getElementById('id_WirelessChannel').value == '0') {
+	  submit_Form.WIFI_AutoChannelSelect.value = '1';
+  } else {
+	  submit_Form.WIFI_AutoChannelSelect.value = '0';
+  }
+  submit_Form.WIFI_HT_BW.value = '1';
+  submit_Form.WIFI_HideSSID.value = '0';
+  submit_Form.WIFI_BssidNum.value = '1';
+  submit_Form.WIFI_SSID1.value = document.getElementById('id_WirelessSsid1').value;
+  submit_Form.WIFI_AuthMode.value = document.getElementById('id_WirelessAuthType1').value;
+  submit_Form.WIFI_EncrypType.value = document.getElementById('id_WirelessEncrypType1').value;
+  submit_Form.WIFI_WPAPSK1.value = document.getElementById('id_WirelessWPAPSK1').value;
+
+  submit_Form.submit();
+}
+
+function build_AuthSelect()
+{
+  var obj_auth = document.getElementById('id_WirelessAuthType1');
+  for (var i = obj_auth.length - 1; i >= 0; i--) {
+    obj_auth.remove(obj_auth.options[i]);
+  }
+
+  obj_auth.options[0] = new Option('No authentication', 'OPEN', 0, 0);
+  obj_auth.options[1] = new Option('WPA2-PSK', 'WPA2PSK', 0, 0);
+  obj_auth.options[2] = new Option('WPA/WPA2 mixed mode - PSK', 'WPAPSKWPA2PSK', 0, 0);
+}
+
+function build_ChannelSelect()
+{
+  var wifi_countrycode = 'US';
+  var obj_channel =  document.getElementById('id_WirelessChannel');
+
+  for (var i = obj_channel.length - 1; i >= 0; i--) {
+    obj_channel.remove(obj_channel.options[i]);
+  }
+
+  if (wifi_countrycode == 'US' || wifi_countrycode == 'TW') {
+    obj_channel.options[0] = new Option('Auto Channel', '0', 0, 0);
+    for (var i = 1; i <= 11; i++) {
+      obj_channel.options[i] = new Option('Channel ' + i, i, 0, 0);
+    }
+  } else if (wifi_countrycode == 'JP') {
+    obj_channel.options[0] = new Option('Auto Channel', '0', 0, 0);
+    for (var i = 1; i <= 14; i++) {
+      obj_channel.options[i] = new Option('Channel ' + i, i, 0, 0);
+    }
+  } else {
+    obj_channel.options[0] = new Option('Auto Channel', '0', 0, 0);
+    for (var i = 1; i <= 13; i++) {
+      obj_channel.options[i] = new Option('Channel ' + i, i, 0, 0);
+    }
+  }
+}
+
+function build_Encryption()
+{
+  var wifi_auth = document.getElementById('id_WirelessAuthType1').value;
+  var obj_encryptype = document.getElementById('id_WirelessEncrypType1');
+
+  for (var i = obj_encryptype.length - 1; i >= 0; i--) {
+    obj_encryptype.remove(obj_encryptype.options[i]);
+  }
+
+  if (wifi_auth == 'OPEN') {
+    obj_encryptype.options[0] = new Option('No encryption', 'NONE', 0, 0);
+  } else {
+      obj_encryptype.options[0] = new Option('AES', 'AES', 0, 0);
+      obj_encryptype.options[1] = new Option('TKIP/AES', 'TKIPAES', 0, 0);
+  }
+}
+
+function cancel_Button()
+{
+  location.href = 'wireless_advanced.html';
+}
+
+function change_AuthType()
+{
+  build_Encryption();
+  show_WepKeyTable();
+}
+
+function change_EncryptType()
+{
+  show_WepKeyTable();
+}
+
+function init()
+{
+  var wifi_channel = '0';
+  var wifi_autochannel = '1';
+  var wifi_ssid1 = 'DTVNET_';
+  var wifi_authmode = 'WPAPSKWPA2PSK';
+  var wifi_encryptype = 'TKIPAES';
+  var wifi_wpapsk1 = '87654321';
+ 
+  build_ChannelSelect();
+
+  if (wifi_autochannel == '1') {
+    document.getElementById('id_WirelessChannel').value = '0';
+  } else {
+    document.getElementById('id_WirelessChannel').value = wifi_channel;
+  }
+
+  document.getElementById('id_WirelessSsid1').value = wifi_ssid1;
+
+  build_AuthSelect();
+  if (wifi_authmode != 'OPEN' || wifi_authmode != 'WPA2PSK' || wifi_authmode != 'WPAPSKWPA2PSK') {
+    wifi_authmode = 'WPAPSKWPA2PSK';
+    wifi_encryptype = 'AES';
+  } 
+  document.getElementById('id_WirelessAuthType1').value = wifi_authmode;
+ 
+  build_Encryption();
+  document.getElementById('id_WirelessEncrypType1').value = wifi_encryptype;
+
+  show_WepKeyTable();
+  document.getElementById('id_WirelessWPAPSK1').value = wifi_wpapsk1;
+}
+
+function show_WepKeyTable()
+{
+  var wifi_auth = document.getElementById('id_WirelessAuthType1').value;
+  var wifi_encrytype = document.getElementById('id_WirelessEncrypType1').value;
+
+  if (wifi_auth == 'OPEN' || wifi_auth == '8021X' || wifi_auth == 'WPA' || wifi_auth == 'WPA2' || wifi_auth == 'WPA1WPA2') {
+    document.getElementById('id_psk1_tbl').style.display = 'none';
+  } else {
+    document.getElementById('id_psk1_tbl').style.display = '';
+  }
+}
+</script>
+</head>
+
+<body class="WIZ_BODY" onload="init();">
+
+<form name="gui_Form">
+<input type="hidden" name="WIFISsid1Enable" id="mm_WIFISsid1Enable" value="">
+<table class="WIZ_FRAME">
+<tbody>
+  <tr class="HEAD">
+    <td class="TBL_L"></td>
+    <td class="TBL_C"></td>
+    <td class="TBL_R"></td>
+  </tr>
+
+  <tr class="TBL">
+  <td class="TBL_L"></td>
+  <td class="TBL_C">
+    <span id="id_wifimain">
+    <table class="WIZ_FRAME2">
+      <tbody>
+        <tr class="HEAD">
+          <td class="TBL_L"></td>
+          <td class="TBL_C">Wireless Settings</td>
+          <td class="TBL_R"></td>
+        </tr>
+
+        <tr class="HEAD2">
+          <td class="TBL_L"></td>
+          <td class="TBL_C">SSID and Channel and Key</td>
+          <td class="TBL_R"></td>
+        </tr>
+
+        <tr class="TBL">
+          <td class="TBL_L"></td>
+          <td class="TBL_C">
+            <table class="WIZ_FRAME3">
+              <tbody>
+                <tr class="HEAD">
+                  <td class="TBL_L"></td>
+                  <td class="TBL_C">Wizard Wireless Basic</td>
+                  <td class="TBL_R"></td>
+                </tr>
+
+                <tr class=TBL>
+                  <td class="TBL_L"></td>
+                  <td class="TBL_C">
+                    <table class="WIZ_SET">
+                      <tbody>
+                        <tr>
+                          <th><span class="WLAN11G">802.11 b/g/n</span></th>
+                          <td>
+                            <p>SSID :<input type="text" size="40" maxlength="32" id="id_WirelessSsid1" /></p>
+                            <p>Wirelss Channel :
+                              <select id="id_WirelessChannel"></select>
+                            </p>
+                            <p>Authentication :
+                              <select id="id_WirelessAuthType1" onChange="change_AuthType();" >
+                                <option value="OPEN" selected>No authentication</option>
+                                <option value="WPAPSK" >WPA-PSK</option>
+                                <option value="WPA2PSK" >WPA2-PSK</option>
+                                <option value="WPAPSKWPA2PSK" >WPA/WPA2 mixed mode - PSK</option>
+                                <option value="8021X" >802.1X</option>
+                                <option value="WPA" >WPA-Enterprise</option>
+                                <option value="WPA2" >WPA2-Enterprise</option>
+                                <option value="WPA1WPA2" >WPA/WPA2-Enterprise mixed mode</option>
+                              </select>
+                            </p>
+                            <p>Encryption :
+                              <select id="id_WirelessEncrypType1" onchange="show_WepKeyTable();">
+                                <option value="NONE" selected>No encryption</option>
+                                <option value="WEP">WEP</option>
+                                <option value="TKIP">TKIP</option>
+                                <option value="AES">AES</option>
+                                <option value="TKIPAES">TKIP/AES</option>
+                              </select>
+                            </p>
+                            <div id="id_psk1_tbl">
+                              <p>WPA-PSK (Pre-shared Key)
+                                <input type="password" id="id_WirelessWPAPSK1" size="60" maxlength="64" />
+                              </p>
+                            </div>
+                          </td>
+                        </tr>
+                      </tbody>
+                    </table>
+
+                    <table class="WIZ_TIPS">
+                      <tbody>
+                        <tr>
+                          <td>
+                            <P>You can set basic configuration information for your wireless LAN here. The default wirelessmode use b/g/n mode. If you want to set wireless LAN detail, please use wireless basic and advanced pages.</p>
+                          </td>
+                        </tr>
+                      </tbody>
+                    </table>
+
+                  </td>
+                  <td class="TBL_R"></td>
+                </tr>
+                <tr class="FOOT">
+                  <td class="TBL_L"></td>
+                  <td class="TBL_C"></td>
+                  <td class="TBL_R"></td>
+                </tr>
+              </tbody>
+            </TABLE>
+          </td>
+          <td class="TBL_R"></td>
+        </tr>
+
+        <tr class="FOOT">
+          <td class="TBL_L"></td>
+          <td class="TBL_C"></td>
+          <td class="TBL_R"></td>
+        </tr>
+      </tbody>
+    </table>
+
+    <table class="NAVI">
+      <tbody>
+        <tr>
+          <td class="NAVI_L">
+            <INPUT type="button" value="Back" onClick="top.location.href='index.html'">
+          </td>
+          <td class="NAVI_C">
+          </td>
+          <td class="NAVI_R">
+            <INPUT type="button" value="Apply" onClick="apply_Button();">
+          </td>
+        </tr>
+      </tbody>
+    </table>            
+  </span>  
+</td>
+<td class="TBL_R"></td>
+</tr>
+
+<tr class="FOOT">
+  <td class="TBL_L"></td>
+  <td class="TBL_C"></td>
+  <td class="TBL_R"></td>
+</tr>
+</tbody>
+</table>
+</form>
+
+
+<form method="POST" name="submit_Form">
+  <input type="hidden" name="WIFI_Enable" />
+  <input type="hidden" name="WIFI_WirelessMode" />
+  <input type="hidden" name="WIFI_Channel" />
+  <input type="hidden" name="WIFI_HT_BW"  />
+  <input type="hidden" name="WIFI_AutoChannelSelect"/>
+  <input type="hidden" name="WIFI_HideSSID" />
+  <input type="hidden" name="WIFI_BssidNum" />
+  <input type="hidden" name="WIFI_SSID1" />
+  <input type="hidden" name="WIFI_AuthMode" />
+  <input type="hidden" name="WIFI_EncrypType" />
+  <input type="hidden" name="WIFI_WPAPSK1"  />
+</form>
+</body>
+
+<!-- Mirrored from 192.168.0.1/wizard_func_wireless_basic.html by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 11 Jan 2017 00:15:39 GMT -->
+</html>

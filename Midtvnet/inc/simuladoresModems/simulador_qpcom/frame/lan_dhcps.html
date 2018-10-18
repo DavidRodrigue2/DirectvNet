@@ -1,0 +1,77 @@
+
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta http-equiv="Pragma" content="no-cache">
+
+<title>DHCP | Server</title>
+
+<link rel="stylesheet" type="text/css" href="../css/style.css">
+</head>
+<body leftmargin="0" topmargin="0" marginheight="0" marginwidth="0" onload="init()" class="bg">
+	<table width="100%" border="0" align="center" cellpadding="0" cellspacing="0">
+      <tbody><tr>
+        <td width="33">&nbsp;</td>
+        <td width="679" valign="top">
+		<table width="100%" border="0" align="center" cellpadding="0" cellspacing="0" height="100%">
+          <tbody><tr>
+            <td align="center" valign="top">
+			<table width="98%" border="0" align="center" cellpadding="0" cellspacing="0" height="100%">
+              <tbody><tr>
+                <td align="center" valign="top">
+				<form name="LANDhcpsSet" method="POST" action="http://192.168.1.254/goform/DhcpSetSer">
+				<input type="hidden" name="GO" value="lan_dhcps.asp">
+				<table cellpadding="0" cellspacing="0" class="content1" id="table1">
+					<tbody><tr class="a1"> 
+					  <td width="150" align="right">DHCP Server</td> 
+					  <td align="left">&nbsp;&nbsp;&nbsp;&nbsp;
+					    <input type="checkbox" name="DHEN" value="1">Enable</td>
+					</tr>
+					<tr class="a2"> 
+					  <td width="150" align="right">IP pool start address</td> 
+					  <td align="left">&nbsp;&nbsp;&nbsp;&nbsp;
+					    192.168.1.
+						<input name="dips" class="text" size="3"></td>
+					</tr>
+					<tr class="a1"> 
+						<td width="150" align="right">IP pool end address</td> 
+						<td align="left">&nbsp;&nbsp;&nbsp;&nbsp;
+						  192.168.1.
+						<input name="dipe" class="text" size="3"></td>
+					</tr>
+					<tr class="a2"> 
+					  <td width="150" align="right">Lease Time</td> 
+					  <td align="left">
+						&nbsp;&nbsp;&nbsp;&nbsp;
+						<select name="DHLT" size="1">
+						<option value="3600">One hour</option>
+						<option value="7200">Two hours</option>
+						<option value="10800">Three hours</option>
+						<option value="86400">One day</option>
+						<option value="172800">Two days</option>
+						<option value="604800">One week</option>
+						</select>
+					  </td>
+					</tr>
+				</tbody></table>  
+				<input type="hidden" name="dhcpEn">
+					<table width="75%" border="0" cellpadding="0" cellspacing="0" style="padding-top:20px;"><tbody><tr><td align="center"><input type="button" class="button1" value="Ok" onmouseover="style.color=&#39;#FF9933&#39;" onmouseout="style.color=&#39;#000000&#39;" onclick="preSubmit(document.LANDhcpsSet)">&nbsp;&nbsp;&nbsp;&nbsp;<input type="button" class="button1" value="Cancel" onmouseover="style.color=&#39;#FF9933&#39;" onmouseout="style.color=&#39;#000000&#39;" onclick="init(document.LANDhcpsSet)"></td></tr></tbody></table>
+				</form>
+				</td>
+              </tr>
+            </tbody></table></td>
+          </tr>
+        </tbody></table></td>
+        <td align="center" valign="top" height="100%">
+		<table border="0" cellpadding="0" cellspacing="0" class="left1" style="margin-top:25px;"><tbody><tr><td align="center"><b>Help information</b></td></tr><tr><td align="left">&nbsp;&nbsp;&nbsp;&nbsp;DHCP server can help distribute automatically the IP addresses for the clients, if you enable the router’s DHCP server, it will help you configure all your LAN computers’TCP/IP protocol.<br>&nbsp;&nbsp;&nbsp;&nbsp;IP address pool: Enter a start IP address and an end IP address to form  a static assignment range.<br>&nbsp;&nbsp;&nbsp;&nbsp;Lease time: Assign lease time only when the computer or DHCP client requests.</td></tr></tbody></table>
+		</td>
+      </tr>
+    </tbody></table>
+	
+
+
+
+
+
+
+
+
+</body></html>

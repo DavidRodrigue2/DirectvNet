@@ -1,0 +1,60 @@
+
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+
+<title>Asistente de configuración</title>
+<link rel="stylesheet" href="../css/styles.css" type="text/css">
+<style>
+.on {display:on}
+.off {display:none}
+</style>
+
+</head>
+<body marginwidth="0" marginheight="0">
+
+<blockquote>
+
+
+<form action="" method="POST" name="wizard">
+
+<!-- wlan1 page -->
+<span id="wlan1_div0" class="on"> 
+<table border="0" width="100%" cellspacing="4" cellpadding="0">   
+	<tbody>
+		<tr><td colspan="2"> <h2>Conexión inalámbricas&nbsp;<span id="wlan1_band_str0"></span>&nbsp;Configuración básica</h2> </td></tr>   <tr><td colspan="2"> <p>  Esta página se utiliza para configurar los parámetros para los clientes de LAN inalámbrica que podrían conectarse al punto de acceso.</p></td></tr>
+		<tr><td colspan="2"><hr></td></tr>     
+	</tbody>
+</table> 
+
+
+ <table border="0" width="500" cellspacing="4" cellpadding="0">   
+	<tbody>
+		<tr><td width="26%"><font size="2"><b>Banda:</b></font></td>       <td width="74%"><font size="2"><select size="1" name="band0" onchange="updateBand(document.wizard, 0);Set_onChangeBand(document.wizard, 0, document.wizard.band0, document.wizard.band0.selectedIndex);"><option value="0">2.4 GHz (B)</option><option value="1">2.4 GHz (G)</option><option value="7">2.4 GHz (N)</option><option value="2">2.4 GHz (B+G)</option><option value="9">2.4 GHz (G+N)</option> 	 <option value="10">2,4 GHz (B+G+N)</option></select>       </font></td>   </tr>    <tr>       <td width="26%"><font size="2"><b>Modo:</b></font></td>      <td width="74%"><font size="2"><select size="1" name="mode0" onchange="updateMode(document.wizard, 0)"><option value="0">Punto de acceso</option> 	 </select>       </font></td>   </tr>   <tr>       <td width="26%"><font size="2"><b>Tipo de red:</b></font></td>      <td width="74%"><font size="2"><select size="1" name="type0" onchange="updateType(document.wizard, 0)" disabled=""><option selected="" value="0">Infraestructura </option><option value="1">Ad hoc</option>	 </select>      </font></td>  </tr>  <tr>      <td width="26%"><font size="2"><b>SSID:      </b></font></td>      <td width="74%"><font size="2"><input type="text" name="ssid0" size="33" maxlength="32" value="DTVNET_9E9830">      </font></td>  </tr>  <tr id="channel_bounding" style="display:">   <td width="26%"><font size="2"><b>Ancho de canal:</b></font></td> <td width="74%"><font size="2"><select size="1" name="channelbound0" onchange="update_controlsideband(document.wizard, 0)"> 	<option value="0">20 MHz</option>	 <option value="1">40 MHz</option>	 </select>	 </font></td>	 </tr>	 <tr id="control_sideband" style="display:">      <td width="26%"><font size="2"><b>ControlSideband:</b></font></td>      <td width="74%"><font size="2"><select size="1" name="controlsideband0" onchange="updateChan_channebound(document.wizard, 0);" disabled="">     <option value="0">Superior</option>	<option value="1">Inferior</option>	 </select>      </font></td>  </tr>  <tr>      <td width="26%"><font size="2"><b>Número de canal:</b></font></td>      <td width="74%"><font size="2"><select size="1" name="chan0" onchange="updateChan_selectedIndex(document.wizard, 0);"> <option value="0">Auto</option><option value="1">1</option><option value="2">2</option><option value="3">3</option><option value="4">4</option><option value="5">5</option><option value="6">6</option><option value="7">7</option><option value="8">8</option><option value="9">9</option><option value="10">10</option><option value="11">11</option></select></font></td>  </tr>  <tr>      <td width="100%" colspan="2"><font size="2"><b>   	<input type="checkbox" name="wlanMacClone0" value="ON" disabled="">&nbsp;&nbsp; Activar clonación de MAC (cliente Ethernet único)</b>      </font></td>  </tr>  <!-- <tr>      <td width="100%" colspan=2><font size=2><b>   	<input type="checkbox" name="wizardAddProfile0" value="ON"   	>&nbsp;&nbsp; Add to Wireless Profile</b>      </td>  </tr> -->  </tbody>
+ 
+ </table>  
+ 
+ <br><div>
+	<table border="0" width="500">      
+		<input type="hidden" value="/wlbasic.htm" name="wlan-url">	
+		<tbody>
+			<tr> <td colspan="2" align="right">		  
+			<a href="wizardasistente.html" title="Asistente de configuración" name="sub2" target="view" class="botonenlace">Cancelar</a>
+			<a href="wizardasistente3.html" title="Asistente de configuración" name="sub2" target="view" class="botonenlace">&lt;&lt;Regresar  </a>
+			<a href="wizardasistente5.html" title="Asistente de configuración" name="sub2" target="view" class="botonenlace">  Siguiente&gt;&gt;</a>
+			</td></tr>	   
+		</tbody>
+	</table>
+ 
+ </div> </span>
+
+
+<input type="hidden" value="ON" name="wepEnabled0">	<input type="hidden" value="OFF" name="use1x0">	<input type="hidden" value="psk" name="wpaAuth0">	<input type="hidden" value="1812" name="radiusPort0">	<input type="hidden" value="" name="radiusIP0">	<input type="hidden" value="" name="radiusPass0"> 
+</form></blockquote>
+
+
+
+
+
+
+
+</body></html>

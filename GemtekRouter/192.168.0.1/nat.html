@@ -1,0 +1,57 @@
+
+
+<html>
+
+
+<!-- Mirrored from 192.168.0.1/nat.html by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 11 Jan 2017 00:16:09 GMT -->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta http-equiv="Pragma" content="no-cache">
+<meta http-equiv="Cache-Control" content="no-cache">
+<meta http-equiv="Expires" content="Thu, 01 Dec 1994 16:00:00 GMT">
+<META http-equiv="Content-Style-Type" content="text/css">
+<LINK rel="stylesheet" href="WHR-G300N-160149-style-ENG.css" type="text/css">
+<LINK rel="stylesheet" href="WHR-G300N-160149-style-ad-ENG.css" type="text/css">
+<meta http-equiv="Content-Script-Type" content="text/javascript">
+<script src="OpenHelp.html"></script>
+<script type="text/javascript">
+<!-- 
+function setVal(id)
+{
+	if(document.getElementById(id+"_chk").checked==true)
+		document.getElementById(id).value="1";
+	else
+		document.getElementById(id).value="0";	
+}
+  // -->
+</script>
+<script src="OnceOnly.html"></script>
+</head>
+<body class="BFK_BODY">
+
+<br>
+<form id="form_nat" method="POST">
+  <table class="AD_SET">
+    <tr>
+      <th>Traducci&oacute;n de direcciones</th><!--Address Translation-->
+      <td>
+        <input type="checkbox" id="id_NATtrans_chk" onclick="setVal('id_NATtrans')" checked>Habilitar<!--Enable-->
+		<input type="hidden" name="NATTrans" id="id_NATtrans" value="1"> 
+      </td>
+    </tr>
+    <tr>
+      <th>Resultado del registro de paquetes eliminados</th><!--Log Output of Deleted Packets-->
+      <td>
+        <input type="checkbox" id="id_NATlogout_chk" onclick="setVal('id_NATlogout')" checked>Habilitar
+		<input type="hidden" name="NATLogOut" id="id_NATlogout" value="1"> 		
+      </td>
+    </tr>
+
+  </table>
+  <p><input type="submit" value="Aplicar"></p>
+
+</form>
+</body>
+
+<!-- Mirrored from 192.168.0.1/nat.html by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 11 Jan 2017 00:16:09 GMT -->
+</html>

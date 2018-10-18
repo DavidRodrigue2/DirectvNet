@@ -1,0 +1,267 @@
+<html>
+	<head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	<link rel="stylesheet" href="../css/styles.css" type="text/css">
+	<title>WLAN Configuración básica</title>
+	<script type="text/javascript" src="../js/util_gw.js"> </script>
+	
+
+	<script>
+	var wlan_channel=new Array();
+var wlan_txrate=new Array();
+var wlan_channelbound=new Array();
+var wlan_controlsideband=new Array();
+var regDomain=new Array();
+var defaultChan=new Array();
+var lastBand=new Array();
+var lastRegDomain=new Array();
+var RFType=new Array();
+var APMode=new Array();
+var bandIdx=new Array();
+var bandIdxAP=new Array();
+var bandIdxClient=new Array();
+var startChanIdx=new Array();
+var disableSSID=new Array();
+var networkType=new Array();
+var countrystr= "";
+var wlan_idx= 0;
+var opmode=0;
+var WiFiTest=2;
+var ssid_2g="DTVNET_9E9830";
+var ssid_5g="";
+	
+	function updateState(form, wlan_id)
+	{
+	  updateIputState(form, wlan_id);
+	  updateRepeaterState(form, wlan_id);
+	}
+	</script>
+</head>
+
+<body marginwidth="0" marginheight="0">
+	<blockquote>
+		<h2>
+		Configuración inalámbrica básica<p></p>
+		</h2>
+
+		<form method="POST" name="wlanSetup">
+			<p>Esta página se utiliza para configurar los parámetros para los clientes de LAN inalámbrica, que podrían conectarse al punto de acceso. En esta sección, puede cambiar la configuración de cifrado inalámbrico y los parámetros de red inalámbrica.</p>
+		<hr>
+		<table border="0" width="100%" cellspacing="0">
+		<tbody>
+			<tr>
+				<td width="100%" colspan="2"><font size="2"><b><input type="checkbox" name="wlanDisabled0" value="ON" onclick="updateState(document.wlanSetup, wlan_idx)">&nbsp;&nbsp;Desactivar interfaz de LAN inalámbrica</b>
+				</font></td>
+			</tr>
+			
+			<tr>
+				<td width="26%"><font size="2"><b>Banda:</b></font></td>
+				<td width="74%"><font size="2"><select size="1" name="band0">
+				<option value="0">2.4 GHz (B)</option><option value="1">2.4 GHz (G)</option><option value="7">2.4 GHz (N)</option><option value="2">2.4 GHz (B+G)</option><option value="9">2.4 GHz (G+N)</option><option value="10" selected>2,4 GHz (B+G+N)</option>
+				</select></font></td>
+			</tr>
+			<tr>
+				<td><font size="2"><b>Modo:</b></font></td>
+				<td><font size="2"><select size="1" name="mode0">
+				<option selected="" value="0">AP</option> </select></font></td>
+			</tr>
+			<tr>
+      <td width="26%"><font size="2"><b>Tipo de red:</b></font></td>
+      <td width="74%"><font size="2"><select size="1" name="type0" onchange="updateType_basic(document.wlanSetup, wlan_idx)" disabled="">
+	<option selected="" value="0">Infraestructura </option><option value="1">Ad hoc</option>
+	 </select>
+      </font></td>
+  </tr>
+  <tr>
+      <td width="26%"><font size="2"><b>SSID:
+      </b></font></td>
+      <td width="74%"><font size="2"><input type="text" name="ssid0" size="33" maxlength="32" value="DTVNET_9E9830">
+      </font></td>
+      <td><input type="submit" value="Agregar a perfil" id="addWlProfile" name="addWlProfile" onclick="return addWlProfileClick()" disabled="">      	
+      </td>
+  </tr>
+      <tr id="channel_bounding">
+      <td width="26%"><font size="2"><b>Ancho de canal:</b></font></td>
+      <td width="74%"><font size="2"><select size="1" name="channelbound0">
+     
+	
+		
+	 <option value="0">20 MHz</option><option value="1">40 MHz</option></select>
+      </font></td>
+  </tr>
+  <tr id="control_sideband">
+      <td width="26%"><font size="2"><b>Banda lateral de control:</b></font></td>
+      <td width="74%"><font size="2"><select size="1" name="controlsideband0" onchange="updateChan_channebound(document.wlanSetup, wlan_idx);" disabled="">
+		<option value="0">Superior
+</option><option value="1">Inferior
+
+	 </option></select>
+      </font></td>
+  </tr>
+  <tr>
+      <td width="26%"><font size="2"><b>Número de canal:</b></font></td>
+      <td width="74%"><font size="2"><select size="1" name="chan0" onchange="updateChan_selectedIndex(document.wlanSetup, wlan_idx);"> <option value="0">Auto</option><option value="1">1</option><option value="2">2</option><option value="3">3</option><option value="4">4</option><option value="5">5</option><option value="6">6</option><option value="7">7</option><option value="8">8</option><option value="9">9</option><option value="10">10</option><option value="11">11</option></select></font></td>
+    
+  </tr>
+<tr>
+      <td width="26%"><font size="2"><b>Broadcast SSID:</b></font></td>
+      <td width="74%"><font size="2"><select size="1" name="hiddenSSID0" onchange="">
+      	  	<option value="1">Desactivado</option>
+   	  	<option value="0">Activado</option>
+	 </select>
+      </font></td>
+  </tr>
+  
+  <tr id="wlan_wmm" style="display:">
+      <td width="26%"><font size="2"><b>WMM:</b></font></td>
+      <td width="74%"><font size="2"><select size="1" name="wlanwmm0" onchange="" disabled="">
+      	  	<option value="0">Desactivado</option>
+   	  	<option value="1">Activado</option>
+	 </select>
+      </font></td>
+  </tr>
+  
+  
+  <tr>
+      <td width="26%"><font size="2"><b>Tasa de datos:</b></font></td>
+      <td width="74%"><font size="2"><select size="1" name="txRate0" onchange="checkTurboState()"> 
+	 <script>
+	 updateDateRate();
+	</script><option value="0">Auto
+</option><option value="1">1M
+</option><option value="2">2M
+</option><option value="3">5.5M
+</option><option value="4">11M
+</option><option value="5">6M
+</option><option value="6">9M
+</option><option value="7">12M
+</option><option value="8">18M
+</option><option value="9">24M
+</option><option value="10">36M
+</option><option value="11">48M
+</option><option value="12">54M
+</option><option value="13">MCS0
+</option><option value="14">MCS1
+</option><option value="15">MCS2
+</option><option value="16">MCS3
+</option><option value="17">MCS4
+</option><option value="18">MCS5
+</option><option value="19">MCS6
+</option><option value="20">MCS7
+</option><option value="21">MCS8
+</option><option value="22">MCS9
+</option><option value="23">MCS10
+</option><option value="24">MCS11
+</option><option value="25">MCS12
+</option><option value="26">MCS13
+</option><option value="27">MCS14
+</option><option value="28">MCS15
+
+	</option></select>
+	</font></td>
+  </tr>
+  
+  <tr>
+      <td width="26%"><font size="2"><b>Restricción de transferencia:
+      </b></font></td>
+      <td width="74%"><font size="2"><input type="text" name="tx_restrict0" size="5" maxlength="3" value="0">&nbsp;Mbps&nbsp;(0:no restrict)
+      </font></td>      
+  </tr>
+  
+  <tr>
+      <td width="26%"><font size="2"><b>Restricción de recepción:
+      </b></font></td>
+      <td width="74%"><font size="2"><input type="text" name="rx_restrict0" size="5" maxlength="3" value="0">&nbsp;Mbps&nbsp;(0:no restrict)
+      </font></td>      
+  </tr>
+  
+  <tr>
+      <td width="26%"><font size="2"><b>Clientees asociados:</b></font></td>
+	    <script language=javascript> 
+		function nuevaventana (URL){ 
+		   window.open("wifi_clientesactivos.html","ventana1","width=800,height=400,scrollbars=NO") 
+		} 
+		</script>
+	  
+      <td width="74%"><font size="2"><input type="button" value="Mostrar clientes activos" onclick="nuevaventana()" name="showMac0">
+      </font></td>
+  </tr>
+  <tr>
+      <td width="100%" colspan="2"><font size="2"><b>
+   	<input type="checkbox" name="wlanMacClone0" value="ON" disabled="">&nbsp;&nbsp; Activar clonación de MAC (cliente Ethernet único)</b>
+      </font></td>
+  </tr>
+  <tr style="display:none;">
+      <td width="100%" colspan="2"><font size="2"><b>
+   	<input type="checkbox" name="repeaterActivado0" value="ON">&nbsp;&nbsp; Enable Universal Repeater Mode (Acting as AP and client simultaneouly)</b>
+      </font></td>
+  </tr>
+  <tr style="display:none;">
+      <td width="100%" colspan="2"><font size="2"><b>SSID of Extended Interface:&nbsp;&nbsp;
+      <input type="text" name="repeaterSSID0" size="33" maxlength="32" value="RTK 11n AP RPT0">
+      </b></font></td>
+      <td><input type="submit" value="Agregar a perfil" id="addRptProfile" name="addRptProfile" disabled="">      	
+      </td>
+  </tr> 
+</tbody></table>
+<span id="hide_div" class="off">
+<table border="0" width="500">
+
+
+  
+  <tbody><tr><td colspan="2" width="100%" height="55"><font size="2">
+  <em>Note: If you want to change the setting for Mode and SSID, you must go to EasyConfig page to disable EasyConfig first.</em></font></td>
+  </tr>
+  </tbody></table>
+</span>
+<table border="0" width="500">
+
+
+  </table>
+  
+  <br>
+  
+  
+<p id="wlProfileDiv" style="display:none">
+  <input type="checkbox" id="wlProfileEnabled" name="wlProfileEnabled" value="0"><b>&nbsp;&nbsp;&nbsp;Enable Wireless Profile</b><br><font size="2"><b>Conexión inalámbricas Profile List:</b></font><table border="0" width="440">
+
+  <tbody><tr></tr>
+  
+  <tr></tr>
+  <tr><th width="">SSID</th>
+<th width="">Encrypt</th>
+<th width="20%">Seleccionar</th></tr>
+
+  </tbody></table>
+  <br>
+  <input type="submit" value="Eliminar selección" name="delSelWlProfile">&nbsp;&nbsp;
+  <input type="submit" value="DeleteAll" name="delAllWlProfile">&nbsp;&nbsp;&nbsp;
+
+
+</p>
+
+  
+ &nbsp;
+		<table border="0" width="500"></table>
+		<br>
+		<input type="submit" value="Aplicar cambios" name="save" >&nbsp;&nbsp;
+		<input type="button" value="Restablecer" name="reset" >
+		<table border="0" width="500" cellspacing="0" cellpadding="0">
+			<tbody><tr>
+			<input type="hidden" value="/wlbasic.htm" name="wlan-url">
+		 
+
+			 <input type="hidden" name="basicrates0" value="0">
+			 <input type="hidden" name="operrates0" value="0">
+			 <input type="hidden" id="action" name="Action" value="">
+			</tr>
+
+
+			</tbody>
+		</table>
+
+		</form>
+	</blockquote>
+
+
+
+</body></html>

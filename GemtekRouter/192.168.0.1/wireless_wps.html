@@ -1,0 +1,367 @@
+<!DOCTYPE html>
+<html>
+
+<!-- Mirrored from 192.168.0.1/wireless_wps.html by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 11 Jan 2017 00:16:10 GMT -->
+<head>
+<meta charset="utf-8" />
+<link rel="stylesheet" href="WHR-G300N-160149-style-ENG.css" />
+<link rel="stylesheet" href="WHR-G300N-160149-style-ad-ENG.css" />
+<title>Wireless WPS</title>
+
+<script src="jquery-1.11.0.min.html"></script>
+<script src="language/es/language.html"></script>
+<script src="common.html"></script>
+
+<script>
+function apply_Button()
+{
+  var submit_Form = document.submit_Form;
+
+  if (document.getElementById('id_WpsEnable').checked) {  
+    submit_Form.WIFI_WPSEnable.value = '1';
+    submit_Form.WIFI_WPSAction.value = 'enable';
+  } else {
+    submit_Form.WIFI_WPSEnable.value = '0';
+    submit_Form.WIFI_WPSAction.value = 'disable';
+  }
+
+  if (document.getElementById('id_WpsConfigure').checked) {
+    submit_Form.WIFI_WscConfStatus.value = '2';
+  } else {
+    submit_Form.WIFI_WscConfStatus.value = '1';
+  }
+
+  submit_Form.WIFI_WscPinCode.disabled = true;
+  
+  submit_Form.submit();
+}
+
+function apply_GeneratePin()
+{
+  set_AjaxGeneratePin();
+}
+
+function apply_Pbc()
+{
+  var submit_Form = document.submit_Form;
+
+  if (document.getElementById('id_WpsEnable').checked) {  
+    submit_Form.WIFI_WPSEnable.value = '1';
+  } else {
+    submit_Form.WIFI_WPSEnable.value = '0';
+  }
+
+  if (document.getElementById('id_WpsConfigure').checked) {
+    submit_Form.WIFI_WscConfStatus.value = '2';
+  } else {
+    submit_Form.WIFI_WscConfStatus.value = '1';
+  }
+
+  submit_Form.WIFI_WPSAction.value = 'pbc';
+
+  submit_Form.WIFI_WPSAction.disabled = false;
+  submit_Form.WIFI_WscPinCode.disabled = true;
+  
+  submit_Form.submit();
+}
+
+function apply_Pin()
+{
+  var pin = document.getElementById('id_PinText').value;
+
+  if (!check_Pin(pin)) {
+    alert(translate_str("AlertWirelessWPS", 0));
+    return;
+  }
+  
+  var submit_Form = document.submit_Form;
+
+  if (document.getElementById('id_WpsEnable').checked) {  
+    submit_Form.WIFI_WPSEnable.value = '1';
+  } else {
+    submit_Form.WIFI_WPSEnable.value = '0';
+  }
+
+  if (document.getElementById('id_WpsConfigure').checked) {
+    submit_Form.WIFI_WscConfStatus.value = '2';
+  } else {
+    submit_Form.WIFI_WscConfStatus.value = '1';
+  }
+
+  submit_Form.WIFI_WPSAction.value = 'pin';
+  submit_Form.WIFI_WscPinCode.value = pin;
+
+  submit_Form.WIFI_WPSAction.disabled = false;
+  submit_Form.WIFI_WscPinCode.disabled = false;
+  
+  submit_Form.submit();
+}
+
+function apply_Release()
+{
+  var submit_Form = document.submit_Form;
+
+  if (document.getElementById('id_WpsEnable').checked) {  
+    submit_Form.WIFI_WPSEnable.value = '1';
+  } else {
+    submit_Form.WIFI_WPSEnable.value = '0';
+  }
+
+  submit_Form.WIFI_WPSAction.value = 'release';
+
+  submit_Form.WIFI_WPSAction.disabled = false;
+  submit_Form.WIFI_WscPinCode.disabled = true;
+  
+  submit_Form.submit();
+}
+
+function change_Mode()
+{
+  var mode = document.gui_Form.radio_wps_mode;
+  if (mode[0].checked) {
+    document.getElementById('id_PbcButton').disabled = false;
+    document.getElementById('id_GePinButton').disabled = true;
+    document.getElementById('id_PinButton').disabled = true;
+    document.getElementById('id_PinText').disabled = true;
+  } else {
+    document.getElementById('id_PbcButton').disabled = true;
+    document.getElementById('id_GePinButton').disabled = false;
+    document.getElementById('id_PinButton').disabled = false;
+    document.getElementById('id_PinText').disabled = false;
+  }
+}
+
+function change_WpsEnable()
+{
+  if (document.getElementById('id_WpsEnable').checked) {
+    document.getElementById('id_WpsModeTable').style.display = '';
+    document.getElementById('id_WirelessStatus').style.display = '';
+    /* Hide for Wireless Status */
+  } else {
+    document.getElementById('id_WpsModeTable').style.display = 'none';
+    document.getElementById('id_WirelessStatus').style.display = 'none';
+  }
+}
+function check_Pin(pin) {
+  var accum = 0;
+  var pinNum = Number(pin);
+
+  if (pin.length == "4")
+    return true;
+
+  if (pinNum == NaN || pin.length != "8")
+    return false;
+
+  accum += 3 * (Math.floor(pinNum / 10000000) % 10); 
+  accum += 1 * (Math.floor(pinNum / 1000000) % 10); 
+  accum += 3 * (Math.floor(pinNum / 100000) % 10); 
+  accum += 1 * (Math.floor(pinNum / 10000) % 10); 
+  accum += 3 * (Math.floor(pinNum / 1000) % 10); 
+  accum += 1 * (Math.floor(pinNum / 100) % 10); 
+  accum += 3 * (Math.floor(pinNum / 10) % 10); 
+  accum += 1 * (Math.floor(pinNum / 1) % 10); 
+
+  return (0 == (accum % 10));
+}
+
+function set_AjaxGeneratePin()
+{
+  try {
+    $.ajax (
+      {
+        url: "generatepin.cgi",
+        type: "POST",
+        dataType: "text",
+        data: {
+          page: "wireless_wps.html",
+          action: "Start"
+        },
+        cache: false,
+        success: function(response) {
+	        document.getElementById('id_Pin').innerHTML =  response;
+        },
+        timeout: 5 * 1000,
+        error: function(xhr, ajaxOptions, thrownError) {
+        }
+      }
+    );
+  } catch(e) {
+    setTimeout("set_AjaxGeneratePin()", 2000);
+  }
+}
+
+function init()
+{
+  var wpsenable = '1';
+  var vendorpin = '12345670';
+  var wirelessmode = '9';
+  var wscconfstatus = '2';
+  var wifienable = '1';
+  var wpsenable = '1';
+  var ssid = 'DTVNET_';
+  var auth = 'WPAPSKWPA2PSK';
+  var security = 'TKIPAES';
+  var encrypt = '87654321';
+
+  if (wpsenable == '1') {
+    document.getElementById('id_WpsEnable').checked = true;
+  } else {
+    document.getElementById('id_WpsEnable').checked = false;
+  }
+  change_WpsEnable();
+  if (wscconfstatus == '1') {
+    document.getElementById('id_WpsConfigure').checked = false;
+  } else {
+    document.getElementById('id_WpsConfigure').checked = true;
+  }
+  change_Mode();
+
+  document.getElementById('id_Pin').innerHTML = vendorpin;
+
+  if (wifienable == '0') {
+    document.getElementById('id_WpsStatus').innerHTML = translate_str("WirelessWPS", 11);//Disable
+    document.getElementById('id_ReleaseButton').style.display = 'none';
+  } else {
+    if (wscconfstatus == '1') {
+      document.getElementById('id_WpsStatus').innerHTML = translate_str("WirelessWPS", 12);//Unconfigured
+      document.getElementById('id_ReleaseButton').style.display = 'none';
+    } else {
+      document.getElementById('id_WpsStatus').innerHTML = translate_str("WirelessWPS", 13);//Configured
+      document.getElementById('id_ReleaseButton').style.display = '';
+    }
+  }
+
+  if (wifienable == '1' && wpsenable == '1' && wscconfstatus == '2') {
+    document.getElementById('id_StatusContent').style.display = '';
+  } else {
+    document.getElementById('id_StatusContent').style.display = 'none';
+  }
+
+  if (wirelessmode == '9') {
+    document.getElementById('id_WirelessMode').innerHTML = translate_str("WirelessWPS", 14);//Wireless Mode (b/g/n)
+  } else {
+    document.getElementById('id_WirelessMode').innerHTML = translate_str("WirelessWPS", 15);//Wireless Mode (b/g)
+  }
+
+  document.getElementById('id_Ssid').innerHTML = ssid;
+  document.getElementById('id_Auth').innerHTML = auth;
+  document.getElementById('id_Encrypt').innerHTML = security;
+  if (encrypt.length >= "32") {
+    document.getElementById('id_EncryptKey').innerHTML = encrypt.substring(0, 31)+"<br>"+encrypt.substring(32, encrypt.length);
+  } else {
+    document.getElementById('id_EncryptKey').innerHTML = encrypt;
+  }
+}
+
+</script>
+</head>
+
+<body onLoad="init();"><br>
+<form name="gui_Form">
+  <table class="AD_TTL2">
+    <tr>
+      <td><script>translate_strWrite("WirelessWPS", 0);</script></td><!--Wireless WPS Settings-->
+    </tr>
+  </table>
+  
+  <table class="AD_SET" id="id_WpsEnableTable">
+    <tr>
+      <th width="180"><script>translate_strWrite("WirelessWPS", 1);</script></th><!--WPS-->
+      <td width="400">
+        <input type="checkbox" id="id_WpsEnable" onClick="change_WpsEnable();"/><script>translate_strWrite("WirelessWPS", 2);</script><!--Enable-->
+        <input type="checkbox" id="id_WpsConfigure"/><script>translate_strWrite("WirelessWPS", 3);</script><!--Configured-->
+      </td>
+    </tr>
+  </table>
+  <input type="button" id='id_WpsEnableButton' value="Apply" onClick="apply_Button();" />
+  <script>setButtonValue("id_WpsEnableButton", "Button", 0);</script><!--Apply-->
+
+  <table class="AD_SET" id="id_WpsModeTable">
+    <tr>
+      <th width="180">
+        <input type="radio" name="radio_wps_mode" onClick="change_Mode();" value="0" checked>
+        <span><script>translate_strWrite("WirelessWPS", 4);</script></span><!--Device PIN-->
+      </th>
+      <td width="400">
+        <input type="button" id='id_PbcButton' value="Start PBC" onClick="apply_Pbc();" />
+        <script>setButtonValue("id_PbcButton", "Button", 5);</script><!--Start PBC-->
+      </td>
+    </tr>
+
+    <tr>
+      <th>
+        <input type="radio" name="radio_wps_mode" onClick="change_Mode();" value="1" />
+        <span><script>translate_strWrite("WirelessWPS", 5);</script></span><!--Enrollee PIN-->
+      </th>
+      <td>
+        <table>
+          <tr>
+            <td>
+              <input type="button" id='id_GePinButton' value="Generate PIN" onClick="apply_GeneratePin();" />
+              <script>setButtonValue("id_GePinButton", "Button", 6);</script><!--Generate PIN-->
+              <span id="id_Pin"></span>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <input type="button" id='id_PinButton' value="Start PIN" onClick="apply_Pin();" />
+              <script>setButtonValue("id_PinButton", "Button", 7);</script><!--Start PIN-->
+              <input type="text" id='id_PinText' maxlength="8" />
+            </td>
+          </tr>
+        </table>
+      </td>
+    </tr>
+  </table>
+  
+  <table class="AD_SET" id="id_WirelessStatus" >
+    <tr>
+      <th width="180"><script>translate_strWrite("WirelessWPS", 6);</script></th><!--WPS Status-->
+      <td width="400">
+        <table>
+          <tr>
+            <td><span id="id_WpsStatus"></span></td>
+            <td>
+              <input id="id_ReleaseButton" type="button" value="release" onClick="apply_Release();">
+              <script>setButtonValue("id_ReleaseButton", "Button", 8);</script><!--Release-->
+            </td>
+          </tr>
+        </table>
+      </td>
+    </tr>
+    <tr id="id_StatusContent">
+      <th width="180"><span id="id_WirelessMode"><span></th>
+      <td>
+        <table>
+          <tr>
+            <td><script>translate_strWrite("WirelessWPS", 7);</script></td><!--SSID-->
+            <td><span id="id_Ssid"></span></td>
+          </tr>
+          <tr>
+            <td><script>translate_strWrite("WirelessWPS", 8);</script></td><!--Authentication-->
+            <td><span id="id_Auth"></span></td>
+          </tr>
+          <tr>
+            <td><script>translate_strWrite("WirelessWPS", 9);</script></td><!--Encryption-->
+            <td><span id="id_Encrypt"></span></td>
+          </tr>
+          <tr>
+            <td><script>translate_strWrite("WirelessWPS", 10);</script></td><!--Encryption Key-->
+            <td><span id="id_EncryptKey"></span></td>
+          </tr>
+        </table>
+      </td>
+    </tr>
+  </table>
+</form>
+
+<form method="POST" name="submit_Form">
+  <input type="hidden" name="WIFI_WPSEnable" />
+  <input type="hidden" name="WIFI_WscConfStatus" />
+  <input type="hidden" name="WIFI_WPSAction" />
+  <input type="hidden" name="WIFI_WscPinCode" />
+</form>
+</body>
+
+<!-- Mirrored from 192.168.0.1/wireless_wps.html by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 11 Jan 2017 00:16:10 GMT -->
+</html>

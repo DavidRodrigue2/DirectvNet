@@ -1,0 +1,117 @@
+<html>
+
+<!-- Mirrored from 192.168.0.1/fwupdate.html by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 11 Jan 2017 00:16:11 GMT -->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta http-equiv="Pragma" content="no-cache">
+<meta http-equiv="Cache-Control" content="no-cache">
+<meta http-equiv="Expires" content="Thu, 01 Dec 1994 16:00:00 GMT">
+<META http-equiv="Content-Style-Type" content="text/css">
+<LINK rel="stylesheet" href="WHR-G300N-160149-style-ENG.css" type="text/css">
+<LINK rel="stylesheet" href="WHR-G300N-160149-style-ad-ENG.css" type="text/css">
+<script src="OpenHelp.html"></script>
+<script language="Javascript">
+<!--
+
+var exec_DoSubmit = false;
+function DoSubmit()
+{
+	if(exec_DoSubmit == true){
+		
+		return false;
+	} else {
+		
+		exec_DoSubmit = true;
+	}
+	
+     document.form_update.fwupbutton.disabled = 1;
+	if (document.form_update.upmethod[0].checked == true)
+	{
+     document.form_update.submit();
+}
+	else
+	{
+		document.online_form.submit();
+	}
+	
+}
+
+function upmethod_select()
+{
+	if (document.form_update.upmethod[0].checked == true) 
+	{
+		document.form_update.file.disabled = 0;
+	} 
+	else 
+	{
+		document.form_update.file.disabled = 1;
+	}
+}
+//  -->
+</script>
+</head>
+
+<body class="BFK_BODY">
+<br>
+
+
+<form name="form_update" method="POST" enctype="multipart/form-data">
+  <table class=AD_SET>
+    <tr>
+      <th>Firmware<br>Versi&oacute;n</th>
+      <td>
+        <p align="left">6.0.3
+        </p>
+      </td>
+    </tr>
+    <tr>
+      <th>M&eacute;todo de actualizaci&oacute;n</th>
+      <td>
+        <table>
+			<tr>
+				<td>
+					<input type="radio" value="local" name="upmethod" onClick="upmethod_select();" checked>Especificar el archivo local
+				</td>
+			</tr>
+			<tr>
+				<td style="display:none;">
+					<input type="radio" value="online" name="upmethod" onClick="upmethod_select();">Actualización automática en línea
+				</td>
+			</tr>
+		</table>
+      </td>
+    </tr>
+    <tr>
+      <th>Firmware<br>Nombre de archivo</th>
+      <td>
+     <input type="file" name="file" size="50">
+      </td>
+    </tr>
+  </table>
+ <input type="button" name="fwupbutton" onClick="DoSubmit();" value="Actualizar el firmware">
+</form>
+
+
+<p>*Puede obtener los archivos del firmware actualizados en el enlace siguiente:</p>
+<p align=center>
+<script>
+	if ('' == 'JP')
+	{
+		document.write("<A href=\"http://www.gemtek.com.tw\" target=\"_new\">");
+	}
+	else
+	{
+		document.write("<A href=\"http://www.gemtek.com.tw\" target=\"_new\">");
+	}
+</script>
+     Servicio de descargas
+     </a>
+</p>
+
+<form name="online_form" method="POST">
+<input type="hidden" name="nosave_onlinefwcheck" value="1">
+</form>
+</body>
+
+<!-- Mirrored from 192.168.0.1/fwupdate.html by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 11 Jan 2017 00:16:11 GMT -->
+</html>

@@ -1,0 +1,483 @@
+
+
+<html>
+
+<!-- Mirrored from 192.168.0.1/info.html by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 11 Jan 2017 00:16:09 GMT -->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta http-equiv="Pragma" content="no-cache">
+<meta http-equiv="Cache-Control" content="no-cache">
+<meta http-equiv="Expires" content="Thu, 01 Dec 1994 16:00:00 GMT">
+<META http-equiv="Content-Style-Type" content="text/css">
+<LINK rel="stylesheet" href="WHR-G300N-160149-style-ENG.css" type="text/css">
+<LINK rel="stylesheet" href="WHR-G300N-160149-style-ad-ENG.css" type="text/css">
+<script language="JavaScript">
+<!--
+function Apply(item)
+{
+	document.info_state.wan_action.value=item;
+	document.info_state.submit();
+} 
+
+function Apply_bridge(item)
+{
+	document.info_state_bridge.wan_action.value=item;
+	document.info_state_bridge.submit();
+} 
+
+function init_status()
+{
+ var ifilterEnable = '0';
+  var wirelessmode = '9';
+  var wifiEnable = '1';
+  var hidessid = '0';
+  var wifibw = '1';
+  var wifislideband = '0';
+  var region = '';
+  var wifi_authmode = 'WPAPSKWPA2PSK';
+  var wifi_encryptype = 'TKIPAES';
+  var wifi_wdsenable = '0';
+  
+  if (region != 'JP') {
+    document.getElementById('ifilterStatus').style.display = 'none';
+  }
+
+  if (ifilterEnable == 0)	{
+    document.getElementById('ifilterReg').style.display='none';
+    document.getElementById('ifilterExpdate').style.display='none';
+    document.getElementById('ifilterActivate').style.display='none';
+  }
+
+  if (wirelessmode == '1') {
+    document.getElementById('id_WirelessMode').innerHTML = 'Wireless (b)';
+  } else if (wirelessmode == '4') {
+    document.getElementById('id_WirelessMode').innerHTML = 'Wireless (g)';
+  } else if (wirelessmode == '6') {
+    document.getElementById('id_WirelessMode').innerHTML = 'Wireless (n)';
+  } else if (wirelessmode == '0') {
+    document.getElementById('id_WirelessMode').innerHTML = 'Wireless (b/g)';
+  } else if (wirelessmode == '7') {
+    document.getElementById('id_WirelessMode').innerHTML = 'Wireless (g/n)';
+  } else if (wirelessmode == '9') {
+    document.getElementById('id_WirelessMode').innerHTML = 'Wireless (b/g/n)';
+  } else {
+    document.getElementById('id_WirelessMode').innerHTML = 'Wireless';
+  } 
+
+  if (wifiEnable == '0') {
+    document.getElementById('id_WirelessStatus').innerHTML = 'Deshabilitado';
+  } else {
+    document.getElementById('id_WirelessStatus').innerHTML = 'Habilitar';
+  }
+
+  document.getElementById('id_WIFIAUTH1').innerHTML = wifi_authmode; 
+  document.getElementById('id_WIFIENCRYP1').innerHTML = wifi_encryptype;
+
+  if (wifi_authmode == 'OPEN' && wifi_encryptype == 'NONE') {
+    document.getElementById('id_WepKey').style.display = 'none';
+    document.getElementById('id_WpaKey').style.display = 'none';
+
+    document.getElementById('id_WIFIAUTH1').innerHTML = 'No authentication'; 
+  document.getElementById('id_WIFIENCRYP1').innerHTML = 'No encryption';
+  } else if (wifi_authmode == 'WEPAUTO' && wifi_encryptype == 'WEP') {
+    document.getElementById('id_WepKey').style.display = '';
+    document.getElementById('id_WpaKey').style.display = 'none';
+  } else {
+    document.getElementById('id_WepKey').style.display = 'none';
+    document.getElementById('id_WpaKey').style.display = '';
+  }
+
+
+  if (hidessid == '0') {
+    document.getElementById('id_WIFIHideSSID1').innerHTML = 'Habilitar';
+  } else {
+    document.getElementById('id_WIFIHideSSID1').innerHTML = 'Deshabilitado';
+  }
+
+  if (wifibw == '0') {
+    document.getElementById('id_WirelessHTBW').innerHTML = '20 MHz';
+  } else {
+    document.getElementById('id_WirelessHTBW').innerHTML = '40 MHz';
+    if (wifislideband == '0') {
+      document.getElementById('id_WirelessHTBW').innerHTML += ' (Below)';
+    } else {
+      document.getElementById('id_WirelessHTBW').innerHTML += ' (Above)';
+    }
+  } 
+  
+  if (wifi_wdsenable == '0') {
+    document.getElementById('id_WdsStatus').style.display = 'none';
+    document.getElementById('id_WdsMode').innerHTML = 'None';
+  } else {
+    document.getElementById('id_WdsStatus').style.display = '';
+    if (wifi_wdsenable == '2') {
+      document.getElementById('id_WdsMode').innerHTML = 'Bridge Mode';
+    } else if (wifi_wdsenable == '3') {
+      document.getElementById('id_WdsMode').innerHTML = 'Repeater Mode';
+    }
+  }
+}
+
+
+//-->
+</SCRIPT>
+</head>
+<body class="BFK_BODY" onload="init_status();">
+<br>
+
+  <table class="AD_SYSINFO">
+    <tr>
+      <th>Model Name</th>
+      <td>
+        <p align="left">
+        <div name="modelname">WRTR-301GN</div>
+        </p>
+      </td>
+    </tr>
+    <tr>
+      <th>Firmware Version</th>
+      <td>
+        <p align="left">
+        <div name="firmwareversion">6.0.3</div>
+        </p>
+      </td>
+    </tr>
+    <tr>
+      <th>Nombre de la Device</th>
+      <td>
+        <!--AP001D73747324-->
+        <div name="DeviceName">DIRECTV_INTERNET</div>
+      </td>
+    </tr>
+
+    <tr>
+    	<th>Serial Number</th>
+    	<td>
+      	<p align="left">
+      	<div name="serialnum"></div>
+      	</p>
+    	</td>
+   </tr>
+
+    <tr>
+      <th>Modo de funcionamiento</th>
+      <td>
+     	<!--Router Mode ON-->
+     	<div name="HardwareModeSwitchStatus">Modo Enrutador ON</div>
+      </td>
+    </tr>
+
+
+<!-- ------------------------------------------------------------------------------------- -->
+<!-- ---------------------------------------------------------------- -->
+
+    <tr >
+      <th>Internet</th>
+      <td>
+      <form method="POST" name="info_state">
+        <table>
+          <tr>
+            <th>M&eacute;todo de obtenci&oacute;n de una direcci&oacute;n IP</th>
+            <td>
+     		<div name="InternetIPAddress">DHCP</div>
+     	    </td>
+          </tr>
+
+<!-- ---------------------------------------- -->
+	<tr><td nowrap colspan="2" height="21"><hr></td></tr>
+<tr>
+	<th>Estado de conexi&oacute;n</th>
+	<td>Estableciendo comunicaci&oacute;n</td>
+</tr>
+<tr>
+	<th>Funcionamiento</th>
+	<td><input type="button" value="Liberar" name="RELESE" onClick="Apply('release');"><input type="button" value="Actualizar" name="RENEW" onClick="Apply('renew');"></td>
+</tr>
+<tr>
+	<th><div name = "Info">Direcci&oacute;n IP est&aacute;tica</div></th>
+	<td><div name = "WanCurrentIP">192.168.100.129</div></td></td>
+</tr>
+<tr>
+	<th><div name = "Info">M&aacute;scara de subred</div></th>
+	<td><div name = "WanCurrentNetmask">255.255.255.0</div></td>
+</tr>
+<tr>
+	<th>Pasarela predeterminada</th>
+	<td><div name = "WanCurrentGateway">192.168.100.1</div>&nbsp;&#x28;Por DHCP&#x29;</td>
+</tr>
+<tr>
+	<th>DNS1 &#x28;Principal&#x29;</th>
+	<td><div name = "WanCurrentDNS1">192.168.100.1</div>&nbsp;(Autom&aacute;tica)</td>
+</tr>
+<tr>
+	<th>Nombre de host</th>
+	<td nowrap>DIRECTV_INTERNET&nbsp;&#x28;Por DHCP&#x29;</td>
+</tr>
+<tr>
+	<th>Nombre de dominio</th>
+	<td nowrap>Directvnet&nbsp;&#x28;Por DHCP&#x29;<td>
+</tr>
+<tr>
+	<th>Tama&ntilde;o MTU</th>
+	<td><div name = "WanCurrentMTU">1500</div></td>
+</tr>
+<tr>
+	<th>Direcci&oacute;n del servidor DHCP</th>
+	<td><div name = "WanCurrentDHCPServ">192.168.100.1</div></td>
+</tr>
+<tr>
+	<th>Hora de inicio de concesi&oacute;n</th>
+	<td><div name = "WanCurrentDHCPLeaseStart">2010/01/01/ 00:00:16</div></td>
+</tr>
+<tr>
+	<th>Periodo de concesi&oacute;n</th>	<td><div name = "WanCurrentDHCPLeaseEnd">2010/01/02/ 00:00:16</div></td></tr>
+	<input type="hidden" value="" name="wan_action" id="id_action">
+<!-- ---------------------------------------- -->
+
+     	<tr><td colspan="2"><hr></td></tr>
+     	<tr>
+     	  <th>Enlace por cable</th>
+     	  <td>
+	    <!--Disconnected-->
+	    <div name="InternetWiredLink">100Base-TX (D&uacute;plex completo)</div>
+	  </td>
+     	</tr>
+	    <div name="InternetMac"><tr>
+	<th>Direcci&oacute;n MAC</th>
+	<td>F8:35:DD:BF:09:77</td>
+</tr>
+</div>
+        </table>
+        </form>
+      </td>
+    </tr>
+
+<!-- --------------------------------------------------------------------------------------- -->
+
+
+    <tr >
+      <th>LAN</th>
+      <td>
+        <table>
+          <tr>
+            <th>Direcci&oacute;n IP est&aacute;tica</th>
+            <td>
+            <!--10.7.207.193--><div name="LanIPAddr">192.168.0.1</div>            
+            </td>
+          </tr>
+          <tr>
+            <th>M&aacute;scara de subred</th>
+            <td>
+            <!--255.255.255.0--><div name="LanNetmask">255.255.255.0</div></td>    
+          </tr>
+          <tr>
+            <th>Servidor DHCP</th>
+            <td><!--Disabled-->
+            <div name="DHCPStatus">Habilitado</div>    
+            </td>
+          </tr>
+          <tr>
+            <th>Direcci&oacute;n MAC</th>
+            <td>
+            <!--00:1D:73:74:73:24--><div name="LANMACAddress">F8:35:DD:BF:09:77</div> 
+            </td>
+          </tr>
+        </table>
+      </td>
+    </tr>
+    
+    <!-- ---------------------------------------------------------------- -->
+
+
+    <tr style="display:none;">
+      <th>LAN</th>
+      <td>
+        <form method="POST" name="info_state_bridge">
+        <table>
+          <tr>
+          <th>M&eacute;todo de obtenci&oacute;n de una direcci&oacute;n IP</th>
+          <td>
+            <div name="InternetIPAddress">DHCP</div> 
+          </td>
+          </tr>
+          
+          <!-- ---------------------------------------- -->
+          
+          <input type="hidden" value="" name="wan_action">
+          <!-- ---------------------------------------- -->
+          
+          <tr><td colspan="2"><hr></td></tr>
+          <tr>
+            <th>Direcci&oacute;n MAC</th>
+            <td>
+            <div name="InternetIPAddress">F8:35:DD:BF:09:77</div> 
+            </td>
+          </tr>
+        </table>
+      </form>
+      </td>
+    </tr>
+    
+    
+<!--  -->
+<!--  -->
+    <tr>
+      <th>
+        Red inal&aacute;mbrica(<span class=WLAN11G><!--802.11g-->802.11n/g/b</span>)
+      </th>
+      <td>
+  <div id="wlan_tbl" >
+  <table>
+	<tr>
+    <th>
+      <div id="id_WirelessMode"></div>
+    </th>
+    <td>
+      <table>
+        <tr>
+          <th>Wireless Status</th>
+          <td>
+            <!--MAC Access Control-->
+            <div name="WirelessStatus" id="id_WirelessStatus"></div>
+          </td>
+        </table>
+        <div id="wlan_tbl">
+          <table>
+          </tr>
+
+          <tr>
+            <td colspan="2"><hr style="margin:0px;"></td>
+          </tr>
+
+          <tr>
+            <th>SSID</th>
+            <td><div name="SSID1">DTVNET_</div></td>
+          </tr>
+
+          <tr>
+            <th>Autenticación</th><!--Authentication-->
+            <td>
+              <div name="AUTH1" id="id_WIFIAUTH1"></div>
+            </td>
+          </tr>
+
+          <tr>
+            <th>Cifrado</th><!--Encryption-->
+            <td>
+              <div name="ENCRYP1" id="id_WIFIENCRYP1"></div>
+            </td>
+          </tr>
+
+          <tr id="id_WepKey">
+            <th>Key</th>
+            <td>
+              <div name="ENCRYP1"></div>
+            </td>
+          </tr>
+
+          <tr id="id_WpaKey">
+            <th>Key</th>
+            <td>
+              <div name="ENCRYP1">87654321</div>
+            </td>
+          </tr>
+
+          <tr>
+            <th>Broadcast SSID</th>
+            <td>
+              <div name="WIFIHideSSID1" id="id_WIFIHideSSID1"></div></td>
+          </tr>
+
+          <tr>
+            <th>Wireless Channel</th>
+            <td>
+              <div name="WirelessChannel">1(canal WIFI automatico)</div></td>
+          </tr>
+
+          <tr>
+            <th>Wireless Bandwidth</th>
+            <td><div name="WirelessHTBW" id="id_WirelessHTBW"></div></td>
+          </tr>
+          <tr>
+            <th>MAC Address</th>
+            <td><div name="WirelessMACAddress">F8:35:DD:BF:09:77</div></td>
+          </tr>
+        </table>
+      </div>
+    </td>
+  </tr>
+	 </table>
+	</div>
+</td>
+</tr>
+          
+  <tr id="id_WdsStatus">
+    <th>WDS</th>
+    <td>
+      <table>
+        <tr>
+          <th>WDS Mode</th>
+          <td><div id="id_WdsMode"></div></td>
+        </tr>
+        <tr>
+          <th>WDS Number</th>
+          <td>4</td>
+        </tr>
+        <tr>
+          <th>Phy Mode</th>
+          <td>CCK;CCK;CCK;CCK</td>
+        </tr>
+        <tr>
+          <th>Encrypt Type</th>
+          <td>NONE;NONE;NONE;NONE</td>
+        </tr>			
+        <tr>
+          <th>Encrypt Key</th>
+          <td>;;;</td>
+        </tr>
+        <tr>
+          <th>Mac Address</th>
+          <td></td>
+        </tr>
+      </table>
+    </td>
+  </tr>
+
+	<tr id="ifilterStatus">
+		<th>Utilidades</th>
+		<td>
+		<table>
+		  <tr>
+		    <th>Cancelar</th>
+		  </tr>
+		  <tr id="ifilterReg">
+		    <th> Ejecutar borrado de información dinámica</th>
+		    <td>
+			<div>Funcionamiento</div>
+		    </td>
+		  </tr>
+		  <tr id="ifilterExpdate">
+		    <th>Lista de servicios de red</th>
+		    <td>
+			<div>N/A</div>
+		    </td>
+		  </tr>
+		   <tr id="ifilterActivate">
+		    <th>Actualizar</th>
+		    <td>
+			<div>Direcci&oacute;n IP</div>
+		    </td>
+		  </tr>
+		</table>
+		</td>
+	</tr>	
+	
+  </table>
+  <br>
+  <input type="button" value="Actualizar" onClick="location.href='info.html'">
+</form>
+
+</body>
+
+<!-- Mirrored from 192.168.0.1/info.html by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 11 Jan 2017 00:16:09 GMT -->
+</html>

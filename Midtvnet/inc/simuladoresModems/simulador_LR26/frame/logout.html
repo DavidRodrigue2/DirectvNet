@@ -1,0 +1,79 @@
+
+<html>
+	<head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+<link rel="stylesheet" href="../css/styles.css" type="text/css">
+<meta http-equiv="Pragma" content="no-cache">
+<meta http-equiv="Cache-Control" content="no-cache">
+<meta http-equiv="Expires" content="Mon, 01 Jan 1990 00:00:01 GMT">
+
+<title>Registroout</title>
+
+<script>
+
+function clearAuthData()
+{
+	
+  if (document.all) 
+  {
+    // Internet Explorer: 'EliminarAuthenticationCache' is only available in IE
+    document.execCommand('EliminarAuthenticationCache');
+
+	} 
+	else 
+	{
+    var xmlhttp;
+    if (window.XMLHttpRequest) 
+   	{
+        xmlhttp = new XMLHttpRequest();
+    } 
+    else if (window.ActiveXObject) 
+    {
+        try {
+            xmlhttp = new ActiveXObject('Msxml2.XMLHTTP');
+        } catch (ex) {
+            try {
+                xmlhttp = new ActiveXObject('Microsoft.XMLHTTP');
+            } catch (ex) {}
+        }
+    }
+    if (xmlhttp.readyState < 4) 
+    {
+        xmlhttp.abort();
+    }
+    // Firefox/Mozilla: use anonymous "login" to trigger a "logout"
+    xmlhttp.open('GET', '/?sling:authRequestLogin=1', false, 'anonymous', 'null');
+    xmlhttp.send('');
+}
+		document.logout.submit();
+		return true;
+
+}
+</script><style type="text/css"></style></head>
+
+
+<body marginwidth="0" marginheight="0">
+<blockquote>
+<h2>Registroout</h2>
+<form action="http://192.168.100.1/boafrm/formLogout" method="POST" name="logout">
+<p>Esta página se utiliza para cerrar sesión.</p><hr><table border="0" width="500" cellspacing="4" cellpadding="0">
+  <tbody><tr></tr>
+  <tr></tr>
+  <tr>
+      <td><font size="3"><b>¿Desea cerrar sesión?</b></font></td>
+  </tr>
+  <tr height="3"> </tr>
+  <tr>
+      <td><font size="2">
+        <input type="button" value="Aplicar cambios" name="logout" onclick="return clearAuthData()">
+      </font></td>
+  </tr>
+</tbody></table>
+<input type="hidden" value="/wizard.htm" name="return-url">
+</form>
+<blockquote>
+
+
+
+
+</blockquote></blockquote></body></html>

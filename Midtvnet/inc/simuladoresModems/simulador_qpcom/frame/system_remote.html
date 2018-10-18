@@ -1,0 +1,122 @@
+
+<!-- saved from url=(0038)http://192.168.1.254/system_remote.asp -->
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta http-equiv="Pragma" content="no-cache">
+
+<title>System | Remote Management</title>
+<script type="text/javascript" src="b28n.js"></script><style type="text/css"></style>
+<script language="JavaScript" src="gozila.js"></script>
+<script language="JavaScript" src="menu.js"></script>
+<script language="JavaScript" src="table.js"></script>
+<script language="JavaScript">
+var def_RMEN = "0";
+var def_RMPORT = "8080";
+var def_RMIP = "";
+var lan_ip = "192.168.1.254";
+var lan_ipmask = "255.255.255.0";
+Butterlate.setTextDomain("dhcp_firewall");
+function init(f)
+{
+	var en = parseInt(def_RMEN);
+	f.RMEN.checked = en;
+	onSwitch();
+    f.RMsIP1.value = def_RMIP;
+	f.RMPORT.value = def_RMPORT;
+}
+function preSubmit(f) {     
+	f.RMsIP1.value = clearInvalidIpstr(f.RMsIP1.value);
+	f.RMPORT.value = clearInvalidIpstr(f.RMPORT.value);    
+	var sip1 = f.RMsIP1.value;
+	var port = f.RMPORT.value;
+	var loc = "/goform/SafeWanWebMan?GO=system_remote.asp";
+	if(f.RMEN.checked)
+	{	
+		if (!rangeCheck(f.RMPORT,1,65535,"Port")) return;
+		loc += "&RMEN=1&port=" + port;
+		if (!verifyIP0(f.RMsIP1,_("IP Address"))) return ;
+		if(sip1 == "")
+			sip1 = "0.0.0.0";
+		if (ipCheck(lan_ip,sip1,lan_ipmask)) {
+			alert(f.RMsIP1.value+ _("Can not be at the same segment with LAN  IP"));
+			f.RMsIP1.value="0.0.0.0";
+			return ;
+			}
+		loc += "&IP=" + sip1;		
+	}
+	else
+	{
+		loc += "&RMEN=0";
+	}
+   var code = 'location="' + loc + '"';
+   eval(code);
+}
+function onSwitch()
+{
+	if(document.frmSetup.RMEN.checked)
+	{
+		document.getElementById("RMPORT").disabled = false;	
+		document.getElementById("ipTab").style.display = "";
+	}
+	else
+	{
+		document.getElementById("ipTab").style.display = "none";
+		document.getElementById("RMPORT").disabled = true;
+	}
+}
+</script>
+<link rel="stylesheet" type="text/css" href="../css/style.css">
+</head>
+<body leftmargin="0" topmargin="0" marginheight="0" marginwidth="0" onload="init(document.frmSetup);" class="bg">
+	<table width="100%" border="0" align="center" cellpadding="0" cellspacing="0">
+      <tbody><tr>
+        <td width="33">&nbsp;</td>
+        <td width="679" valign="top">
+		<table width="100%" border="0" align="center" cellpadding="0" cellspacing="0" height="100%">
+          <tbody><tr>
+            <td align="center" valign="top">
+			<table width="98%" border="0" align="center" cellpadding="0" cellspacing="0" height="100%">
+              <tbody><tr>
+                <td align="center" valign="top">
+				<form name="frmSetup" method="POST" action="http://192.168.1.254/goform/SafeWanWebMan">
+				<input type="hidden" id="GO" value="system_remote.asp">
+				<table class="content1">
+					<tbody><tr> 
+					  <td height="30"><script>document.write(_("Enable"));</script>Enable&nbsp;&nbsp;<input type="checkbox" id="RMEN" onclick="onSwitch()"></td>
+					</tr>
+				</tbody></table>
+				<table cellpadding="0" cellspacing="0" class="content1" id="ipTab" style="margin-top: 0px;">				
+					<tbody><tr class="a1">
+					  <td width="150" height="30" align="right"><script>document.write(_("Port"));</script>Port</td>
+					  <td height="30">
+					    &nbsp;&nbsp;&nbsp;&nbsp;<input class="text" id="RMPORT" size="5" maxlength="5" value="80"></td>
+					</tr>
+					<tr class="a2">
+					  <td height="30" align="right"><script>document.write(_("IP Address"));</script>IP Address</td>
+					  <td height="30">
+					    &nbsp;&nbsp;&nbsp;&nbsp;<input class="text" id="RMsIP1" size="15" maxlength="15"></td>
+					</tr>
+				</tbody></table>	
+				<script>tbl_tail_save("document.frmSetup");</script><table width="75%" border="0" cellpadding="0" cellspacing="0" style="padding-top:20px;"><tbody><tr><td align="center"><input type="button" class="button1" value="Ok" onmouseover="style.color=&#39;#FF9933&#39;" onmouseout="style.color=&#39;#000000&#39;" onclick="preSubmit(document.frmSetup)">&nbsp;&nbsp;&nbsp;&nbsp;<input type="button" class="button1" value="Cancel" onmouseover="style.color=&#39;#FF9933&#39;" onmouseout="style.color=&#39;#000000&#39;" onclick="init(document.frmSetup)"></td></tr></tbody></table>		
+			</form>
+				</td>
+              </tr>
+            </tbody></table></td>
+          </tr>
+        </tbody></table></td>
+        <td align="center" valign="top" height="100%">
+		<script>helpInfo(_("remote_Help_Inf1")+"<br>&nbsp;&nbsp;&nbsp;&nbsp;"+_("remote_Help_Inf2")+"<br>&nbsp;&nbsp;&nbsp;&nbsp;"+_("remote_Help_Inf3"));</script><table border="0" cellpadding="0" cellspacing="0" class="left1" style="margin-top:25px;"><tbody><tr><td align="center"><b>Help information</b></td></tr><tr><td align="left">&nbsp;&nbsp;&nbsp;&nbsp;This feature allows remotely managing the router through the Internet. To use this feature, please select "Enable" and then remotely manage the router via the specified port on the PC.<br>&nbsp;&nbsp;&nbsp;&nbsp;Port: the port number that can implement remote management.<br>&nbsp;&nbsp;&nbsp;&nbsp;IP address:  the IP address of the computer on the Internet that can implement remote WEB management.</td></tr></tbody></table>
+		</td>
+      </tr>
+    </tbody></table>
+	<script type="text/javascript">
+	  table_onload('ipTab');
+    </script>
+
+
+
+
+
+
+
+
+</body></html>

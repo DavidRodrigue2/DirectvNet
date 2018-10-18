@@ -1,0 +1,92 @@
+
+
+<html>
+
+<!-- Mirrored from 192.168.0.1/filter.html by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 11 Jan 2017 00:16:10 GMT -->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta http-equiv="Pragma" content="no-cache">
+<meta http-equiv="Cache-Control" content="no-cache">
+<meta http-equiv="Expires" content="Thu, 01 Dec 1994 16:00:00 GMT">
+<META http-equiv="Content-Style-Type" content="text/css">
+<LINK rel="stylesheet" href="WHR-G300N-160149-style-ENG.css" type="text/css">
+<LINK rel="stylesheet" href="WHR-G300N-160149-style-ad-ENG.css" type="text/css">
+<script language="JavaScript">
+<!--
+function set_enable(item)
+{
+     if (document.getElementById(item).checked == true)
+     { 
+     	document.getElementById(item+"_tmp").value = "0";
+     }
+     else
+     	document.getElementById(item+"_tmp").value = "1";
+}
+
+function logoutput(item)
+{
+	if(document.getElementById(item).checked == true)
+		document.getElementById(item+"_tmp").value = 1;
+	else
+		document.getElementById(item+"_tmp").value = 0;
+}
+
+// -->
+</script>
+</head>
+<body class="BFK_BODY">
+<br>
+<form method="POST">
+
+  <table class="AD_SET">
+    <tr>
+      <th>Resultado del registro</th>
+      <td>
+        <input type="checkbox" id="log_firewall"  onClick="logoutput('log_firewall');">Habilitar
+        <input type="hidden" name="LogFirewallEnable" id="log_firewall_tmp" value="0">
+      </td>
+    </tr>
+  </table>
+  <br>
+
+  <table class="AD_LIST">
+    <tr>
+      <th>Habilitar</th>
+      <th>Reglas b&aacute;sicas</th>
+      <th>N&uacute;mero de paquetes</th>
+    </tr>
+    <tr class=DISABLE>
+      <td align="center">
+        <input type="checkbox" id="id_nbtenable" onClick="set_enable('id_nbtenable');" >
+        <input type="hidden" id="id_nbtenable_tmp" name="WanNBTEnable" value="1">
+      </td>
+      <td>Prohibir NBT y enrutamiento Microsoft-DS</td>
+      <td align="right">0</td>
+    </tr>
+    <tr >
+      <td align="center">
+        <input type="checkbox" id="id_identenable" onClick="set_enable('id_identenable');" checked>
+        <input type="hidden" id="id_identenable_tmp" name="WanIdentEnable" value="0">
+      </td>
+      <td>Rechazar solicitudes IDENT</td>
+      <td align="right">0
+</td>
+    </tr>
+    <tr >
+      <td align="center">
+        <input type="checkbox" id="id_pingenable" onClick="set_enable('id_pingenable');" checked>
+        <input type="hidden" id="id_pingenable_tmp" name="WanPingEnable" value="0">
+      </td>
+      <td>Bloquear hacer ping desde la INTERNET</td>
+      <td align="right">0
+</td>
+    </tr>
+
+  </table>
+  <p><input type="submit" value="Aplicar" name="nosave_SETUP"></p>
+</form>
+
+</body>
+
+<!-- Mirrored from 192.168.0.1/filter.html by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 11 Jan 2017 00:16:10 GMT -->
+</html>

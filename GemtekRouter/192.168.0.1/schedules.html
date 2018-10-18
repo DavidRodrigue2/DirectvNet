@@ -1,0 +1,541 @@
+<html>
+
+<!-- Mirrored from 192.168.0.1/schedules.html by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 11 Jan 2017 00:16:10 GMT -->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta http-equiv="Pragma" content="no-cache">
+<meta http-equiv="Cache-Control" content="no-cache">
+<meta http-equiv="Expires" content="Thu, 01 Dec 1994 16:00:00 GMT">
+<META http-equiv="Content-Style-Type" content="text/css">
+<LINK rel="stylesheet" href="WHR-G300N-160149-style-ENG.css" type="text/css">
+<LINK rel="stylesheet" href="WHR-G300N-160149-style-ad-ENG.css" type="text/css">
+<script language="JavaScript">
+MAX_ENTRY = 10;
+var prttrgs = '';
+//var prttrgs = "1,1,1,1,1,1,1,1,0:0,23:59|a,1,0,0,0,0,0,0,0:0,23:59|63,1,1,1,1,1,1,1,00:00,00:00|";
+var entrys = prttrgs.split('|');
+var entryNum = entrys.length - 1;
+var rule = new Array(MAX_ENTRY);
+
+for (i=0; i<MAX_ENTRY; i++)
+{
+	rule[i] = new rVe('','','','','','','','','','','','');
+}
+for (j=0; j<entryNum; j++)
+{
+        var entry = entrys[j].split(',');
+        var timeS = entry[8].split(':');
+        var timeE = entry[9].split(':');
+        rule[j] = new rVe(entry[0], entry[1], entry[2], entry[3], entry[4], entry[5], entry[6], entry[7], timeS[0], timeS[1], timeE[0], timeE[1]);
+        //remain_tPort = remain_tPort - (rule[j].tEnd - rule[j].tStart + 1);
+}
+function rVe(Name, Sun, Mon, Tue, Wed, Thu, Fri, Sat, st_hr, st_min, et_hr, et_min)
+{
+	this.Name = Name;
+	this.Sun = Sun;
+	this.Mon = Mon;
+	this.Tue = Tue;
+	this.Wed = Wed;
+	this.Thu = Thu;
+	this.Fri = Fri;
+	this.Sat = Sat;
+	this.st_hr = st_hr;
+	this.st_min = st_min;
+	this.et_hr = et_hr;
+	this.et_min = et_min;
+}
+
+function removeClick(rml){
+	var lst = '';
+	var has_selected_items = false;
+	var str='', rulestr="";
+	var i;
+	var cfm = document.forms[0];
+        var frm = document.forms[2];
+        
+	if (cfm.rml){
+		if (cfm.rml.length > 0){
+			for (i=0; i<cfm.rml.length; i++){
+				if ( cfm.rml[i].checked == true ){
+					has_selected_items = true;
+					str = unescape(cfm.rml[i].value);
+					lst += str + '|';
+					rulestr += rule[i].Name+"|";
+				}
+			}
+		}
+		else if ( cfm.rml.checked == true ){
+			has_selected_items = true;
+			str = unescape(cfm.rml.value);
+			lst = str + "|";
+		}
+	}
+	if (has_selected_items){
+                frm.rmLst.value = lst;
+		frm.rulestr.value = rulestr;
+		frm.submit();
+        } 
+        else{
+                alert("There are no items to remove!");
+                return;
+        }
+}
+
+function change_week_value(){
+	var cf = document.forms[0];
+        var frm = document.forms[1];
+	if(cf.radioday[0].checked == true){
+                cf.day0.disabled = 1;
+                cf.day1.disabled = 1;
+                cf.day2.disabled = 1;
+		cf.day3.disabled = 1;
+                cf.day4.disabled = 1;
+                cf.day5.disabled = 1;
+                cf.day6.disabled = 1;
+		var day_chk;
+
+		for(i=0; i<7; i++){
+			eval('cf.day'+i+'.checked = true;');
+		}
+
+		cf.day_rule.value="1,1,1,1,1,1,1";
+		cf.sch_days.value = "Sun,Mon,Tue,Wed,Thu,Fri,Sat";
+	} else {
+		cf.day0.disabled = 0;
+		cf.day1.disabled = 0;
+		cf.day2.disabled = 0;
+		cf.day3.disabled = 0;
+		cf.day4.disabled = 0;
+		cf.day5.disabled = 0;
+		cf.day6.disabled = 0;
+		for(i=0; i<7; i++){
+			eval('cf.day'+i+'.checked = false;');
+		}
+	}
+}
+
+function change_day_value(){
+	var cf = document.forms[0];
+	var count=0;
+	var day_chk;
+	for(i=0; i<7; i++){
+		eval('day_chk=cf.day'+i+'.checked');
+		if(day_chk == true){
+			eval('cf.day'+i+'.value = "1";');
+			count++;
+		}else
+			eval('cf.day'+i+'.value = "0";');
+	}
+	cf.day_rule.value = cf.day0.value+","+cf.day1.value+","+cf.day2.value+","+cf.day3.value+","+cf.day4.value+","+cf.day5.value+","+cf.day6.value;
+//	alert(cf.day_rule.value);
+
+	var day_rule = cf.day_rule.value;
+	var str_day = day_rule.split(',');
+	var str_0 = "Sun";
+	var str_1 = "Mon";
+	var str_2 = "Tue";
+	var str_3 = "Wed";
+	var str_4 = "Thu";
+	var str_5 = "Fri";
+	var str_6 = "Sat";
+	var str_chk, str;
+	var count_str=0;
+
+	cf.sch_days.value = "";
+	for(j=0; j<7; j++){
+		eval('str_chk=str_day['+j+']');
+		eval('str=str_'+j+';');
+		if(str_chk == "1"){
+			count_str++;
+			if(count_str == count){
+				cf.sch_days.value+=str;
+			}else
+				cf.sch_days.value+=str+",";
+		}			
+	}
+//	alert(cf.sch_days.value);
+}
+
+function allday_check(){
+	var cf = document.forms[0];
+	if(cf.allday.checked == true){
+		cf.allday.value='1';
+		cf.st_hr.disabled =1;
+		cf.st_min.disabled =1;
+		cf.et_hr.disabled =1;
+		cf.et_min.disabled =1;
+
+		cf.st_hr.value='00';
+		cf.st_min.value='00';
+		cf.et_hr.value='23';
+		cf.et_min.value='59';
+	}
+	else{
+		cf.allday.value='0';
+		cf.st_hr.disabled =0;
+		cf.st_min.disabled =0;
+		cf.et_hr.disabled =0;
+		cf.et_min.disabled =0;
+
+		cf.st_hr.value = "";
+		cf.st_min.value = "";
+		cf.et_hr.value = "";
+		cf.et_min.value = "";
+	}
+}
+function isValidspecial(val, size) {
+   var ret = false;
+   if (val.length <= size) {
+      for ( i = 0; i < val.length; i++ ) {
+         if ( isCharUnsafe(val.charAt(i)) == true ) {
+            break;
+         }
+      }
+      if ( i == val.length ) {
+         ret = true;
+      }
+   }
+
+   return ret;
+}
+function isCharUnsafe(compareChar) {
+   var unsafeString = "\"<>%\\^[]`\+\$\,='#&@.:\t";
+
+   if ( unsafeString.indexOf(compareChar) == -1 && compareChar.charCodeAt(0) >= 32
+		   && compareChar.charCodeAt(0) < 123 )
+	   return false; // found no unsafe chars, return false
+   else
+	   return true;
+}
+
+function isinvalidrange(s,low,high,fieldname) {
+        if(isInteger(s) == false){
+                if (fieldname)
+			alert(fieldname + " is invalid.!");
+                return false;
+        }
+        s = parseInt(s,10);
+        if(s<low||s>high){
+		if (fieldname)  alert (fieldname + " is invalid.!");
+			return false;
+        }
+}
+
+function chkTimeFormat() {
+	var cf = document.forms[0];
+	var s0 = parseInt(cf.st_hr.value,10);
+	var s1 = parseInt(cf.st_min.value, 10)
+	var s2 = parseInt(cf.et_hr.value, 10);
+	var s3 = parseInt(cf.et_min.value, 10);
+
+	if(s0 < 10)
+		cf.st_hr.value = "0"+s0;
+	if(s1 < 10)
+                cf.st_min.value = "0"+s1;
+	if(s2 < 10)
+                cf.et_hr.value = "0"+s2;
+	if(s3 < 10)
+                cf.et_min.value = "0"+s3;
+}
+
+function isInteger(str,min_value,max_value,allowBlank)  // allowBlank = true or false
+// return true if positive Integer, false otherwise
+{
+        if(str.length == 0)
+                if(allowBlank)
+                        return true;
+                else
+                        return false;
+        for (var i=0; i < str.length; i++){
+                if ((str.charAt(i) < '0') || (str.charAt(i) > '9'))
+              		return false;
+        }
+        var int_value = parseInt(str,10);
+        if ((int_value < min_value) || (int_value > max_value))
+                return false;
+        return true;
+}
+
+function btnApply(){
+	var cf = document.forms[0];
+	var frm = document.forms[1];
+	var str = cf.rulename.value;
+
+	if(cf.rulename.value == "" || isValidspecial(cf.rulename.value ,30 ) == false){
+		alert("Invalid rulename!");
+		return;
+	}
+
+	if(str.length >= 6){
+		alert("Too many characters in rulename!");
+		return;
+	}
+
+	if (cf.radioday.checked != true) {
+		if(cf.day0.checked == false & cf.day1.checked == false & cf.day2.checked == false & cf.day3.checked == false & cf.day4.checked == false & cf.day5.checked == false & cf.day6.checked == false) {
+			alert("Day select is invalid.!");
+			return;
+		}
+	}
+
+	if (cf.allday.checked == false){
+		if (isinvalidrange(cf.st_hr.value,0,23,"Start Time") == false) return;
+		if (isinvalidrange(cf.st_min.value,0,59,"Start Time") == false) return;
+		if (isinvalidrange(cf.et_hr.value,0,23,"End Time") == false) return;
+		if (isinvalidrange(cf.et_min.value,0,59,"End Time") == false) return;
+
+		if ( parseInt(cf.st_hr.value,10) > parseInt(cf.et_hr.value,10)) {
+			alert("The schedule is not valid.");
+			return; 
+		}else if ( parseInt(cf.st_hr.value,10) == parseInt(cf.et_hr.value,10) && parseInt(cf.st_min.value,10) >= parseInt(cf.et_min.value,10) ) {
+			alert("The schedule is not valid.");
+			return; 
+		}
+	}
+	chkTimeFormat();
+	
+	frm.rule_entry.value = cf.rulename.value+","+cf.day_rule.value+","+cf.st_hr.value+":"+cf.st_min.value+","+cf.et_hr.value+":"+cf.et_min.value+"|";
+	frm.rulename.value = cf.rulename.value;
+	frm.sch_days.value = cf.sch_days.value;
+	frm.sch_timestart.value = cf.st_hr.value+":"+cf.st_min.value;
+	frm.sch_timestop.value = cf.et_hr.value+":"+cf.et_min.value;
+
+	//shift time zone
+	shift_timezone();
+
+	frm.submit();
+}
+
+function shift_timezone()
+{
+	var cf = document.forms[0];
+        var frm = document.forms[1];
+	var stime = parseInt(cf.st_hr.value)*60+parseInt(cf.st_min.value);
+	var etime = parseInt(cf.et_hr.value)*60+parseInt(cf.et_min.value);
+	var tz = 'GMT-5';
+	var sign = tz.charAt(3);
+	var shift_sign;
+	var tz_time, tz_hr, tz_min, tmp,  shift_tz;	
+
+	if(sign == "+"){ //change sign for UTC time(iptables used) ('+' --> '-') ('-' --> '+')
+		tz_time = tz.split("+");
+		shift_sign = "-";
+	}else{
+		tz_time = tz.split("-");
+		shift_sign = "+";
+	}
+	if(tz_time[1].length >= 3) {
+		tmp = tz_time[1].split(":");
+		tz_hr = tmp[0];
+		tz_min = tmp[1];
+	}else{
+		tz_hr = tz_time[1];
+		tz_min = 0;
+	}
+
+	shift_tz = parseInt(tz_hr)*60+parseInt(tz_min);
+
+	frm.shift_tz.value = cf.rulename.value+" "+stime+" "+etime+" "+shift_sign+shift_tz+" "+cf.day0.value+" "+cf.day1.value+" "+cf.day2.value+" "+cf.day3.value+" "+cf.day4.value+" "+cf.day5.value+" "+cf.day6.value;
+
+}
+
+</script>
+</head>
+<body class="BFK_BODY" onLoad=''>
+<br>
+<form>
+ <table>
+ <tr>
+ <td class=content>
+ <table>
+
+ <table class=AD_LIST>
+ 	<tr>
+		<th class='form_label_col'>&nbsp;</th>
+	 	<th class='form_label_col'>Nombre de regla</th><!--Rule Name-->
+	 	<th class='form_label_col'>Dom</th><!--Sun-->
+ 		<th class='form_label_col'>Lun</th><!--Mon-->
+		<th class='form_label_col'>Mar</th><!--Tue-->
+		<th class='form_label_col'>Mier</th><!--Wed-->
+ 		<th class='form_label_col'>Jue</th><!--Thu-->
+ 		<th class='form_label_col'>Vie</th><!--Fri-->
+ 		<th class='form_label_col'>Sáb</th><!--Sat-->
+ 		<th class='form_label_col'>Empezar</th><!--Start-->
+ 		<th class='form_label_col'>Deténgase</th><!--Stop-->
+ 	</tr>
+	<script language="javascript">
+		for (i=0; i<entryNum; i++){
+			var temp = rule[i].Name+','+rule[i].Sun+','+rule[i].Mon+','+rule[i].Tue+','+rule[i].Wed+','+rule[i].Thu+','+rule[i].Fri+','+rule[i].Sat+','+rule[i].st_hr+':'+rule[i].st_min+','+rule[i].et_hr+':'+rule[i].et_min;
+			document.writeln('<td><div align=center><input type=checkbox name=rml value='+escape(temp)+'></div></td>');
+			document.writeln('<td><div align=center id=lblAppName'+i+'>'+rule[i].Name+'</div></td>'); 
+			if (rule[i].Sun == '1')
+				document.writeln('<td><div align=center>X</div></td>');
+			else
+				document.writeln('<td><div align=center>&nbsp;</div></td>');
+
+			if (rule[i].Mon == '1')
+				document.writeln('<td><div align=center>X</div></td>');
+			else
+				document.writeln('<td><div align=center>&nbsp;</div></td>');
+
+			if (rule[i].Tue == '1')
+				document.writeln('<td><div align=center>X</div></td>');
+			else
+				document.writeln('<td><div align=center>&nbsp;</div></td>');
+
+			if (rule[i].Wed == '1')
+				document.writeln('<td><div align=center>X</div></td>');
+			else
+				document.writeln('<td><div align=center>&nbsp;</div></td>');
+
+			if (rule[i].Thu == '1')
+				document.writeln('<td><div align=center>X</div></td>');
+			else
+				document.writeln('<td><div align=center>&nbsp;</div></td>');
+
+			if (rule[i].Fri == '1')
+				document.writeln('<td><div align=center>X</div></td>');
+			else
+				document.writeln('<td><div align=center>&nbsp;</div></td>'); 
+
+			if (rule[i].Sat == '1')
+				document.writeln('<td><div align=center>X</div></td>');
+			else
+				document.writeln('<td><div align=center>&nbsp;</div></td>');
+
+			document.writeln('<td><div align=center>'+rule[i].st_hr+':'+rule[i].st_min+'</div></td>');
+			document.writeln('<td><div align=center>'+rule[i].et_hr+':'+rule[i].et_min+'</div></td>');
+			document.writeln('</tr>');
+		}
+
+	</script>
+ </table>
+
+	<p align=center>
+                <input type='button' id='removePrtTrg' onClick='removeClick(this.form.rml)' value=Borrar>
+        </p>
+
+  <table class="AD_TTL2">
+      <tr>
+        <td id="id_TITLE" align="left">Programar Regla</td><!--Add Schedule Rule-->
+      </tr>
+  </table>
+
+ <table class="AD_SET">
+    <tbody>
+    <tr>
+	<td width="130" height="21" class=form_label_noWidth>Nombre :  </td><!--Name :-->
+	<td><input type='text' size="28" name="rulename" maxlength="15" ></td>
+    </tr>
+    <tr>
+        <td width="130">Dia(s) : </td><!-- Day(s) :-->
+	<td>
+		<div id='id_cussrv'>
+			<label>
+				<input name="radioday" type="radio"  onClick="change_week_value();">
+				toda la semana<!--All Week-->
+				<input name="radioday" type="radio" onClick="change_week_value();" checked="checked">
+				seleccionar dias <!--Select Day(s)-->
+			</label>
+		<p>
+			 <label>
+				<input type="checkbox" name="day0" value="1" onClick="change_day_value();">
+				<span class="form_label_col">Dom</span><!--Sun-->
+			</label>
+			<label>
+				<input type="checkbox" name="day1" value="1" onClick="change_day_value();">
+				<span class="form_label_col">Lun</span><!--Mon-->        
+			</label>
+			<label>
+				<input type="checkbox" name="day2" value="1" onClick="change_day_value();">
+			</label>
+			<label>
+				<span class="form_label_col">Mar</span><!--Tue-->
+				<input type="checkbox" name="day3" value="1" onClick="change_day_value();">
+			</label>
+			<label>
+				<span class="form_label_col">Mier</span><!--Wed-->
+				<input type="checkbox" name="day4" value="1" onClick="change_day_value();">
+				<span class="form_label_col">Jue</span><!--Thu-->        
+			</label>
+			<label>
+				<input type="checkbox" name="day5" value="1" onClick="change_day_value();">
+				<span class="form_label_col">Vie </span><!--Fri-->         
+			</label>
+			<label>
+				<input type="checkbox" name="day6" value="1" onClick="change_day_value();">
+				<span class="form_label_col">Sáb</span> <!--Sat-->       
+			</label>
+			<label></label>
+			<input type="hidden" name="day_rule">
+		</p>
+		<p>&nbsp;</p>
+		</div>
+	</td>
+   </tr>
+</tbody>
+</table>
+<table class="AD_SET">
+ <tbody>
+   <tr>
+   	<td width="130" height="31"> Todo el dia 24 hrs : </td><!--All Day - 24 hrs :-->
+
+   	<td>
+	<div id='id_cussrv'>
+   		<input type="checkbox" name="allday" value="1" onClick="allday_check();" checked="checked">
+   	</div>
+	</td>
+   </tr>
+
+   <tr>
+   	<td>
+		<label for="startTimeH" id="lang_LimitStartTime">iniciar bloqueo</label><!--Start Blocking-->
+	</td>
+   	<td>
+		<input name="st_hr" style="WIDTH: 30px" maxLength=2 value= "00" disabled="disabled">
+		<label  id="lang_Hour1">Hora</label><!--Hour-->
+   		<input id='startTimeM' name="st_min" style="WIDTH: 30px" maxLength=2 value = "00" disabled="disabled">
+		<label id="lang_Minute1">Minutos</label><!--Minute-->
+	</td>
+   </tr>
+
+   <tr>
+   	<td>
+		<label for="endTimeH" id="lang_LimitEndTime">terminar Bloqueo</label><!--End Blocking-->
+	</td>
+   	<td>
+		<input id='endTimeH' name="et_hr" style="WIDTH: 30px" maxLength=2 value = "23" disabled="disabled">
+		<label id="lang_Hour2">Hora</label><!--Hour-->
+   		<input id='endTimeM' name="et_min" style="WIDTH: 30px" maxLength=2  value = "59" disabled="disabled">
+		<label id="lang_Minute2">Minutos</label><!--Minute-->
+	</td>
+   </tr>
+   <input type="hidden" name="sch_timestart"/>
+   <input type="hidden" name="sch_timestop"/>
+   <input type="hidden" name="sch_days"/>
+	    </tbody>
+  </table>	
+  <div>
+	<input type="button" value=añadir  onclick="btnApply()"/>
+  </div>
+</form>
+
+<form method="POST">
+	<input type="hidden" name="action" value="1">
+	<input type="hidden" name="rulename">
+	<input type="hidden" name="sch_timestart"/>
+	<input type="hidden" name="sch_timestop"/>
+	<input type="hidden" name="sch_days"/>
+	<input type="hidden" name="rule_entry">
+	<input type="hidden" name="shift_tz">
+</form>
+
+<form method="POST">
+	<input type="hidden" name="action" value="2">
+        <input type="hidden" name="rmLst" id="rmLst" />
+	<input type="hidden" name="rulestr" />
+</form>
+</body>
+
+<!-- Mirrored from 192.168.0.1/schedules.html by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 11 Jan 2017 00:16:10 GMT -->
+</html>

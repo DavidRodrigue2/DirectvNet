@@ -17,27 +17,37 @@ body{
   position: relative;
   left: 15px;
   top: 100px;
+
+  display: none; /* quitar */
 }
 .loginContainer p{
   width: 147px;
   margin: 3px 0;
   font-size: 14.5px;
+
+  display: none; /* quitar */
 }
 .loginContainer .idioma{
   border: 1px solid grey;
   padding: 2px 0;
   height: 23px;
   font-size: 12px;
+
+  display: none; /* quitar */
 }
 .loginContainer input{
   width: 147px;
   height: 23px;
   margin: 3px 0;
+
+  display: none; /* quitar */
 }
 .loginContainer button{
   width: 150px;
   margin-top: 2px;
   height: 30px;
+
+  display: none; /* quitar */
 }
 .left .help{
   position: relative;
@@ -48,11 +58,15 @@ body{
   background-color: #f90;
   padding: 8px 0;
   cursor: pointer;  
+
+  display: none; /* quitar */
 }
 .left .text{
   color: #fff;
   font-size: 13px;
   text-decoration: underline;
+
+  display: none; /* quitar */
 }
 .left .ChangePass{
   position: relative;
@@ -63,6 +77,8 @@ body{
   background-color: #f90;
   padding: 8px 0;
   cursor: pointer;  
+
+  display: none; /* quitar */
 }
 .center figure{
   position: absolute;

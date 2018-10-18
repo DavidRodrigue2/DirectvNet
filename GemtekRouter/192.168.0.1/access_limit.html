@@ -1,0 +1,238 @@
+<html>
+
+<!-- Mirrored from 192.168.0.1/access_limit.html by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 11 Jan 2017 00:16:11 GMT -->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta http-equiv="Pragma" content="no-cache">
+<meta http-equiv="Cache-Control" content="no-cache">
+<META http-equiv="Content-Style-Type" content="text/css">
+<LINK rel="stylesheet" href="WHR-G300N-160149-style-ENG.css" type="text/css">
+<LINK rel="stylesheet" href="WHR-G300N-160149-style-ad-ENG.css" type="text/css">
+<script language="javascript" type="text/javascript" src="common.html"></script>
+<script type="text/javascript">
+<!--
+function setValue0(val)
+{
+	document.getElementById("mm_" + val).value=
+		(document.getElementById("id_" + val).checked)?"0":"1";
+}
+function setValue1(val)
+{
+	document.getElementById("mm_" + val).value=
+		(document.getElementById("id_" + val).checked)?"1":"0";
+}
+function set_display()
+{
+     if(document.getElementById("id_HTTPWANAccessEnable").checked == true)
+     {
+     	document.getElementById("reject_from_wan_ext").style.display = "block";
+     } else {
+     	document.getElementById("reject_from_wan_ext").style.display = "none";
+     }
+}
+function setAccess()
+{
+	var accessip=document.getElementById("id_wanaccessip");
+	var accessport=document.getElementById("id_wanaccessport");
+	var lanip='192.168.0.1';
+	if(document.getElementById("id_HTTPWANAccessEnable").checked == true)
+	{
+		if (accessip.value.length !=0)
+		{
+			if(accessip.value.length < 6)
+			{
+				Show_error("Direcci&oacute;n IP de permisos", "Longitud demasiado corta");
+				return;
+			}
+			if(check_ip(accessip.value) == 1)
+			{
+				Show_error("Direcci&oacute;n IP de permisos", "Formato de direcci&oacute;n IP no v&aacute;lido");
+				return;
+			}
+			if(check_ip(accessip.value) == 2)
+			{
+				Show_error("Direcci&oacute;n IP de permisos", "Contiene un car&aacute;cter no v&aacute;lido");
+				return;
+			}
+			if(lanip == accessip.value)
+			{
+				Show_error("Direcci&oacute;n IP de permisos", "No se puede especificar la direcci&oacute;n IP de la LAN de esta Device");
+				return;
+			}
+		}
+			if(accessport.value.length == 0)
+			{
+				Show_error("Puerto de permisos", "Los permisos para el puerto de acceso remoto de la INTERNET no est&aacute;n establecidos");
+				return;
+			}
+			if(!check_port(accessport.value))
+			{
+				Show_error("Puerto de permisos", "El puerto de permisos de la configuraci&oacute;n del acceso remoto de la INTERNET no es v&aacute;lido");
+				return;
+			}   
+	}
+	
+	checkItem();
+}
+
+function checkItem()
+{
+  var wirelesslan='1';
+  var wiredlan='1';
+
+  if (wirelesslan=="0")
+    wirelesslan=true;
+  else
+    wirelesslan=false;
+    
+  if (wiredlan=="0")
+    wiredlan=true;
+  else
+    wiredlan=false;
+    
+  if ((document.getElementById("id_HTTPWLANAccessEnable").checked == true) && (document.getElementById("id_HTTPLANAccessEnable").checked == true))
+  {
+    document.getElementById("selectitem").innerHTML="Prohíba cualquier acceso de gestión. <BR> Tras la configuración, los parámetros de configuración no se pueden ver ni cambiar a no ser que el botón de reinicio esté pulsado y se restaure la configuración de fábrica.";
+  }
+  else if (document.getElementById("id_HTTPWLANAccessEnable").checked == true)
+  {
+    document.getElementById("selectitem").innerHTML="<BR>Prohibir configuraci&oacute;n desde LAN inal&aacute;mbrica<BR>Proh&iacute;be la administraci&oacute;n desde un equipo con conexi&oacute;n inal&aacute;mbrica.";
+  }
+  else if (document.getElementById("id_HTTPLANAccessEnable").checked == true)
+  {
+    document.getElementById("selectitem").innerHTML="<BR>Prohibir configuraci&oacute;n desde LAN de cable<BR>Proh&iacute;be la administraci&oacute;n desde un equipo con conexi&oacute;n por cable.";
+  }
+  else
+  {
+    document.accessForm.submit();
+    return;
+  }
+  
+  if (((document.getElementById("id_HTTPWLANAccessEnable").checked == true) || (document.getElementById("id_HTTPLANAccessEnable").checked == true)) && ((wirelesslan!=document.getElementById("id_HTTPWLANAccessEnable").checked) || (wiredlan!=document.getElementById("id_HTTPLANAccessEnable").checked)))
+  {
+    document.getElementById("content").style.display = "none";
+    document.getElementById("confirm").style.display = "";
+  }
+  else
+    document.accessForm.submit();
+}
+
+function goBack()
+{
+  document.getElementById("content").style.display = "";
+	document.getElementById("confirm").style.display = "none";
+}
+
+function apply()
+{
+  document.accessForm.submit();
+}
+// -->
+</script>
+</head>
+<body class="BFK_BODY" onload="set_display()">
+<br>
+<form method="POST" name="accessForm">
+<div id="content">
+<div id="id_errtbl" class="C_ERR" style="display:none;"></div>
+  <table class="AD_SET">
+    <tr>
+      <th>Resultado del registro</th>
+      <td>
+      	<input type="hidden" name="LogAccessEnable" id="mm_LogAccessEnable" value="0">
+        <input type="checkbox" id="id_LogAccessEnable" value="1" onclick="setValue1('LogAccessEnable');" 
+        	>Habilitar
+      </td>
+    </tr>
+  </table>
+  <br>
+
+  <table class="AD_LIST">
+    <tr>
+      <th>Habilitar</th>
+      <th>Acceso de gesti&oacute;n</th>
+      <th>N&uacute;mero de paquetes</th>
+    </tr>
+    <tr class=DISABLE>
+      <td>
+      <input type="hidden" name="HTTPWLANAccessEnable" id="mm_HTTPWLANAccessEnable" value="1">
+      <input type="checkbox" id="id_HTTPWLANAccessEnable" value="1" onclick="setValue0('HTTPWLANAccessEnable');"
+      	></td>
+      <td>Prohibir la configuraci&oacute;n desde LAN inal&aacute;mbrica</td>
+      <td><div class="DIGIT">0</div></td>
+    </tr>
+    <tr class=DISABLE>
+      <td>
+      <input type="hidden" name="HTTPLANAccessEnable" id="mm_HTTPLANAccessEnable" value="1">
+      <input type="checkbox" id="id_HTTPLANAccessEnable" value="1" onclick="setValue0('HTTPLANAccessEnable');"
+      	></td>
+      <td>Prohibir la configuraci&oacute;n desde LAN de cable</td>
+      <td><div class="DIGIT">0</div></td>
+    </tr>
+  </table>
+  <BR>
+
+  <table class="AD_TTL2"  >
+    <tr><td>Configuraci&oacute;n de acceso remoto de la INTERNET</td></tr>
+  </table>
+  <table class="AD_LIST"  >
+    <tr>
+     <th>Habilitar</th>
+     <th>Acceso de gesti&oacute;n</th>
+    </tr>
+    <tr class=DISABLE>
+      <td>
+      <input type="hidden" name="HTTPWANAccessEnable" id="mm_HTTPWANAccessEnable" value="0">
+      <input type="checkbox" id="id_HTTPWANAccessEnable" value="1" OnClick="set_display();setValue1('HTTPWANAccessEnable');"
+      	></td>
+      <td>Permitir la configuraci&oacute;n desde la INTERNET de cable</td>
+    </tr>
+  </table>
+<div id="reject_from_wan_ext">
+  <table class="AD_SET"  >
+    <tr>
+      <th>Direcci&oacute;n IP permitida</th>
+      <td>
+        <input type="text" name="HTTPWANAccessIP" id="id_wanaccessip" value="" maxlength="15" size="18">
+      </td>
+    </tr>
+    <tr>
+      <th>Puerto permitido</th>
+      <td>
+        <input type="text" name="HTTPWANAccessPort" id="id_wanaccessport" value="" maxlength="5" size="5">
+      </td>
+    </tr>
+  </table>
+</div>
+
+  <p><input type="button" value="Aplicar" id="submitBtn" onclick="setAccess();"></p>
+</div>
+<!---------------------------------------->
+<div id="confirm" style="display:none;">
+<p>
+    <div id="selectitem"></div>
+</p>
+<p>
+Para confirmar la configuraci&oacute;n, pulse el bot&oacute;n &quot;Aplicar&quot;.
+</p>
+
+<div class="C_CONFIRM">
+<p>
+Para continuar con la configuraci&oacute;n&#x2C; efect&uacute;e el procedimiento siguiente.<br>
+<ol>
+<li>Cierre todas las ventanas del explorador.
+<li>Confirme que se ha establecido una conexi&oacute;n entre el equipo y el enrutador.</li>
+<li>Abra de nuevo el explorador y vuelva conectarse mediante la utilidad de configuraci&oacute;n de la Device.
+</ol>
+&nbsp;&nbsp;&nbsp;Para obtener m&aacute;s informaci&oacute;n, consulte el manual del usuario.
+</p>
+</div>
+     <input type="button" id="go"   value="Aplicar" onclick="apply();">
+     <input type="button" id="back" value="Cancelar" onclick="goBack();">
+</div>
+</form>
+
+</body>
+
+<!-- Mirrored from 192.168.0.1/access_limit.html by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 11 Jan 2017 00:16:11 GMT -->
+</html>

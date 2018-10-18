@@ -1,0 +1,111 @@
+<html>
+	<head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+<link rel="stylesheet" href="../css/styles.css" type="text/css">
+<title>Configuración de zona horaria</title>
+<script>
+
+function disableButton (button,val) {
+  if (document.all || document.getElementById)
+    button.disabled = val;
+  else if (button) {
+    button.oldOnClick = button.onclick;
+    button.onclick = null;
+    button.oldValue = button.value;
+    button.value = 'DISABLED';
+  }
+}
+
+function disableDdnsButton(val)
+{
+	disableButton(document.ddns.ddnsType, val);
+	disableButton(document.ddns.ddnsDomainName, val);
+	disableButton(document.ddns.ddnsUser, val);
+	disableButton(document.ddns.ddnsPassword, val);
+
+}
+
+function updateState()
+{
+	if(document.ddns.ddnsEnabled.checked)
+		disableDdnsButton(false);
+	else
+		disableDdnsButton(true);
+}
+
+
+</script><style type="text/css"></style></head>
+
+
+<body onload="init();" marginwidth="0" marginheight="0">
+<blockquote>
+<h2>Configuración de DNS dinámico</h2>
+<p>DNS dinámico es un servicio que le proporciona un nombre de dominio de Internet (y una dirección URL) válida y sin cambios que coincide con esa dirección IP (posiblemente en cambio constante).</p>
+<hr>
+
+<form method="POST" name="ddns">
+<table border="0" width="600">
+
+	<tbody><tr><td colspan="2"><font size="2"><b>
+		<input type="checkbox" name="ddnsEnabled" value="ON" onclick="updateState()">&nbsp;&nbsp;Activar DDNS </b><br>
+	    </font></td>
+	</tr>
+	<tr><td height="10"> </td> </tr>
+	<tr>
+	<td width="20%">
+	<font size="2"> <b> Service Provider : </b> </font>
+	</td>
+	<td width="85%">
+		<select name="ddnsType" disabled="">
+			<option value="0">DynDNS </option>
+			<option value="1">TZO </option>
+		</select>
+	</td>
+	</tr>
+	<tr><td width="20%"><font size="2"> <b>Nombre de dominio : </b> </font></td>
+	    <td width="85%">
+ 			<font size="2"><input type="text" name="ddnsDomainName" size="20" maxlength="50" value="host.dyndns.org" disabled=""></font>
+	    </td>
+	</tr>
+	<tr>
+	<td width="20%">
+	<font size="2"> <b> User Name/Email: </b> </font>
+	</td>
+	<td width="85%">
+		<font size="2"><input type="text" name="ddnsUser" size="20" maxlength="50" value="" disabled=""></font>
+	</td>
+	</tr>
+	
+	<tr>
+	<td width="20%">
+	<font size="2"> <b> Password/Key: </b> </font>
+	</td>
+	<td width="85%">
+		<font size="2"><input type="password" name="ddnsPassword" size="20" maxlength="30" value="" disabled=""></font>
+	</td>
+	</tr>
+	<tr>
+		<td height="5">
+		</td>
+	</tr>
+	<tr>
+		<td colspan="2"><font size="2"><i>Note:
+      <br>Para TZO, puede acceder a 30 días de prueba gratuita <a href="http://www.tzo.com/MainPageWebClient/clientsignup.html"> </a> aquí o administrar su cuenta de TZO desde el <a href="https://controlpanel.tzo.com/cgi-bin/tzopanel.exe"> panel de control.</a><br>
+      Para DynDNS, puede crear aquí su cuenta de <a href="http://www.dyndns.org/account/%22">DynDNS </a>  </i></font>            
+                        
+        </td>
+        
+	</tr>	
+</tbody></table>
+  <p>
+  <input type="hidden" value="/ddns.htm" name="submit-url">
+  <input type="submit" value="Aplicar cambios" name="apply" onclick="return ddns_saveChanges()">
+&nbsp;&nbsp;
+  <input type="reset" value="Restablecer" name="set">
+</p></form>
+</blockquote>
+
+
+
+
+</body></html>

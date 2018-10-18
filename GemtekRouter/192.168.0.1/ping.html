@@ -1,0 +1,180 @@
+<html>
+
+<!-- Mirrored from 192.168.0.1/ping.html by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 11 Jan 2017 00:16:12 GMT -->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta http-equiv="Pragma" content="no-cache">
+<meta http-equiv="Cache-Control" content="no-cache">
+<meta http-equiv="Expires" content="Thu, 01 Dec 1994 16:00:00 GMT">
+<META http-equiv="Content-Style-Type" content="text/css">
+<LINK rel="stylesheet" href="WHR-G300N-160149-style-ENG.css" type="text/css">
+<LINK rel="stylesheet" href="WHR-G300N-160149-style-ad-ENG.css" type="text/css">
+<script src="OpenHelp.html"></script>
+<script language="JavaScript" type="text/javascript" src="common.html"></script>
+<script language="JavaScript">
+<!--
+
+function ping_exe()
+{
+	if (isBlank(document.form_main.ping_ipaddress.value)){
+		Show_error("Direcci&oacute;n de destino", "No configurado");
+		return false;
+	}
+	if (!isAllowValue(document.form_main.ping_ipaddress.value)){
+		return false;
+	}
+	document.form_main.submit();
+}
+
+function wol_exe()
+{
+	if (isBlank(document.form_sec.wol_macaddress.value)){
+		Show_error("Destination MAC Address", "No configurado");
+		return false;
+	}
+
+	if(!check_mac_plus(document.form_sec.wol_macaddress.value)){
+		Show_error("Destination MAC Address", "Wrong format");
+		return false;
+	}
+	document.form_sec.submit();
+}
+
+function isAllowValue(s)
+{
+	var i;
+	var s_ip;
+	s_ip = s.split('.');
+  
+	for (i=0; i<s.length; i++)
+	{
+		var c;	
+		c=s.charAt(i);
+	
+		if (((c>='0')&&(c<='9')) || ((c>='a')&&(c<='z')) || ((c>='A')&&(c<='Z')) || (c=='-') || (c=='.'))
+		{
+			if (((c=='-') || (c=='.')) && ((i==0) || (i==s.length-1)))
+			{
+				Show_error("Direcci&oacute;n de destino", "No se puede usar este car&aacute;cter como car&aacute;cter inicial ni final");
+				return false;
+			}
+		}
+		else
+		{
+			Show_error("Direcci&oacute;n de destino", "Contiene un car&aacute;cter no v&aacute;lido");
+			return false;
+		}
+	}
+	
+	
+	if(s=="255.255.255.255")
+	{
+		Show_error("Direcci&oacute;n de destino", "No se puede usar la direcci&oacute;n reservada (255.255.255.255)");
+		return false;
+	}
+	else if(s=="0.0.0.0")
+	{
+		Show_error("Direcci&oacute;n de destino", "No se puede usar la direcci&oacute;n reservada (0.0.0.0)");
+		return false;
+	}
+	
+	if(s_ip.length==4)
+	{
+		if(check_integer(s_ip[0]) && check_integer(s_ip[1]) && check_integer(s_ip[2]) &&check_integer(s_ip[3]))
+		{
+			if(s_ip[0]>255 || s_ip[1]>255 || s_ip[2]>255 || s_ip[3] >255)
+			{
+				Show_error("Direcci&oacute;n de destino", "Formato de direcci&oacute;n IP no v&aacute;lido");			
+				return false;
+			}
+			if(s_ip[0]>=224 && s_ip[0]<=239)
+			{
+				Show_error("Direcci&oacute;n de destino", "No se puede usar la direcci&oacute;n de prueba (de 224.XXX.XXX.XXX a 239.XXX.XXX.XXX)");						
+				return false;
+			}
+			if(s_ip[0]>=240 && s_ip[0]<=255)
+			{
+				Show_error("Direcci&oacute;n de destino", "No se puede usar la direcci&oacute;n de prueba (de 240.XXX.XXX.XXX a 255.XXX.XXX.XXX)");						
+				return false;
+			}
+		
+		
+		}	
+	}
+	return true;
+}
+
+// -->
+</script>
+</head>
+<body class="BFK_BODY">
+<form name="form_main" action="http://admin:admin@192.168.0.1/ping.html" method="POST" onsubmit="return ping_exe();">
+<div id="id_errtbl" class="C_ERR" style="display:none;"></div>
+
+<table class="AD_TTL2">
+        <tr>
+                <td>Ping</td>
+        </tr>
+</table>
+
+<table class="AD_SET">
+	<tr>
+      		<th>Direcci&oacute;n de destino</th>
+      		<td>
+        		<input type="text" name="ping_ipaddress" size="40" maxlength="255">
+      		</td>
+    	</tr>
+</table>
+  
+<p><input type="button" value="Ejecutar" name="ping_exec" onclick="ping_exe();"></p>
+<!--
+<table class="AD_TTL2">
+    	<tr>
+      		<td>Resultado</td>
+    	</tr>
+</table>
+-->
+<table class="AD_INFO">
+    	<tr>
+      		<th>Destino</th>
+      		<td><!--Not Entered--><div name="Destination">No introducido</div></td>
+    	</tr>
+    	<tr>
+      		<th>Resultado</th>
+      		<td><!--Not Executed--><div name="Result">No ejecutado</div></td>
+    	</tr>
+    
+</table>
+  
+
+</form>
+
+<hr>
+
+<form name="form_sec" action="http://admin:admin@192.168.0.1/ping.html" method="POST" onsubmit="" style='display:none'>
+
+<table class="AD_TTL2">
+        <tr>
+                <td>WOL</td>
+        </tr>
+</table>
+
+<table class="AD_SET">
+        <tr>
+                <th>MAC Address</th>
+                <td>
+                        <input type="text" name="wol_macaddress" size="40" maxlength="255">
+                </td>
+        </tr>
+</table>
+
+<p><input type="button" value="Wake up" onclick="wol_exe();"></p>
+
+</form>
+<form   onsubmit="return onceOnly(this);"  method="POST" action="http://admin:admin@192.168.0.1/--WEBBOT-SELF--">
+<input type="hidden" name="ie-return-input-dummy" value="0">
+</form>
+</body>
+
+<!-- Mirrored from 192.168.0.1/ping.html by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 11 Jan 2017 00:16:12 GMT -->
+</html>

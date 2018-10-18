@@ -1,0 +1,96 @@
+
+<html>
+<head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+<title>Asistente de configuración</title>
+<style type="text/css"></style>
+<link rel="stylesheet" href="../css/styles.css" type="text/css">
+
+
+</head>
+<body marginwidth="0" marginheight="0">
+
+<blockquote>
+
+
+<form method="POST" name="wizard">
+
+<!-- ntp page -->
+<span id="ntp_div" class="on">
+<table border="0" width="100%" cellspacing="4" cellpadding="0">
+  <tbody><tr><td><h2>Configuración de zona horaria</h2></td></tr>
+  <tr><td><p>
+  Puede mantener la hora del sistema sincronizando con un servidor de hora público a través de Internet.</p>
+  </td></tr>
+  
+  <tr><td><hr></td></tr>
+</tbody></table>
+<span id="ntp_enable_div" class="off">  
+<table border="0" width="500" cellspacing="0" cellpadding="0">
+
+	<tbody><tr><td colspan="2"><font size="2"><b>
+		<input type="checkbox" name="enabled" value="ON" onclick="updateState_ntp(document.wizard)">&nbsp;&nbsp;Activar actualización con cliente NTP </b><br>
+	    </font></td>
+	</tr>
+</tbody></table>
+</span>
+
+<span id="dl_enable_div" class="on">  
+<table border="0" width="500" cellspacing="0" cellpadding="0">
+
+	<tbody><tr><td colspan="2"><font size="2"><b>
+		<input type="checkbox" name="dlenabled" value="ON" onclick="updateState_ntp(document.wizard)">&nbsp;&nbsp;Ajustar automáticamente horario de verano </b><br>
+	    </font></td>
+	</tr>
+</tbody></table>
+</span>
+
+<table border="0" width="600" cellspacing="4" cellpadding="0">
+	<tbody><tr><td height="10"> </td> </tr>
+
+	<tr><td><font size="2"> <b>Selección de zona horaria : </b> </font></td>
+	    <td>
+            <select name="timeZone">
+            	<option value="12 1">(GMT-12:00)Eniwetok, Kwajalein</option><option value="11 1">(GMT-11:00)Midway Island, Samoa</option><option value="10 1">(GMT-10:00)Hawaii</option><option value="9 1">(GMT-09:00)Alaska</option><option value="8 1" selected="">(GMT-08:00)Pacific Time (US &amp; Canada); Tijuana</option><option value="7 1">(GMT-07:00)Arizona</option><option value="7 2">(GMT-07:00)Mountain Time (US &amp; Canada)</option><option value="6 1">(GMT-06:00)Central Time (US &amp; Canada)</option><option value="6 2">(GMT-06:00)Mexico City, Tegucigalpa</option><option value="6 3">(GMT-06:00)Saskatchewan</option><option value="5 1">(GMT-05:00)Bogotá, Lima, Quito</option><option value="5 2">(GMT-05:00)Hora del Este (EE. UU. y Canadá)</option><option value="5 3">(GMT-05:00)Indiana (Este)</option><option value="4 1">(GMT-04:00)Hora del Atlántico (Canadá)</option><option value="4 2">(GMT-04:00)Caracas, La Paz</option><option value="4 3">(GMT-04:00)Santiago</option><option value="3 1">(GMT-03:30)Terranova</option><option value="3 2">(GMT-03:00)Brasilia</option><option value="3 3">(GMT-03:00)Buenos Aires, Georgetown</option><option value="2 1">(GMT-02:00)Atlántico Medio</option><option value="1 1">(GMT-01:00)Azores, Cape Verde Is.</option><option value="0 1">(GMT)Casablanca, Monrovia</option><option value="0 2">(GMT)Greenwich Mean Time: Dublin, Edinburgh, Lisbon, London</option><option value="-1 1">(GMT+01:00)Amsterdam, Berlin, Bern, Rome, Stockholm, Vienna</option><option value="-1 2">(GMT+01:00)Belgrade, Bratislava, Budapest, Ljubljana, Prague</option><option value="-1 3">(GMT+01:00)Barcelona, Madrid</option><option value="-1 4">(GMT+01:00)Brussels, Copenhagen, Madrid, Paris, Vilnius</option><option value="-1 5">(GMT+01:00)Paris</option><option value="-1 6">(GMT+01:00)Sarajevo, Skopje, Sofija, Warsaw, Zagreb</option><option value="-2 1">(GMT+02:00)Athens, Istanbul, Minsk</option><option value="-2 2">(GMT+02:00)Bucharest</option><option value="-2 3">(GMT+02:00)Cairo</option><option value="-2 4">(GMT+02:00)Harare, Pretoria</option><option value="-2 5">(GMT+02:00)Helsinki, Riga, Tallinn</option><option value="-2 6">(GMT+02:00)Jerusalem</option><option value="-3 1">(GMT+03:00)Baghdad, Kuwait, Riyadh</option><option value="-3 2">(GMT+03:00)Moscow, St. Petersburg, Volgograd</option><option value="-3 3">(GMT+03:00)Mairobi</option><option value="-3 4">(GMT+03:30)Tehran</option><option value="-4 1">(GMT+04:00)Abu Dhabi, Muscat</option><option value="-4 2">(GMT+04:00)Baku, Tbilisi</option><option value="-4 3">(GMT+04:30)Kabul</option><option value="-5 1">(GMT+05:00)Ekaterinburg</option><option value="-5 2">(GMT+05:00)Islamabad, Karachi, Tashkent</option><option value="-5 3">(GMT+05:30)Bombay, Calcutta, Madras, New Delhi</option><option value="-6 1">(GMT+06:00)Astana, Almaty, Dhaka</option><option value="-6 2">(GMT+06:00)Colombo</option><option value="-7 1">(GMT+07:00)Bangkok, Hanoi, Jakarta</option><option value="-8 1">(GMT+08:00)Beijing, Chongqing, Hong Kong, Urumqi</option><option value="-8 2">(GMT+08:00)Perth</option><option value="-8 3">(GMT+08:00)Singapore</option><option value="-8 4">(GMT+08:00)Taipei</option><option value="-9 1">(GMT+09:00)Osaka, Sapporo, Tokyo</option><option value="-9 2">(GMT+09:00)Seoul</option><option value="-9 3">(GMT+09:00)Yakutsk</option><option value="-9 4">(GMT+09:30)Adelaide</option><option value="-9 5">(GMT+09:30)Darwin</option><option value="-10 1">(GMT+10:00)Brisbane</option><option value="-10 2">(GMT+10:00)Canberra, Melbourne, Sydney</option><option value="-10 3">(GMT+10:00)Guam, Port Moresby</option><option value="-10 4">(GMT+10:00)Hobart</option><option value="-10 5">(GMT+10:00)Vladivostok</option><option value="-11 1">(GMT+11:00)Magadan, Solomon Is., New Caledonia</option><option value="-12 1">(GMT+12:00)Auckland, Wllington</option><option value="-12 2">(GMT+12:00)Fiji, Kamchatka, Marshall Is.</option>
+            </select>
+	    </td>
+	</tr>
+	<tr>
+	<td>
+	<font size="2"> <b> Servidor NTP : </b> </font>
+	</td>
+	<td>
+		<select name="ntpServerIp1">
+            <option value="177.55.1.252">177.55.1.252   - Sky</option>
+			<option value="192.5.41.41">192.5.41.41    - Norteamérica</option>
+			<option value="192.5.41.209">192.5.41.209   - Norteamérica</option>
+			<option value="208.184.49.9">208.184.49.9   - Norteamérica</option>
+			<option value="131.188.3.220">131.188.3.220  - Europa</option>
+			<option value="130.149.17.8">130.149.17.8   - Europa</option>
+			<option value="203.60.1.2"> 203.60.1.2  - Australia</option>
+			<option value="203.117.180.36"> 203.117.180.36 - Asia-Pacífico</option>
+			</select>
+		</td>
+	</tr>
+	<tr><td height="120"></td></tr>
+</tbody></table>
+
+     <input type="hidden" value="0" name="ntpServerId">
+<div style="margin-top:20px;">     
+	<a href="wizardasistente.html" title="Asistente de configuración" name="sub2" target="view" class="botonenlace">Cancelar</a>
+	<a href="wizardasistente.html" title="Asistente de configuración" name="sub2" target="view" class="botonenlace">&lt;&lt;Regresar  </a>
+	<a href="wizardasistente3.html" title="Asistente de configuración" name="sub2" target="view" class="botonenlace">  Siguiente&gt;&gt;</a>
+</div>
+</span>
+
+
+
+</form>
+
+
+</blockquote>
+
+
+
+
+</body></html>

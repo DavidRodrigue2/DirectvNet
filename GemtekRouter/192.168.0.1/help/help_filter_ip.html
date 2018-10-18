@@ -1,0 +1,145 @@
+
+
+<html>
+
+
+<!-- Mirrored from 192.168.0.1/help/help_filter_ip.html by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 11 Jan 2017 00:16:16 GMT -->
+<head>
+<META http-equiv="Content-Style-Type "content="text/css"><LINK rel="stylesheet" href="WHR-G300N-160149-style-help-ENG.css" type="text/css">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<script src="OpenHelp.html"></script>
+<title> Help </title>
+<script src="OnceOnly.html"></script>
+</head>
+<body>
+
+<p class="HELP_TTL1">Configuraci&oacute;n de filtro de IP</p><hr>
+
+
+
+<p class="HELP_BODY1">
+Limita el tipo de paquete que se permite pasar entre la INTERNET y la LAN.<br> El n&uacute;mero m&aacute;ximo de reglas es 32.<br> Si el paquete cumple una de las condiciones de control (consulte a continuaci&oacute;n) antes de que se enrute&#x2C; se realizar&aacute; la acci&oacute;n especificada. Si se cumplen varias condiciones (consulte a continuaci&oacute;n)&#x2C; la acci&oacute;n adecuada se realizar&aacute; una vez que el paquete cumpla la condici&oacute;n.
+</p><br>
+
+
+<p class="HELP_TTL2">Resultado del registro</p>
+<p class="HELP_BODY2">
+Al activar esta casilla se registrará la información de filtro de IP en un registro. Si se acepta el funcionamiento, se deshabilita el resultado del registro.<br> El valor predeterminado es Deshabilitado.
+</p><br>
+
+
+<hr>
+
+<a name="append_area"></a>
+
+
+<p class="HELP_TTL1">Agregar/editar filtro basado en direcci&oacute;n IP</p><hr>
+
+
+
+<p class="HELP_BODY1">
+Este &aacute;rea sirve para agregar o editar l&iacute;neas.<br>
+</p><br>
+
+
+<p class="HELP_TTL2">Funcionamiento</p>
+<p class="HELP_BODY2">
+Seleccione la acci&oacute;n que se realizar&aacute; en los paquetes que cumplen los criterios de filtro.<br> <b>Omitido</b><br> Detiene el paquete y no se enruta.<br> <b>Rechazado</b><br> Devuelve el paquete rechazado al<br> punto de origen.<br> <b>Aceptado</b><br> Se permite el paso del paquete.<br> El valor predeterminado es [Omitido].<br>
+</p><br>
+
+<p class="HELP_TTL2">Direcci&oacute;n</p>
+<p class="HELP_BODY2">
+Especifique la direcci&oacute;n de la secuencia de paquetes.<br> <b>LAN&rarr;INTERNET</b><br> Se filtrar&aacute;n los paquetes procedentes de la LAN.<br> <b>INTERNET&rarr;LAN</b><br> Se filtrar&aacute;n los paquetes procedentes de la INTERNET.<br> El valor predeterminado es &quot;INTERNET&rarr;LAN&quot;.<br> Con la direcci&oacute;n se pueden especificar las condiciones siguientes. En este caso&#x2C; se filtran los paquetes que cumplen con todas las condiciones.<br>
+</p><br>
+
+<p class="HELP_TTL2">Direcci&oacute;n IP</p>
+<p class="HELP_BODY2">
+Se puede designar una direcci&oacute;n IP de origen y destino para el filtro.<br> De forma predeterminada, este campo est&aacute; en blanco.<br> Para filtrar todas las direcciones IP&#x2C; deje este cuadro en blanco.<br> En lugar de la direcci&oacute;n IP, se puede especificar la direcci&oacute;n de red.<br> En este caso&#x2C; el valor de m&aacute;scara detr&aacute;s de &quot;/&quot; seguido de la direcci&oacute;n de red especificar&aacute; la m&aacute;scara de subred.<br> El valor de m&aacute;scara est&aacute; comprendido entre 1 y 32.<br>
+</p><br>
+
+<p class="HELP_TTL3">Ejemplo</p>
+<p class="HELP_BODY3">
+Especifique 192.168.1.0 como direcci&oacute;n y 255.255.255.0 como la m&aacute;scara de subred.<br><br> 192.168.1.0/24<br>
+</p><br>
+
+<a name="ip_prtocol"></a>
+
+<p class="HELP_TTL2">Protocolo</p>
+<p class="HELP_BODY2">
+Permite seleccionar el protocolo que se analizar&aacute;.<br> Se puede seleccionar cualquiera de las opciones siguientes.<br> <ul> <li><b>Todo</b><br> Se analizar&aacute;n todos los protocolos.<br> <li><b>ICMP</b><br> Se analizar&aacute;n los paquetes ICMP (protocolo 1).<br> <li><b>Manual</b><br> Seleccione el n&uacute;mero de protocolo (1-255) que se analizar&aacute;.<br> De forma predeterminada, este campo est&aacute; en blanco. Si se selecciona la opci&oacute;n manual, escriba un n&uacute;mero. Si no se selecciona la opci&oacute;n manual, no se tiene en cuenta el n&uacute;mero introducido.<br> <li><b>TCP/UDP</b><br> Se analizan los protocolos TCP (protocolo 6) o UDP (protocolo 17).<br> Con TCP/UDP&#x2C; tambi&eacute;n puede usar un n&uacute;mero de puerto. Si no se selecciona TCP/UDP, no se tiene en cuenta el n&uacute;mero de puerto.<br> </ul>
+
+</p><br>
+
+<p class="HELP_BODY2">
+
+El valor predeterminado es TCP/UDP.
+
+</p><br>
+
+
+<a name="port"></a>
+
+<p class="HELP_TTL2">TCP/UDP</p>
+<p class="HELP_BODY2">
+Cuando se seleccionan los protocolos TCP o UDP&#x2C; tambi&eacute;n se debe seleccionar el n&uacute;mero de puerto de destino.<br> <ul> <li><b>Puerto TCP arbitrario</b><br> Traduce el n&uacute;mero de puerto TCP especificado.<br> Los n&uacute;meros de puerto v&aacute;lidos est&aacute;n comprendidos entre 1 y 65535.<br></li> <li><b>Puerto UDP arbitrario</b><br> Traduce el puerto UDP especificado.<br> Los n&uacute;meros de puerto v&aacute;lidos est&aacute;n comprendidos entre 1 y 65535.<br></li> <li><b>HTTP (Puerto TCP: 80)</b><br> Traduce las comunicaciones con el servidor HTTP. Esto equivale a especificar el puerto TCP 80. (No es necesario especificar el n&uacute;mero de puerto).</li> <li><b>FTP (Puerto TCP: 20-21)</b><br> Traduce las comunicaciones con el servidor FTP. Esto equivale a especificar los puertos TCP 20-21. (No es necesario especificar el n&uacute;mero de puerto).</li> <li><b>HTTPS (Puerto TCP: 443)</b><br> Traduce las comunicaciones con el servidor HTTPS. Esto equivale a especificar el puerto TCP 443. (No es necesario especificar el n&uacute;mero de puerto).</li> <li><b>TELNET (Puerto TCP: 23)</b><br> Traduce las comunicaciones con el servidor TELNET. Esto equivale a especificar el puerto TCP 23. (No es necesario especificar el n&uacute;mero de puerto).</li> <li><b>SSH (Puerto TCP: 22)</b><br> Traduce las comunicaciones con el servidor SSH. Esto equivale a especificar el puerto TCP 22. (No es necesario especificar el n&uacute;mero de puerto).</li> <li><b>SMTP (Puerto TCP: 25)</b><br> Traduce las comunicaciones con el servidor SMTP. Esto equivale a especificar el puerto TCP 25. (No es necesario especificar el n&uacute;mero de puerto).</li> <li><b>POP3 (Puerto TCP: 110)</b><br> Traduce las comunicaciones con el servidor POP3. Esto equivale a especificar el puerto TCP 110. (No es necesario especificar el n&uacute;mero de puerto).</li> <li><b>NTP (Puerto UDP: 123)</b><br> Traduce las comunicaciones con el servidor NTP. Esto equivale a especificar el puerto UDP 123. (No es necesario especificar el n&uacute;mero de puerto).</li> <li><b>NTP (Puerto TCP: 123)</b><br> Traduce las comunicaciones con el servidor NTP. Esto equivale a especificar el puerto TCP 123. (No es necesario especificar el n&uacute;mero de puerto).</li> <li><b>IMAP (Puerto TCP: 143)</b><br> Traduce las comunicaciones con el servidor IMAP. Esto equivale a especificar el puerto TCP 143. (No es necesario especificar el n&uacute;mero de puerto).</li> </ul>
+
+</p><br>
+<br><br>
+
+
+
+
+
+<p class="HELP_TTL3">Bot&oacute;n Agregar (primero)</p>
+<p class="HELP_BODY3">
+Haga clic en este bot&oacute;n para agregar la informaci&oacute;n anterior a la parte superior de la lista siguiente.<br> Este bot&oacute;n est&aacute; visible en el modo inicial Anexar.
+</p><br>
+
+<p class="HELP_TTL3">Bot&oacute;n Agregar (&uacute;ltimo)</p>
+<p class="HELP_BODY3">
+Haga clic en este bot&oacute;n para anexar la informaci&oacute;n anterior a la parte inferior de la lista siguiente.<br> Este bot&oacute;n est&aacute; visible en el modo Anexar.
+</p><br>
+<p class="HELP_TTL3">Bot&oacute;n Guardar</p>
+<p class="HELP_BODY3">
+Haga clic en esta &aacute;rea para guardar los cambios realizados en una l&iacute;nea de destino. Esta funci&oacute;n s&oacute;lo est&aacute; disponible en el modo Edici&oacute;n.
+</p><br>
+
+<p class="HELP_TTL3">Bot&oacute;n Cancelar</p>
+<p class="HELP_BODY3">
+Haga clic en este bot&oacute;n para salir del modo Edici&oacute;n.<br><br> Los botones Cancelar y Guardar est&aacute;n visibles en el modo Edici&oacute;n.
+
+</p><br>
+
+
+<hr>
+<a name="table_area"></a>
+
+<p class="HELP_TTL1">Informaci&oacute;n del filtro de IP</p><hr>
+<p class="HELP_BODY1">
+Muestra el filtro basado en IP registrado. En cada l&iacute;nea se muestra tambi&eacute;n el n&uacute;mero de paquetes filtrados.<br> Este n&uacute;mero se borra cuando se cambia la configuraci&oacute;n.
+</p><br>
+
+<p class="HELP_TTL3">Bot&oacute;n [Editar]</p>
+<p class="HELP_BODY3">
+Haga clic en [Editar] para cambiar una entrada. La l&iacute;nea se volver&aacute; roja.  Finalizada la edici&oacute;n&#x2C; haga clic en [Aplicar] para mantener los cambios o en [Cancelar] para descartarlos.
+</p><br>
+
+<p class="HELP_TTL3">Bot&oacute;n [Eliminar]</p>
+<p class="HELP_BODY3">
+Haga clic en [Eliminar] para eliminar una l&iacute;nea.
+</p><br>
+
+<p class="HELP_TTL3">Bot&oacute;n de flecha arriba</p>
+<p class="HELP_BODY3">
+Bot&oacute;n de flecha arriba: al hacer clic en este bot&oacute;n, esta l&iacute;nea se cambia por la de arriba.
+</p><br>
+
+<p class="HELP_TTL3">Bot&oacute;n de flecha abajo</p>
+<p class="HELP_BODY3">
+Bot&oacute;n de flecha abajo: al hacer clic en este bot&oacute;n, esta l&iacute;nea se cambia por la de abajo.<br>
+</p><br>
+
+</body>
+
+<!-- Mirrored from 192.168.0.1/help/help_filter_ip.html by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 11 Jan 2017 00:16:16 GMT -->
+</html>

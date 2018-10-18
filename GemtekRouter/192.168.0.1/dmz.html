@@ -1,0 +1,207 @@
+<html>
+
+<!-- Mirrored from 192.168.0.1/dmz.html by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 11 Jan 2017 00:16:10 GMT -->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta http-equiv="Pragma" content="no-cache">
+<meta http-equiv="Cache-Control" content="no-cache">
+<meta http-equiv="Expires" content="Thu, 01 Dec 1994 16:00:00 GMT">
+<META http-equiv="Content-Style-Type" content="text/css">
+<LINK rel="stylesheet" href="WHR-G300N-160149-style-ENG.css" type="text/css">
+<LINK rel="stylesheet" href="WHR-G300N-160149-style-ad-ENG.css" type="text/css">
+<meta http-equiv="Content-Script-Type" content="text/javascript">
+<script src="OpenHelp.html"></script>
+
+<script language="JavaScript" type="text/javascript" src="common.html"></script>
+<script type="text/javascript">
+<!-- 
+ 
+function check_ip_format(ip, item, type)
+{
+	var n;
+	var lanip='192.168.0.1';
+	var lanmask='255.255.255.0';
+	
+	if (ip=="0.0.0.0")
+	{
+    Show_error(item, "No se puede usar la direcci&oacute;n reservada (0.0.0.0)");
+    return false;
+  }
+  if (ip=="255.255.255.255")
+  {
+    Show_error(item, "No se puede usar la direcci&oacute;n reservada (255.255.255.255)");
+    return false;
+  }
+  if (ip==lanip)
+  {
+    Show_error(item, "No se puede especificar la direcci&oacute;n IP de la LAN de esta Device");
+    return false;
+  }
+
+	if (!isBlank(ip))
+	{
+		n = ip.split('.');
+		
+		if (n.length<4)
+		{
+		  Show_error(item, "Formato de direcci&oacute;n IP no v&aacute;lido");
+        return false;
+		}
+		else
+		{
+  		if(isBlank(n[0]))
+  		{
+  		  Show_error(item, "Formato de direcci&oacute;n IP no v&aacute;lido");
+        return false;
+      }	
+  		//else if((isNaN(n[0]))||(n[0]<=0)||!check_integer(n[0])||check_initial_zero(n[0])) 
+		else if((isNaN(n[0]))||(n[0]<=0)||!check_integer(n[0])) 
+  		{
+        Show_error(item, "Formato de direcci&oacute;n IP no v&aacute;lido");
+        return false; 
+      }
+      else if (n[0]==127)
+      {
+        Show_error(item, "No se puede usar la direcci&oacute;n de bucle invertido (127.XXX.XXX.XXX)");
+        return false;
+      }
+      else if (n[0]>=224 && n[0]<=239)
+      {
+        Show_error(item, "No se puede usar la direcci&oacute;n de prueba (de 224.XXX.XXX.XXX a 239.XXX.XXX.XXX)");
+        return false;
+      }	
+      else if (n[0]>=240 && n[0]<=255)
+      {
+        Show_error(item, "No se puede usar la direcci&oacute;n de prueba (de 240.XXX.XXX.XXX a 255.XXX.XXX.XXX)");
+        return false;
+      }	
+  			
+  		if(isBlank(n[1]))
+  		{
+        Show_error(item, "Formato de direcci&oacute;n IP no v&aacute;lido");
+        return false;
+      }
+  		else if((isNaN(n[1]))||(n[1]<0)||(n[1]>255)||!check_integer(n[1])) 
+  		{
+        Show_error(item, "Formato de direcci&oacute;n IP no v&aacute;lido");
+        return false; 
+      }		
+  		
+  		if(isBlank(n[2]))
+  		{
+        Show_error(item, "Formato de direcci&oacute;n IP no v&aacute;lido");
+        return false;
+      }
+  		else if((isNaN(n[2]))||(n[2]<0)||(n[2]>255)||!check_integer(n[2])) 
+  		{
+        Show_error(item, "Formato de direcci&oacute;n IP no v&aacute;lido");
+        return false; 
+      }
+  		
+  		if(isBlank(n[3]))
+  		{
+        Show_error(item, "Formato de direcci&oacute;n IP no v&aacute;lido");
+        return false;
+      }
+  		else if((isNaN(n[3]))||(n[3]<=0)||(n[3]>=255)||!check_integer(n[3])) 
+  		{
+        Show_error(item, "Formato de direcci&oacute;n IP no v&aacute;lido");
+        return false; 
+      }
+      
+      if (!isBlank(lanip))
+      {
+        if (!check_the_same_subnet(ip,lanip,lanmask))
+        {
+          Show_error(item, "Fuera del rango de direcciones de red de la LAN");
+          return false;
+        }
+      }
+    }
+	}
+
+	return true;
+}
+
+function isAllowValue(s)
+{
+  var i;
+	for (i=0; i<s.length; i++)
+	{
+		var c;
+		
+		c=s.charAt(i);
+	
+		if (((c>='0')&&(c<='9')) || (c=='.'))
+		{
+      continue;
+		}
+		else
+		{
+		  Show_error("Direcci&oacute;n DMZ", "Contiene un car&aacute;cter no v&aacute;lido");
+			return false;
+		}
+	}
+	
+	return true;
+}
+
+function check_initial_zero(tmp)
+{	
+	if(tmp.length>1&&tmp.charAt(0)=="0")
+	{
+		return true;
+	}
+	return false;
+}
+
+function Apply()
+{
+	var DMZIP_tmp;
+  DMZIP_tmp=ip_normalize_0(document.forms[0].DMZIP.value);
+  if (!isAllowValue(DMZIP_tmp))
+    return false;
+  
+  if(!check_ip_format(document.getElementById("id_dmzip").value,"Direcci&oacute;n DMZ",""))
+    return false;
+  
+	var dmzip;
+	dmzip = document.getElementById("id_dmzip").value;
+	if (dmzip.length!=0)
+		document.getElementById("id_dmzenable").value = "1";
+	else
+		document.getElementById("id_dmzenable").value = "0";
+		
+	Hide_error();
+	document.forms[0].submit();
+}
+  // -->
+</script>
+<script src="OnceOnly.html"></script>
+</head>
+
+<!--<body  class="BFK_BODY" onkeydown="return pressEnterKey(event);">-->
+<body class="BFK_BODY"> <!--patch 20100105-->
+<br>
+<form onsubmit="return Apply();" method="POST" action="http://admin:admin@192.168.0.1/dmz.html">
+<div id="id_errtbl" class="C_ERR" style="display:none;"></div>
+  <table class="AD_SET">
+    <tr>
+      <th>Direcci&oacute;n IP de DMZ</th>
+      <td>
+        <input type="text" name="DMZIP" id="id_dmzip" size="20" value="" maxlength="15">
+      </td>
+    </tr>
+  </table>
+  
+  <p class="notice">&#x28;*&#x29; La direcci&oacute;n IP del cliente que configura esta Device es[192.168.0.2]</p>
+  
+  <input type="hidden" value="" name="nosave_SETUP">
+  <input type="hidden" value="0" name="DMZEnable" id="id_dmzenable">
+  <p><input type="button" value="Aplicar" onclick="Apply();"></p>
+</form>
+
+</body>
+
+<!-- Mirrored from 192.168.0.1/dmz.html by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 11 Jan 2017 00:16:10 GMT -->
+</html>

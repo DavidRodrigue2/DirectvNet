@@ -1,0 +1,251 @@
+<html>	
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+		<link rel="stylesheet" href="../css/styles.css" type="text/css">
+		<title>Configuración de seguridad inalámbrica</title>
+		<script type="text/javascript" src="util_gw.js"> </script><style type="text/css"></style>
+	</head>
+<body>
+<blockquote>
+
+<form method="POST" name="formEncrypt">
+<table width="100%" border="0" cellpadding="0" cellspacing="4">	
+	<tbody><tr>
+		<td colspan="2" width="100%">
+			<table width="100%" border="0" cellpadding="0" cellspacing="4"> 
+				<tbody><tr>
+					 <td width="30%" class="bgblue"><font size="2"><b>Cifrado:</b></font></td>					 
+				  <td width="70%" class="bggrey"><font size="2">
+					 <select size="1" id="method" name="method0" onchange="show_authentication()">	 
+						<option value="0"> Disable </option>
+			 			<option value="1"> WEP </option>
+						<option value="2"> WPA </option>
+						<option value="4"> WPA2 </option> 
+						<option value="6"> WPA-Mixed </option>						
+						
+					</select> </font>
+				</td> </tr>
+			</tbody></table>
+	</td></tr>			
+
+	<tr id="enable_8021x" style="display: none;">
+		<td colspan="2" width="100%">			
+			<table width="100%" border="0" cellpadding="0" cellspacing="4">
+			 	<tbody><tr>
+					 <td width="30%" class="bgblue"><font size="2"><b>Autenticación 802.1x:</b></font></td>
+					 <td width="70%" class="bggrey"><font size="2">
+						<input type="checkbox" id="use1x" name="use1x0" value="ON" onclick="show_8021x_settings()">
+							</font>
+				</td></tr>
+			</tbody></table>
+	</td></tr>			
+
+	<tr id="show_wep_auth" style="display: none;">
+		<td colspan="2" width="100%">			
+			<table width="100%" border="0" cellpadding="0" cellspacing="4">
+			 	<tbody><tr>	
+					<td width="30%"><font size="2"><b>Autenticación:</b></font></td>
+					<td width="70%" class="bggrey"><font size="2">
+						<input name="auth_type" type="radio" value="0">Sistema abierto
+						<input name="auth_type" type="radio" value="1">Clave compartida
+						<input name="auth_type" type="radio" value="2">Auto
+							</font>
+				</td></tr>
+			</tbody></table>
+	</td></tr>			
+
+	<tr id="setting_wep" style="display: none;">	
+		<td colspan="2" width="100%">			
+			<table width="100%" border="0" cellpadding="0" cellspacing="4">
+			      <input type="hidden" name="wepActivado0" value="ON" checked="">			
+			 	<tbody><tr>
+					<td width="30%"><font size="2"><b>Longitud de clave:</b></font></td>
+					<td width="70%" class="bggrey"><font size="2">
+					<select size="1" name="length0" id="length" onchange="updateWepFormat(document.formEncrypt, 0)">	
+						 <option value="1"> 64 bits</option>
+						 <option value="2">128 bits</option>
+					</select></font>
+				</td></tr>
+				<tr>
+					<td width="30%"><font size="2"><b>Formato de clave:</b></font></td>
+					<td width="70%" class="bggrey">
+					<select id="format" name="format0" onchange="setDefaultKeyValue(document.formEncrypt, 0)">
+					     	<option value="1">ASCII (5 caracteres)</option>
+						<option value="2">Hex (10 caracteres)</option>					
+					</select>
+				</td></tr>
+				<tr>
+					<td width="30%"><font size="2"><b>Cifrado Key:</b></font></td>
+					<td width="70%" class="bggrey">
+						<input type="text" id="key" name="key0" maxlength="10" size="26" value="">
+				</td></tr> 
+			</tbody></table>				
+	</td></tr>     
+
+	<tr id="setting_wpa">
+		<td colspan="2">	
+			<table width="100%" border="0" cellpadding="0" cellspacing="4">			
+				<tbody><tr>
+					<td width="30%" class="bgblue"><font size="2"><b>Autenticacion Mode:</b></font></td>
+					<td width="70%" class="bggrey"><font size="2">
+						<input name="wpaAuth0" type="radio" value="eap" onclick="show_wpa_settings()">Empresarial (RADIUS)
+						<input name="wpaAuth0" type="radio" value="psk" onclick="show_wpa_settings()">Personal (clave precompartida)
+							</font>
+				</td></tr>  
+
+				<tr id="show_wpa_cipher">
+					<td width="30%" class="bgblue"><font size="2"><b>Conjunto de cifrado WPA:</b></font></td>
+					<td width="70%" class="bggrey"><font size="2">
+						<input type="checkbox" name="ciphersuite0" value="tkip" onclick="wpa_suite_select(0,0);">TKIP&nbsp;
+						<input type="checkbox" name="ciphersuite0" value="aes" onclick="wpa_suite_select(0,1);">AES
+							</font>
+				</td></tr> 
+					
+				<tr id="show_wpa2_cipher">
+					<td width="30%" class="bgblue"><font size="2"><b>Conjunto de cifrado WPA2:</b></font></td>
+					<td width="70%" class="bggrey"><font size="2">
+						<input type="checkbox" name="wpa2ciphersuite0" value="tkip" onclick="wpa_suite_select(1,0);">TKIP&nbsp;
+						<input type="checkbox" name="wpa2ciphersuite0" value="aes" onclick="wpa_suite_select(1,1);">AES
+							</font>
+				</td></tr>
+			
+  
+				<tr id="show_wpa_psk1">				
+					<td width="30%"><font size="2"><b>Pre-Shared&nbsp;Key&nbsp;Format:</b></font></td>
+					<td width="70%" class="bggrey">
+					<select id="psk_fmt" name="pskFormat0" onchange="pskFormatChange(formEncrypt,0)">
+						<option value="0">Frase de paso</option>
+						<option value="1">HEX (64 caracteres)</option>
+						</select>
+				</td></tr>
+				<tr id="show_wpa_psk2">
+					<td width="30%"><font size="2"><b>Pre-Shared&nbsp;Key:</b></font></td>
+					<td width="70%" class="bggrey"><input type="password" name="pskValue0" id="wpapsk" size="32" value="" maxlength="63">
+				</td></tr>
+			</tbody></table>		
+	</td></tr>	 
+        <tr id="setting_wapi" style="display: none;">
+                <td colspan="2">
+                        <table width="100%" border="0" cellpadding="0" cellspacing="4">    
+                                <tbody><tr>
+                                        <td width="30%" class="bgblue"><font size="2"><b>Autenticación Mode:</b></font></td>
+                                        <td width="70%" class="bggrey"><font size="2">
+                                                <input name="wapiAuth0" type="radio" value="eap" onclick="show_wapi_settings()">Enterprise (AS Server)
+                                                <input name="wapiAuth0" type="radio" value="psk" onclick="show_wapi_settings()">Personal (clave precompartida)
+                                                        </font>
+                                </td></tr>
+				<tr id="show_wapi_psk1" style="display: none;">
+				<td width="30%" class="bgblue"><font size="2"><b>Pre-Shared&nbsp;Key&nbsp;Format:</b></font></td>
+                                        <td width="70%" class="bggrey">
+                                        <select id="wapi_psk_fmt" name="wapiPskFormat0" onchange="">
+                                                <option value="0">Frase de paso</option>
+                                                <option value="1">HEX (64 caracteres)</option>
+                                                </select>
+                                </td></tr>
+                                <tr id="show_wapi_psk2" style="display: none;">
+                                        <td width="30%" class="bgblue"><font size="2"><b>Pre-Shared&nbsp;Key:</b></font></td>
+                                        <td width="70%" class="bggrey"><input type="password" name="wapiPskValue0" id="wapipsk" size="32" maxlength="64" value="">
+                                </td></tr>
+                        </tbody></table>
+	</td></tr>
+	<tr id="show_1x_wep" style="display: none;">
+		<td colspan="2">	
+			<table width="100%" border="0" cellpadding="0" cellspacing="4">			
+				<tbody><tr>	
+					<td width="30%" class="bgblue"><font size="2"><b>Longitud de clave:</b></font></td>
+					<td width="70%" class="bggrey"><font size="2">
+						<input name="wepKeyLen0" type="radio" value="wep64">64 Bits
+						<input name="wepKeyLen0" type="radio" value="wep128">128 Bits
+							</font>
+				</td></tr>
+		 	</tbody></table>
+	</td></tr> 
+
+	<tr id="show_8021x_eap" style="display: none;">
+		<td colspan="2">			
+			<table width="100%" border="0" cellpadding="0" cellspacing="4"> 
+				<tbody><tr>
+					 <td width="30%" class="bgblue"><font size="2"><b>RADIUS&nbsp;Server&nbsp;IP&nbsp;Address:</b></font></td>
+					 <td width="70%" class="bggrey"><input id="radius_ip" name="radiusIP0" size="16" maxlength="15" value="0.0.0.0"></td>
+				 </tr>
+				<tr>
+					<td width="30%" class="bgblue"><font size="2"><b>RADIUS&nbsp;Server&nbsp;Port:</b></font></td>
+					<td width="70%" class="bggrey"><input type="text" id="radius_port" name="radiusPort0" size="5" maxlength="5" value="1812"></td>
+				 </tr>
+				<tr>
+					<td width="30%" class="bgblue"><font size="2"><b>RADIUS&nbsp;Server&nbsp;Password:</b></font></td>
+					<td width="70%" class="bggrey"><input type="password" id="radius_pass" name="radiusPass0" size="32" maxlength="64" value=""></td>
+				</tr>
+			</tbody></table>								
+	</td></tr>
+			
+	<tr id="show_8021x_eap_client" style="display: none;">
+	<td colspan="2">
+		<table width="100%" border="0" cellpadding="0" cellspacing="4">
+			<tbody><tr>
+				 <td width="30%" class="bgblue"><font size="2"><b>EAP Type:</b></font></td>					 
+				 <td width="70%" class="bggrey"><font size="2">
+				 <select size="1" id="eap_type" name="eapTipo0" onchange="change_1x_eap_type_settings(wlan_idx)">	 
+					<option value="0"> MD5 </option>
+		 			<option value="1"> TLS </option>
+					<option value="2"> PEAP </option>			
+				</select> </font></td>
+			</tr>
+			<tr>
+				 <td width="30%" class="bgblue"><font size="2"><b>Inside Tunnel Type:</b></font></td>					 
+				 <td width="70%" class="bggrey"><font size="2">
+				 <select size="1" id="eap_inside_type" name="eapInsideTipo0" onchange="change_1x_eap_type_settings(wlan_idx)">	 
+		 			<option value="0"> MSCHAPV2 </option>
+				 </select> </font></td>
+			</tr>
+			<tr>
+				 <td width="30%" class="bgblue"><font size="2"><b>EAP User ID:</b></font></td>
+				 <td width="70%" class="bggrey"><input id="eap_user_id" name="eapUserId0" size="24" maxlength="64" value=""></td>
+			</tr>
+			<tr>
+				 <td width="30%" class="bgblue"><font size="2"><b>RADIUS User Name:</b></font></td>
+				 <td width="70%" class="bggrey"><input id="radius_user_name" name="radiusUserName0" size="24" maxlength="64" value=""></td>
+			</tr>
+			<tr>
+				<td width="30%" class="bgblue"><font size="2"><b>RADIUS User Password:</b></font></td>
+				<td width="70%" class="bggrey"><input type="password" id="radius_user_pass" name="radiusUserPass0" size="24" maxlength="64" value=""></td>
+			</tr>
+			<tr>
+				<td width="30%" class="bgblue"><font size="2"><b>User Key Password (if any):</b></font></td>
+				<td width="70%" class="bggrey"><input type="password" id="radius_user_cert_pass" name="radiusUserCertPass0" size="24" maxlength="64" value=""></td>
+			</tr>
+		</tbody></table>								
+	</td>
+	</tr>
+			
+        <tr id="show_8021x_wapi" style="display: none;">
+                <td colspan="2">
+                        <table width="100%" border="0" cellpadding="0" cellspacing="4">
+                                <tbody><tr id="show_8021x_wapi_local_as" style="">
+                                <td width="30%" class="bgblue"><font size="2"><b>Use Local AS Server:</b></font></td>
+                                <td width="70%" class="bggrey"><font size="2">
+                                <input type="checkbox" id="uselocalAS" name="uselocalAS0" value="ON" onclick="show_wapi_ASip()">
+                                </font>
+                                </td></tr>
+				<tr>
+                                         <td width="30%" class="bgblue"><font size="2"><b>AS&nbsp;Server&nbsp;IP&nbsp;Address:</b></font></td>
+                                         <td width="70%" class="bggrey"><input id="wapiAS_ip" name="wapiASIP0" size="16" maxlength="15" value="0.0.0.0"></td></tr>
+				<tr>
+					 <td width="30%" class="bgblue"><font size="2"><b>Seleccionar WAPI certificate:</b></font></td>					 
+				  	<td width="70%" class="bggrey"><font size="2">
+					 <select size="1" id="wapi_cert_sel" name="wapiCertSel0" onchange="show_wapi_cert_sel()">	 
+						<option value="0"> Use Cert from Remote AS </option>						
+
+						<!---   <option value="1">   </option>  --->
+						
+					</select> </font></td>
+				</tr>
+                        </tbody></table>
+        </td></tr>
+		
+	<script> updateWepFormat(document.formEncrypt, 0);</script>
+</tbody></table>
+</form>
+
+</blockquote>
+</body></html>

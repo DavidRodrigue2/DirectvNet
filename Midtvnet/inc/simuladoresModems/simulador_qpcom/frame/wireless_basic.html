@@ -1,0 +1,171 @@
+
+<!-- saved from url=(0039)http://192.168.1.254/wireless_basic.asp -->
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta http-equiv="Pragma" content="no-cache">
+
+<title>Wireless | Basic Settings</title>
+
+<script language="JavaScript" type="text/javascript">
+
+
+function onenablewirelesschange(){
+	if(document.getElementById("enablewireless").checked){
+		document.getElementById("divwieless").style.display="block";
+	}else{
+		document.getElementById("divwieless").style.display="none";
+	}
+}
+</script>
+
+<link rel="stylesheet" type="text/css" href="../css/style.css">
+</head>
+<body leftmargin="0" topmargin="0" marginheight="0" marginwidth="0" onload="initbasic();" class="bg">
+	<table width="100%" border="0" align="center" cellpadding="0" cellspacing="0">
+      <tbody><tr>
+        <td width="33">&nbsp;</td>
+        <td width="679" valign="top">
+		<table width="100%" border="0" align="center" cellpadding="0" cellspacing="0" height="100%">
+          <tbody><tr>
+            <td align="center" valign="top"><table width="98%" border="0" align="center" cellpadding="0" cellspacing="0" height="100%">
+                <tbody><tr>
+                  <td align="center" valign="top">
+					<form method="post" name="wireless_basic" action="http://192.168.1.254/goform/wirelessBasic">
+					<!--<input type="hidden" id="rebootTag" name="rebootTag">-->
+					<table border="0" cellpadding="0" cellspacing="0" class="content2">
+					<tbody><tr><td valign="top"><input type="checkbox" checked name="enablewireless" value="1" id="enablewireless" onclick="onenablewirelesschange()">Enable wireless function
+					  <input type="hidden" name="enablewirelessEx"></td>
+					<td valign="top">&nbsp;</td>
+					</tr>
+					</tbody></table>
+					<div id="divwieless" style="display: block; margin: 0px; padding: 0px;">
+					<table class="content1" id="table1" style="margin-top:0px;" cellpadding="0" cellspacing="0">
+					  <tbody><tr class="a1">
+					    <td width="150" align="right">Wireless Working Mode</td>
+					    <td>&nbsp;&nbsp;&nbsp;&nbsp;<input name="WirelessT" checked type="radio" value="0" onclick="changeWds(0);">Wireless Access Point(AP)&nbsp;<input name="WirelessT" type="radio" value="1" onclick="changeWds(1);">Network Bridge(WDS)</td>
+					    </tr>
+					  <tr class="a2"> 
+						<td width="150" align="right">Network Mode</td>
+						<td>&nbsp;&nbsp;&nbsp;&nbsp;<select name="wirelessmode" id="wirelessmode" size="1" onchange="wirelessModeChange()">
+                          <option value="0">11b/g mixed mode</option>
+                          <option value="1">11b mode</option>
+                          <option value="4">11g mode</option>
+                          <option value="9">11b/g/n mixed mode</option>
+                        </select></td>
+					  </tr>
+					  <input type="hidden" name="bssid_num" value="1">
+					  <tr class="a1"> 
+						<td width="150" align="right" class="head">SSID</td>
+						<td>&nbsp;&nbsp;&nbsp;&nbsp;<input type="text" name="ssid" id="ssid" size="20" maxlength="32" value=""></td>
+					  </tr>
+					  <tr class="a2"> 
+						<td width="150" align="right" class="head">Broadcast(SSID)</td>
+						<td>
+						  &nbsp;&nbsp;&nbsp;&nbsp;<input type="radio" name="broadcastssid" value="0" checked="">Enable&nbsp;
+						  <input type="radio" name="broadcastssid" value="1">Disable    </td>
+					  </tr>
+					  <tr id="div_11b_channel" name="div_11b_channel" style="visibility: hidden; display: none;" class="a1">
+					  <td width="150" align="right" class="head">Channel</td>
+					  <td>
+					  <div id="11b">&nbsp;&nbsp;&nbsp;&nbsp;<select id="sz11bChannel" name="sz11bChannel" size="1" onchange="ChannelOnChange()" disabled=""><option value="0" selected="">AutoSelect</option><option value="1">2412MHz (Channel 1)</option><option value="2">2417MHz (Channel 2)</option><option value="3">2422MHz (Channel 3)</option><option value="4">2427MHz (Channel 4)</option><option value="5">2432MHz (Channel 5)</option><option value="6">2437MHz (Channel 6)</option><option value="7">2442MHz (Channel 7)</option><option value="8">2447MHz (Channel 8)</option><option value="9">2452MHz (Channel 9)</option><option value="10">2457MHz (Channel 10)</option><option value="11">2462MHz (Channel 11)</option></select></div></td>
+					  </tr>
+					  <tr id="div_11g_channel" name="div_11g_channel" style="visibility: visible;" class="a2">
+						<td width="150" align="right">Channel</td>
+						<td>
+						<div id="11g">&nbsp;&nbsp;&nbsp;&nbsp;<select id="sz11gChannel" name="sz11gChannel" size="1" onchange="ChannelOnChange()"><option value="0" selected="">AutoSelect</option><option value="1">2412MHz (Channel 1)</option><option value="2">2417MHz (Channel 2)</option><option value="3">2422MHz (Channel 3)</option><option value="4">2427MHz (Channel 4)</option><option value="5">2432MHz (Channel 5)</option><option value="6">2437MHz (Channel 6)</option><option value="7">2442MHz (Channel 7)</option><option value="8">2447MHz (Channel 8)</option><option value="9">2452MHz (Channel 9)</option><option value="10">2457MHz (Channel 10)</option><option value="11">2462MHz (Channel 11)</option></select></div></td>
+					  </tr>                      
+					</tbody></table>
+					<div id="div_11n" style="display: block;">
+					<hr style="width:80%;">
+					<table name="div_11n" id="table2" cellspacing="0" cellpadding="0" class="content1" style="margin-top:0px;">
+					  <tbody><tr class="a1">
+						<td width="150" align="right" class="head">Channel Bandwidth</td>
+						<td>
+						  &nbsp;&nbsp;&nbsp;&nbsp;<input type="radio" name="n_bandwidth" value="0" onclick="Channel_BandWidth_onClick()" checked="">20&nbsp;
+						  <input type="radio" name="n_bandwidth" value="1" onclick="Channel_BandWidth_onClick()">20/40						</td>
+					  </tr>
+					  <tr class="a2">
+						<td width="150" align="right" class="head">Extension Channel</td>
+						<td>
+						  &nbsp;&nbsp;&nbsp;&nbsp;<select id="n_extcha" name="n_extcha" size="1" disabled="">
+						<option value="0" selected="">Auto Select</option>
+						  </select>						</td>
+					  </tr>
+					</tbody></table>
+					</div>
+					<div id="div_wmm">
+                      			<hr style="width:80%;">	
+                       			<table name="div_wmm" id="table3" cellspacing="0" cellpadding="0" class="content1" style="margin-top:0px;">
+				       <tbody><tr class="a2">
+                        
+						<td width="150" align="right">WMM Capable</td>
+						<td>
+						  &nbsp;&nbsp;&nbsp;&nbsp;<input type="radio" name="wmm_capable" value="on" onclick="wmm_capable_enable_switch()" checked="">Enable &nbsp;
+						  <input type="radio" name="wmm_capable" value="off" onclick="wmm_capable_enable_switch()"><script>document.write(_(""));</script>Disable
+						</td>
+					  </tr>
+					  <tr id="div_apsd_capable" name="div_apsd_capable" class="a1" style="visibility: visible; display: table-row;">
+						<td width="150" align="right">APSD Capable</td>
+						<td>
+						  &nbsp;&nbsp;&nbsp;&nbsp;<input type="radio" name="apsd_capable" value="on">Enable &nbsp;
+						  <input type="radio" name="apsd_capable" value="off" checked="">Disable
+						</td>
+					  </tr>
+					</tbody></table>
+					</div>
+					<div id="wdsMode" style="display: none;">
+					<hr style="width:80%;">
+					<table class="content3" cellpadding="0" cellspacing="0">
+					  <tbody><tr>
+					    <td colspan="2" bgcolor="#9D9D9D"><b>Working Mode :WDS</b></td>
+					  </tr>
+					</tbody></table>
+					<div style="width:80%; height:1px; background-color:#c0c7cd; overflow:hidden; padding:0px; margin-top:1px;"></div>	
+					  <table cellpadding="0" cellspacing="0" class="content3" id="table3">
+					  <tbody><tr id="wds_mac_list_1" name="wds_mac_list_1" style="visibility:visible;">
+						<td width="150" align="right" class="head">AP MAC address </td>
+						<td align="left" width="382">&nbsp;&nbsp;&nbsp;&nbsp;
+						  <input type="text" name="wds_1" size="20" maxlength="17" value=""><input type="hidden" name="ssid_1"><input type="hidden" name="schannel_1"></td>
+					  </tr>
+					  <tr id="wds_mac_list_2" name="wds_mac_list_2" style="visibility:visible;">
+						<td width="150" align="right" class="head">AP MAC address </td>
+						<td align="left">&nbsp;&nbsp;&nbsp;&nbsp;
+						  <input type="text" name="wds_2" size="20" maxlength="17" value=""><input type="hidden" name="ssid_2"><input type="hidden" name="schannel_2"></td>
+					  </tr>
+
+					  <input type="hidden" name="wds_list" value="1">
+					</tbody></table>
+						<input name="wlSurveyBtn" id="wlSurveyBtn" type="button" class="button" value="Open scan" onclick="SurveyClose()">
+						  <table width="442" id="wdsScanTab" class="content3" style="display: none;">
+							<tbody><tr bgcolor="#CCCCCC" style="line-height:20px;">
+							  <td width="10%"><div align="center">Select</div></td>
+							  <td width="20%"><div align="center">SSID</div></td>
+							  <td width="30%"><p align="center">MAC address</p></td>
+							  <td width="10%"><div align="center">Channel</div></td>
+							  <td width="15%"><div align="center">Security</div></td>
+							  <td width="15%"><div align="center">Signal strength</div></td>
+							</tr>
+						  </tbody></table>
+					</div>
+					<table id="div_11n_plugfest" name="div_11n_plugfest" width="80%" cellspacing="1" cellpadding="3">
+					  <tbody><tr> 
+						<td class="vline" colspan="2"></td>
+					  </tr>
+					</tbody></table> 
+					</div> 
+						<table width="75%" border="0" cellpadding="0" cellspacing="0" style="padding-top:20px;"><tbody><tr><td align="center"><input type="button" class="button1" value="Ok" onmouseover="style.color=&#39;#FF9933&#39;" onmouseout="style.color=&#39;#000000&#39;" onclick="preSubmit(document.wireless_basic)">&nbsp;&nbsp;&nbsp;&nbsp;<input type="button" class="button1" value="Cancel" onmouseover="style.color=&#39;#FF9933&#39;" onmouseout="style.color=&#39;#000000&#39;" onclick="init(document.wireless_basic)"></td></tr></tbody></table> 
+					</form> 
+				  </td>
+                </tr>
+            </tbody></table></td>
+          </tr>
+        </tbody></table></td>
+        <td align="center" valign="top" height="100%">
+		<table border="0" cellpadding="0" cellspacing="0" class="left1" style="margin-top:25px;"><tbody><tr><td align="center"><b>Help information</b></td></tr><tr><td align="left">&nbsp;&nbsp;&nbsp;&nbsp;You only need to set the wireless basic information on this page, we suggest you set only the SSID and channel and keep the other items the default.<br>&nbsp;&nbsp;&nbsp;&nbsp;SSID:The network name shared by all the devices in the wireless network.<br>&nbsp;&nbsp;&nbsp;&nbsp;SSID Broadcast: When wireless clients search for the wireless networks to connect  in the area ,they detect SSID broadcast via the router, if selected ,the router will broadcast its SSID to all wireless hosts!<br>&nbsp;&nbsp;&nbsp;&nbsp;Channel:You can select Auto-select mode, or any of the channel list,try to select the less used channels in your area to avoid interference.<br>&nbsp;&nbsp;&nbsp;&nbsp;Extension Channel:To confirm the network’s frequency range in 11n mode.</td></tr></tbody></table>		
+		</td>
+      </tr>
+    </tbody></table>
+
+
+
+
+</body></html>

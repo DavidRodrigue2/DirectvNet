@@ -1,0 +1,613 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+
+<!-- Mirrored from 192.168.0.1/top_main.html by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 11 Jan 2017 00:16:08 GMT -->
+<head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+<meta http-equiv="Cache-Control" content="no-cache">
+<META http-equiv="Content-Style-Type" content="text/css">
+<LINK rel="stylesheet" href="WHR-G300N-160149-style-ENG.css" type="text/css">
+<LINK rel="stylesheet" href="WHR-G300N-160149-style-ad-ENG.css" type="text/css">
+<meta http-equiv="Content-Script-Type" content="text/javascript">
+<script language="javascript" type="text/javascript" src="common.html"></script>
+
+<meta http-equiv="Content-Style-Type" content="text/css">
+<script language="JavaScript">
+<!--
+var err_item="ERROR:";
+var err_description="CONTENIDO";
+
+function UpperFrameJump(url) {
+  window.open(url,"upper");
+}
+
+function UpperAndMainFrameJump(upper_url, main_url) {
+  window.open(upper_url,"upper");
+  window.open(main_url,"main");
+}
+function GoTarget(meu, ttlmeu, submeu, tar_meu, tar_ttlmeu, tar_submeu, page, help)
+{
+	//main title
+	for(i=0;i<=6;i++)
+	{
+		top.frames[1].document.getElementById(meu+i).className="";
+		top.frames[1].document.getElementById(ttlmeu+i).style.display="none";
+	}
+	top.frames[1].document.getElementById(tar_meu).className = "SELECTED";
+	top.frames[1].document.getElementById(tar_ttlmeu).style.display="";
+	
+	//subtitle
+	for(i=0;i<=5;i++)
+	{
+		top.frames[1].document.getElementById(submeu+i).className="UNSELECTED";
+	}
+	top.frames[1].document.getElementById(tar_submeu).className = "SELECTED";
+
+	//go target pages
+	top.frames[2].location.href = page;
+	top.frames[3].location.href = help;
+} 
+function Apply(item)
+{
+	document.wan_connect.wan_action.value=item;
+	document.wan_connect.submit();
+}
+function setBRLang()
+{
+	document.BR_lang_set.submit();
+}
+function setUSLang()
+{
+	document.US_lang_set.submit();
+}
+function setEULang()
+{
+	document.EU_lang_set.submit();
+}
+function setRULang()
+{
+	document.RU_lang_set.submit();
+}
+function init_language_table()
+{
+/*
+	var region="";
+	if(region == "JP")
+	{
+		document.getElementById("BR_language_table").style.display = "none";
+		document.getElementById("US_language_table").style.display = "none";
+	  document.getElementById("EU_language_table").style.display = "none";
+		document.getElementById("RU_language_table").style.display = "none";
+	}
+	else if(region=="BR")
+	{
+	  document.getElementById("BR_language_table").style.display = "";
+		document.getElementById("US_language_table").style.display = "none";
+	  document.getElementById("EU_language_table").style.display = "none";
+		document.getElementById("RU_language_table").style.display = "none";
+	}
+	else if(region=="US")
+	{
+	  document.getElementById("BR_language_table").style.display = "none";
+		document.getElementById("US_language_table").style.display = "";
+	  document.getElementById("EU_language_table").style.display = "none";
+		document.getElementById("RU_language_table").style.display = "none";
+	}
+	else if(region=="EU")
+	{
+	  document.getElementById("BR_language_table").style.display = "none";
+		document.getElementById("US_language_table").style.display = "none";
+	  document.getElementById("EU_language_table").style.display = "";
+		document.getElementById("RU_language_table").style.display = "none";
+	}
+	else if(region=="RU")
+	{
+	  document.getElementById("BR_language_table").style.display = "none";
+		document.getElementById("US_language_table").style.display = "none";
+	  document.getElementById("EU_language_table").style.display = "none";
+		document.getElementById("RU_language_table").style.display = "";
+	}
+*/	
+}
+function setMode()
+{
+	var wan_mode=1;
+	if(((wan_mode==0) && (document.getElementById("RouteMode").checked==true))||
+	((wan_mode!=0) && (document.getElementById("BridgeMode").checked==true)))
+		document.getElementById("id_nosave_changeflag").disabled=false;
+	else
+		document.getElementById("id_nosave_changeflag").disabled=true;
+	document.mode_set.submit();
+}
+
+function mainInit()
+{
+	var wan_mode = 1;
+	
+	var ifilter_activated = 0;
+	var ifilter_reg = 1;	
+	var region="";
+	
+	if (wan_mode == 0 || region != "JP")
+	{
+		document.getElementById("id_ifilter_table").style.display="none";
+	}
+	else
+	{
+		document.getElementById("id_ifilter_table").style.display="block";
+
+		if (ifilter_activated == 1)
+		{
+			document.getElementById("ifilter_activated").innerHTML = "Nombre del PC";
+		}
+		else
+		{
+			document.getElementById("ifilter_activated").innerHTML = "Direcci&oacute;n IP";	
+		}
+		
+		if(ifilter_reg==3)
+		{
+			document.getElementById("ifilter_reg").innerHTML = "N/A";
+		}
+		else if(ifilter_reg==5)
+		{
+			document.getElementById("ifilter_reg").innerHTML = "Servicios";
+		}
+		else if(ifilter_reg==4)
+		{
+			document.getElementById("ifilter_reg").innerHTML = "Estado"
+		}	
+		else
+		{
+			document.getElementById("ifilter_reg").innerHTML = "Funcionamiento";
+		}		
+	}
+}
+
+//-->
+</SCRIPT>
+</head>
+<BODY class="TOP_BODY" onLoad="mainInit();init_language_table();">
+<table class="TOP_FRAME">
+<tbody>
+<noscript>
+<tr>
+<td colspan="2">
+     <p class="C_WARN">Para configurar la Device, necesita tener habilitado JavaScript en el explorador</p>
+</td>
+</tr>
+</noscript>
+
+
+<tr>
+
+
+
+<!-- wizard section start -->
+
+<!-- route mode -->
+<TD class="TOP_WIZ">
+<form method="POST" name="internet_detect" action="http://admin:admin@192.168.0.1/redirect.html">
+<input type="hidden" name="PageName" value="top_main.html">
+<TABLE class=TOP_WIZ_GRP>
+     <TBODY>
+     	<TR class=HEAD>
+     		<TD class=TBL_L></TD>
+     		<TD class=TBL_C>Configuraci&oacute;n sencilla</TD>
+     		<TD class=TBL_R></TD>
+     	</TR>
+     	<TR class=HEAD2>
+     		<TD class=TBL_L></TD>
+     		<TD class=TBL_C>Configuraci&oacute;n b&aacute;sica</TD>
+     		<TD class=TBL_R></TD>
+     	</TR>
+     	<TR class=TBL>
+     		<TD class=TBL_L></TD>
+     		<TD class=TBL_C>
+     			<UL>
+     			<LI>
+     				<A href="top_wizard_func_wireless_basic.html" target="_top">
+     					Wireless SSID & Channel(11n 300Mbps Mode)
+     				</A>
+     			</LI>
+     			</UL>
+     		</TD>
+     		<TD class=TBL_R></TD>
+     	</TR>
+     	<TR class=HEAD2>
+     		<TD class=TBL_L></TD>
+     		<TD class=TBL_C>Internet</TD>
+     		<TD class=TBL_R></TD>
+     	</TR>
+     	<TR class=TBL>
+     		<TD class=TBL_L></TD>
+     		<TD class=TBL_C>
+     			<UL>
+     			<LI>
+     				<A href="top_wizard_func_inet.html" target="_top">
+     					Juegos por Internet (redireccionamiento de puertos)
+     				</A>
+     			</LI>
+     			<LI>
+     				<A href="top_wizard_func_messenger.html" target="_top">
+     					Skype
+     				</A>
+     			</LI>
+
+     			</UL>
+     		</TD>
+     		<TD class=TBL_R></TD>
+     	</TR>
+
+     	<TR class=HEAD2>
+     		<TD class=TBL_L></TD>
+     		<TD class=TBL_C>Otros</TD>
+     		<TD class=TBL_R></TD>
+     	</TR>
+     	<TR class=TBL>
+     		<TD class=TBL_L></TD>
+     		<TD class=TBL_C>
+     			<UL>
+     			<LI>
+     				<A href="top_wizard_func_fwup.html" target="_top">
+     					Actualizar el firmware de la Device
+     				</A>
+     			</LI>
+     			<LI>
+     				<A href="init.html" target="_self">
+     					Inicializar la Device
+     				</A>
+     			</LI>
+				</UL>
+			</TD>
+			<TD class=TBL_R></TD>
+		</TR>
+		<TR class=FOOT>
+			<TD class=TBL_L></TD>
+			<TD class=TBL_C></TD>
+			<TD class=TBL_R></TD>
+		</TR>
+	</TBODY>
+</TABLE>
+<BR>
+</form>
+</TD>
+
+
+<!-- wizard section end -->
+
+
+
+<td class="TOP_INFO">
+<div id="id_mode_set">
+<form method="POST" name="mode_set">
+<input type="hidden" name="nosave_changeflag" id="id_nosave_changeflag" value="0" disabled>
+    <table border="0" class=TOP_INFO_GRP>
+	<tbody>
+	    <tr class=HEAD>
+		<td class=TBL_L></td>
+		<td class=TBL_C colSpan=2>Informaci&oacute;n del MODO</td>
+		<td class=TBL_R></td>
+	    </tr>
+
+	    <tr ass=TBL>
+		    <td class=TBL_L></td>
+		    <td class=TBL_C colSpan=2>
+			    <input type="radio" name="RouterMode" id="RouteMode" value="1" checked>Modo ENRUTADOR
+			   <!-- <input type="radio" name="RouterMode" id="BridgeMode" value="0" >Modo PUENTE-->
+			    &nbsp;&nbsp;<!--<input type="button" name="SETUP" value="Aplicar" onClick="setMode();">--></td>
+
+		    <td class=TBL_R></td>
+	    </tr>
+	</tbody>
+    </table>
+</form>
+</div>
+
+<form method="POST" name="wan_connect">
+    <table border=0 class=TOP_INFO_GRP>
+	<tbody>
+	    <tr class=HEAD>
+		<td class=TBL_L></td>
+     		<td class=TBL_C colSpan=2>Informaci&oacute;n de INTERNET</td>
+     		<td class=TBL_R></td>
+     	    </tr>
+     	    <tr class=HEAD>
+     		<td class=TBL_L></td>
+     		<td class=TBL_C colSpan=2>
+            	    (Obtener una direcci&oacute;n IP del servidor DHCP)</td>
+     		<td class=TBL_R></td>
+     	    </tr>
+		<tr class=TBL>
+	<td class=TBL_L></td>
+	<td class=TBL_C>Condici&oacute;n de conexi&oacute;n</td>
+	<td class=TBL_C><b>	Estableciendo comunicaci&oacute;n
+	</b></td>
+	<td class=TBL_R></td>
+</tr>
+<tr class=TBL>
+	<td class=TBL_L></td>
+	<td class=TBL_C colspan=2>
+		<center><input type="button" value="Liberar" name="RELESE" onClick="Apply('release');"> 
+<input type="button" value="Actualizar" name="RENEW" onClick="Apply('renew');"></center>
+	</td>
+	<td class=TBL_R></td>
+</tr>
+
+		<tr class=FOOT>
+	<td class=TBL_L></td>
+	<td class=TBL_C colSpan=2>
+		<input type="button" value="Comprobar conexi&oacute;n" name="START0" onClick="Apply('check_connction');"> 
+		<input type="button" value="Actualizar" onClick="parent.top.location.href='index.html'">
+	</td>
+	<td class=TBL_R></td>
+</tr>
+<tr class=FOOT>
+<tr class=FOOT>
+<tr class=FOOT>
+
+		<input type="hidden" value="" name="wan_action" id="id_action">
+	</tbody>
+    </table>
+</form>
+
+
+<div id="id_ifilter_table" style="display:none;">
+<form method="POST" action="http://admin:admin@192.168.0.1/redirect.html">
+<input type="hidden" name="PageName" value="ifilter_status.html">
+  <TABLE border=0 class=TOP_INFO_GRP>
+    <TBODY>
+      <TR class=HEAD>
+	<TD class=TBL_L></TD>
+	<TD class=TBL_C colSpan=2>Utilidades</TD>
+	<TD class=TBL_R></TD>
+     			</TR>
+<TR class=TBL>
+     <TD class=TBL_L></TD>
+     <TD class=TBL_C>Servicios de red</TD>
+     <TD class=TBL_C>
+		  <span id="ifilter_activated">
+		  
+		 </span>
+     </TD>
+     <TD class=TBL_R></TD>
+</TR>
+<TR class=TBL>
+     <TD class=TBL_L></TD>
+     <TD class=TBL_C>Lista de servicios de red</TD>
+     <TD class=TBL_C>
+		  <span id="ifilter_reg">
+		  
+		  </span>
+     </TD>
+     <TD class=TBL_R></TD>
+</TR>
+     			<TR class=FOOT>
+     				<TD class=TBL_L></TD>
+     				<TD class=TBL_C colSpan=2>
+     				  <center>
+				    <input type="submit" value="Haga clic en los iconos en Servicios para obtener más información" name="RENEW_IFILTER">
+     				  </center>
+     				</TD>
+     				<TD class=TBL_R></TD>
+     			</TR>
+    </TBODY>
+  </TABLE>
+</form>
+</div>
+
+    <table border="0" class=TOP_INFO_GRP>
+	<tbody>
+	    <tr class=HEAD>
+     		<td class=TBL_L></td>
+     		<td class=TBL_C colSpan=2>RED INAL&Aacute;MBRICA</td>
+     		<td class=TBL_R></td>
+     	    </tr>
+<!-- -->
+     <TR class=HEAD2>
+	   <TD class=TBL_L></TD>
+	   <TD class=TBL_C colSpan=2>
+		 <!--  -->
+		 IEEE 802.11
+		 <!--  -->
+		 (
+		 ch
+		 )
+     	</TD>
+     	<TD class=TBL_R></TD>
+     </TR>
+
+
+<!-- -->
+	    <tr class=FOOT>
+	   	<td class=TBL_L></td>
+		<td class=TBL_C colSpan=2>
+		  <table>
+	     	    <tr>
+	     		 <td class="L">&nbsp;</td>
+	     		 <td class="C">
+	     		 	<input type=image onClick=" 					document.location.href='wireless_wps.html';" 					border="0" src="images/wps-enable.gif" 					width="32" height="32">
+
+			 </td>
+	     		 <td class="R">Página de configuración WPS</td>
+	     	    </tr>
+		  </table>
+		</td>
+		<td class=TBL_R></td>
+	    </tr>
+	</tbody>
+    </table>
+
+	<!-- Add for Network Service -->
+    <table border="0" class="TOP_INFO_GRP">
+	<tbody>
+	    <tr class="HEAD">
+			<td class="TBL_L"></td>
+	     	<td class="TBL_C" colSpan="2">Direcci&oacute;n IP de la LAN</td>
+	     	<td class="TBL_R"></td>
+     	</tr>
+        <tr class="FOOT">
+			<td class="TBL_L"></td>
+	     	<td class="TBL_C" colSpan="2"><input type="button" value="Direcci&oacute;n IP" onClick="document.location.href='dhcps_lease.html'"></td>
+	     	<td class="TBL_R"></td>
+     	</tr>
+	</tbody>
+    </table>
+    <!-- Add for Network Service -->
+
+<form method="POST" name="BR_lang_set" id="BR_language_table" style="display:none;">
+    <table border="0" class=TOP_INFO_GRP>
+	<tbody>
+	    <tr class=HEAD>
+     		<td class=TBL_L></td>
+     		<td class=TBL_C colSpan=2>Idioma</td>
+     		<td class=TBL_R></td>
+     	    </tr>
+	    <tr class=TBL>
+     		<td class=TBL_L></td>
+     		<td class=TBL_C colSpan=2>
+     		    <select name="lang">
+     			<option value="0" selected>Autom&aacute;tica</option><!--Auto-->
+     			<option value="1" >Ingl&eacute;s</option><!--English-->
+     			<!--<option value="6" >Alem&aacute;n</option>--><!--German-->
+          <!--<option value="7" >Franc&eacute;s</option>--><!--French-->
+     			<!--<option value="8" >Italiano</option>--><!--Italian-->
+          <option value="9" >Espa&ntilde;ol</option><!--Spanish-->
+          <option value="10" >Portugués de Brasil</option><!--Brazilian Portuguese-->         
+     			<!--<option value="2" >Chino (tradicional)</option>--><!--Chinese(traditional)-->
+     			<!--<option value="3" >Chino (simplificado)</option>--><!--Chinese(simplised)-->
+     			<!--<option value="4" >Coreano</option>--><!--Korean-->
+     			<!--<option value="5" >Tailandés</option>--><!--Thai-->
+				  <!--<option value="11" >Japon&eacute;s</option><!--Japanese-->
+				  <!--<option value="12" >Portugués</option>--><!--Portuguese-->
+				  <!--<option value="13" >Árabe</option>--><!--Arabic-->
+				  <!--<option value="14" >turco</option>--><!--Turkish-->
+				  <!--<option value="15" >Ruso</option>--><!--Russian-->
+                </select>
+          &nbsp;&nbsp;<input type="button" name="SETUP" value="Aplicar" onClick="setBRLang();">
+     	 	</td>
+     		<td class=TBL_R></td>
+     	    </tr>
+  	</tbody>
+     </table>
+</form>
+
+<form method="POST" name="US_lang_set" id="US_language_table" style="display:none;">
+    <table border="0" class=TOP_INFO_GRP>
+	<tbody>
+	    <tr class=HEAD>
+     		<td class=TBL_L></td>
+     		<td class=TBL_C colSpan=2>Idioma</td>
+     		<td class=TBL_R></td>
+     	    </tr>
+	    <tr class=TBL>
+     		<td class=TBL_L></td>
+     		<td class=TBL_C colSpan=2>
+     		    <select name="lang">
+     			<option value="0" selected>Autom&aacute;tica</option><!--Auto-->
+     			<option value="1" >Ingl&eacute;s</option><!--English-->
+     			<!--<option value="6" >Alem&aacute;n</option>--><!--German-->
+          <!--<option value="7" >Franc&eacute;s</option>--><!--French-->
+     			<!--<option value="8" >Italiano</option>--><!--Italian-->
+          <option value="9" >Espa&ntilde;ol</option><!--Spanish-->
+          <!--<option value="10" >Portugués de Brasil</option>--><!--Brazilian Portuguese-->         
+     			<!--<option value="2" >Chino (tradicional)</option>--><!--Chinese(traditional)-->
+     			<!--<option value="3" >Chino (simplificado)</option>--><!--Chinese(simplised)-->
+     			<!--<option value="4" >Coreano</option>--><!--Korean-->
+     			<!--<option value="5" >Tailandés</option>--><!--Thai-->
+				  <!--<option value="11" >Japon&eacute;s</option><!--Japanese-->
+				  <option value="12" >Portugués</option><!--Portuguese-->
+				  <!--<option value="13" >Árabe</option>--><!--Arabic-->
+				  <!--<option value="14" >turco</option>--><!--Turkish-->
+				  <!--<option value="15" >Ruso</option>--><!--Russian-->
+                </select>
+          &nbsp;&nbsp;<input type="button" name="SETUP" value="Aplicar" onClick="setUSLang();">
+     	 	</td>
+     		<td class=TBL_R></td>
+     	    </tr>
+  	</tbody>
+     </table>
+</form>
+
+<form method="POST" name="EU_lang_set" id="EU_language_table" style="display:none;">
+    <table border="0" class=TOP_INFO_GRP>
+	<tbody>
+	    <tr class=HEAD>
+     		<td class=TBL_L></td>
+     		<td class=TBL_C colSpan=2>Idioma</td>
+     		<td class=TBL_R></td>
+     	    </tr>
+	    <tr class=TBL>
+     		<td class=TBL_L></td>
+     		<td class=TBL_C colSpan=2>
+     		    <select name="lang">
+     			<option value="0" selected>Autom&aacute;tica</option><!--Auto-->
+     			<option value="1" >Ingl&eacute;s</option><!--English-->
+     			<option value="6" >Alem&aacute;n</option><!--German-->
+          <option value="7" >Franc&eacute;s</option><!--French-->
+     			<option value="8" >Italiano</option><!--Italian-->
+          <option value="9" >Espa&ntilde;ol</option><!--Spanish-->
+          <!--<option value="10" >Portugués de Brasil</option>--><!--Brazilian Portuguese-->         
+     			<!--<option value="2" >Chino (tradicional)</option>--><!--Chinese(traditional)-->
+     			<!--<option value="3" >Chino (simplificado)</option>--><!--Chinese(simplised)-->
+     			<!--<option value="4" >Coreano</option>--><!--Korean-->
+     			<!--<option value="5" >Tailandés</option>--><!--Thai-->
+				  <!--<option value="11" >Japon&eacute;s</option><!--Japanese-->
+				  <!--<option value="12" >Portugués</option>--><!--Portuguese-->
+				  <option value="13" >Árabe</option><!--Arabic-->
+				  <option value="14" >turco</option><!--Turkish-->
+				  <!--<option value="15" >Ruso</option>--><!--Russian-->
+                </select>
+          &nbsp;&nbsp;<input type="button" name="SETUP" value="Aplicar" onClick="setEULang();">
+     	 	</td>
+     		<td class=TBL_R></td>
+     	    </tr>
+  	</tbody>
+     </table>
+</form>
+
+<form method="POST" name="RU_lang_set" id="RU_language_table" style="display:none;">
+    <table border="0" class=TOP_INFO_GRP>
+	<tbody>
+	    <tr class=HEAD>
+     		<td class=TBL_L></td>
+     		<td class=TBL_C colSpan=2>Idioma</td>
+     		<td class=TBL_R></td>
+     	    </tr>
+	    <tr class=TBL>
+     		<td class=TBL_L></td>
+     		<td class=TBL_C colSpan=2>
+     		    <select name="lang">
+     			<option value="0" selected>Autom&aacute;tica</option><!--Auto-->
+     			<option value="1" >Ingl&eacute;s</option><!--English-->
+     			<!--<option value="6" >Alem&aacute;n</option>--><!--German-->
+          <!--<option value="7" >Franc&eacute;s</option>--><!--French-->
+     			<!--<option value="8" >Italiano</option>--><!--Italian-->
+          <!--<option value="9" >Espa&ntilde;ol</option>--><!--Spanish-->
+          <!--<option value="10" >Portugués de Brasil</option>--><!--Brazilian Portuguese-->         
+     			<!--<option value="2" >Chino (tradicional)</option>--><!--Chinese(traditional)-->
+     			<!--<option value="3" >Chino (simplificado)</option>--><!--Chinese(simplised)-->
+     			<!--<option value="4" >Coreano</option>--><!--Korean-->
+     			<!--<option value="5" >Tailandés</option>--><!--Thai-->
+				  <!--<option value="11" >Japon&eacute;s</option>--><!--Japanese-->
+				  <!--<option value="12" >Portugués</option>--><!--Portuguese-->
+				  <!--<option value="13" >Árabe</option>--><!--Arabic-->
+				  <!--<option value="14" >turco</option>--><!--Turkish-->
+				  <option value="15" >Ruso</option><!--Russian-->
+                </select>
+          &nbsp;&nbsp;<input type="button" name="SETUP" value="Aplicar" onClick="setRULang();">
+     	 	</td>
+     		<td class=TBL_R></td>
+     	    </tr>
+  	</tbody>
+     </table>
+</form>
+
+</td>
+</tr>
+</tbody>
+</table>
+</BODY>
+
+<!-- Mirrored from 192.168.0.1/top_main.html by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 11 Jan 2017 00:16:08 GMT -->
+</html>

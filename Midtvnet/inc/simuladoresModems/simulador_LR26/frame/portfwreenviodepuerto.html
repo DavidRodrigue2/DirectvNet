@@ -1,0 +1,74 @@
+
+<html>
+	<head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+<link rel="stylesheet" href="../css/styles.css" type="text/css">
+
+<title>Reenvío de puertos</title>
+
+</head>
+
+<body marginwidth="0" marginheight="0">
+<blockquote>
+<h2>Reenvío de puertos</h2>
+<p>Las entradas de esta tabla le permiten redireccionar automáticamente servicios de red comunes a una máquina específica detrás de un firewall de NAT. Esta configuración sólo es necesaria si desea alojar algún tipo de servidor como un servidor Web o servidor de correo en la red local privada detrás del firewall de NAT de la puerta de enlace. </p>
+<hr>
+
+<table border="0" width="100%" cellspacing="4" cellpadding="0">
+
+
+<tbody><tr><td><font size="2"><b>
+	<input type="checkbox" name="enabled" value="ON" checked>&nbsp;&nbsp;Enable Reenvío de puertos</b><br>
+    </font></td>
+</tr>
+
+<tr><td>
+  <p>
+    <font size="2"><b>Dirección IP:</b> <input type="text" name="ip" size="10" maxlength="15">&nbsp;
+    <b>Protocolo:</b> <select name="protocol" >
+    <option select="" value="0">Ambos</option>
+    <option value="1">TCP</option>
+    <option value="2">UDP</option>
+  </select>&nbsp;<b>Rango de puertos:</b> <input type="text" name="fromPort" size="3" ><b>-</b>
+      <input type="text" name="toPort" size="3" >
+    <b>Comentario:</b> <input type="text" name="comment" size="6" maxlength="20" ></font>
+  </p>
+  <br>
+  <p><input type="submit" value="Aplicar cambios" name="addPortFw" onclick="return addClick()">&nbsp;&nbsp;
+     <input type="reset" value="Restablecer" name="reset"></p>
+  <input type="hidden" value="/portfw.htm" name="submit-url">
+</td></tr>
+  <script> updateState(); </script>
+
+</tbody></table>
+
+
+<br>
+<form action="http://192.168.100.1/boafrm/formPortFw" method="POST" name="formPortFwDel">
+<font size="2"><b>Tabla actual de reenvío de puertos:</b></font><table border="0" width="80%" class="list">
+  <tbody><tr></tr>
+  <tr><th width="25%">Dirección IP local</th>
+<th width="20%">Protocolo</th>
+<th width="20%">Rango de puertos</th>
+<th width="20%">Comentario</th>
+<th width="15%">Seleccionar</th></tr>
+
+</tbody></table>
+
+ <br><input type="submit" value="Eliminar selección" name="deleteSelPortFw" onclick="return deleteClick()" disabled="">&nbsp;&nbsp;
+     <input type="submit" value="Eliminar todo" name="deleteAllPortFw" onclick="return deleteAllClick()" disabled="">&nbsp;&nbsp;&nbsp;
+     <input type="reset" value="Restablecer" name="reset">
+ <script>
+	if ( 0 == 0 )
+		disableDelButton();
+ </script>
+     <input type="hidden" value="/portfw.htm" name="submit-url">
+</form>
+
+
+
+</blockquote>
+
+
+
+</body></html>

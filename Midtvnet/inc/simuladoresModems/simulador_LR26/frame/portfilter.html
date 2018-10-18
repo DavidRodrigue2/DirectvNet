@@ -1,0 +1,72 @@
+
+<html>
+	<head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+<link rel="stylesheet" href="../css/styles.css" type="text/css">
+
+<title>Filtrado de puertos</title>
+<script type="text/javascript" src="../js/util_gw.js"> </script><style type="text/css"></style>
+
+</head>
+
+<body marginwidth="0" marginheight="0">
+<blockquote>
+<h2>Filtrado de puertos</h2>
+<p>
+ Las entradas en esta tabla se utilizan para restringir determinados tipos de paquetes de datos desde la red local a Internet a través de la puerta de enlace. La utilización de dichos filtros puede ser útil para proteger o restringir la red local. </p>
+ <hr>
+ 
+<table border="0" cellspacing="4" cellpadding="0" style="margin-bottom:40px;">
+
+<form ></form>
+<tbody><tr><td><font size="2"><b>
+	<input type="checkbox" name="enabled" checked value="ON" onclick="updateState()">&nbsp;&nbsp;Enable Filtrado de puertos</b><br>
+    </font></td>
+</tr>
+
+<tr><td>
+     <p><b><font size="2">Rango de puertos: </font></b>
+  		<input type="text" name="fromPort" size="4" ><b>-</b>
+      		<input type="text" name="toPort" size="4" >&nbsp;&nbsp;
+  	<b><font size="2">Protocolo:</font></b><font size="2"> <select name="protocol">
+    		<option select="" value="0">Ambos</option>
+    		<option value="1">TCP</option>
+    		<option value="2">UDP</option>
+    		</select></font>&nbsp;&nbsp;
+  	<b><font size="2">Comentario: </font></b><font size="2"> <input type="text" name="comment" size="16" maxlength="20"></font>
+     </p>
+     <br>
+     <p><input type="submit" value="Aplicar cambios" name="addFilterPort" onclick="return addClick()">&nbsp;&nbsp;
+        <input type="reset" value="Restablecer" name="reset">
+        <input type="hidden" value="/portfilter.htm" name="submit-url">
+     </p>
+<script> updateState(); </script>
+</td></tr>
+
+</tbody></table>
+
+<br>
+<form action="http://192.168.100.1/boafrm/formFilter" method="POST" name="formFilterDel">
+  <font size="2"><b>Tabla de filtros actuales:</b></font><table border="0" width="550" class="list">
+  <tbody><tr></tr>
+  <tr><th width="30%">Rango de puertos</th>
+<th width="25%">Protocolo</th>
+<th width="30%">Comentario</th>
+<th width="15%">Seleccionar</th></tr>
+
+  </tbody></table>
+  <br>
+  <input type="submit" value="Eliminar selección" name="deleteSelFilterPort" onclick="return deleteClick()" disabled="">&nbsp;&nbsp;
+  <input type="submit" value="Eliminar todo" name="deleteAllFilterPort" onclick="return deleteAllClick()" disabled="">&nbsp;&nbsp;&nbsp;
+  <input type="reset" value="Restablecer" name="reset">
+  <input type="hidden" value="/portfilter.htm" name="submit-url">
+ <script>
+	if ( 0 == 0 )
+		disableDelButton();
+ </script>
+</form>
+
+</blockquote>
+
+
+</body></html>

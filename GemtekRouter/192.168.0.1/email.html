@@ -1,0 +1,420 @@
+<html>
+
+<!-- Mirrored from 192.168.0.1/email.html by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 11 Jan 2017 00:16:12 GMT -->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta http-equiv="Pragma" content="no-cache">
+<meta http-equiv="Cache-Control" content="no-cache">
+<meta http-equiv="Expires" content="Thu, 01 Dec 1994 16:00:00 GMT">
+<META http-equiv="Content-Style-Type" content="text/css">
+<LINK rel="stylesheet" href="WHR-G300N-160149-style-ENG.css" type="text/css">
+<LINK rel="stylesheet" href="WHR-G300N-160149-style-ad-ENG.css" type="text/css">
+<script language="javascript" src="common.html"></script>
+<script language="JavaScript">
+var ms_enable = '0';
+var auth = '0';
+var schedule = 'none';
+var schedule_week = '0';
+var schedule_hour = '0';
+
+function set_display(){
+	var cf = document.forms[0];
+	if(document.getElementById("msmtp_ssl_enable").checked == true){
+		document.getElementById("port_ext_settings").style.display = "";
+		cf.msmtp_ssl_enable.value = "1";
+	}else{
+		document.getElementById("port_ext_settings").style.display = "none";
+		cf.msmtp_ssl_enable.value = "0";
+	}
+}
+
+function enableChange(){
+        var cf = document.forms[0];
+        if(cf.INPUT_Enable.checked == true){
+                cf.msmtp_host.disabled = 0;
+                cf.msmtp_toaddr.disabled = 0;
+                cf.msmtp_fromaddr.disabled = 0;
+
+                cf.msmtp_user.disabled = 1;
+                cf.msmtp_passwd.disabled = 1;
+
+                cf.INPUT_Smtp_Auth.disabled = 0;
+                cf.msmtp_schedule.disabled =0;
+//
+		scheduleChange();
+//                cf.msmtp_schedule_week.disabled = 0;
+//                cf.cfAlert_Hour.disabled = 0;
+//                cf.cfAlert_ampm[0].disabled = 0;
+//                cf.cfAlert_ampm[1].disabled = 0;
+
+                cf.msmtp_enable.value = "1";
+        }
+        else{
+                cf.msmtp_host.disabled = 1;
+                cf.msmtp_toaddr.disabled = 1;
+                cf.msmtp_fromaddr.disabled = 1;
+
+                cf.msmtp_user.disabled = 1;
+                cf.msmtp_passwd.disabled = 1;
+
+                cf.INPUT_Smtp_Auth.disabled = 1;
+
+                cf.msmtp_schedule.disabled =1;
+//
+		scheduleChange();
+//                cf.msmtp_schedule_week.disabled = 1;
+//                cf.cfAlert_Hour.disabled = 1;
+//                cf.cfAlert_ampm[0].disabled = 1;
+//                cf.cfAlert_ampm[1].disabled = 1;
+
+                cf.msmtp_enable.value = "0";
+        }
+        if(cf.INPUT_Smtp_Auth.checked == true){
+                cf.msmtp_user.disabled = 0;
+                cf.msmtp_passwd.disabled = 0;
+                cf.msmtp_auth.value = "1";
+        }
+        else{
+                cf.msmtp_user.disabled = 1;
+                cf.msmtp_passwd.disabled = 1;
+                cf.msmtp_auth.value = "0";
+        }
+}
+
+
+function scheduleChange(){
+        var cf = document.forms[0];
+
+        if (cf.msmtp_schedule.value == "full"){
+                cf.msmtp_schedule_week.disabled = 1;
+                cf.cfAlert_Hour.disabled = 1;
+                cf.cfAlert_ampm.disabled = 1;
+        } 
+        else if(cf.msmtp_schedule.value == "hourly"){
+                cf.msmtp_schedule_week.disabled = 1;
+                cf.cfAlert_Hour.disabled = 1;
+                cf.cfAlert_ampm.disabled = 1;
+        }
+        else if(cf.msmtp_schedule.value == "daily"){
+                cf.msmtp_schedule_week.disabled = 1;
+                cf.cfAlert_Hour.disabled = 0;
+                cf.cfAlert_ampm.disabled = 0;
+        }
+        else if(cf.msmtp_schedule.value == "weekly"){
+                cf.msmtp_schedule_week.disabled = 0;
+                cf.cfAlert_Hour.disabled = 0;
+                cf.cfAlert_ampm.disabled = 0;
+        }
+        else if(cf.msmtp_schedule.value == "none"){
+                cf.msmtp_schedule_week.disabled = 1;
+                cf.cfAlert_Hour.disabled = 1;
+                cf.cfAlert_ampm.disabled = 1;
+        }
+}
+
+function btnApply(){
+        var cf = document.forms[0];
+        var frm = document.forms[1];
+        if(cf.cfAlert_ampm[0].checked == true){
+                cf.msmtp_schedule_hour.value = cf.cfAlert_Hour.value;   
+        }
+        else{
+                cf.msmtp_schedule_hour.value = parseInt(cf.cfAlert_Hour.value)+12;
+        }
+        
+        if(cf.INPUT_Enable.checked == true){
+                if(cf.msmtp_host.value == ""){
+                        alert("The Mail Server can not be blank!");
+                        return;
+                }
+                if(cf.msmtp_toaddr.value == ""){
+                        alert("The send to e-mail address can not be blank!");
+                        return;
+                }
+                if(cf.msmtp_fromaddr.value == ""){
+                        alert("Your e-mail address can not be blank!");
+                        return;
+                }
+
+                if(cf.INPUT_Smtp_Auth.checked == true){
+                        if(cf.msmtp_user.value == "" && cf.msmtp_passwd.value ==""){
+                                alert("The name and the password of login the e-mail server both can not be blank!");
+                                return;
+                        }
+                        if(cf.msmtp_user.value == ""){
+                                alert("The name of login the e-mail server can not be blank!");
+                                return;
+                        }
+                        if(cf.msmtp_passwd.value ==""){
+                                alert("The password of login the e-mail server can not be blank!");
+                                return;
+                        }
+                }
+        }
+
+	if (cf.msmtp_host_port.value.length != 0){
+		if (!check_integer_range(cf.msmtp_host_port.value,0,65535)){
+			alert("Invalid port number");
+			return;
+		}
+	}
+        
+        var emailRule = /^\w+((-\w+)|(\.\w+))*\@[A-Za-z0-9]+((\.|-)[A-Za-z0-9]+)*\.[A-Za-z]+$/;
+        var toEmail = cf.msmtp_toaddr.value;
+        var fromEmail = cf.msmtp_fromaddr.value;
+        if(toEmail.search(emailRule)!= -1 && fromEmail.search(emailRule)!= -1){
+                ;
+        }
+        else{
+                alert("Email value is invalid");
+                return;
+        }
+
+	frm.msmtp_enable.value = cf.msmtp_enable.value;
+	frm.msmtp_ssl_enable.value = cf.msmtp_ssl_enable.value;
+	frm.msmtp_host_port.value = cf.msmtp_host_port.value;
+        frm.msmtp_user.value = cf.msmtp_user.value;
+        frm.msmtp_passwd.value  = cf.msmtp_passwd.value;
+        frm.msmtp_host.value = cf.msmtp_host.value;
+        frm.msmtp_toaddr.value  = cf.msmtp_toaddr.value;
+        frm.msmtp_fromaddr.value  = cf.msmtp_fromaddr.value;
+        frm.msmtp_auth.value = cf.msmtp_auth.value;
+        frm.msmtp_schedule.value  = cf.msmtp_schedule.value;
+        frm.msmtp_schedule_week.value  = cf.msmtp_schedule_week.value;
+        frm.msmtp_schedule_hour.value  = cf.msmtp_schedule_hour.value;
+
+        frm.submit();
+
+}
+
+function frmLoad(){
+        var cf = document.forms[0];
+        if(ms_enable == '1'){
+                cf.INPUT_Enable.checked = true;
+                cf.msmtp_host.disabled = 0;
+                cf.msmtp_toaddr.disabled = 0;
+                cf.msmtp_fromaddr.disabled = 0;
+
+                cf.msmtp_user.disabled = 1;
+                cf.msmtp_passwd.disabled = 1;
+
+                cf.INPUT_Smtp_Auth.disabled = 0;
+                cf.msmtp_schedule.disabled =0;
+                cf.msmtp_schedule_week.disabled = 0;
+                cf.cfAlert_Hour.disabled = 0;
+                cf.cfAlert_ampm[0].disabled = 0;
+                cf.cfAlert_ampm[1].disabled = 0;
+
+                cf.msmtp_enable.value = "1";
+        }
+        else{
+                cf.INPUT_Enable.checked = false;
+                cf.msmtp_host.disabled = 1;
+                cf.msmtp_toaddr.disabled = 1;
+                cf.msmtp_fromaddr.disabled = 1;
+
+                cf.msmtp_user.disabled = 1;
+                cf.msmtp_passwd.disabled = 1;
+
+                cf.INPUT_Smtp_Auth.disabled = 1;
+                cf.msmtp_schedule.disabled =1;
+                cf.msmtp_schedule_week.disabled = 1;
+                cf.cfAlert_Hour.disabled = 1;
+                cf.cfAlert_ampm[0].disabled = 1;
+                cf.cfAlert_ampm[1].disabled = 1;
+
+                cf.msmtp_enable.value = "0";
+        }
+
+        if(auth == '1'){
+                cf.INPUT_Smtp_Auth.checked = true;
+                cf.msmtp_user.disabled = 0;
+                cf.msmtp_passwd.disabled = 0;
+		cf.msmtp_auth.value = "1";
+        }
+        else{
+                cf.INPUT_Smtp_Auth.checked = false;
+                cf.msmtp_user.disabled = 1;
+                cf.msmtp_passwd.disabled = 1;
+		cf.msmtp_auth.value = "0";
+        }
+
+	set_display();
+
+        cf.msmtp_schedule.value = 'none';
+        cf.msmtp_schedule_week.value = '0';
+        scheduleChange();
+
+        if(parseInt(schedule_hour) > 11){
+                cf.msmtp_schedule_hour.value = parseInt(schedule_hour) - 12;
+                cf.cfAlert_ampm[1].checked = true;
+                cf.cfAlert_Hour.value = cf.msmtp_schedule_hour.value;
+        }
+        else{
+                cf.msmtp_schedule_hour.value = schedule_hour;
+                cf.cfAlert_Hour.value = cf.msmtp_schedule_hour.value;
+                cf.cfAlert_ampm[0].checked = true;
+        }
+}
+
+
+</script>
+</head>
+
+<body class="BFK_BODY" onLoad='frmLoad()'>
+<form>
+
+<table class="AD_TTL2">
+    <tr>
+     <td>Email</td><!--Email-->
+    </tr>
+  </table>
+
+<table class="AD_SET">
+    <tbody>
+	<tr>
+		<td nowrap=""  ><input type="checkbox" id='INPUT_Enable' name='INPUT_Enable'  onClick="enableChange();"><label for=INPUT_Enable id="lang_switch_email">&nbsp;Activar notificaciones por E-mail</label></td><!-- Turn E-mail Notification On-->
+		<input type='hidden' name="msmtp_enable">
+	</tr>
+    </tbody>
+</table>
+
+<table class="AD_TTL2">
+    <tr>
+     <td>enviar alertas y logs Via E-mail</td><!--Send Alerts and Logs Via E-mail-->
+    </tr>
+</table>
+
+<table class="AD_SET">
+    <tbody>
+	<tr>
+	<th nowrap="" id="lang_mail_server" width="48%">servidor E-mail de salida:</th><!--Your Outgoing Mail Server:-->
+	<td nowrap="" align="left" width="52%"><input type="text" id="INPUT_SmtpHost" maxlength="50" size="24" name="msmtp_host" style="width:178px" value=''></td>
+	</tr>
+	<tr>
+	<th nowrap="" id="lang_send_address">reportar a la direccion E-mail:</th><!--Send To This E-mail Address:-->
+	<td nowrap="" align="left"><input type="text" id="INPUT_TosendMail" maxlength="50" size="24" name="msmtp_toaddr" style="width:178px" value=''></td>
+	</tr>
+	<tr>
+	<th nowrap="" id="lang_your_address">su direccion de E-mail:</th><!--Your E-mail Address:-->
+	<td nowrap="" align="left"><input type="text" id="INPUT_SenderMail" maxlength="50" size="24" name="msmtp_fromaddr" style="width:178px" value=''></td>
+	</tr>
+	<input type='hidden' name="msmtp_blockalert" >
+	<tr>
+      <th>usa Https</th><!--Use Https-->
+      <td>
+        <input type="checkbox" id="msmtp_ssl_enable" name="msmtp_ssl_enable" onClick="set_display();" >Puerto<!--Enable-->
+      </td>
+    </tr>
+
+    <tr id="port_ext_settings" style='display:none'>
+      <th>Habilitar</th><!--Port-->
+      <td><input type="text" size="8" maxlength="5" id="msmtp_host_port" name="msmtp_host_port" value='' ></td>
+    </tr>
+
+    </tbody>
+</table>
+
+<table class="AD_SET">
+     <tbody>
+	<tr>
+	<td nowrap="" colspan="2"><input type="checkbox" id='INPUT_Smtp_Auth' name='INPUT_Smtp_Auth'  onClick="enableChange();"><label for=INPUT_Smtp_Auth id="lang_mail_authentication" >&nbsp;su servidor de E-mail requiere autenticacion</label></td><!--Your Mail Server requires authentication-->
+	</tr>
+	<input type='hidden' name="msmtp_auth" value="">
+	<tr>
+	<th nowrap="" id="lang_user_name" width="48%">Nombre de Usuario</th><!--User Name-->
+	<td nowrap="" align="left" width="52%"><input type="text" id="INPUT_SmtpUsername" maxlength="50" size="24" name="msmtp_user" style="width:178px"  value=''></td>
+	</tr>
+	<tr>
+	<th nowrap="" id="lang_password">Contraseña</th><!--Password-->
+	<td nowrap="" align="left"><input type="password" id="INPUT_SmtpPassword" maxlength="50" size="24" name="msmtp_passwd" style="width:178px"  value=''></td>
+    </tbody>
+</table>
+
+<table class="AD_TTL2">
+    <tr>
+     <td>Enviar logs de acuerdo con la siguiente programacion </td><!--Send Logs According to this Schedule-->
+    </tr>
+</table>
+
+<table class="AD_SET">
+     <tbody>
+	<tr>
+	<td nowrap="" colspan="2" >
+	<select onchange="scheduleChange(this.value);" size="1" name="msmtp_schedule" id="cfAlert_Select" style="width:120px">
+<!--	<option selected="" value="full" id="lang_full">When Log is Full</option> -->
+	<option value="hourly" id="lang_hourly">Hora</option><!--Hourly-->
+	<option value="daily" id="lang_daily">Dia</option><!--Daily-->
+	<option value="weekly" id="lang_weekly">Semana</option><!--Weekly-->
+	<option value="none" id="lang_none">Ninguna</option><!--None-->
+	</select>
+	</td>
+	</tr>
+	<tr>
+	<th nowrap="" id="schedule_day_eb" width="48%">
+	<label for="cfAlert_Day" id="lang_cfAlert_Day">Dia</label><!--Day-->
+	</th>
+	<td nowrap="" id="schedule_day_eb" width="52%">
+	<select onfocus="" tabindex="8"  size="1" name="msmtp_schedule_week" id="cfAlert_Day" style="width:80px" >
+	<option selected="" value="0" id="lang_sunday">Domingo</option><!--Sunday-->
+	<option value="1" id="lang_monday">Lunes</option><!--Monday-->
+	<option value="2" id="lang_tuesday">Martes</option><!--Tuesday-->
+	<option value="3" id="lang_wednesday">Miércoles</option><!--Wednesday-->
+	<option value="4" id="lang_thursday">Jueves</option><!--Thursday-->
+	<option value="5" id="lang_friday">Viernes</option><!--Friday-->
+	<option value="6" id="lang_saturday">Sábado</option><!--Saturday-->
+	</select>
+	</td>
+	</tr>
+	<tr>
+	<tr>
+	<th nowrap="" id="schedule_time_eb" width="47%">
+	<label for="cfAlert_Hour" id="lang_cfAlert_Hour">Hora</label><!--Time-->
+	</th>
+	<td nowrap="" id="schedule_time_eb" width="53%">
+	<select onfocus="" tabindex="9" size="1" name="cfAlert_Hour" id="cfAlert_Hour" style="width:80px" >
+	<option selected="" value="0">0:00</option>
+	<option value="1">1:00</option>
+	<option value="2">2:00</option>
+	<option value="3">3:00</option>
+	<option value="4">4:00</option>
+	<option value="5">5:00</option>
+	<option value="6">6:00</option>
+	<option value="7">7:00</option>
+	<option value="8">8:00</option>
+	<option value="9">9:00</option>
+	<option value="10">10:00</option>
+	<option value="11">11:00</option>
+	</select>
+	<input type="radio" value="am" name="cfAlert_ampm" id="cfAlert_am"><span>A.M</span><!--a.m.-->
+	<input type="radio" value="pm" name="cfAlert_ampm" id="cfAlert_pm"><span>P.M.</span><!--p.m-->
+	</td>
+	<input type='hidden' name="msmtp_schedule_hour">
+	</tr>
+    </tbody>
+</table>
+
+<div class="div_button" id="" style="margin-top:5px ">
+	<input type="button" id="Apply" value="Aplicar" onClick="btnApply();" ><!--Apply-->
+<!--	<input type='button' value="Cancel" onClick='btnCancel();'>-->
+</div>
+
+</form>
+<form method="POST">
+	<input type="hidden" name="msmtp_enable">
+	<input type="hidden" name="msmtp_ssl_enable">
+	<input type="hidden" name="msmtp_host_port">
+	<input type="hidden" name="msmtp_auth">
+	<input type="hidden" name="msmtp_schedule">
+        <input type="hidden" name="msmtp_schedule_week">
+	<input type="hidden" name="msmtp_schedule_hour">
+        <input type="hidden" name="msmtp_user">
+	<input type="hidden" name="msmtp_passwd">
+        <input type="hidden" name="msmtp_host">
+	<input type="hidden" name="msmtp_toaddr">
+        <input type="hidden" name="msmtp_fromaddr">
+</form>
+</body>
+
+<!-- Mirrored from 192.168.0.1/email.html by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 11 Jan 2017 00:16:12 GMT -->
+</html>

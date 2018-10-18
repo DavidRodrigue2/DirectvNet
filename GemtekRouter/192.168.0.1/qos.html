@@ -1,0 +1,887 @@
+
+
+<html>
+
+
+<!-- Mirrored from 192.168.0.1/qos.html by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 11 Jan 2017 00:16:10 GMT -->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta http-equiv="Pragma" content="no-cache">
+<meta http-equiv="Cache-Control" content="no-cache">
+<meta http-equiv="Expires" content="Thu, 01 Dec 1994 16:00:00 GMT"><META http-equiv="Content-Style-Type" content="text/css"><LINK rel="stylesheet" href="WHR-G300N-160149-style-ENG.css" type="text/css"><LINK rel="stylesheet" href="WHR-G300N-160149-style-ad-ENG.css" type="text/css">
+<script src="OpenHelp.html"></script>
+<script language="javascript" type="text/javascript" src="common.html"></script>
+<script language="JavaScript">
+<!--
+function set_display()
+{
+     if(document.getElementById("id_qostable_enable").checked == true)
+     {
+     	document.getElementById("wan_qos_ext").style.display = "";
+     	document.getElementById("id_qos_enable").value="1";
+     } else 
+     {
+     	document.getElementById("wan_qos_ext").style.display = "none";
+     	document.getElementById("id_qos_enable").value="0";
+     }
+}
+function set_rule_enable(index)
+{
+     if (document.getElementById("enable"+index+"_tmp").checked == true)
+     { 
+     	document.getElementById("id_enable"+index).value = "1";
+     }
+     else
+     	document.getElementById("id_enable"+index).value = "0";
+}
+
+function check_intstyle()
+{
+	var QRate="1000";	
+	QRate=parseInt(QRate,10);		
+	document.getElementById("id_QoSMaxRate").value=QRate;
+}
+
+function check_Qosname(s)
+{
+	for (i=0; i<s.length; i++)
+	{
+		var c;
+			
+		c=s.charAt(i);
+		if (((c>='0')&&(c<='9')) || ((c>='a')&&(c<='z')) || ((c>='A')&&(c<='Z')) || (c=='"') || (c==';'))
+		{
+			continue;
+		}
+		else
+		{
+			return false;
+		}
+	}
+	return true;
+}
+
+function dosubmit()
+{
+	var QRate=parseInt(document.getElementById("id_QoSMaxRate").value,10);
+	var i=1;
+	var j=1;
+	var qport_range= new Array(9);
+
+     if(document.getElementById("id_qostable_enable").checked)
+	 {
+		if(document.getElementById("id_QoSMaxRate").value.length!=0)
+		{
+			if (document.getElementById("id_QoSMaxRate").value.charAt(0) == '0')
+			{
+				if(document.getElementById("id_QoSMaxRate").value.length<=1)
+				{
+					Show_error("Cargar ancho de banda","Valor introducido demasiado peque&ntilde;o");
+					return false;
+				}
+			}
+			if(!check_integer_range(document.getElementById("id_QoSMaxRate").value,1,1000000))
+			{
+				if(QRate>=1000001)
+				{
+					Show_error("Cargar ancho de banda","Valor introducido demasiado grande");
+					return false;
+				}
+				else
+				{
+					Show_error("Cargar ancho de banda","Contiene un car&aacute;cter no v&aacute;lido");
+					return false;
+				}
+			}
+		}else
+		{
+			Show_error("Cargar ancho de banda","No configurado");
+			return false;
+		}
+
+		for(i=1;i<=8;i++)
+		{
+			if(document.getElementById("enable"+i+"_tmp").checked == true)
+			{
+				if(document.getElementById("id_Qname"+i).value.length==0)
+				{
+					switch (i)
+					{
+						case 1:
+								Show_error("Nombre de Aplicaci&oacute;n (No.1)",	"No configurado");
+								return;
+						case 2:
+								Show_error("Nombre de Aplicaci&oacute;n (No.2)",	"No configurado");
+								return;
+						case 3:
+								Show_error("Nombre de Aplicaci&oacute;n (No.3)",	"No configurado");
+								return;
+						case 4:
+								Show_error("Nombre de Aplicaci&oacute;n (No.4)",	"No configurado");
+								return;
+						case 5:
+								Show_error("Nombre de Aplicaci&oacute;n (No.5)",	"No configurado");
+								return;
+						case 6:
+								Show_error("Nombre de Aplicaci&oacute;n (No.6)",	"No configurado");
+								return;
+						case 7:
+								Show_error("Nombre de Aplicaci&oacute;n (No.7)",	"No configurado");
+								return;					
+						case 8:
+								Show_error("Nombre de Aplicaci&oacute;n (No.8)",	"No configurado");
+								return;
+					}
+				}
+			}
+			
+			if((document.getElementById("id_Qname"+i).value.charAt(0)==' ')||(document.getElementById("id_Qname"+i).value.charAt(document.getElementById("id_Qname"+i).value.length-1)==' '))
+			{
+					switch (i)
+					{
+						case 1:
+								Show_error("Nombre de Aplicaci&oacute;n (No.1)",	"No se puede usar este car&aacute;cter como car&aacute;cter inicial ni final");
+								return;
+						case 2:
+								Show_error("Nombre de Aplicaci&oacute;n (No.2)",	"No se puede usar este car&aacute;cter como car&aacute;cter inicial ni final");
+								return;
+						case 3:
+								Show_error("Nombre de Aplicaci&oacute;n (No.3)",	"No se puede usar este car&aacute;cter como car&aacute;cter inicial ni final");
+								return;
+						case 4:
+								Show_error("Nombre de Aplicaci&oacute;n (No.4)",	"No se puede usar este car&aacute;cter como car&aacute;cter inicial ni final");
+								return;
+						case 5:
+								Show_error("Nombre de Aplicaci&oacute;n (No.5)",	"No se puede usar este car&aacute;cter como car&aacute;cter inicial ni final");
+								return;
+						case 6:
+								Show_error("Nombre de Aplicaci&oacute;n (No.6)",	"No se puede usar este car&aacute;cter como car&aacute;cter inicial ni final");
+								return;
+						case 7:
+								Show_error("Nombre de Aplicaci&oacute;n (No.7)",	"No se puede usar este car&aacute;cter como car&aacute;cter inicial ni final");
+								return;					
+						case 8:
+								Show_error("Nombre de Aplicaci&oacute;n (No.8)",	"No se puede usar este car&aacute;cter como car&aacute;cter inicial ni final");
+								return;		
+					}
+			}
+			
+			if(!check_Qosname(document.getElementById("id_Qname"+i).value))
+			{
+					switch (i)
+					{
+						case 1:
+								Show_error("Nombre de Aplicaci&oacute;n (No.1)",	"Contiene un car&aacute;cter no v&aacute;lido");
+								return;
+						case 2:
+								Show_error("Nombre de Aplicaci&oacute;n (No.2)",	"Contiene un car&aacute;cter no v&aacute;lido");
+								return;
+						case 3:
+								Show_error("Nombre de Aplicaci&oacute;n (No.3)",	"Contiene un car&aacute;cter no v&aacute;lido");
+								return;
+						case 4:
+								Show_error("Nombre de Aplicaci&oacute;n (No.4)",	"Contiene un car&aacute;cter no v&aacute;lido");
+								return;
+						case 5:
+								Show_error("Nombre de Aplicaci&oacute;n (No.5)",	"Contiene un car&aacute;cter no v&aacute;lido");
+								return;
+						case 6:
+								Show_error("Nombre de Aplicaci&oacute;n (No.6)",	"Contiene un car&aacute;cter no v&aacute;lido");
+								return;
+						case 7:
+								Show_error("Nombre de Aplicaci&oacute;n (No.7)",	"Contiene un car&aacute;cter no v&aacute;lido");
+								return;					
+						case 8:
+								Show_error("Nombre de Aplicaci&oacute;n (No.8)",	"Contiene un car&aacute;cter no v&aacute;lido");
+								return;		
+					}
+			}
+			
+			
+			qport_range[i] = document.getElementById("id_Qport"+i).value.split('-');
+			if(qport_range[i].length==1)
+			{
+				if(!check_port(document.getElementById("id_Qport"+i).value))
+				{
+					if((document.getElementById("id_Qport"+i).value.charAt(0)=='0')&&((document.getElementById("id_Qport"+i).value.length<=1)))
+					{
+						switch (i)
+						{
+							case 1:
+									Show_error("Puerto de destino (No.1)","Valor introducido demasiado peque&ntilde;o");
+									return;
+							case 2:
+									Show_error("Puerto de destino (No.2)","Valor introducido demasiado peque&ntilde;o");
+									return;
+							case 3:
+									Show_error("Puerto de destino (No.3)","Valor introducido demasiado peque&ntilde;o");
+									return;
+							case 4:
+									Show_error("Puerto de destino (No.4)","Valor introducido demasiado peque&ntilde;o");
+									return;
+							case 5:
+									Show_error("Puerto de destino (No.5)","Valor introducido demasiado peque&ntilde;o");
+									return;
+							case 6:
+									Show_error("Puerto de destino (No.6)","Valor introducido demasiado peque&ntilde;o");
+									return;
+							case 7:
+									Show_error("Puerto de destino (No.7)","Valor introducido demasiado peque&ntilde;o");
+									return;					
+							case 8:
+									Show_error("Puerto de destino (No.8)","Valor introducido demasiado peque&ntilde;o");
+									return;		
+						}
+					}
+					else if(document.getElementById("id_Qport"+i).value>65535)
+					{
+						switch (i)
+						{
+							case 1:
+									Show_error("Puerto de destino (No.1)","Valor introducido demasiado grande");
+									return;
+							case 2:
+									Show_error("Puerto de destino (No.2)","Valor introducido demasiado grande");
+									return;
+							case 3:
+									Show_error("Puerto de destino (No.3)","Valor introducido demasiado grande");
+									return;
+							case 4:
+									Show_error("Puerto de destino (No.4)","Valor introducido demasiado grande");
+									return;
+							case 5:
+									Show_error("Puerto de destino (No.5)","Valor introducido demasiado grande");
+									return;
+							case 6:
+									Show_error("Puerto de destino (No.6)","Valor introducido demasiado grande");
+									return;
+							case 7:
+									Show_error("Puerto de destino (No.7)","Valor introducido demasiado grande");
+									return;					
+							case 8:
+									Show_error("Puerto de destino (No.8)","Valor introducido demasiado grande");
+									return;		
+						}
+					}
+					else
+					{
+						switch (i)
+						{
+							case 1:
+									Show_error("Puerto de destino (No.1)","Contiene un car&aacute;cter no v&aacute;lido");
+									return;
+							case 2:
+									Show_error("Puerto de destino (No.2)","Contiene un car&aacute;cter no v&aacute;lidog");
+									return;
+							case 3:
+									Show_error("Puerto de destino (No.3)","Contiene un car&aacute;cter no v&aacute;lido");
+									return;
+							case 4:
+									Show_error("Puerto de destino (No.4)","Contiene un car&aacute;cter no v&aacute;lido");
+									return;
+							case 5:
+									Show_error("Puerto de destino (No.5)","Contiene un car&aacute;cter no v&aacute;lido");
+									return;
+							case 6:
+									Show_error("Puerto de destino (No.6)","Contiene un car&aacute;cter no v&aacute;lido");
+									return;
+							case 7:
+									Show_error("Puerto de destino (No.7)","Contiene un car&aacute;cter no v&aacute;lido");
+									return;					
+							case 8:
+									Show_error("Puerto de destino (No.8)","Contiene un car&aacute;cter no v&aacute;lido");
+									return;		
+						}
+					}
+				}
+			}
+		else if(qport_range[i].length==2)   // port_low - port_high
+		{
+			if(qport_range[i][0]=="" || qport_range[i][1]=="")  // port_low- or -port_high
+			{
+						switch (i)
+						{
+							case 1:
+									Show_error("Puerto de destino (No.1)","Contiene un car&aacute;cter no v&aacute;lido");
+									return;
+							case 2:
+									Show_error("Puerto de destino (No.2)","Contiene un car&aacute;cter no v&aacute;lidog");
+									return;
+							case 3:
+									Show_error("Puerto de destino (No.3)","Contiene un car&aacute;cter no v&aacute;lido");
+									return;
+							case 4:
+									Show_error("Puerto de destino (No.4)","Contiene un car&aacute;cter no v&aacute;lido");
+									return;
+							case 5:
+									Show_error("Puerto de destino (No.5)","Contiene un car&aacute;cter no v&aacute;lido");
+									return;
+							case 6:
+									Show_error("Puerto de destino (No.6)","Contiene un car&aacute;cter no v&aacute;lido");
+									return;
+							case 7:
+									Show_error("Puerto de destino (No.7)","Contiene un car&aacute;cter no v&aacute;lido");
+									return;					
+							case 8:
+									Show_error("Puerto de destino (No.8)","Contiene un car&aacute;cter no v&aacute;lido");
+									return;		
+						}
+			}
+				if(!check_port(qport_range[i][0]))
+				{
+					if((qport_range[i][0].charAt(0)=='0')&&((qport_range[i][0].length<=1)))
+					{
+						switch (i)
+						{
+							case 1:
+									Show_error("Puerto de destino (No.1)","Valor introducido demasiado peque&ntilde;o");
+									return;
+							case 2:
+									Show_error("Puerto de destino (No.2)","Valor introducido demasiado peque&ntilde;o");
+									return;
+							case 3:
+									Show_error("Puerto de destino (No.3)","Valor introducido demasiado peque&ntilde;o");
+									return;
+							case 4:
+									Show_error("Puerto de destino (No.4)","Valor introducido demasiado peque&ntilde;o");
+									return;
+							case 5:
+									Show_error("Puerto de destino (No.5)","Valor introducido demasiado peque&ntilde;o");
+									return;
+							case 6:
+									Show_error("Puerto de destino (No.6)","Valor introducido demasiado peque&ntilde;o");
+									return;
+							case 7:
+									Show_error("Puerto de destino (No.7)","Valor introducido demasiado peque&ntilde;o");
+									return;					
+							case 8:
+									Show_error("Puerto de destino (No.8)","Valor introducido demasiado peque&ntilde;o");
+									return;		
+						}
+					}
+					else if(qport_range[i][0]>65535)
+					{
+						switch (i)
+						{
+							case 1:
+									Show_error("Puerto de destino (No.1)","Valor introducido demasiado grande");
+									return;
+							case 2:
+									Show_error("Puerto de destino (No.2)","Valor introducido demasiado grande");
+									return;
+							case 3:
+									Show_error("Puerto de destino (No.3)","Valor introducido demasiado grande");
+									return;
+							case 4:
+									Show_error("Puerto de destino (No.4)","Valor introducido demasiado grande");
+									return;
+							case 5:
+									Show_error("Puerto de destino (No.5)","Valor introducido demasiado grande");
+									return;
+							case 6:
+									Show_error("Puerto de destino (No.6)","Valor introducido demasiado grande");
+									return;
+							case 7:
+									Show_error("Puerto de destino (No.7)","Valor introducido demasiado grande");
+									return;					
+							case 8:
+									Show_error("Puerto de destino (No.8)","Valor introducido demasiado grande");
+									return;		
+						}
+					}
+					else
+					{
+						switch (i)
+						{
+							case 1:
+									Show_error("Puerto de destino (No.1)","Contiene un car&aacute;cter no v&aacute;lido");
+									return;
+							case 2:
+									Show_error("Puerto de destino (No.2)","Contiene un car&aacute;cter no v&aacute;lidog");
+									return;
+							case 3:
+									Show_error("Puerto de destino (No.3)","Contiene un car&aacute;cter no v&aacute;lido");
+									return;
+							case 4:
+									Show_error("Puerto de destino (No.4)","Contiene un car&aacute;cter no v&aacute;lido");
+									return;
+							case 5:
+									Show_error("Puerto de destino (No.5)","Contiene un car&aacute;cter no v&aacute;lido");
+									return;
+							case 6:
+									Show_error("Puerto de destino (No.6)","Contiene un car&aacute;cter no v&aacute;lido");
+									return;
+							case 7:
+									Show_error("Puerto de destino (No.7)","Contiene un car&aacute;cter no v&aacute;lido");
+									return;					
+							case 8:
+									Show_error("Puerto de destino (No.8)","Contiene un car&aacute;cter no v&aacute;lido");
+									return;		
+						}
+					}
+				}
+				if(!check_port(qport_range[i][1]))
+				{
+					if((qport_range[i][1].charAt(0)=='0')&&((qport_range[i][1].length<=1)))
+					{
+						switch (i)
+						{
+							case 1:
+									Show_error("Puerto de destino (No.1)","Valor introducido demasiado peque&ntilde;o");
+									return;
+							case 2:
+									Show_error("Puerto de destino (No.2)","Valor introducido demasiado peque&ntilde;o");
+									return;
+							case 3:
+									Show_error("Puerto de destino (No.3)","Valor introducido demasiado peque&ntilde;o");
+									return;
+							case 4:
+									Show_error("Puerto de destino (No.4)","Valor introducido demasiado peque&ntilde;o");
+									return;
+							case 5:
+									Show_error("Puerto de destino (No.5)","Valor introducido demasiado peque&ntilde;o");
+									return;
+							case 6:
+									Show_error("Puerto de destino (No.6)","Valor introducido demasiado peque&ntilde;o");
+									return;
+							case 7:
+									Show_error("Puerto de destino (No.7)","Valor introducido demasiado peque&ntilde;o");
+									return;					
+							case 8:
+									Show_error("Puerto de destino (No.8)","Valor introducido demasiado peque&ntilde;o");
+									return;		
+						}
+					}
+					else if(qport_range[i][1]>65535)
+					{
+						switch (i)
+						{
+							case 1:
+									Show_error("Puerto de destino (No.1)","Valor introducido demasiado grande");
+									return;
+							case 2:
+									Show_error("Puerto de destino (No.2)","Valor introducido demasiado grande");
+									return;
+							case 3:
+									Show_error("Puerto de destino (No.3)","Valor introducido demasiado grande");
+									return;
+							case 4:
+									Show_error("Puerto de destino (No.4)","Valor introducido demasiado grande");
+									return;
+							case 5:
+									Show_error("Puerto de destino (No.5)","Valor introducido demasiado grande");
+									return;
+							case 6:
+									Show_error("Puerto de destino (No.6)","Valor introducido demasiado grande");
+									return;
+							case 7:
+									Show_error("Puerto de destino (No.7)","Valor introducido demasiado grande");
+									return;					
+							case 8:
+									Show_error("Puerto de destino (No.8)","Valor introducido demasiado grande");
+									return;		
+						}
+					}
+					else
+					{
+						switch (i)
+						{
+							case 1:
+									Show_error("Puerto de destino (No.1)","Contiene un car&aacute;cter no v&aacute;lido");
+									return;
+							case 2:
+									Show_error("Puerto de destino (No.2)","Contiene un car&aacute;cter no v&aacute;lidog");
+									return;
+							case 3:
+									Show_error("Puerto de destino (No.3)","Contiene un car&aacute;cter no v&aacute;lido");
+									return;
+							case 4:
+									Show_error("Puerto de destino (No.4)","Contiene un car&aacute;cter no v&aacute;lido");
+									return;
+							case 5:
+									Show_error("Puerto de destino (No.5)","Contiene un car&aacute;cter no v&aacute;lido");
+									return;
+							case 6:
+									Show_error("Puerto de destino (No.6)","Contiene un car&aacute;cter no v&aacute;lido");
+									return;
+							case 7:
+									Show_error("Puerto de destino (No.7)","Contiene un car&aacute;cter no v&aacute;lido");
+									return;					
+							case 8:
+									Show_error("Puerto de destino (No.8)","Contiene un car&aacute;cter no v&aacute;lido");
+									return;		
+						}
+					}
+				}
+		}
+		else // wrong format
+		{
+						switch (i)
+						{
+							case 1:
+									Show_error("Puerto de destino (No.1)","Contiene un car&aacute;cter no v&aacute;lido");
+									return;
+							case 2:
+									Show_error("Puerto de destino (No.2)","Contiene un car&aacute;cter no v&aacute;lidog");
+									return;
+							case 3:
+									Show_error("Puerto de destino (No.3)","Contiene un car&aacute;cter no v&aacute;lido");
+									return;
+							case 4:
+									Show_error("Puerto de destino (No.4)","Contiene un car&aacute;cter no v&aacute;lido");
+									return;
+							case 5:
+									Show_error("Puerto de destino (No.5)","Contiene un car&aacute;cter no v&aacute;lido");
+									return;
+							case 6:
+									Show_error("Puerto de destino (No.6)","Contiene un car&aacute;cter no v&aacute;lido");
+									return;
+							case 7:
+									Show_error("Puerto de destino (No.7)","Contiene un car&aacute;cter no v&aacute;lido");
+									return;					
+							case 8:
+									Show_error("Puerto de destino (No.8)","Contiene un car&aacute;cter no v&aacute;lido");
+									return;		
+						}
+		}
+	    }
+			for(i=1;i<=8;i++)
+			{
+				for(j=1;j<=8;j++)
+				{
+					if(i!=j)
+					{
+						if((document.getElementById("enable"+i+"_tmp").checked)&&(document.getElementById("enable"+j+"_tmp").checked))
+						{
+							if((document.getElementById("id_Qport"+i).value==document.getElementById("id_Qport"+j).value)&&(document.getElementById("id_Qprtc"+i).value==document.getElementById("id_Qprtc"+j).value))
+							{
+								Show_error("protocolo y puerto de destino","Existe una combinaci&oacute;n del mismo protocolo y puerto de destino.");
+								return false;	
+							}
+
+						}
+						else if((document.getElementById("id_Qport"+i).value.length!=0)&&(document.getElementById("id_Qname"+i).value.length!=0))
+						{
+							if((document.getElementById("id_Qport"+i).value==document.getElementById("id_Qport"+j).value)&&(document.getElementById("id_Qprtc"+i).value==document.getElementById("id_Qprtc"+j).value))
+							{
+								Show_error("protocolo y puerto de destino","Existe una combinaci&oacute;n del mismo protocolo y puerto de destino.");
+								return false;	
+							}
+						}
+					}
+					else
+					{
+						continue;
+					}
+				}
+			}
+
+
+		
+		document.forms[0].submit();			
+	}
+	else
+	{
+		document.forms[0].submit();		 
+	}
+}
+
+//-->
+</script>
+<script src="OnceOnly.html"></script>
+</head>
+<body class="BFK_BODY"  onLoad="set_display(); check_intstyle();">
+<br>
+<form   onsubmit="return onceOnly(this);"  method="POST">
+<div id="id_errtbl" class="C_ERR" style="display:none;">
+</div>
+
+<table class="AD_SET">
+  <tbody>
+  <tr>
+    <th>QoS para la transmisi&oacute;n a Internet</th>
+    <td>
+      <input  type="checkbox" id="id_qostable_enable" value="1" OnClick="set_display();" >Habilitar
+    </td>
+  </tr>
+  </tbody>
+</table>
+
+<div id="wan_qos_ext">
+<br>
+
+
+
+<table class="AD_SET">
+  <tr>
+    <th>Cargar ancho de banda</th>
+    <td>
+      <input  type="text" name="QoSMaxRate" id="id_QoSMaxRate" size="7" maxlength="7" value="1000">Kbps
+    </td>
+  </tr>
+</table>
+
+<table class="AD_SET">
+
+  <tr>
+    <th>No.</th>
+    <th>Habilitar</th>
+    <th>Nombre de Aplicaci&oacute;n</th>
+    <th>Protocolo</th>
+    <th>Puerto de destino</th>
+    <th>Prioridad</th>
+  </tr>
+  <tr>
+    <td align="center">1</td>
+    <td align="center">
+     <input type="checkbox" id="enable1_tmp" onClick="set_rule_enable('1');" >
+
+     <input type="hidden" value="0" name="enable1" id="id_enable1">
+    </td>
+    <td>
+    	<input type="text" name="apname1" id="id_Qname1" size="30" maxlength="32" value="VoIP">
+    </td>
+    <td align="center">
+        <select size="1" name="protocol1" id="id_Qprtc1">
+            <option value="tcp" >TCP</option>
+<option value="udp" selected>UDP</option>
+
+        </select>
+    </td>
+    <td>
+    	<input type="text" name="dport1" id="id_Qport1" size="10" maxlength="11" value="">
+    </td>
+    <td>
+        <select size="1" name="prio1">
+            <option value="0" selected>alta</option>
+<option value="1" >mediana</option>
+<option value="2" >baja</option>
+
+        </select>
+    </td>
+  </tr>
+  
+  <tr>
+    <td align="center" >2</td>
+    <td align="center">
+     <input type="checkbox" id="enable2_tmp" onClick="set_rule_enable('2');" >
+
+     <input type="hidden" value="0" name="enable2" id="id_enable2">
+    </td>
+    <td>
+    	<input type="text" name="apname2" id="id_Qname2" size="30" maxlength="32" value="ssh">
+    </td>
+    <td align="center">
+        <select size="1" name="protocol2" id="id_Qprtc2">
+            <option value="tcp" selected>TCP</option>
+<option value="udp" >UDP</option>
+
+        </select>
+    </td>
+    <td>
+    	<input type="text" name="dport2" id="id_Qport2" size="10" maxlength="11" value="22">
+    </td>
+    <td>
+        <select size="1" name="prio2">
+            <option value="0" >alta</option>
+<option value="1" selected>mediana</option>
+<option value="2" >baja</option>
+
+        </select>
+    </td>
+  </tr>
+  
+  <tr>
+    <td align="center" >3</td>
+    <td align="center">
+     <input type="checkbox" id="enable3_tmp" onClick="set_rule_enable('3');" >
+
+    </td>
+    <td>
+    	<input type="text" name="apname3" id="id_Qname3" size="30" maxlength="32" value="telnet">
+    	<input type="hidden" value="0" name="enable3" id="id_enable3">
+    </td>
+    <td align="center">
+        <select size="1" name="protocol3" id="id_Qprtc3">
+            <option value="tcp" selected>TCP</option>
+<option value="udp" >UDP</option>
+
+        </select>
+    </td>
+    <td>
+    	<input type="text" name="dport3" id="id_Qport3" size="10" maxlength="11" value="23">
+    </td>
+    <td>
+        <select size="1" name="prio3">
+            <option value="0" >alta</option>
+<option value="1" selected>mediana</option>
+<option value="2" >baja</option>
+
+        </select>
+    </td>
+  </tr>
+  
+  <tr>
+    <td align="center" >4</td>
+    <td align="center">
+     <input type="checkbox" id="enable4_tmp" onClick="set_rule_enable('4');" >
+
+     <input type="hidden" value="0" name="enable4" id="id_enable4">
+    </td>
+    <td>
+    	<input type="text" name="apname4" id="id_Qname4" size="30" maxlength="32" value="ftp">
+    </td>
+    <td align="center">
+	    <select size="1" name="protocol4" id="id_Qprtc4">
+	        <option value="tcp" selected>TCP</option>
+<option value="udp" >UDP</option>
+
+	    </select>
+    </td>
+    <td>
+    	<input type="text" name="dport4" id="id_Qport4" size="10" maxlength="11" value="21">
+    </td>
+    <td>
+        <select size="1" name="prio4">
+            <option value="0" >alta</option>
+<option value="1" >mediana</option>
+<option value="2" selected>baja</option>
+
+        </select>
+    </td>
+  </tr>
+
+  <tr>
+    <td align="center" >5</td>
+    <td align="center">
+     <input type="checkbox" id="enable5_tmp" onClick="set_rule_enable('5');">
+
+     <input type="hidden" value="" name="enable5" id="id_enable5">
+    </td>
+    <td>
+    	<input type="text" name="apname5" id="id_Qname5" size="30" maxlength="32" value="">
+    </td>
+    <td align="center">
+        <select size="1" name="protocol5" id="id_Qprtc5">
+            <option value="tcp" selected>TCP</option>
+<option value="udp">UDP</option>
+
+        </select>
+    </td>
+    <td>
+    	<input type="text" name="dport5" id="id_Qport5" size="10" maxlength="11" value="">
+    </td>
+    <td>
+        <select size="1" name="prio5">
+            <option value="0">alta</option>
+<option value="1">mediana</option>
+<option value="2" selected>baja</option>
+
+        </select>
+    </td>
+  </tr>
+  
+  <tr>
+    <td align="center" >6</td>
+    <td align="center">
+     <input type="checkbox" id="enable6_tmp" onClick="set_rule_enable('6');">
+
+     <input type="hidden" value="" name="enable6" id="id_enable6">
+    </td>
+    <td>
+    	<input type="text" name="apname6" id="id_Qname6" size="30" maxlength="32" value="">
+    </td>
+    <td align="center">
+        <select size="1" name="protocol6" id="id_Qprtc6">
+            <option value="tcp" selected>TCP</option>
+<option value="udp">UDP</option>
+
+        </select>
+    </td>
+    <td>
+    	<input type="text" name="dport6" id="id_Qport6" size="10" maxlength="11" value="">
+    </td>
+    <td>
+        <select size="1" name="prio6">
+            <option value="0">alta</option>
+<option value="1">mediana</option>
+<option value="2" selected>baja</option>
+
+        </select>
+    </td>
+  </tr>
+  
+  <tr>
+    <td align="center" >7</td>
+    <td align="center">
+     <input type="checkbox" id="enable7_tmp" onClick="set_rule_enable('7');">
+
+     <input type="hidden" value="" name="enable7" id="id_enable7">
+    </td>
+    <td>
+    	<input type="text" name="apname7" id="id_Qname7" size="30" maxlength="32" value="">
+    </td>
+    <td align="center">
+        <select size="1" name="protocol7" id="id_Qprtc7">
+            <option value="tcp" selected>TCP</option>
+<option value="udp">UDP</option>
+
+        </select>
+    </td>
+    <td>
+    	<input type="text" name="dport7" id="id_Qport7" size="10" maxlength="11" value="">
+    </td>
+    <td>
+        <select size="1" name="prio7">
+            <option value="0">alta</option>
+<option value="1">mediana</option>
+<option value="2" selected>baja</option>
+
+        </select>
+    </td>
+  </tr>
+
+  <tr>
+    <td align="center" >8</td>
+    <td align="center">
+     <input type="checkbox" id="enable8_tmp" onClick="set_rule_enable('8');">
+
+     <input type="hidden" value="" name="enable8" id="id_enable8">
+    </td>
+    <td>
+    	<input type="text" name="apname8" id="id_Qname8" size="30" maxlength="32" value="">
+    </td>
+    <td align="center">
+        <select size="1" name="protocol8" id="id_Qprtc8">
+            <option value="tcp" selected>TCP</option>
+<option value="udp">UDP</option>
+
+        </select>
+    </td>
+    <td>
+    	<input type="text" name="dport8" id="id_Qport8" size="10" maxlength="11" value="">
+    </td>
+    <td>
+        <select size="1" name="prio8">
+            <option value="0">alta</option>
+<option value="1">mediana</option>
+<option value="2" selected>baja</option>
+
+        </select>
+    </td>
+  </tr>
+
+</table>
+</div>
+
+
+     <p><input type="button" value="Aplicar" name="SETUP" onclick="dosubmit()"></p>
+     <input type="hidden" value="0" name="QoSEnable" id="id_qos_enable">
+
+</form>
+
+
+</body>
+
+<!-- Mirrored from 192.168.0.1/qos.html by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 11 Jan 2017 00:16:10 GMT -->
+</html>

@@ -1,0 +1,206 @@
+
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+	<link rel="stylesheet" href="../css/styles.css" type="text/css">
+  <script type="text/javascript" src="mtmcode.js"></script><style type="text/css"></style>
+	<script type="text/javascript" src="util_gw.js"></script>
+	<style>
+	.on {display:on}
+	.off {display:none}
+	</style>
+	<script language="JavaScript">
+		var count = 20*1;
+		var pocketRouter_Mode="0"*1; /* 1:client 2:AP */
+		var waitcount = 1*1;
+		var seconds_word=" seconds ";
+		var is_ulinker="0"*1;
+		
+		if(is_ulinker == 1)
+		{
+			if(count<40)
+			{
+				if(parent.isOtg_Auto == 1)
+					count = count+20;
+				else {
+					//if (pocketRouter_Mode == 1)
+					count = count+20;
+				}
+			}
+		}
+		else
+		{
+		if(waitcount==1 && (pocketRouter_Mode==1 || pocketRouter_Mode==2) ){
+			count=90;
+		}else if(waitcount==2 && (pocketRouter_Mode==1 || pocketRouter_Mode==2) ){
+			count=120;
+		}
+		}
+			
+		function get_by_id(id)
+		{
+			with(document)
+			{
+				return getElementById(id);
+			}
+		}
+		
+		function change_state(istate)
+		{
+			if(parent.frames[1])
+			{
+			parent.frames[1].state = istate;			
+			MTMDisplayMenu();
+		}
+		
+			if(pocketRouter_Mode == 1){
+				if (is_ulinker == 0)
+				get_by_id("show_msg").innerHTML = "Please wait awhile and re-open browser to configure Pocket Router. ";
+				else
+					get_by_id("show_msg").innerHTML = "Please wait awhile and re-open browser to configure Universal Linker. ";
+				
+			}
+		}
+		
+		function closeBrowser()
+		{
+			parent.window.close();			
+		}
+		
+		function do_count_down()
+		{
+			show_div(false, "close_button");
+			
+		
+			get_by_id("show_sec").innerHTML = count;
+			
+			if(count == 0) 
+			{
+				var browser=eval ( '"' + top.location + '"' );
+				var domainName = "";
+				var connect_url;
+				var redirect_ip = "192.168.100.1";
+				change_state('normal');
+				
+				if(pocketRouter_Mode != 0)
+				{
+					if (is_ulinker == 0) 
+					{
+					if((pocketRouter_Mode == 2) || (pocketRouter_Mode == 3))
+						domainName = domainName+"ap";
+					else
+						domainName = domainName+"cl";
+					}
+						
+//alert("browser="+browser);
+					domainName = domainName.toLowerCase();
+//alert("domainName="+domainName);
+
+				if (is_ulinker == 0) {
+					if (browser.indexOf(redirect_ip) > -1 )
+					{
+						connect_url=redirect_ip;
+						
+					}
+					else if (browser.indexOf("www."+domainName+".net") > -1 )
+					{
+						connect_url = "www."+domainName+".com";
+					}
+					else if(browser.indexOf("www."+domainName+".com") > -1 )
+					{
+						connect_url = "www."+domainName+".net";
+					}
+					else if (browser.indexOf(domainName+".net") > -1 )
+					{
+						connect_url = domainName+".com";
+					}
+					else if(browser.indexOf(domainName+".com") > -1 )
+					{
+						connect_url = domainName+".net";
+					}
+					else if (browser.indexOf(domainName) > -1 )
+					{
+						connect_url = domainName+".com";
+					}
+					else
+					{
+						connect_url = domainName+".com";
+					}
+				}
+				else {
+					if (browser.indexOf(redirect_ip) > -1 )
+					{
+						connect_url=redirect_ip;
+						
+					}
+					else if (browser.indexOf("www."+domainName+".com.tw") > -1 )
+					{
+						connect_url = "www."+domainName+".com";
+					}
+					else if(browser.indexOf("www."+domainName+".com") > -1 )
+					{
+						connect_url = "www."+domainName+".com.tw";
+					}
+					else if (browser.indexOf(domainName+".com.tw") > -1 )
+					{
+						connect_url = domainName+".com";
+					}
+					else if(browser.indexOf(domainName+".com") > -1 )
+					{
+						connect_url = domainName+".com.tw";
+					}
+					else if (browser.indexOf(domainName) > -1 )
+					{
+						connect_url = domainName+".com";
+					}
+					else
+					{
+						connect_url = domainName+".com";
+					}
+				}
+					
+				}
+				else
+				{
+					connect_url=redirect_ip;
+				}
+				
+				var lastUrl="/status.htm";
+				
+				if(lastUrl == "/wizard.htm")
+				{
+					parent.location.href = 'http://'+connect_url;
+				}
+				else
+				{
+					
+//alert("connect_url="+connect_url);
+					var location_href = 'http://'+connect_url+lastUrl+'?t='+new Date().getTime();				
+//alert("location_href="+location_href);				
+					parent.location.href = 'http://'+connect_url;
+					//parent.frames[3].location.href=location_href;
+				}
+				
+				return false;
+			}
+			
+			if (count > 0) 
+			{
+				
+				count--;
+				setTimeout('do_count_down()',1000);
+			}
+		}
+	</script>
+</head>
+<body onload="change_state(&#39;normal&#39;);do_count_down();" marginwidth="0" marginheight="0">
+	<blockquote>
+		<h4>¡Configuración modificada exitosamente!</h4>
+    <p id="show_msg">No apague ni reinicie el dispositivo durante este proceso.</p>
+    <p style="margin-top:10px;"><span id="please_wait">Espere </span><b><span id="show_sec">6</span></b>&nbsp;<span id="show_seconds">segundos ...</span></p>
+		<span id="close_button" class="off">
+			<input type="button" value="  OK  " name="cancel" onclick="closeBrowser();">
+		</span>
+	</blockquote>
+
+
+</body></html>

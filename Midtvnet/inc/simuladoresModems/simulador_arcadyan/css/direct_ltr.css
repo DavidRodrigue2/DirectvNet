@@ -1,0 +1,7 @@
+body{	direction: ltr;}
+.ltrR{ direction: ltr; }
+.dirAlign {text-align: left;}
+input{ direction: ltr; }
+.dirAlignInverse {text-align: right;}
+.LtoR { direction: ltr;}
+.tdWidth {width:5px;}

@@ -1,0 +1,336 @@
+<html>
+
+<!-- Mirrored from 192.168.0.1/pppoe.html by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 11 Jan 2017 00:16:09 GMT -->
+<head>
+<meta http-equiv="Pragma" content="no-cache">
+<meta http-equiv="Cache-Control" content="no-cache">
+<META http-equiv=Content-Type content="text/html; charset=UTF-8">
+<link rel="stylesheet" type="text/css" href="WHR-G300N-160149-style-ENG.css">   
+<link rel="stylesheet" type="text/css" href="WHR-G300N-160149-style-ad-ENG.css">
+<script language="javascript" src="common.html"></script>
+<script language="JavaScript">
+<!--
+
+var nowEdit=0;
+var oldEdit;
+var EditIndex=0;
+function EnKeepAlive(item)
+{
+    if (document.getElementById("id_"+item+"Tmp").checked==true)
+    	document.getElementById("id_"+item).value="1";
+    else
+    	document.getElementById("id_"+item).value="0";
+}
+
+function EnIPFixed(item)
+{
+    if (document.getElementById("id_"+item+"Tmp").checked==true)
+    {
+		document.getElementById("id_"+item).value="1";
+		document.getElementById("id_PIP").disabled=false;
+	}	
+    else
+	{
+    	document.getElementById("id_"+item).value="0";
+		document.getElementById("id_PIP").disabled=true;
+	}
+}
+
+
+function Init()
+{
+    document.getElementById("id_PDisTime").value=document.getElementById("id_PDisTime").value/60;
+
+    if (document.getElementById("id_PIPFixed").value=="1")
+	{
+		document.getElementById("id_PIPFixedTmp").checked=true;
+		document.getElementById("id_PIP").disabled=false;
+	}
+	else
+	{
+		document.getElementById("id_PIPFixedTmp").checked=false;
+		document.getElementById("id_PIP").disabled=true;
+	}
+	
+}
+
+function space_check(item_string){
+	if(item_string.charAt(0) == ' ' || item_string.charAt(item_string.length-1) == ' ')
+		return false;
+	else
+		return true;
+}
+
+function CheckPPPoE()
+{
+    var mtu=document.getElementById("id_PMTU").value;
+    var mru=document.getElementById("id_PMRU").value;
+    var idletime=document.getElementById("id_PDisTime").value;
+    var i=0;
+    
+    var name_string="Nombre de conexi&oacute;n";
+    if(document.getElementById("id_PName").value=="")
+    {
+    	Show_error(name_string, "Nombre de la conexi&oacute;n no configurado.");
+    	return false;
+    }
+	if(!Escape_String(document.getElementById("id_PName").value))
+	{
+		Show_error(name_string, "Formato no v&aacute;lido");
+		return false;			
+	}
+	if(!Escape_String(document.getElementById("id_PUsername").value))
+	{
+		Show_error("Nombre de usuario", "Formato no v&aacute;lido");
+		return false;			
+	}
+	if(!space_check(document.getElementById("id_PUsername").value))
+	{
+		Show_error("Nombre de usuario", "Formato no v&aacute;lido");
+		return false;			
+	}
+	if(!Escape_String(document.getElementById("id_PService").value))
+	{
+		Show_error("Nombre de servicio", "Formato no v&aacute;lido");
+		return false;			
+	}
+    if(idletime=="" || !check_integer_range(idletime,0,1440))
+    {
+    	Show_error("Periodo de inactividad", "Periodo de inactividad no v&aacute;lido");
+    	return false;
+    } 
+    if(mtu=="" || !check_integer_range(mtu,578,1492))
+    {
+    	Show_error("Tama&ntilde;o MTU", "Tama&ntilde;o MTU no v&aacute;lido");
+    	return false;
+    }   
+    if(mru=="" || !check_integer_range(mru,578,1492))
+    {
+    	Show_error("Tama&ntilde;o MRU", "Tama&ntilde;o MRU no v&aacute;lido");
+    	return false;
+    }  
+    if(document.getElementById("id_PPassword").value!=document.getElementById("id_PPassConfirm").value)
+    {
+    	Show_error("Contrase&ntilde;a", "La contrase&ntilde;a no coincide");
+    	return false;
+    }	
+    return true;    	
+}
+
+function CheckStaticIP()
+{
+	var id_PIP = document.getElementById("id_PIP").value;
+	var id_PDNS1 = document.getElementById("id_PDNS1").value;
+	var id_PDNS2 = document.getElementById("id_PDNS2").value;
+	id_PIP = ip_normalize_0(document.getElementById("id_PIP").value);
+	id_PDNS1 = ip_normalize_0(document.getElementById("id_PDNS1").value);
+	id_PDNS2 = ip_normalize_0(document.getElementById("id_PDNS2").value);
+
+	if(isBlank(id_PIP) && document.getElementById("id_PIPFixedTmp").checked==true ){
+		Show_error("Dirección IP PPPoE", "La dirección IP PPPoE está en blanco");
+		return false;
+	}
+	else if(check_ip(id_PIP)!=0){
+		Show_error("Dirección IP PPPoE", "Formato no v&aacute;lido");
+		return false;
+	}
+	else if (!isBlank(id_PDNS1) && check_ip(id_PDNS1)!=0)
+	{
+		Show_error("DNS1 PPPoE", "Formato no v&aacute;lido");
+		return false;
+	}
+	else if (!isBlank(id_PDNS2) && check_ip(id_PDNS2)!=0)
+	{
+		Show_error("DNS2 PPPoE", "Formato no v&aacute;lido");
+		return false;
+	}
+	else if(!isBlank(id_PDNS1) && (id_PDNS1==id_PDNS2))
+	{
+		//Show_WizardError("same DNS IP", "No duplicate DNS IP");
+		Show_error("Servidor DNS secundario", "Formato de direcci&oacute;n IP no v&aacute;lido");
+		return false;
+	}
+	else if(!check_ip(id_PDNS2) && !isBlank(id_PDNS2) && isBlank(id_PDNS1)){
+
+		Show_WizardError("Servidor DNS principal", "Para introducir la direcci&oacute;n del servidor DNS secundario, primero debe introducir la direcci&oacute;n del servidor DNS principal");
+		return;
+	}
+	else
+		return true;
+}
+
+
+function PPPoEReg_submit(type)
+{
+    if (!CheckPPPoE())
+    	return; 
+	if (!CheckStaticIP())
+		return;
+
+	document.PPPoEReg_from.tmp_store_PPPoEUsername.value = document.getElementById("id_PUsername").value;
+	document.PPPoEReg_from.tmp_store_PPPoEPassword.value = document.getElementById("id_PPassword").value;
+	document.PPPoEReg_from.tmp_store_PPPoEPasswordConfirm.value = document.getElementById("id_PPassConfirm").value;
+	if(document.getElementById("id_PIPFixedTmp").checked == true)
+		document.PPPoEReg_from.tmp_store_PPPoESIPEnabled.value = "1";
+	else
+		document.PPPoEReg_from.tmp_store_PPPoESIPEnabled.value = "0";
+	document.PPPoEReg_from.tmp_store_PPPoEstaticIP.value = document.getElementById("id_PIP").value;
+	document.PPPoEReg_from.tmp_store_PPPoEDNS1.value = document.getElementById("id_PDNS1").value; 
+	document.PPPoEReg_from.tmp_store_PPPoEDNS2.value = document.getElementById("id_PDNS2").value;
+	
+    document.getElementById("id_PDisTime").value=document.getElementById("id_PDisTime").value*60;
+    document.PPPoEReg_from.submit();
+}
+
+
+
+
+//-->
+</script>
+</head>
+<body class="BFK_BODY" onload="Init();">
+<br>
+<div id="id_errtbl" class=C_ERR style="display:none;"></div>
+<form method="POST" name="PPPoEReg_from">
+<input type="hidden" name="nosave_EditRule" id="id_EditRule" value="" disabled>
+  <table class="AD_TTL2">
+    <tr>
+      <td id="t_cintent">Conexi&oacute;n PPPoE</td>
+    </tr>
+  </table>
+  <table class=AD_SET>
+    <tr>
+      <th>Nombre de conexi&oacute;n</th>
+      <td>
+        <input type="text" name="PPPoE1Name" id="id_PName" size="45" maxlength="32" value="">
+      </td>
+    </tr>
+    <tr>
+      <th>Nombre de usuario</th>
+      <td>
+        <input type="text" name="PPPoE1Username" id="id_PUsername" size="45" maxlength="64" value="">
+      </td>
+    </tr>
+    <tr>
+      <th>Contrase&ntilde;a</th>
+      <td>
+        <input type="password" name="PPPoE1Password" id="id_PPassword" size="45" maxlength="64" value="" onClick="rm_start('id_PPassword');rm_start('id_PPassConfirm');">
+        <br>
+        <input type="password" id="id_PPassConfirm" size="45" maxlength="64" value=""  onClick="rm_start('id_PPassConfirm');"> &#x28;Confirmaci&oacute;n&#x29;
+      </td>
+    </tr>
+    <tr>
+      <th>Nombre de servicio</th>
+      <td>
+        <input type="text" name="PPPoE1Service" id="id_PService" size="45" maxlength="64" value="">
+      </td>
+    </tr>
+	 <tr>
+	  <th>IP estática PPPoE</th>
+      <td>
+         <input type="hidden" name="PPPoE1IPFixed" id="id_PIPFixed" value="0">
+         <input type="checkbox" id="id_PIPFixedTmp" onClick="EnIPFixed('PIPFixed');" >	
+      </td>
+    </tr>
+		 <tr>
+	  <th>Dirección IP PPPoE</th>
+      <td>
+        <input type="text" name="PPPoE1IP" id="id_PIP" size="16" maxlength="16" value="">
+      </td>
+    </tr>
+		 <tr>
+	  <th>DNS1 PPPoE</th>
+      <td>
+        <input type="text" name="PPPoE1DNS1" id="id_PDNS1" size="16" maxlength="16" value="">
+      </td>
+    </tr>
+		 <tr>
+	  <th>DNS2 PPPoE</th>
+      <td>
+        <input type="text" name="PPPoE1DNS2" id="id_PDNS2" size="16" maxlength="16" value="">
+      </td>
+    </tr>
+  </table>
+<table class="AD_TTL2">
+  <tr>
+    <td>Configuraci&oacute;n avanzada  </td>
+  </tr>
+</table>
+<table class="AD_SET">
+  <tr>
+    <th>Tipo de conexi&oacute;n</th>
+      <td>
+        <select size="1" name="PPPoE1Mode" id="id_PMode">
+     	  <option value="always" selected>Conexi&oacute;n continua</option>
+     	  <option value="demand" >Conexi&oacute;n a petici&oacute;n</option>
+     	  <option value="manual" >Manual</option>
+     	</select>
+      </td>
+  </tr>
+  <tr>
+  <th>Desconexi&oacute;n autom&aacute;tica</th>
+    <td>
+      <table>
+        <tr>
+          <td nowrap>Condici&oacute;n de desconexi&oacute;n</td>
+          <td>
+            <select size="1" name="PPPoE1OnDemandMode" id="id_PDisCond">
+        	<option value="0" selected>Cuando se detenga el tráfico entrante y saliente</option>
+        	<option value="1" >Cuando se detenga el tráfico saliente</option>
+        	<option value="2" >Cuando se detenga el tráfico entrante</option>
+            </select>
+          </td>
+        </tr>
+     	<tr>
+     	  <td nowrap>Tiempo de desconexi&oacute;n</td>
+     	  <td nowrap><input type="text" name="PPPoE1Idletime" id="id_PDisTime" size="10" maxlength="4" value="300">Minutos
+     	  <br>(Si se establece un tiempo de desconexi&oacute;n de 0 minutos&#x2C;<br> la Device mantendr&aacute; la conexi&oacute;n indefinidamente)</td>
+     	</tr>
+      </table>
+     </td>
+   </tr>
+    <tr>
+      <th>Autorizaci&oacute;n</th>
+      <td>
+        <select size="1" name="PPPoE1AuthType" id="id_PAuthType">
+      	  <option value="AUTO" >Autorizaci&oacute;n autom&aacute;tica</option>
+      	  <option value="CHAP" >S&oacute;lo autorizaci&oacute;n CHAP</option>
+      	  <option value="PAP" >S&oacute;lo autorizaci&oacute;n PAP</option>
+        </select>
+      </td>
+     </tr>
+     <tr>
+       <th>Tama&ntilde;o MTU</th>
+       <td>
+         <input type="text" name="PPPoE1MTU" id="id_PMTU" size="10" maxlength="4" value="1454">Bytes
+       </td>
+     </tr>
+     <tr>
+       <th>Tama&ntilde;o MRU</th>
+       <td>
+         <input type="text" name="PPPoE1MRU" id="id_PMRU" size="10" maxlength="4" value="1454">Bytes
+       </td>
+     </tr>
+     <tr>
+       <th>Mantener la conexi&oacute;n</th>
+       <td>
+         <input type="hidden" name="PPPoE1KeepAlive" id="id_PKeepAlive" value="1">
+         <input type="checkbox" id="id_PKeepAliveTmp" onClick="EnKeepAlive('PKeepAlive');" checked>Habilitar
+       </td>
+     </tr>
+   </table>
+   <p>
+     <input type="button" value="Aplicar" onClick="PPPoEReg_submit('add')">	  
+   </p>
+   <input type="hidden" name="tmp_store_PPPoEUsername" value="">
+   <input type="hidden" name="tmp_store_PPPoEPassword" value="">
+   <input type="hidden" name="tmp_store_PPPoEPasswordConfirm" value="">
+   <input type="hidden" name="tmp_store_PPPoESIPEnabled" value="">
+   <input type="hidden" name="tmp_store_PPPoEstaticIP" value="">
+   <input type="hidden" name="tmp_store_PPPoEDNS1" value="">
+   <input type="hidden" name="tmp_store_PPPoEDNS2" value="">
+   </form>
+</body>
+
+<!-- Mirrored from 192.168.0.1/pppoe.html by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 11 Jan 2017 00:16:09 GMT -->
+</html>

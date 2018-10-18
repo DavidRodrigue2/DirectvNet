@@ -1,0 +1,1152 @@
+
+
+<html>
+
+<!-- Mirrored from 192.168.0.1/nat_reg.html by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 11 Jan 2017 00:16:05 GMT -->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta http-equiv="Pragma" content="no-cache">
+<meta http-equiv="Cache-Control" content="no-cache">
+<META http-equiv="Content-Style-Type" content="text/css">
+<LINK rel="stylesheet" href="WHR-G300N-160149-style-ENG.css" type="text/css">
+<LINK rel="stylesheet" href="WHR-G300N-160149-style-ad-ENG.css" type="text/css">
+
+<script language="JavaScript" type="text/javascript" src="common.html"></script>
+<script language="JavaScript">
+<!--
+var nowEdit=0;
+var oldEdit;
+var putvalueflag=0;
+var exec=0;
+
+function Init()
+{
+	var error="0";
+	var item="";
+	var content="";
+	var index="0";
+	if (error == "1")
+	{
+		index=(parseInt(index)+1);
+		putvalueflag=1;
+		Show_error(item, content);
+		putValue(document.getElementById("id_index").value, index);
+        document.getElementById("id_TITLE").innerHTML ="Editar redireccionamiento de puertos";
+		return;
+	}
+	else
+    {
+        document.getElementById("id_TITLE").innerHTML ="Agregar direccionamiento de puertos";
+		Hide_error();
+    }
+	
+	if (index>=32)
+	{
+		document.getElementById("id_fallbl").style.display="";
+		document.getElementById("id_addbl").style.display="none";
+	}
+}
+
+function addGroupName()
+{
+	if (document.prfForm.nosave_grpList.selectedIndex==0)
+		document.prfForm.nosave_grpName.disabled=false;
+	else
+		document.prfForm.nosave_grpName.disabled=true;
+}
+
+function changeProto()
+{
+	document.prfForm.nosave_PortType.disabled=true;
+	document.prfForm.nosave_ProtNum.disabled=true;
+	document.prfForm.nosave_wport.disabled=true;
+	document.prfForm.nosave_lport.disabled=true;
+	if (document.prfForm.nosave_proto[2].checked)
+		document.prfForm.nosave_ProtNum.disabled=false;
+	else if (document.prfForm.nosave_proto[3].checked)
+	{
+		document.prfForm.nosave_PortType.disabled=false;
+		enablePort();
+	}
+}
+
+function enablePort()
+{
+	if (document.prfForm.nosave_PortType.selectedIndex<2)
+		document.prfForm.nosave_wport.disabled=false;
+	else
+		document.prfForm.nosave_wport.disabled=true;
+	document.prfForm.nosave_lport.disabled=false;
+}
+
+function checkPrf(action)
+{
+	if(document.prfForm.nosave_grpName.disabled==false)
+	{
+  		if (!isAllowValue(document.prfForm.nosave_grpName.value))
+		{
+			Show_error("Nombre de grupo", "Nombre de grupo no v&aacute;lido");
+			return;
+		}
+ 		if (!Escape_String(document.prfForm.nosave_grpName.value))
+ 		{
+			Show_error("Nombre de grupo", "Nombre de grupo no v&aacute;lido");
+			return;
+		}
+	}
+	//validate Internet IP Address start
+	if (document.prfForm.nosave_wan.options[document.prfForm.nosave_wan.length-1].selected)
+	{
+		if (document.prfForm.nosave_manualIP.value.length==0)
+		{
+			document.prfForm.nosave_erritem.value="Direcci&oacute;n IP de la INTERNET";
+            		document.prfForm.nosave_errcontent.value="No configurado";
+            		document.prfForm.nosave_add_tmp.value="1";
+		}
+		else if (document.prfForm.nosave_manualIP.value.length<7)
+		{
+			document.prfForm.nosave_erritem.value="Direcci&oacute;n IP de la INTERNET";
+            		document.prfForm.nosave_errcontent.value="Longitud demasiado corta";
+            		document.prfForm.nosave_add_tmp.value="1";
+		}
+		else if (!isAllowValueIP(document.prfForm.nosave_manualIP.value,"Direcci&oacute;n IP de la INTERNET"))
+			return;
+		else if (!check_ip_format(document.prfForm.nosave_manualIP.value,"Direcci&oacute;n IP de la INTERNET","wan"))
+			return;
+		document.prfForm.nosave_manualIP.value=ip_normalize_0(document.prfForm.nosave_manualIP.value);
+	}
+	//validate Internet IP Address end
+	if (document.prfForm.nosave_proto[2].checked)
+	{
+		if (document.prfForm.nosave_ProtNum.value.length==0)
+		{
+			document.prfForm.nosave_erritem.value="N&uacute;mero de protocolo";
+            		document.prfForm.nosave_errcontent.value="N&uacute;mero de protocolo no v&aacute;lido";
+            		document.prfForm.nosave_add_tmp.value="1";
+		}
+		if (!check_integer_range(document.prfForm.nosave_ProtNum.value, 1, 255))
+		{
+			document.prfForm.nosave_erritem.value="N&uacute;mero de protocolo";
+            		document.prfForm.nosave_errcontent.value="N&uacute;mero de protocolo no v&aacute;lido";
+            		document.prfForm.nosave_add_tmp.value="1";
+    		}
+	}
+	if (document.prfForm.nosave_proto[3].checked)
+	{
+    		var wanp;
+    		var lanp;
+		var wport=document.prfForm.nosave_wport.value;
+		var lport=document.prfForm.nosave_lport.value;
+		wanp=wport.split('-');
+		lanp=lport.split('-');
+		
+    		if (document.prfForm.nosave_PortType.selectedIndex==0 || document.prfForm.nosave_PortType.selectedIndex==1)
+    		{
+      			if (document.prfForm.nosave_wport.value.length==0)
+      			{
+      			  	//Show_error("Internet Side TCP/UDP Port", "Invalid Internet side TCP/UDP port");
+      			  	document.prfForm.nosave_erritem.value="Puerto TCP/UDP de la INTERNET";
+      			  	document.prfForm.nosave_errcontent.value="Puerto TCP/UDP de la INTERNET no v&aacute;lido";
+      			  	document.prfForm.nosave_add_tmp.value="1";
+      			  	//return;
+      			} 
+  			if (!check_port(document.prfForm.nosave_wport.value) || lanp.length==2)
+  			{
+  			   	if (wanp.length!=2 && lanp.length==2)
+  			   	{
+          				 document.prfForm.nosave_erritem.value="Protocolo TCP/UDP";
+          				 document.prfForm.nosave_errcontent.value="Protocolo TCP/UDP<BR>CONTENIDO:"; 
+          				 document.prfForm.nosave_add_tmp.value="1";
+        		   	}
+  			   	else if (wanp.length!=2)
+  			   	{
+          				 document.prfForm.nosave_erritem.value="Puerto TCP/UDP de la INTERNET";
+          				 document.prfForm.nosave_errcontent.value="Puerto TCP/UDP de la INTERNET no v&aacute;lido";
+          				 document.prfForm.nosave_add_tmp.value="1";
+        		}
+        		else
+        		{
+        			  if (!check_port(wanp[0]) || !check_port(wanp[1]) || (parseInt(wanp[0], 10)>parseInt(wanp[1], 10)) || wanp[0]==wanp[1])
+        			  {
+        			    document.prfForm.nosave_erritem.value="Puerto TCP/UDP de la INTERNET";
+        			    document.prfForm.nosave_errcontent.value="Puerto TCP/UDP de la INTERNET no v&aacute;lido";
+        			    document.prfForm.nosave_add_tmp.value="1";
+        			  }
+        			  else if (!check_port(document.prfForm.nosave_wport.value) && wanp.length!=2)
+        			  {
+        			    document.prfForm.nosave_erritem.value="Puerto TCP/UDP de la INTERNET";
+        			    document.prfForm.nosave_errcontent.value="Puerto TCP/UDP de la INTERNET no v&aacute;lido";
+        			    document.prfForm.nosave_add_tmp.value="1";
+        			  }
+					  else if(wanp[0]=="")
+					  {
+        			    document.prfForm.nosave_erritem.value="Puerto TCP/UDP de la INTERNET";
+        			    document.prfForm.nosave_errcontent.value="Puerto TCP/UDP de la INTERNET no v&aacute;lido";
+        			    document.prfForm.nosave_add_tmp.value="1";					  					  
+					  }
+        		}
+      		}
+      			if (document.prfForm.nosave_lport.value.length!=0)
+      			{
+      			  if (!check_port(document.prfForm.nosave_lport.value) || wanp.length==2)
+    			  {
+						if (lanp.length!=2 && wanp.length==2)
+      			    	{
+      			    	  document.prfForm.nosave_erritem.value="Protocolo TCP/UDP";
+      			    	  document.prfForm.nosave_errcontent.value="Protocolo TCP/UDP<BR>CONTENIDO:";
+      			    	  document.prfForm.nosave_add_tmp.value="1";
+      			    	}
+      			    	else if (lanp.length==2 && wanp.length==2)
+      			    	{
+      			    	  if ((wanp[0]==lanp[0]) && (wanp[1]==lanp[1]))
+      			    	  {
+      			    	  }
+      			    	  else
+      			    	  {
+      			    	    document.prfForm.nosave_erritem.value="Protocolo TCP/UDP";
+      			    	    document.prfForm.nosave_errcontent.value="Protocolo TCP/UDP<BR>CONTENIDO:";
+      			    	    document.prfForm.nosave_add_tmp.value="1";
+      			    	  }
+      			    	}
+      			    	else if (lanp.length!=2)
+						{
+      			      		document.prfForm.nosave_erritem.value="Puerto TCP/UDP de la INTERNET";
+      			      		document.prfForm.nosave_errcontent.value="Puerto TCP/UDP no v&aacute;lido (LAN)";
+      			      		document.prfForm.nosave_add_tmp.value="1";
+      			    	}
+      			  }      
+      			}
+    		}
+    
+    		if (!check_port(document.prfForm.nosave_lport.value) && lanp.length!=2)
+    		{
+    		  document.prfForm.nosave_erritem.value="Puerto TCP/UDP de la INTERNET";
+    		  document.prfForm.nosave_errcontent.value="Puerto TCP/UDP no v&aacute;lido (LAN)";
+    		  document.prfForm.nosave_add_tmp.value="1";
+    		}
+    		
+    		var tmpPortType=document.prfForm.nosave_PortType.selectedIndex;
+    		var tmplport=document.prfForm.nosave_lport.value;
+    		if (tmpPortType==3 && ((document.prfForm.nosave_lport.value!="") && (document.prfForm.nosave_lport.value!="20-21")))
+    		{
+    		  document.prfForm.nosave_erritem.value="Protocolo TCP/UDP";
+    		  document.prfForm.nosave_errcontent.value="Protocolo TCP/UDP<BR>CONTENIDO:";
+    		  document.prfForm.nosave_add_tmp.value="1";
+    		}
+    		if (lanp.length>1 && ((tmpPortType==2) || (tmpPortType==4) || (tmpPortType==5) || (tmpPortType==6) || (tmpPortType==7) || (tmpPortType==8) || (tmpPortType==9) || (tmpPortType==10) || (tmpPortType==11)))
+    		{
+    		  document.prfForm.nosave_erritem.value="Protocolo TCP/UDP";
+    		  document.prfForm.nosave_errcontent.value="Protocolo TCP/UDP<BR>CONTENIDO:";
+    		  document.prfForm.nosave_add_tmp.value="1";
+    		}
+  	}
+	
+	if (document.prfForm.nosave_lanip.value.length==0)
+	{
+	    	document.prfForm.nosave_erritem.value="Direcci&oacute;n IP de la LAN";
+            	document.prfForm.nosave_errcontent.value="No configurado";
+            	document.prfForm.nosave_add_tmp.value="1";
+	}
+	if (!isAllowValueIP(document.prfForm.nosave_lanip.value,"Direcci&oacute;n IP de la LAN"))
+		return;
+	if (!check_ip_format(document.prfForm.nosave_lanip.value,"Direcci&oacute;n IP de la LAN","lan"))
+		return;
+    document.prfForm.nosave_lanip.value=ip_normalize_0(document.prfForm.nosave_lanip.value);
+	//alert(":1---"+document.prfForm.nosave_add_tmp.value+"---");
+	if (document.getElementById("id_prtmanual").checked==true)
+	{
+	    if (document.prfForm.nosave_ProtNum.value=="6" || document.prfForm.nosave_ProtNum.value=="17")
+	    {
+	        document.prfForm.nosave_erritem.value="N&uacute;mero de protocolo";
+        	document.prfForm.nosave_errcontent.value="No se puede especificar como 6(TCP) ni 17(UDP) en la configuraci&oacute;n manual";
+            document.prfForm.nosave_add_tmp.value="1"; 
+        }
+	}
+	if (!check_same_rule())
+    		return;
+	if(!Escape_String(document.prfForm.nosave_lanip.value))
+		{
+			document.prfForm.nosave_erritem.value="Direcci&oacute;n IP de la LAN";
+        	document.prfForm.nosave_errcontent.value="Formato de direcci&oacute;n IP no v&aacute;lido";
+        			document.prfForm.nosave_add_tmp.value="1"; 
+		}
+	//alert(":2---"+document.prfForm.nosave_add_tmp.value+"---");
+	if(action=="save")
+	{
+		//document.prfForm.nosave_add_tmp.value="0";
+		document.prfForm.nosave_add.disabled=false;
+	}
+	if (document.prfForm.DO_ADD.value=="Agregar")
+		document.prfForm.nosave_add.disabled=false;
+		
+    //alert(":3---"+document.prfForm.nosave_edit.disabled+"---"+document.prfForm.nosave_add_tmp.value+"---");
+	if (document.prfForm.nosave_edit.disabled==false && document.prfForm.nosave_add_tmp.value=="1")
+	{
+		Show_error(document.prfForm.nosave_erritem.value,document.prfForm.nosave_errcontent.value);
+		document.prfForm.nosave_add_tmp.value = 0;
+	}
+	else
+	{
+		Hide_error();
+        if (exec==0)
+        {
+            exec=1;
+            document.prfForm.submit();
+        }
+	}
+}
+
+function putValue(val1,val2)
+{
+	var error="0";
+	var item="";
+	var nameObj=document.getElementById("id_name"+val1);
+	var wanipObj=document.getElementById("id_wan"+val2);
+	var protoObj=document.getElementById("id_proto"+val2);
+	var wportObj=document.getElementById("id_wport"+val2);
+	var lanipObj=document.getElementById("id_lanip"+val2);
+	var lportObj=document.getElementById("id_lport"+val2);
+	var schedObj=document.getElementById("id_sched"+val2);
+	var buttonObj=document.getElementById("id_button"+val2);
+	var nameValue = (document.all)?nameObj.innerText:nameObj.textContent;
+	var wanipValue = (document.all)?wanipObj.innerText:wanipObj.textContent;
+	var protoValue = (document.all)?protoObj.innerText:protoObj.textContent;
+	var wportValue = (document.all)?wportObj.innerText:wportObj.textContent;
+	var lanipValue = (document.all)?lanipObj.innerText:lanipObj.textContent;
+	var lportValue = (document.all)?lportObj.innerText:lportObj.textContent;
+	var schedValue = (document.all)?schedObj.innerText:schedObj.textContent;
+	var wanifIndex=0, i;
+
+
+	for(i=0;i<(document.prfForm.nosave_wan.length-1);i++)
+	{
+		if(wanipValue==document.prfForm.nosave_wan.options[i].text)
+		{
+			wanifIndex=i;
+			break;
+		}
+	}
+	if(i>=(document.prfForm.nosave_wan.length-1))
+		wanifIndex=document.prfForm.nosave_wan.length-1;
+
+	document.prfForm.nosave_grpName.value = nameValue;
+	document.prfForm.nosave_lanip.value = lanipValue;
+
+	if(schedValue == "None"){
+		document.prfForm.sched.value = "0";
+	} else {
+		document.prfForm.sched.value = schedValue;
+	}
+
+	if( (error=="1")&&(item=="Direcci&oacute;n IP de la INTERNET") )
+	{
+		if(wanifIndex<(document.prfForm.nosave_wan.length-1))
+		{
+			document.prfForm.nosave_wan.options[wanifIndex].selected=true;
+			document.prfForm.nosave_manualIP.value="";
+			document.prfForm.nosave_manualIP.disabled=false;
+		}
+		else
+		{
+			document.prfForm.nosave_wan.options[document.prfForm.nosave_wan.length-1].selected=true;
+			document.prfForm.nosave_manualIP.value=wanipValue;
+			document.prfForm.nosave_manualIP.disabled=false;
+		}
+	}
+	else
+	{
+		if(wanifIndex<(document.prfForm.nosave_wan.length-1))
+		{
+			document.prfForm.nosave_wan.options[wanifIndex].selected=true;
+			document.prfForm.nosave_manualIP.value="";
+			document.prfForm.nosave_manualIP.disabled=true;
+		}
+		else
+		{
+			document.prfForm.nosave_wan.options[document.prfForm.nosave_wan.length-1].selected=true;
+			document.prfForm.nosave_manualIP.value=wanipValue;
+			document.prfForm.nosave_manualIP.disabled=false;
+		}
+	}
+	
+
+	if (protoValue=="TCP")
+	{
+		document.prfForm.nosave_proto[3].checked=true;
+		if (wportValue=="80")
+		{
+			document.prfForm.nosave_PortType.selectedIndex=2;
+			if (lportValue=="80")
+				lportValue="";
+		}
+		else if (wportValue=="20-21")
+		{
+			document.prfForm.nosave_PortType.selectedIndex=3;
+			if (lportValue=="20-21")
+				lportValue="";
+		}
+		else if (wportValue=="443")
+		{
+			document.prfForm.nosave_PortType.selectedIndex=4;
+			if (lportValue=="443")
+				lportValue="";
+		}
+		else if (wportValue=="23")
+		{
+			document.prfForm.nosave_PortType.selectedIndex=5;
+			if (lportValue=="23")
+				lportValue="";
+		}
+		else if (wportValue=="22")
+		{
+			document.prfForm.nosave_PortType.selectedIndex=6;
+			if (lportValue=="22")
+				lportValue="";
+		}
+		else if (wportValue=="25")
+		{
+			document.prfForm.nosave_PortType.selectedIndex=7;
+			if (lportValue=="25")
+				lportValue="";
+		}
+		else if (wportValue=="110")
+		{
+			document.prfForm.nosave_PortType.selectedIndex=8;
+			if (lportValue=="110")
+				lportValue="";
+		}
+		else if (wportValue=="123")
+		{
+			document.prfForm.nosave_PortType.selectedIndex=10;
+			if (lportValue=="123")
+				lportValue="";
+		}
+		else if (wportValue=="143")
+		{
+			document.prfForm.nosave_PortType.selectedIndex=11;
+			if (lportValue=="143")
+				lportValue="";
+		}
+		else
+		{
+			document.prfForm.nosave_PortType.selectedIndex=0;
+			document.prfForm.nosave_wport.value = wportValue;
+		}
+		document.prfForm.nosave_lport.value = lportValue;
+	}
+	else if (protoValue=="UDP")
+	{
+		document.prfForm.nosave_proto[3].checked=true;
+		if (wportValue=="123")
+		{
+			document.prfForm.nosave_PortType.selectedIndex=9;
+			if (lportValue=="123")
+				lportValue="";
+		}
+		else
+		{
+			document.prfForm.nosave_PortType.selectedIndex=1;
+			document.prfForm.nosave_wport.value = wportValue;
+		}
+		document.prfForm.nosave_lport.value = lportValue;
+	}
+	else if (protoValue.match("TODO"))
+		document.prfForm.nosave_proto[0].checked=true;
+	else if (protoValue.match("ICMP"))
+		document.prfForm.nosave_proto[1].checked=true;
+	else
+	{
+		document.prfForm.nosave_proto[2].checked=true;
+		document.prfForm.nosave_ProtNum.value = 
+			protoValue.substring(0,protoValue.length-protoValue.lastIndexOf("--"));
+	}
+	if (putvalueflag!=1)
+	{
+		oldEdit=buttonObj.innerHTML;
+		buttonObj.innerHTML = "<center><font color='red'>Editando</font></center>";
+        document.getElementById("id_TITLE").innerHTML ="Editar redireccionamiento de puertos";      
+	}
+	changeProto();
+}
+
+function restoreEdit(val)
+{
+	var buttonObj=document.getElementById("id_button"+val);
+	document.prfForm.nosave_grpName.value="";
+	document.prfForm.nosave_wport.value="";
+	document.prfForm.nosave_lport.value="";
+	document.prfForm.nosave_ProtNum.value="";
+	document.prfForm.nosave_lanip.value=document.prfForm.nosave_lanip.defaultValue;
+	document.prfForm.nosave_proto[3].checked=true;
+	document.prfForm.nosave_PortType.selectedIndex=0;
+	buttonObj.innerHTML = oldEdit;
+}
+
+function Cancel(action)
+{    
+	if (action=="save")
+	{
+		document.prfForm.nosave_add_tmp.value="0";
+		if (exec==0)
+  	{
+  		exec=1;
+  		document.prfForm.submit();
+ 	 	}
+	}
+	else if(action=="add")
+	{
+		restoreEdit(nowEdit);
+		nowEdit=0;
+		document.prfForm.nosave_edit.disabled=true;
+		document.prfForm.nosave_edit.value=0;
+		
+		document.prfForm.DO_ADD.value="Agregar";
+        document.getElementById("id_TITLE").innerHTML ="Agregar direccionamiento de puertos";
+		document.prfForm.DO_CANCEL.style.display="none";
+		document.prfForm.sched.value = "0";
+		changeProto();
+	}
+	Hide_error();
+	var index="0";
+	index=(parseInt(index)+1);
+	if (index>=32)
+	{
+		document.getElementById("id_fallbl").style.display="";
+		document.getElementById("id_addbl").style.display="none";
+	}    
+}
+
+function prfEdit(val1,val2)
+{
+	var index="0";
+	
+	document.getElementById("id_fallbl").style.display="none";
+	document.getElementById("id_addbl").style.display="";    
+	index=(parseInt(index)+1);
+	
+	if (putvalueflag=="1")
+		document.getElementById("PRFrule"+index).style.display="none";
+	Hide_error();
+	
+	if (nowEdit!=val2 && nowEdit!=0)
+		restoreEdit(nowEdit);
+	document.prfForm.nosave_edit.disabled=false;
+	document.prfForm.nosave_edit.value=val2;
+	document.prfForm.DO_ADD.value="Guardar";
+    document.getElementById("id_TITLE").innerHTML ="Editar redireccionamiento de puertos";
+	document.prfForm.DO_CANCEL.style.display="";
+	nowEdit=val2;
+	putvalueflag=0;
+	putValue(val1,val2);
+}
+
+function prfEnable(val)
+{
+	document.prfForm.nosave_enable.disabled=false;
+	document.prfForm.nosave_edit.disabled=true;
+	document.prfForm.nosave_enable.value=val;
+	if (exec==0)
+  {
+  	exec=1;
+  	document.prfForm.submit();
+  }
+}
+
+function prfDelete(val)
+{
+	document.prfForm.nosave_del.disabled=false;
+	document.prfForm.nosave_edit.disabled=true;
+	document.prfForm.nosave_del.value=val;
+	if (exec==0)
+  {
+  	exec=1;
+  	document.prfForm.submit();
+  }
+}
+
+function isAllowValue(s)
+{
+  var i;
+	for (i=0; i<s.length; i++)
+	{
+		var c;
+		
+		c=s.charAt(i);
+
+		if (((c>='0')&&(c<='9')) || ((c>='a')&&(c<='z')) || ((c>='A')&&(c<='Z')))
+		{
+
+		}
+		else//Candy deit 091123
+		{
+		  return false;
+		}
+	}
+	
+	return true;
+}
+
+function check_ip_format(ip, item, type)
+{
+	var n;
+	var lanip='192.168.0.1';
+	var lanmask='255.255.255.0';
+	
+	if (ip=="0.0.0.0")
+	{
+		document.prfForm.nosave_erritem.value=item;
+            	document.prfForm.nosave_errcontent.value="No se puede usar la direcci&oacute;n reservada (0.0.0.0)";
+            	document.prfForm.nosave_add_tmp.value="1";
+  	}
+  	if (ip=="255.255.255.255")
+  	{
+		document.prfForm.nosave_erritem.value=item;
+  	      document.prfForm.nosave_errcontent.value="No se puede usar la direcci&oacute;n reservada (255.255.255.255)";
+  	      document.prfForm.nosave_add_tmp.value="1";
+  	}
+  	if (ip==lanip)
+  	{
+		document.prfForm.nosave_erritem.value=item;
+  	      document.prfForm.nosave_errcontent.value="No se puede especificar la direcci&oacute;n IP de la LAN de esta Device";
+  	      document.prfForm.nosave_add_tmp.value="1";
+  	}
+
+	if (!isBlank(ip))
+	{
+		n = ip.split('.');
+		
+		if (n.length!=4)
+		{
+			document.prfForm.nosave_erritem.value=item;
+        		document.prfForm.nosave_errcontent.value="Formato de direcci&oacute;n IP no v&aacute;lido";
+        		document.prfForm.nosave_add_tmp.value="1";
+    		}
+    		else
+    		{
+			if(isBlank(n[0]))
+			{
+				document.prfForm.nosave_erritem.value=item;
+        			document.prfForm.nosave_errcontent.value="Formato de direcci&oacute;n IP no v&aacute;lido";
+        			document.prfForm.nosave_add_tmp.value="1";
+
+    			}	
+			else if((isNaN(n[0]))||(n[0]<=0)||!check_integer(n[0])||n[0]>255) 
+			{
+				document.prfForm.nosave_erritem.value=item;
+        			document.prfForm.nosave_errcontent.value="Formato de direcci&oacute;n IP no v&aacute;lido";
+        			document.prfForm.nosave_add_tmp.value="1";
+    			}
+    			else if (n[0]==127)
+    			{
+				document.prfForm.nosave_erritem.value=item;
+    			    document.prfForm.nosave_errcontent.value="No se puede usar la direcci&oacute;n de bucle invertido (127.XXX.XXX.XXX)";
+    			    document.prfForm.nosave_add_tmp.value="1";
+    			}
+    			else if ((n[0]>=224)&&(n[0]<=239))
+    			{
+					document.prfForm.nosave_erritem.value=item;
+    			    document.prfForm.nosave_errcontent.value="No se puede usar la direcci&oacute;n de prueba (de 224.XXX.XXX.XXX a 239.XXX.XXX.XXX)";
+    			    document.prfForm.nosave_add_tmp.value="1";
+    			}	
+    			else if ((n[0]>=240)&&(n[0]<=255))
+    			{
+				document.prfForm.nosave_erritem.value=item;
+    			    document.prfForm.nosave_errcontent.value="No se puede usar la direcci&oacute;n de prueba (de 240.XXX.XXX.XXX a 255.XXX.XXX.XXX)";
+    			    document.prfForm.nosave_add_tmp.value="1";
+    			}	
+			
+			if(isBlank(n[1]))
+			{
+				document.prfForm.nosave_erritem.value=item;
+        			document.prfForm.nosave_errcontent.value="Formato de direcci&oacute;n IP no v&aacute;lido";
+        			document.prfForm.nosave_add_tmp.value="1";
+    			}
+			else if((isNaN(n[1]))||(n[1]<0)||(n[1]>255)||!check_integer(n[1])) 
+			{
+				document.prfForm.nosave_erritem.value=item;
+        			document.prfForm.nosave_errcontent.value="Formato de direcci&oacute;n IP no v&aacute;lido";
+        			document.prfForm.nosave_add_tmp.value="1"; 
+    			}		
+		
+			if(isBlank(n[2]))
+			{
+				document.prfForm.nosave_erritem.value=item;
+        		    	document.prfForm.nosave_errcontent.value="Formato de direcci&oacute;n IP no v&aacute;lido";
+        		    	document.prfForm.nosave_add_tmp.value="1"; 
+        		}
+			else if((isNaN(n[2]))||(n[2]<0)||(n[2]>255)||!check_integer(n[2])) 
+			{
+				document.prfForm.nosave_erritem.value=item;
+        			document.prfForm.nosave_errcontent.value="Formato de direcci&oacute;n IP no v&aacute;lido";
+        			document.prfForm.nosave_add_tmp.value="1"; 
+   	 		}
+		
+			if(isBlank(n[3]))
+			{
+				document.prfForm.nosave_erritem.value=item;
+        			document.prfForm.nosave_errcontent.value="Formato de direcci&oacute;n IP no v&aacute;lido";
+        			document.prfForm.nosave_add_tmp.value="1"; 
+    			}
+			else if((isNaN(n[3]))||(n[3]<=0)||(n[3]>=255)||!check_integer(n[3])) 
+			{
+				document.prfForm.nosave_erritem.value=item;
+        			document.prfForm.nosave_errcontent.value="Formato de direcci&oacute;n IP no v&aacute;lido";
+        			document.prfForm.nosave_add_tmp.value="1"; 
+    			}
+		}
+	}
+	
+	if(type=="wan")
+	{
+		 if (check_the_same_subnet(lanip,ip,lanmask))
+		  {
+			Show_error(item,"No se puede usar la direcci&oacute;n IP del rango de direcciones de red de la LAN");
+			return false;
+		  }
+	}
+	
+	if(type=="lan")
+	{
+		 if (!check_the_same_subnet(lanip,ip,lanmask))
+		  {
+			Show_error(item,"Fuera del rango de direcciones de red de la LAN");
+			return false;
+		  }
+	}
+	
+	
+	return true;
+}
+
+function isEmpty(s)
+{
+	if(s.length==0)
+	{
+		return true;
+	}
+	else
+	{
+		return false;
+	}
+}
+
+function check_initial_zero(tmp)
+{	
+	if(tmp.length>1&&tmp.charAt(0)=="0")
+	{
+		return true;
+	}
+	return false;
+}
+
+function isAllowValueIP(s,item)
+{
+  var i;
+	for (i=0; i<s.length; i++)
+	{
+		var c;
+		
+		c=s.charAt(i);
+	
+		if (((c>='0')&&(c<='9')) || (c=='.'))
+		{
+      continue;
+		}
+		else
+		{
+			document.prfForm.nosave_erritem.value=item;
+        		document.prfForm.nosave_errcontent.value="Contiene un car&aacute;cter no v&aacute;lido";
+       	 		document.prfForm.nosave_add_tmp.value="1"; 
+		}
+	}
+	
+	return true;
+}
+
+function check_same_rule()
+{
+  var portno="";
+  var protnum="";
+  var porttype="";
+  var i;
+  var rule_count_string='0';
+  var rule_count=parseInt(rule_count_string, 10);
+  var tablewanp;
+  var tablewport="";
+  var wanp;
+  var buttonObj;
+  var isedit;
+  var wanIndex = document.getElementById("id_wan").selectedIndex;
+  
+  if (document.getElementById("id_prtmanual").checked==true)
+    protnum=document.prfForm.nosave_ProtNum.value;
+  else if (document.getElementById("id_prttcpudp").checked==true)
+  {
+    portno=document.prfForm.nosave_wport.value;
+    
+    if (document.prfForm.nosave_PortType.selectedIndex==0)
+      porttype="TCP";
+    else if (document.prfForm.nosave_PortType.selectedIndex==1)
+      porttype="UDP";
+      
+    if (document.prfForm.nosave_PortType.selectedIndex==2)
+    {
+      portno="80";
+      porttype="TCP";
+    }
+    else if (document.prfForm.nosave_PortType.selectedIndex==3)
+    {
+      portno="20-21";
+      porttype="TCP";
+    }
+    else if (document.prfForm.nosave_PortType.selectedIndex==4)
+    {
+      portno="443";
+      porttype="TCP";
+    }
+    else if (document.prfForm.nosave_PortType.selectedIndex==5)
+    {
+      portno="23";
+      porttype="TCP";
+    }
+    else if (document.prfForm.nosave_PortType.selectedIndex==6)
+    {
+      portno="22";
+      porttype="TCP";
+    }
+    else if (document.prfForm.nosave_PortType.selectedIndex==7)
+    {
+      portno="25";
+      porttype="TCP";
+    }
+    else if (document.prfForm.nosave_PortType.selectedIndex==8)
+    {
+      portno="110";
+      porttype="TCP";
+    }
+    else if (document.prfForm.nosave_PortType.selectedIndex==9)
+    {
+      portno="123";
+      porttype="UDP";
+    }
+    else if (document.prfForm.nosave_PortType.selectedIndex==10)
+    {
+      portno="123";
+      porttype="TCP";
+    }
+    else if (document.prfForm.nosave_PortType.selectedIndex==11)
+    {
+      portno="143";
+      porttype="TCP";
+    }
+  }
+
+  wanp=portno.split('-');
+  
+  for (i=1; i<=rule_count; i++)
+  {
+    buttonObj=document.getElementById("id_button"+i);
+    isedit=(document.all)?buttonObj.innerText:buttonObj.textContent;
+    if (isedit != "Editando")
+    {
+	    tablewport="";
+	    tablewanp="";
+	    
+	    if (document.getElementById("id_prtall").checked==true)
+	    {
+	      if (check_integer(document.getElementById("id_proto"+i).innerHTML) || (document.getElementById("id_proto"+i).innerHTML=="TODO") || (document.getElementById("id_proto"+i).innerHTML=="ICMP"))
+	      {
+			if(document.getElementById("id_wan").options[wanIndex].text == document.getElementById("id_wan"+i).innerHTML || document.getElementById("id_manualip").value==document.getElementById("id_wan"+i).innerHTML)
+	        {
+				document.prfForm.nosave_erritem.value="Protocolo";
+				document.prfForm.nosave_errcontent.value="Protocolo duplicado";
+				document.prfForm.nosave_add_tmp.value="1"; 
+			}
+	      }
+	    }
+	    else if (document.getElementById("id_prticmp").checked==true)
+	    {
+	      if ((document.getElementById("id_proto"+i).innerHTML=="TODO") || (document.getElementById("id_proto"+i).innerHTML=="ICMP") || (document.getElementById("id_proto"+i).innerHTML=="1"))
+	      {
+  			if(document.getElementById("id_wan").options[wanIndex].text == document.getElementById("id_wan"+i).innerHTML || document.getElementById("id_manualip").value==document.getElementById("id_wan"+i).innerHTML)
+			{
+				document.prfForm.nosave_erritem.value="Protocolo";
+				document.prfForm.nosave_errcontent.value="Protocolo duplicado";
+				document.prfForm.nosave_add_tmp.value="1"; 
+			}
+	      }
+	    }
+	    else if (document.getElementById("id_prtmanual").checked==true)
+	    {
+	      if (protnum=="6" || protnum=="17")
+	      {
+	        document.prfForm.nosave_erritem.value="N&uacute;mero de protocolo";
+        	document.prfForm.nosave_errcontent.value="No se puede especificar como 6(TCP) ni 17(UDP) en la configuraci&oacute;n manual";
+       	 	document.prfForm.nosave_add_tmp.value="1"; 
+	      }
+	      else if ((protnum=="1" && document.getElementById("id_proto"+i).innerHTML=="ICMP") || (document.getElementById("id_proto"+i).innerHTML=="TODO"))
+	      {
+		  
+		  	if(document.getElementById("id_wan").options[wanIndex].text == document.getElementById("id_wan"+i).innerHTML || document.getElementById("id_manualip").value==document.getElementById("id_wan"+i).innerHTML)
+	        {
+				document.prfForm.nosave_erritem.value="Protocolo";
+				document.prfForm.nosave_errcontent.value="Protocolo duplicado";
+				document.prfForm.nosave_add_tmp.value="1";
+			}
+	      }
+	    }
+	    else if (document.getElementById("id_prttcpudp").checked==true)
+	    {
+	      tablewport=document.getElementById("id_wport"+i).innerHTML;
+	      tablewanp=tablewport.split('-');
+	      
+	      if ((portno==document.getElementById("id_wport"+i).innerHTML) && (porttype==document.getElementById("id_proto"+i).innerHTML))
+	      {
+		  	if(document.getElementById("id_wan").options[wanIndex].text == document.getElementById("id_wan"+i).innerHTML || document.getElementById("id_manualip").value==document.getElementById("id_wan"+i).innerHTML)
+			{
+				document.prfForm.nosave_erritem.value="Puerto TCP/UDP de la INTERNET";
+				document.prfForm.nosave_errcontent.value="N&uacute;mero de puerto duplicado";
+				document.prfForm.nosave_add_tmp.value="1";
+			}
+	      }
+	      else if (porttype==document.getElementById("id_proto"+i).innerHTML)
+	      {
+	        if (tablewanp.length==1 && wanp.length==2)
+	        {
+	          tablewport=parseInt(tablewport,10);
+	          wanp[0]=parseInt(wanp[0],10);
+	          wanp[1]=parseInt(wanp[1],10);
+	          
+	          if (tablewport>=wanp[0] && tablewport<=wanp[1])
+	          {
+			 	if(document.getElementById("id_wan").options[wanIndex].text == document.getElementById("id_wan"+i).innerHTML || document.getElementById("id_manualip").value==document.getElementById("id_wan"+i).innerHTML)
+				{
+	        	document.prfForm.nosave_erritem.value="Puerto TCP/UDP de la INTERNET";
+        		document.prfForm.nosave_errcontent.value="N&uacute;mero de puerto duplicado";
+       	 		document.prfForm.nosave_add_tmp.value="1";
+				}
+	          }
+	        }
+	        else if (tablewanp.length==2)
+	        {
+	          tablewanp[0]=parseInt(tablewanp[0],10);
+	          tablewanp[1]=parseInt(tablewanp[1],10);
+	          
+	          if (wanp.length==1)
+	          {
+	            portno=parseInt(portno,10);
+	            if (portno>=tablewanp[0] && portno<=tablewanp[1])
+	            {
+					if(document.getElementById("id_wan").options[wanIndex].text == document.getElementById("id_wan"+i).innerHTML || document.getElementById("id_manualip").value==document.getElementById("id_wan"+i).innerHTML)
+					{
+					document.prfForm.nosave_erritem.value="Puerto TCP/UDP de la INTERNET";
+					document.prfForm.nosave_errcontent.value="N&uacute;mero de puerto duplicado";
+					document.prfForm.nosave_add_tmp.value="1";
+					}
+	            }
+	          }
+	          else if (wanp.length==2)
+	          {
+	            wanp[0]=parseInt(wanp[0],10);
+	            wanp[1]=parseInt(wanp[1],10);
+	            
+	            if (((wanp[0]>=tablewanp[0] && wanp[0]<=tablewanp[1]) || (wanp[1]>=tablewanp[0] && wanp[1]<=tablewanp[1])) || ((tablewanp[0]>=wanp[0] && tablewanp[0]<=wanp[1]) || (tablewanp[1]>=wanp[0] && tablewanp[1]<=wanp[1])))
+	            {
+					if(document.getElementById("id_wan").options[wanIndex].text == document.getElementById("id_wan"+i).innerHTML || document.getElementById("id_manualip").value==document.getElementById("id_wan"+i).innerHTML)
+					{
+						document.prfForm.nosave_erritem.value="Puerto TCP/UDP de la INTERNET";
+						document.prfForm.nosave_errcontent.value="N&uacute;mero de puerto duplicado";
+						document.prfForm.nosave_add_tmp.value="1";
+					}
+	            }
+	          }
+	        }
+	      }
+		  }
+    }
+  }
+  
+  return true;
+}
+
+function enableInternetIP()
+{
+	if(document.prfForm.nosave_wan.value=="manual")
+		document.prfForm.nosave_manualIP.disabled=false;
+	else
+		document.prfForm.nosave_manualIP.disabled=true;
+}
+//-->
+</script>
+
+
+</head>
+<body class="BFK_BODY" onload="addGroupName();changeProto();Init();">
+<br>
+<form name="prfForm"  method="POST">
+<div id="id_errtbl" class="C_ERR" style="display:none;"></div>
+<div id="id_fallbl" style="display:none;">
+  <table class="AD_TTL2">
+    <tr><td>Agregar direccionamiento de puertos</td></tr>
+     <tr>
+     	<td>
+     		<p class=C_WARN>Se ha alcanzado el l&iacute;mite m&aacute;ximo de elementos registrados.<br> Si desea agregar un elemento nuevo&#x2C; elimine un elemento registrado.</p>
+     	</td>
+    </tr>
+  </table>     
+</div>
+<div id="id_addbl">
+  <table class="AD_TTL2">
+    <tr>
+     <td id="id_TITLE">Agregar direccionamiento de puertos</td>
+    </tr>
+  </table>
+  <table class="AD_SET">
+    <tr>
+      <th>Grupo</th>
+      <td nowrap colspan="2">
+        <select size="1" name="nosave_grpList" onChange="addGroupName()">
+          <option value="-1" >Nuevo grupo</option>
+       	  
+           </select>&nbsp;&nbsp;&nbsp; Nombre de grupo:
+     <input type="text" name="nosave_grpName" value="" size="20" maxlength=16>
+      </td>
+    </tr>
+
+<!-- Internet Side IP Address start -->
+    <tr>
+      <th>Direcci&oacute;n IP de la INTERNET</th>
+      <td colspan="2">
+        <select size="1" name="nosave_wan" id="id_wan" onChange="enableInternetIP()">
+          <option value="wan" selected>Direcci&oacute;n IP de la INTERNET de la Device</option>
+          
+          <option value="manual" >Direcci&oacute;n IP manual</option>
+        </select><br>
+        Direcci&oacute;n IP manual:
+        <input type="text" name="nosave_manualIP" id="id_manualip" size="20"  maxlength="15" value="" disabled>
+      </td>
+    </tr>
+<!-- Internet Side IP Address end -->
+
+    <tr>
+      <th rowspan="4">Protocolo
+     </th>
+      <td>
+     <input type="radio" value="all" name="nosave_proto" id="id_prtall" onClick="changeProto()">Todo</td>
+      <td>
+        &nbsp;
+      </td>
+    </tr>
+     
+    <tr>
+      <td>
+     <input type="radio" value="icmp" name="nosave_proto" id="id_prticmp" onClick="changeProto()">ICMP</td>
+      <td>
+        &nbsp;
+      </td>
+    </tr>
+    <tr>
+      <td>
+     <input type="radio" value="one" name="nosave_proto" id="id_prtmanual" onClick="changeProto()">Manual</td>
+      <td>
+        N&uacute;mero de protocolo:<input type="text" name="nosave_ProtNum" id="id_prtno" size="10" value="" maxlength="3">
+      </td>
+    </tr>
+     
+    <tr>
+      <td>
+     <input type="radio" value="tcp/udp" name="nosave_proto" id="id_prttcpudp" onClick="changeProto()" checked>TCP/UDP</td>
+      <td>
+        <select size="1" name="nosave_PortType" id="id_porttype" onChange="enablePort()" align="left">
+          <option value="tcp" selected>Configuraci&oacute;n manual del puerto TCP</option>
+          <option value="udp" >Configuraci&oacute;n manual del puerto UDP</option>
+          <option value="http" >HTTP (Puerto TCP: 80)</option>
+          <option value="ftp" >FTP (Puerto TCP: 20-21)</option>
+          <option value="https" >HTTPS (Puerto TCP: 443)</option>
+          <option value="telnet" >TELNET (Puerto TCP: 23)</option>
+          <option value="ssh" >SSH (Puerto TCP: 22)</option>
+          <option value="smtp" >SMTP (Puerto TCP: 25)</option>
+          <option value="pop3" >POP3 (Puerto TCP: 110)</option>
+          <option value="ntp_u" >NTP (Puerto UDP: 123)</option>
+          <option value="ntp" >NTP (Puerto TCP: 123)</option>
+          <option value="imap" >IMAP (Puerto TCP: 143)</option>
+        </select>
+	<A href="help/help_nat_reg.html#port" target="help">M&eacute;todo de especificaci&oacute;n</A>
+	<br clear=left>
+        N&uacute;mero de puerto:<input type="text" name="nosave_wport" id="id_portno" size="20" maxlength="11" value="">
+      </td>
+    </tr>
+    <tr>
+      <th>Direcci&oacute;n IP de la LAN</th>
+      <td colspan="2">
+        <input type="text" name="nosave_lanip" size="20" maxlength="15" value="192.168.0.2">
+      </td>
+    </tr>
+     
+    <tr>
+      <th>Puerto LAN</th>
+      <td colspan="2">
+        Puerto TCP/UDP
+     <input type="text" name="nosave_lport" size="20" maxlength="5"	value="">
+      </td>
+    </tr>
+    <tr>
+        <th>Schedule</th>
+        <td colspan="2">
+        <script language="JavaScript">
+                var schedule_entry="";
+	//	var schedule_entry="22,1,1,1,1,1,1,1,00:00,23:59|5566,1,1,1,1,1,1,1,00:00,23:59|";
+                var sched_parts=schedule_entry.split("|");
+                document.write("<select name='sched' id='sched' onchange='' >");
+                document.write("<option value='0' selected>None</option>");
+                for(i=0;i<sched_parts.length-1;i++){
+                        var rule_name=sched_parts[i].split(",");
+                        document.write("<option value='"+rule_name[0]+"'>"+rule_name[0]+"</option>");
+                }
+                document.write("</select>");
+        </script>
+        </td>
+    </tr>
+  </table>
+     
+  <p>
+  	<input type="hidden" value="1" name="nosave_add" disabled>
+  	<input type="hidden" value="0" name="nosave_add_tmp">
+  <input type="button" value="Agregar" name="DO_ADD" onclick="checkPrf('add');">
+<input type="button" value="Cancelar" name="DO_CANCEL" onClick="Cancel('add');" style="display:none">
+
+ 
+  </p>
+</div>
+<hr>
+
+  <table class="AD_TTL2">
+    <tr>
+      <td colspan="7" class="syoumidashi-1">Informaci&oacute;n de registro del redireccionamiento de puertos
+     
+     </td>
+    </tr>
+  </table>
+  <table class="AD_LIST">
+    <tr>
+      <th>Grupo</th>
+      <th>Direcci&oacute;n IP de la INTERNET<br>
+          Direcci&oacute;n IP de la LAN</th>
+      <th>Protocolo<br>
+          Puerto LAN</th>
+      <th colspan="2">Personalizar</th>
+      <th>Schedule</th>
+    </tr>
+    <tr><td colspan="9" class="NO_ENTRY">A&uacute;n no se ha configurado el redireccionamiento de puertos</td></tr>
+
+  </table>
+  <input type="hidden" name="nosave_enable" value="-1" disabled>
+  <input type="hidden" name="nosave_edit" value="-1" disabled>
+  <input type="hidden" name="nosave_del" value="-1" disabled>
+  <input type="hidden" name="nosave_erritem" value="">
+  <input type="hidden" name="nosave_errcontent" value="">
+</form>
+</body>
+
+<!-- Mirrored from 192.168.0.1/nat_reg.html by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 11 Jan 2017 00:16:06 GMT -->
+</html>

@@ -1,0 +1,95 @@
+<html>
+
+<!-- Mirrored from 192.168.0.1/vpn_pass_through.html by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 11 Jan 2017 00:16:07 GMT -->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta http-equiv="Pragma" content="no-cache">
+<meta http-equiv="Cache-Control" content="no-cache">
+<meta http-equiv="Expires" content="Thu, 01 Dec 1994 16:00:00 GMT">
+<META http-equiv="Content-Style-Type" content="text/css">
+<LINK rel="stylesheet" href="WHR-G300N-160149-style-ENG.css" type="text/css">
+<LINK rel="stylesheet" href="WHR-G300N-160149-style-ad-ENG.css" type="text/css">
+<script src="OpenHelp.html"></script>
+<script language="JavaScript">
+<!--
+function Apply()
+{
+	if (document.getElementById("id_ipv6").checked == true)
+		document.getElementById("id_ipv6passthrough").value = "1";
+	else
+		document.getElementById("id_ipv6passthrough").value = "0";
+
+	if (document.getElementById("id_pppoe_path").checked == true)
+		document.getElementById("id_pppoepassthrough").value = "1";
+	else
+		document.getElementById("id_pppoepassthrough").value = "0";
+
+	if (document.getElementById("id_pptp").checked == true)
+		document.getElementById("id_pptppassthrough").value = "1";
+	else
+		document.getElementById("id_pptppassthrough").value = "0";
+
+	if (document.getElementById("id_l2tp").checked == true)
+                document.getElementById("id_l2tppassthrough").value = "1";
+        else
+                document.getElementById("id_l2tppassthrough").value = "0";
+
+	if (document.getElementById("id_ipsec").checked == true)
+                document.getElementById("id_ipsecpassthrough").value = "1";
+        else
+                document.getElementById("id_ipsecpassthrough").value = "0";
+		
+	document.forms[0].submit();
+}
+//-->
+</script>
+<script src="OnceOnly.html"></script>
+</head>
+<body class="BFK_BODY">
+<br>
+<br>
+<form   onsubmit="return onceOnly(this);"  method="POST" action="http://admin:admin@192.168.0.1/vpn_pass_through.html">
+  <table class="AD_SET">
+    <tr>
+      <th>Paso IPv6</th>
+      <td>
+        <input type="checkbox" id="id_ipv6" value="1" checked>Habilitar
+      </td>
+    </tr>
+    <tr>
+      <th>Paso PPPoE</th>
+      <td>
+        <input type="checkbox" id="id_pppoe_path" value="1" checked>Habilitar
+      </td>
+    </tr>
+    <tr>
+      <th>Paso PPTP</th>
+      <td>
+        <input type="checkbox" id="id_pptp" value="1" checked>Habilitar
+      </td>
+    </tr>
+    <tr>
+     <th>L2TP Passthrough</th>
+     <td>
+	<input type="checkbox" id="id_l2tp" value="1" checked>Habilitar
+     </td>
+    </tr>
+    <tr>
+     <th>IPsec Passthrough</th>
+     <td>
+        <input type="checkbox" id="id_ipsec" value="1" checked>Habilitar
+     </td>
+    </tr>
+
+  </table>
+  <p><input type="button" value="Aplicar" name="nosave_SETUP" onClick="Apply();"></p>
+  <input type="hidden" name="IPV6Passthrough" id="id_ipv6passthrough" value="0">
+  <input type="hidden" name="PPPoERelayEnable" id="id_pppoepassthrough" value="0">
+  <input type="hidden" name="PPTPPassthrough" id="id_pptppassthrough" value="0">
+  <input type="hidden" name="L2TPPassthrough" id="id_l2tppassthrough" value="0">
+  <input type="hidden" name="IPSECPassthrough" id="id_ipsecpassthrough" value="0">
+</form>
+</body>
+
+<!-- Mirrored from 192.168.0.1/vpn_pass_through.html by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 11 Jan 2017 00:16:08 GMT -->
+</html>

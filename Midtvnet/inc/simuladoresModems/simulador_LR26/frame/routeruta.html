@@ -1,0 +1,91 @@
+<html>
+	<head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	<link rel="stylesheet" href="../css/styles.css" type="text/css">
+
+
+<title>Route Setup</title>
+
+</head>
+
+<body onload="RIP_LoadSetting();Route_LoadSetting();Set_Opmode();" marginwidth="0" marginheight="0">
+<blockquote>
+<h2>Configuración de enrutamiento</h2>
+<p>Esta página se utiliza para configurar el protocolo de enrutamiento dinámico o editar las entradas de rutas estáticas.</p>
+<hr>
+
+
+<font size="2"><font size="2"><font size="2">
+
+<form method="POST" name="formRouteAdd">
+<table border="0" width="500" cellspacing="4" cellpadding="0" style="margin-bottom:20px">
+<tbody><tr><td colspan="2"><font size="2"><b>
+   	<input type="checkbox" name="enabled" value="ON" onclick="Route_updateState()">&nbsp;&nbsp;Activar ruta estática</b><br>
+    </font></td>
+</tr>
+
+  <tr>
+       <td width="30%"><font size="2"><b>Dirección IP:</b></font></td>
+       <td width="70%"><font size="2">
+        <input type="text" name="ipAddr" size="18" maxlength="15" value="">
+      </font></td>
+    </tr>
+    <tr>
+      <td width="30%"><font size="2"><b>Máscara de subred:</b></font></td>
+      <td width="70%"><font size="2"><input type="text" name="subnet" size="18" maxlength="15" value="" ></font></td>
+    </tr>
+    
+    <tr>
+      <td width="30%"><font size="2"><b>Puerta de enlace:</b></font></td>
+      <td width="70%"><font size="2"><input type="text" name="gateway" size="18" maxlength="15" value="" ></font></td>
+    </tr>
+     <tr>
+ 	<td width="30%"><font size="2"><b>Métrica:</b></font></td>
+ 	<td width="70%"><input type="text" id="metric" name="metric" size="3" maxlength="2" value=""></td>
+ 	</tr>
+ <tr>
+ <td width="30%"><font size="2"><b>Interfaz:</b></font></td>
+ <td width="70%"><font size="2">
+ <select size="1" id="iface" name="iface">
+ <option value="0">LAN</option>
+ <option value="1">WAN</option>
+ </select>
+ </font></td>
+ </tr>
+ 
+    <tr><td colspan="2">
+     <p><input type="submit" value="Aplicar cambios" name="addRoute" onclick="return addClick()">&nbsp;&nbsp;
+        <input type="button" value="Restablecer" name="reset" onclick="Route_Reset();Route_LoadSetting();">
+        <input type="hidden" value="/route.htm" name="submit-url">
+        <input type="button" value="Mostrar tabla de rutas" name="showRoute" onclick="StaticRouteTblClick(&#39;/sp/routetbl.htm&#39;)">
+     </p>
+     </td></tr>
+<!--     
+<script> Route_updateState(); </script>
+-->
+<tr>
+
+</tr></tbody></table>
+
+<br>
+<form method="POST" name="formRouteDel">
+  <font size="2"><b>Tabla de rutas estáticas:</b></font><table border="0" width="80%" class="list">
+  <tbody><tr></tr>
+  <tr><th width="23%">Dirección IP de destino</th>
+<th width="23%">Máscara de red</th>
+<th width="23%">Puerta de enlace</th>
+<th width="10%">Métrica</th>
+<th width="10%">Interfaz</th>
+<th width="10%">Seleccionar</th></tr>
+
+  </tbody></table>
+  <br>
+  <input type="submit" value="Eliminar selección" name="deleteSelRoute" onclick="return deleteClick()" disabled="">&nbsp;&nbsp;
+  <input type="submit" value="Eliminar todo" name="deleteAllRoute" onclick="return deleteAllClick()" disabled="">&nbsp;&nbsp;&nbsp;
+  <input type="reset" value="Restablecer" name="reset">
+  <input type="hidden" value="/route.htm" name="submit-url">
+</form></form>
+
+</font></font></font></blockquote><font size="2"><font size="2">
+
+
+</font></font></body></html>

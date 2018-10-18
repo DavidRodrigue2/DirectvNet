@@ -1,0 +1,154 @@
+
+
+<html>
+
+
+<!-- Mirrored from 192.168.0.1/help/help_nat_reg.html by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 11 Jan 2017 00:16:12 GMT -->
+<head>
+<META http-equiv="Content-Style-Type "content="text/css"><LINK rel="stylesheet" href="WHR-G300N-160149-style-help-ENG.css" type="text/css">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<script src="OpenHelp.html"></script>
+<title> Help </title>
+<script src="OnceOnly.html"></script>
+</head>
+<body>
+<p class="HELP_TTL1">Configuraci&oacute;n del redireccionamiento de puertos</p><hr>
+<p class="HELP_BODY1">
+Aunque la Device s&oacute;lo realiza la traducci&oacute;n de direcciones en las comunicaciones iniciadas desde la LAN &#x2C;  para algunas aplicaciones&#x2C; como los juegos en red&#x2C; es necesario autorizar las comunicaciones desde la <a href="help_glossary.html#INTERNET">INTERNET</a> a trav&eacute;s de la (<a href="help_glossary.html#STATICNAT">NAT est&aacute;tica</a>). Edite con cuidado las reglas para la comunicaci&oacute;n desde fuera de la red interna con el dispositivo de red de la LAN (<a href="help_glossary.html#STATICNAT">NAT est&aacute;tica</a>) y&#x2C; si es necesario, consulte la documentaci&oacute;n del juego.  Se pueden registrar hasta 32 reglas.<br>
+
+</p><br>
+
+
+
+
+
+
+
+<hr>
+<a name="append_area"></a>
+
+<!-- <p class="HELP_BODY1">
+This area is for adding or
+editing a line.<br>
+
+</p><br>
+ -->
+<p class="HELP_TTL1">Agregar/editar redireccionamiento de puertos</p><hr>
+<p class="HELP_BODY1">
+Permite agregar nueva informaci&oacute;n de redireccionamiento de puertos y modificar la existente.<br>
+</p><br>
+
+<p class="HELP_TTL2">Grupo</p>
+<p class="HELP_BODY2">
+Puede dar un nombre (nombre de grupo) a cada <a href="help_glossary.html#STATICNAT">NAT est&aacute;tica</a> configurada y proporcionar un mismo nombre a un grupo de <a href="help_glossary.html#STATICNAT">NAT est&aacute;tica</a> y administrarlas juntas.<br> Al proporcionar nombres a los grupos&#x2C; puede [Habilitar] o [Deshabilitar] cada uno por separado.<br> Para agregar una regla de <a href="help_glossary.html#STATICNAT">NAT est&aacute;tica</a> al grupo existente&#x2C; seleccione el grupo en el cuadro desplegable y elija [Agregar].<br> Para crear un nuevo grupo&#x2C; seleccione [Nuevo grupo] para la tabla y escriba el nombre del nuevo grupo en el cuadro de di&aacute;logo.<br> El nombre de grupo puede tener hasta 16 caracteres alfanum&eacute;ricos. Los valores predeterminados son nuevo y en blanco.
+</p><br>
+
+<p class="HELP_TTL3">Memo</p>
+<p class="HELP_BODY3">
+Si se agrega un nombre nuevo en blanco&#x2C; autom&aacute;ticamente se proporciona un nombre con el formato [Grupo]+[N&uacute;mero]. No se puede especificar un nombre en blanco durante la edici&oacute;n.
+</p><br>
+
+<p class="HELP_TTL2">Direcci&oacute;n IP de la INTERNET</p>
+<p class="HELP_BODY2">
+Permite especificar la direcci&oacute;n de destino de la <a href="help_glossary.html#STATICNAT">NAT est&aacute;tica</a> del paquete de comunicaci&oacute;n. La Device aplica la <a href="help_glossary.html#STATICNAT">NAT est&aacute;tica</a> en las comunicaciones cuyo destino es esta direcci&oacute;n.<br><br> Puede seleccionar las opciones siguientes.<br> [Direcci&oacute;n IP de la INTERNET de la Device]<br> [Configuraci&oacute;n manual]<br><br> Cuando se obtiene una direcci&oacute;n IP de la INTERNET de un servidor PPPoE&#x2C; se pueden especificar las direcciones IP de la INTERNET de cada destino PPPoE.<br> Cuando se usa la configuraci&oacute;n manual&#x2C; se debe especificar una direcci&oacute;n IP en el cuadro de di&aacute;logo.<br> De forma predeterminada, el campo de direcci&oacute;n IP manual est&aacute; en blanco.<br>
+
+</p><br>
+
+<a name="ip_prtocol"></a>
+
+<p class="HELP_TTL2">Protocolo</p>
+<p class="HELP_BODY2">
+Permite seleccionar el protocolo que se analizar&aacute;.<br> Se puede seleccionar cualquiera de las opciones siguientes.<br> <ul> <li><b>Todo</b><br> Se analizar&aacute;n todos los protocolos.<br> <li><b>ICMP</b><br> Se analizar&aacute;n los paquetes ICMP (protocolo 1).<br> <li><b>Manual</b><br> Seleccione el n&uacute;mero de protocolo (1-255) que se analizar&aacute;.<br> De forma predeterminada, este campo est&aacute; en blanco. Si se selecciona la opci&oacute;n manual, escriba un n&uacute;mero. Si no se selecciona la opci&oacute;n manual, no se tiene en cuenta el n&uacute;mero introducido.<br> <li><b>TCP/UDP</b><br> Se analizan los protocolos TCP (protocolo 6) o UDP (protocolo 17).<br> Con TCP/UDP&#x2C; tambi&eacute;n puede usar un n&uacute;mero de puerto. Si no se selecciona TCP/UDP, no se tiene en cuenta el n&uacute;mero de puerto.<br> </ul>
+
+</p><br>
+
+<p class="HELP_BODY2">
+
+El valor predeterminado es TCP/UDP.
+
+</p><br>
+
+
+<a name="port"></a>
+
+<p class="HELP_TTL2">TCP/UDP</p>
+<p class="HELP_BODY2">
+Cuando se seleccionan los protocolos TCP o UDP&#x2C; tambi&eacute;n se debe seleccionar el n&uacute;mero de puerto de destino.<br> <ul> <li><b>Puerto TCP arbitrario</b><br> Traduce el n&uacute;mero de puerto TCP especificado.<br> Los n&uacute;meros de puerto v&aacute;lidos est&aacute;n comprendidos entre 1 y 65535.<br></li> <li><b>Puerto UDP arbitrario</b><br> Traduce el puerto UDP especificado.<br> Los n&uacute;meros de puerto v&aacute;lidos est&aacute;n comprendidos entre 1 y 65535.<br></li> <li><b>HTTP (Puerto TCP: 80)</b><br> Traduce las comunicaciones con el servidor HTTP. Esto equivale a especificar el puerto TCP 80. (No es necesario especificar el n&uacute;mero de puerto).</li> <li><b>FTP (Puerto TCP: 20-21)</b><br> Traduce las comunicaciones con el servidor FTP. Esto equivale a especificar los puertos TCP 20-21. (No es necesario especificar el n&uacute;mero de puerto).</li> <li><b>HTTPS (Puerto TCP: 443)</b><br> Traduce las comunicaciones con el servidor HTTPS. Esto equivale a especificar el puerto TCP 443. (No es necesario especificar el n&uacute;mero de puerto).</li> <li><b>TELNET (Puerto TCP: 23)</b><br> Traduce las comunicaciones con el servidor TELNET. Esto equivale a especificar el puerto TCP 23. (No es necesario especificar el n&uacute;mero de puerto).</li> <li><b>SSH (Puerto TCP: 22)</b><br> Traduce las comunicaciones con el servidor SSH. Esto equivale a especificar el puerto TCP 22. (No es necesario especificar el n&uacute;mero de puerto).</li> <li><b>SMTP (Puerto TCP: 25)</b><br> Traduce las comunicaciones con el servidor SMTP. Esto equivale a especificar el puerto TCP 25. (No es necesario especificar el n&uacute;mero de puerto).</li> <li><b>POP3 (Puerto TCP: 110)</b><br> Traduce las comunicaciones con el servidor POP3. Esto equivale a especificar el puerto TCP 110. (No es necesario especificar el n&uacute;mero de puerto).</li> <li><b>NTP (Puerto UDP: 123)</b><br> Traduce las comunicaciones con el servidor NTP. Esto equivale a especificar el puerto UDP 123. (No es necesario especificar el n&uacute;mero de puerto).</li> <li><b>NTP (Puerto TCP: 123)</b><br> Traduce las comunicaciones con el servidor NTP. Esto equivale a especificar el puerto TCP 123. (No es necesario especificar el n&uacute;mero de puerto).</li> <li><b>IMAP (Puerto TCP: 143)</b><br> Traduce las comunicaciones con el servidor IMAP. Esto equivale a especificar el puerto TCP 143. (No es necesario especificar el n&uacute;mero de puerto).</li> </ul>
+
+</p><br>
+
+<br>
+
+
+
+
+<p class="HELP_TTL2">Direcci&oacute;n IP de la LAN</p>
+<p class="HELP_BODY2">
+Escriba la direcci&oacute;n IP del dispositivo de la LAN en el que se aplica la <a href="help_glossary.html#STATICNAT">NAT est&aacute;tica</a>. Escriba la direcci&oacute;n IP del servidor que se va a usar para el juego en red del PC&#x2C; etc.  De forma predeterminada, este valor est&aacute; en blanco, pero se puede especificar en caso necesario.<br> Aqu&iacute; se configura la direcci&oacute;n IP de destino de los paquetes convertidos a la direcci&oacute;n IP de la LAN durante el redireccionamiento de puertos.<br> Si una direcci&oacute;n IP se distribuye din&aacute;micamente desde un servidor DHCP y la direcci&oacute;n IP del equipo ha cambiado porque la concesi&oacute;n DHCP ha vencido&#x2C; es posible que sea necesario volver a configurar el redireccionamiento de puertos.  En este caso&#x2C; se recomienda configurar DHCP para que proporcione una direcci&oacute;n IP fija al dispositivo de red de la LAN usado en el redireccionamiento de puertos.<br>
+</p><br>
+
+<p class="HELP_TTL3">Nota:</p>
+<p class="HELP_BODY3">
+Si la direcci&oacute;n IP de la LAN est&aacute; configurada en otro segmento de red, los paquetes no se podr&aacute;n transferir a los dispositivos de la LAN.
+</p><br>
+
+
+<p class="HELP_TTL2">Puerto de la LAN</p>
+<p class="HELP_BODY2">
+Cuando se especifica TCP/UDP como protocolo de redireccionamiento y se indica un solo n&uacute;mero de　puerto&#x2C; se puede cambiar el n&uacute;mero de puerto de la LAN. <br> Este valor est&aacute; en blanco de forma predeterminada, y los n&uacute;meros de puerto de los paquetes de comunicaci&oacute;n no cambian.<br> Puede establecer n&uacute;meros de puerto comprendidos entre 1 y 65535. No es posible especificar varios n&uacute;meros de puerto a la vez.<br>
+</p><br>
+
+
+<p class="HELP_TTL3">Bot&oacute;n Agregar</p>
+<p class="HELP_BODY3">
+Haga clic en este botón para agregar la información anterior a la lista de abajo.
+</p><br>
+
+<p class="HELP_TTL3">Bot&oacute;n Guardar</p>
+<p class="HELP_BODY3">
+Haga clic en este bot&oacute;n para guardar la informaci&oacute;n anterior y actualizar la siguiente tabla siguiente<br><br> Este bot&oacute;n aparece en el modo Edici&oacute;n.  Para entrar en el modo Edici&oacute;n&#x2C; haga clic en el bot&oacute;n [Editar] en la l&iacute;nea que se vaya a editar.<br>
+</p><br>
+
+<p class="HELP_TTL3">Bot&oacute;n Cancelar</p>
+<p class="HELP_BODY3">
+Haga clic en este bot&oacute;n para anular las modificaciones.
+</p><br>
+
+<hr>
+
+<a name="table_area"></a>
+
+<p class="HELP_TTL1">Informaci&oacute;n de registro del redireccionamiento de puertos</p><hr>
+<p class="HELP_BODY1">
+Puede especificar [Habilitar]/[Deshabilitar] para cada grupo.<br>
+
+<p class="HELP_TTL3">
+Bot&oacute;n [Deshabilitar]</p>
+<p class="HELP_BODY3">
+Al hacer clic en el bot&oacute;n [Deshabilitar]&#x2C; el elemento de redireccionamiento de puertos no se registra.<br>
+El bot&oacute;n [Deshabilitar] se muestra con el estado [Habilitar].<br>
+</p><br>
+<p class="HELP_TTL3">
+Bot&oacute;n [Habilitar]</p>
+<p class="HELP_BODY3">
+Al hacer clic en [Habilitar] se registra un elemento de redireccionamiento de puertos.<br>
+
+</p><br>
+</p><br>
+<p class="HELP_TTL3">Bot&oacute;n [Editar]</p>
+<p class="HELP_BODY3">
+Haga clic en [Editar] para cambiar una entrada. La l&iacute;nea se volver&aacute; roja.  Finalizada la edici&oacute;n&#x2C; haga clic en [Aplicar] para mantener los cambios o en [Cancelar] para descartarlos.
+</p><br>
+
+<p class="HELP_TTL3">Bot&oacute;n [Eliminar]</p>
+<p class="HELP_BODY3">
+Haga clic en [Eliminar] para eliminar una l&iacute;nea.
+</p><br>
+
+
+<a name="sample"></a>
+
+</body>
+
+<!-- Mirrored from 192.168.0.1/help/help_nat_reg.html by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 11 Jan 2017 00:16:12 GMT -->
+</html>

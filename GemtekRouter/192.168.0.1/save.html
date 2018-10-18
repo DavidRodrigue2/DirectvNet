@@ -1,0 +1,279 @@
+
+<html>
+
+<!-- Mirrored from 192.168.0.1/save.html by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 11 Jan 2017 00:16:11 GMT -->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta http-equiv="Pragma" content="no-cache">
+<meta http-equiv="Cache-Control" content="no-cache">
+<META http-equiv="Content-Style-Type" content="text/css">
+<LINK rel="stylesheet" href="WHR-G300N-160149-style-ENG.css" type="text/css">
+<LINK rel="stylesheet" href="WHR-G300N-160149-style-ad-ENG.css" type="text/css">
+<script language="javascript" type="text/javascript" src="common.html"></script>
+<script type="text/javascript">
+<!--
+function setValue(val)
+{
+	if(val=="load")
+	{
+	document.getElementById("idr_" + val + "ConfRC4Encryption").value=
+		(document.getElementById("id_"+val+"key").checked)?"1":"0";	
+	}
+	else
+	{
+	document.getElementById("id_" + val + "ConfRC4Encryption").value=
+		(document.getElementById("id_"+val+"key").checked)?"1":"0";
+	}
+}
+
+function set_display()
+{
+     if (document.getElementById("id_savekey").checked == true)
+     	document.getElementById("save_password_settings").style.display = "";
+     else
+     	document.getElementById("save_password_settings").style.display = "none";
+
+     if (document.getElementById("id_loadkey").checked == true)
+     	document.getElementById("restrore_password_settings").style.display = "";
+     else
+     	document.getElementById("restrore_password_settings").style.display = "none";
+}
+
+function hidden_Reboot()
+{
+  document.getElementById('form_save').style.display = 'none';
+  document.getElementById('id_Saving_Page').style.display = 'none';
+  document.getElementById('id_Line').style.display = 'none';
+  document.getElementById('id_Loading_Page').style.display = 'none';
+  document.getElementById('id_Rebooting_Page').style.display = '';
+}
+
+function hidden_submit(val)
+{
+	document.hiddenFrm.nosave_saveConfRC4Key.disabled=true;
+	document.hiddenFrm.nosave_loadConfRC4Key.disabled=true;
+	if (val=="save")
+	{
+		document.hiddenFrm.nosave_saveConfRC4Key.disabled=false;
+		document.hiddenFrm.nosave_buttoncfg.value="1";
+		document.hiddenFrm.nosave_saveConfRC4Key.value = document.getElementById("id_savepwd").value;
+	} else	{
+		document.hiddenFrm.nosave_loadConfRC4Key.disabled=false;
+		document.hiddenFrm.nosave_buttoncfg.value="2";
+		document.hiddenFrm.nosave_loadConfRC4Key.value = document.getElementById("id_loadpwd").value
+	}
+
+	if (document.getElementById('id_resetkey').checked) {
+		document.hiddenFrm.reset_flag.value="1";
+	} else {
+		document.hiddenFrm.reset_flag.value="0";
+	}
+
+	setValue(val);
+  
+  if (document.getElementById('id_resetkey').checked) {
+    hidden_Reboot();
+  }
+
+	document.hiddenFrm.submit();
+}
+
+function restore_parameter(val)
+{
+	document.restoreFrm.nosave_saveConfRC4Key.disabled=true;
+	document.restoreFrm.nosave_loadConfRC4Key.disabled=true;
+
+		document.restoreFrm.nosave_loadConfRC4Key.disabled=false;
+		document.restoreFrm.nosave_buttoncfg.value="2";
+		document.restoreFrm.nosave_loadConfRC4Key.value = document.getElementById("id_loadpwd").value
+
+	
+	setValue(val);
+}
+
+
+
+var exec_Submit_Save = false;
+function Submit_Save()
+{
+	var i;
+	if (document.getElementById("id_savekey").checked == true)
+     	{
+     		if(document.getElementById("id_savepwd").value == "") 
+     		{
+     			Show_error("Contrase&ntilde;a","Contrase&ntilde;a no especificada.");
+     			return;
+     		}
+     		for(i=0;i<document.getElementById("id_savepwd").value.length;i++) 
+		{
+			c=document.getElementById("id_savepwd").value.charAt(i);
+			if(c==' ')
+			{
+     				Show_error("Contrase&ntilde;a","Formato de la contrase&ntilde;a no v&aacute;lido.");
+     				return;
+			}
+			if(((c>='0')&&(c<='9'))||((c>='a')&&(c<='z'))||((c>='A')&&(c<='Z')) || (c=='_'))
+			{
+				continue;
+			}
+			else
+			{
+     				Show_error("Contrase&ntilde;a","Formato de la contrase&ntilde;a no v&aacute;lido.");
+     				return;
+			}
+				
+		}
+     	}
+
+	if(exec_Submit_Save == true)
+	{
+		return false;
+	} 
+	else 
+	{
+		
+		exec_Submit_Save = true;
+	}
+	
+	hidden_submit("save");
+	setTimeout("exec_Submit_Save = false" , 3000);
+}
+
+var exec_Submit_Restore = false;
+function Submit_Restore() 
+{
+/*
+  var objnav=window.navigator.userAgent;//Candy add 2009.11.26 for get browser version
+  var set_time=0;
+  
+  if (objnav.search("Safari")>0)//if browser is Safari or Chrome //Candy add 2009.11.26 for get browser version
+    set_time=1000;
+  else
+    set_time=100;
+
+*/
+	
+  if (document.getElementById("id_loadkey").checked == true)
+  {
+    if(document.getElementById("id_loadpwd").value == "") 
+    {
+      Show_error("Contrase&ntilde;a","Contrase&ntilde;a no especificada.");
+      return;
+    }
+  } 
+  
+  if(exec_Submit_Restore == true)
+  {
+    return false;
+  } 
+  else 
+  {
+    exec_Submit_Restore = true;
+  }
+  
+  //if (objnav.search("Safari")<=0)//if browser is NOT Safari or Chrome //Candy add 2009.11.27 for get browser version
+	restore_parameter("load");
+  
+  document.restoreFrm.submit();
+}
+// -->
+</script>
+</head>
+
+<body class="BFK_BODY" onload="set_display();">
+
+<br>
+<div id="id_errtbl" class="C_ERR">
+</div>
+
+<form id="form_save" method="POST" onsubmit="Submit_Save();">
+  <table class=AD_SET>
+    <tr>
+      <th>Guardar configuraci&oacute;n actual</th>
+      <td>
+        <input type="button" value="Guardar" id="save_btn" onclick="Hide_error();Submit_Save();">
+     <br>
+        <table>
+        <tr>
+        <td>
+     	<input type="checkbox" id="id_savekey" value="1" onclick="set_display();setValue('save');"></td>
+     <td>Cifrar el archivo de configuraci&oacute;n con contrase&ntilde;a</td>
+        </tr>
+        <tr>
+        <td>
+     	<input type="checkbox" id="id_resetkey"></td>
+     <td>reinicio por defecto</td>
+        </tr>
+        <tr id="save_password_settings" style="display:none;">
+        <td></td><td>Contrase&ntilde;a
+        <input type="password" id="id_savepwd" size="20" maxlength="8" value=""></td>
+        </tr>
+        </table>
+      </td>
+    </tr>
+  </table>
+</form>
+
+<span id="id_Line"><hr></span>
+<br>
+<form name="restoreFrm" id="id_Saving_Page" method="POST" enctype="multipart/form-data" onsubmit="Submit_Restore();">
+  <table class=AD_SET>
+    <tr>
+      <th>Restablecer configuraci&oacute;n<br> a partir de archivo de copia<br> de seguridad</th>
+      <td>
+        <table>
+          <tr>
+            <td>Archivo de copia de seguridad</td>
+            <td><input type="file" name="nosave_F14"></td>
+          </tr>
+        </table>
+        <input type="button" value="Restaurar" id="load_btn" onclick="Hide_error;Submit_Restore();">
+     <br>
+        <table>
+        <tr>
+        <td>
+        <input type="checkbox" id="id_loadkey" value="1" onclick="set_display();setValue('load');"></td>
+        <td>Para restaurar a partir del archivo, necesita la contrase&ntilde;a</td>
+        </tr>
+        <tr id="restrore_password_settings" style="display:none;">
+        <td></td><td>Contrase&ntilde;a<input type="password" id="id_loadpwd" size="20" maxlength="8" value=""></td>
+        </tr>
+        </table>
+      </td>
+    </tr>
+  </table>
+	<input type="hidden" name="nosave_buttoncfg" value="">
+	<input type="hidden" name="nosave_loadConfRC4Key" value="0">
+	<input type="hidden" name="nosave_saveConfRC4Key" value="0">
+	<input type="hidden" name="nosave_saveConfRC4Encryption" id="idr_saveConfRC4Encryption" value="0">
+	<input type="hidden" name="nosave_loadConfRC4Encryption" id="idr_loadConfRC4Encryption" value="0">
+</form>
+<form name="hiddenFrm" id="id_Loading_Page" method="POST">
+  <input type="hidden" name="nosave_buttoncfg" value="">
+  <input type="hidden" name="reset_flag" value="">
+  <input type="hidden" name="nosave_loadConfRC4Key" value="0">
+  <input type="hidden" name="nosave_saveConfRC4Key" value="0">
+  <input type="hidden" name="nosave_saveConfRC4Encryption" id="id_saveConfRC4Encryption" value="0">
+  <input type="hidden" name="nosave_loadConfRC4Encryption" id="id_loadConfRC4Encryption" value="0">
+</form>
+<form type="hidden" id="id_Rebooting_Page" style="display: none">
+  <p>Reset Default</p>
+  <p>Estimated time to restart is 60 sec. Please wait...</p>
+  <div class="C_CONFIRM">
+    <p>
+    To continue setup, perform the following procedure.<br>
+    <ol>
+      <li>Close all browser windows.</li>
+      <li>Confirm that a connection between the computer and the router is established.</li>
+      <li>Reopen the browser and reconnect using the Device Configuration Utility.</li>
+    </ol>
+    &nbsp;&nbsp;&nbsp;Refer to the user manual for more information.
+    </p>
+  </div>
+</form>
+
+
+</body>
+
+<!-- Mirrored from 192.168.0.1/save.html by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 11 Jan 2017 00:16:11 GMT -->
+</html>

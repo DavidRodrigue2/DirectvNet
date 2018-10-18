@@ -1,0 +1,263 @@
+
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title></title>
+
+<meta http-equiv="cache-control" content="no-cache">
+<script type="text/javascript" src="../js/jquery-1.6.2.min.js"></script><style type="text/css"></style>
+<link rel="stylesheet" type="text/css" href="../css/main_router.css">
+
+<link rel="stylesheet" href="../css/direct_ltr.css" type="text/css">
+
+<script src="../js/data.js"></script>
+
+<script language="JavaScript">
+
+//wenfang 20070111 add for belkin QA bug 102784
+function click_obscure_psk(){
+	if(document.tF.obscure_psk.checked == true){
+		document.tF.wpa_key_pass.value = document.tF.wpa_key_text.value;
+		document.getElementById("pskid").style.display="none";
+		document.getElementById("pskid1").style.display="";
+	}
+	else{
+		document.tF.wpa_key_text.value = document.tF.wpa_key_pass.value;
+		document.getElementById("pskid1").style.display="none";
+		document.getElementById("pskid").style.display="";
+	}
+}
+
+
+
+</script></head>
+
+
+
+<body onload="loaded()">
+<table width="100%" border="0" margin="0" cellspacing="0" cellpadding="0" height="100%">
+<tbody><tr>
+<td class="maincontentcss">
+
+<table border="0" cellspacing="0" cellpadding="0" style="position:absolute;top:0px;left:0px; width:251px; height:100%; background-color:#F0F8FF;" id="menuheight">
+
+	<tbody>
+		<tr>
+    		<td valign="top" width="250" height="100%">
+			<table cellspacing="0" cellpadding="0" width="250" align="left">
+        		<tbody>
+        			<tr id="mfun_0"><td class="tdWidth">&nbsp;</td><td colspan="2" class="Menu_section_r"><img id="folderimage_0" class="imgbottom" src="../img/folderopen1.gif"><a href="lan_main.html">Configuración de la LAN</a></td></tr>
+										
+					<tr id="mfun_0_0"><td width="5">&nbsp;</td><td class="Menu_leftLink"><img src="../img/join.gif" class="imgbottom"><img src="../img/text.gif" class="imgbottom"><a class="menuharf" href="lan_main.html">Parámetros de la LAN</a></td></tr>
+					
+					<tr id="mfun_0_1"><td width="5">&nbsp;</td><td class="Menu_leftLink"><img src="../img/join.gif" class="imgbottom"><img src="../img/text.gif" class="imgbottom"><a class="menuharf" href="lan_dhcp.html">Lista de Clientes DHCP</a></td></tr>	
+					
+					<tr id="mfun_0_2"><td width="5">&nbsp;</td><td class="Menu_leftLink"><img src="../img/joinbottom.gif" class="imgbottom"><img src="../img/text.gif" class="imgbottom"><a class="menuharf" href="servidoresvirtuales_nat_v.html">Servidores Virtuales</a></td></tr>
+					
+					<tr id="mfun_1"><td width="5">&nbsp;</td><td colspan="2" class="Menu_section_b"><img id="folderimage_1" class="imgbottom" src="../img/../img/folderopen1.gif"><a href="javascript:link_page(1,1,1,1);">LTE/UMTS</a></td></tr>
+					
+					<tr id="mfun_1_0"><td width="5">&nbsp;</td><td class="Menu_leftLink"><img src="../img/join.gif" class="imgbottom"><img src="../img/text.gif" class="imgbottom"><a class="menuharf" href="lte_status.html">LTE Status</a></td></tr><tr id="mfun_1_1"><td width="5">&nbsp;</td><td class="Menu_leftLink"><img src="../img/joinbottom.gif" class="imgbottom"><img src="../img/text.gif" class="imgbottom"><a class="menuharf" href="ddns.html">DDNS</a></td></tr>
+					
+      				<tr id="mfun_2">
+					<td width="5">&nbsp;</td>
+					<td colspan="2" class="Menu_section_r"><img id="folderimage_2" class="imgbottom" src="../img/folderopen1.gif"><a href="javascript:link_page(2,0,1,1);">Wi-Fi</a></td>
+        			</tr>
+
+        			<tr id="mfun_2_0">
+        				<td width="5">&nbsp;</td>
+						<td class="Menu_leftLink"><img src="../img/join.gif" class="imgbottom"><img src="../img/text.gif" class="imgbottom"><a class="menuharf" href="wireless_id.html">Canal y SSID</a></td>
+					</tr>
+
+					<tr id="mfun_2_1">
+        				<td width="5">&nbsp;</td>
+        				<td class="Menu_leftLink_b"><img src="../img/join.gif" class="imgbottom"><img src="../img/text.gif" class="imgbottom">Seguridad</td>
+					</tr>
+					<tr id="mfun_2_2">
+						<td width="5">&nbsp;</td>
+						<td class="Menu_leftLink"><img src="../img/joinbottom.gif" class="imgbottom"><img src="../img/text.gif" class="imgbottom"><a class="menuharf" href="wireless_WPS.html">Wi-Fi Protected</a></td>
+					</tr>
+				
+					<!-- FIREWALL -->
+					
+					<tr id="mfun_3"><td width="5">&nbsp;</td><td colspan="2" class="Menu_section_r"><img id="folderimage_3" class="imgbottom" src="../img/folderopen1.gif"><a href="javascript:link_page(3,0,1,1);">Firewall</a></td></tr>
+					
+					<tr id="mfun_3_1"><td width="5">&nbsp;</td><td class="Menu_leftLink"><img src="../img/join.gif" class="imgbottom"><img src="../img/text.gif" class="imgbottom"><a class="menuharf" href="firewall_mac.html">Filtraje de Dirección MAC</a></td></tr>
+				
+					<tr id="mfun_3_2"><td width="5">&nbsp;</td><td class="Menu_leftLink"><img src="../img/join.gif" class="imgbottom"><img src="../img/text.gif" class="imgbottom"><a class="menuharf" href="firewall_dmz.html">DMZ</a></td></tr>
+				
+					<tr id="mfun_3_3"><td width="5">&nbsp;</td><td class="Menu_leftLink"><img src="../img/joinbottom.gif" class="imgbottom"><img src="../img/text.gif" class="imgbottom"><a class="menuharf" href="firewall_deteccion.html">Detección de Intrusión</a></td></tr>
+
+									<!-- UTILIDADES -->
+				
+	 			<tr id="mfun_4">
+					<td width="5">&nbsp;</td>
+					<td colspan="2" class="Menu_section_r"><img id="folderimage_4" class="imgbottom" src="../img/folderopen1.gif"><a href="javascript:link_page(4,0,1,1);">Utilidades</a></td>
+        			</tr>
+
+        		<tr id="mfun_4_0">
+        			<td width="5">&nbsp;</td>
+        			<td class="Menu_leftLink"><img src="../img/join.gif" class="imgbottom"><img src="../img/text.gif" class="imgbottom"><a class="menuharf" href="system_reiniciar4g.html">Reinicialzar Conexión Router 4G</a></td>
+				</tr>
+
+        		<tr id="mfun_4_1">
+        			<td width="5">&nbsp;</td>
+        			<td class="Menu_leftLink"><img src="../img/join.gif" class="imgbottom"><img src="../img/text.gif" class="imgbottom"><a class="menuharf" href="utilidades_resturar.html">Restaura configuración Estándar de Fábrica</a></td>
+				</tr>
+				<tr id="mfun_4_2">
+        			<td width="5">&nbsp;</td>
+        			<td class="Menu_leftLink"><img src="../img/join.gif" class="imgbottom"><img src="../img/text.gif" class="imgbottom"><a class="menuharf" href="utilidades_gbackup.html">Guardar/Backup Configuración</a></td>
+				</tr>
+
+				<tr id="mfun_4_3">
+					<td width="5">&nbsp;</td>
+					<td class="Menu_leftLink"><img src="../img/join.gif" class="imgbottom"><img src="../img/text.gif" class="imgbottom"><a class="menuharf" href="utilidades_resConfAnt.html">Restaura Configuración Anterior</a></td>
+				</tr>
+				
+				<tr id="mfun_4_4">
+        				<td width="5">&nbsp;</td>
+        				<td class="Menu_leftLink"><img src="../img/join.gif" class="imgbottom"><img src="../img/text.gif" class="imgbottom"><a class="menuharf" href="utilidades_actualizacionFirm.html">Actualización de Firmware</a></td>
+				</tr>
+
+				<tr id="mfun_4_5">
+        				<td width="5">&nbsp;</td>
+        				<td class="Menu_leftLink"><img src="../img/join.gif" class="imgbottom"><img src="../img/text.gif" class="imgbottom"><a class="menuharf" href="utilidades_confSystema.html">Configuración del Sistema</a></td>
+				</tr>
+				
+				<tr id="mfun_4_6">
+					<td width="5">&nbsp;</td>
+					<td class="Menu_leftLink"><img src="../img/joinbottom.gif" class="imgbottom"><img src="../img/text.gif" class="imgbottom"><a class="menuharf" href="utilidades_log.html">Log de Seguridad</a></td>
+				</tr>
+			</tbody>
+	     		</table>
+		</td>
+	</tr>
+</tbody>
+</table>
+</td>
+<td id="tableheight" class="tableheightcss">
+
+<form name="tF" action="http://192.168.100.1/cgi-bin/wireless_WPA.exe" method="post">
+<input type="hidden" name="wpa_authen" value="1">
+<input type="hidden" name="wpa_psk" value="0">
+<input type="hidden" name="s_rekeysec" value="900000">
+<input type="hidden" name="s_rekeypkt" value="1000">
+<input type="hidden" name="w802_rekey" value="0">
+<table width="100%" border="0" cellspacing="0" cellpadding="10" class="infosys">
+	<tbody><tr>
+		<td class="head_bold">
+			<p class="titlepage">Wi-Fi &gt; Seguridad</p>
+			<p class="normalText">WPA-PSK (ningún servidor): Wireless Protected Access con una Clave Precompartida: La Clave es una Clave, en la forma de una palabra, frase o una serie de letras y números. La Clave debe ser entre <b>8</b> y <b>63</b> caracteres y puede incluir espacios y símbolos o <b>64</b> Hex. Cada Cliente que se conecta a la red debe usar la misma Clave(Clave Precompartida).</p>
+		</td>
+	</tr>
+	<tr>
+		<td>
+			<table border="0" cellspacing="1" cellpadding="5" width="750" class="maincontainwidth">
+				<tbody><tr>
+					<td class="tdTitle">Modo de Seguridad &gt;</td>
+					<td class="tdText">
+					<select size="1" name="security_type" class="selectList" onchange="selectedchange()">;
+						<option value="0">Deshabilitado</option>
+						<option value="1">64bit WEP</option>
+						<option value="2">128bit WEP</option>
+						<option value="3">WPA/WPA2-Enterprise (802.1X)</option>
+						<option value="4" selected="">WPA/WPA2-Personal (PSK)</option>
+					</select>
+					</td>
+				</tr>
+				<script language="JavaScript">
+				if(BCM_5357==1)
+				{
+					var auth_options = '<option value=2 selected>WPA2-PSK</option><option value=3>WPA-PSK+WPA2-PSK</option>';
+					//if (wireless_mode==6 || wireless_mode==9)//n mode || b+g+n mode. For 2010, tkip is no longer supported for this 2 mode.
+					//	auth_options = auth_options.slice(auth_options.indexOf("n>")+1);//remove the first option, cus it is tkip option.
+					document.write('<tr>');
+					document.write('<td class="tdTitle">Autenticación &gt;</td>');
+					document.write('<td class="tdText">');
+					document.write('<select size="1" name="authentication" class=selectList  onchange= authselectedchange()>');
+					document.write(auth_options);
+					document.write('</select>');
+					document.write('</td>');
+					document.write('</tr>');
+				}
+				else
+				{
+					document.write('<tr>');
+					document.write('<td class="tdTitle">Autenticación &gt;</td>');
+					document.write('<td class="tdText">');
+					document.write('<select size="1" name="authentication" class=selectList  onchange= authselectedchange()>');
+					document.write('<option value=2 selected>WPA2-PSK</option><option value=3>WPA-PSK+WPA2-PSK</option>');
+					document.write('</select>');
+					document.write('</td>');
+					document.write('</tr>');
+				}
+				</script><tr><td class="tdTitle">Autenticación &gt;</td><td class="tdText"><select size="1" name="authentication" class="selectList" onchange="authselectedchange()"><option value="2" selected="">WPA2-PSK</option><option value="3">WPA-PSK+WPA2-PSK</option></select></td></tr>
+
+				<script language="JavaScript">
+					document.write('<tr>');
+					document.write('<td class="tdTitle">Técnica de codificación &gt;</td>');
+					document.write('<td class="tdText">');
+					//								document.write('<span id="sEncryption"></span>');
+					//								document.write('<select size="1" name="encryption_hid" class=selectList  >');
+					document.write('<select size="1" name="encryption" class=selectList  >');
+					document.write('<option value=1>TKIP</option><option value=2 selected>AES</option><option value=3>TKIP+AES</option>');
+					document.write('</select>');
+					document.write('</td>');
+					document.write('</tr>');
+				</script><tr><td class="tdTitle">Técnica de codificación &gt;</td><td class="tdText"><select size="1" name="encryption" class="selectList"><option value="1">TKIP</option><option value="2" selected="">AES</option><option value="3">TKIP+AES</option></select></td></tr>
+
+				<tr>
+					<td class="tdTitle">Clave Precompartida (PSK) &gt;</td>
+					<script>
+					//heyu_20070113 +++ for obscurpsk
+					if(obscurepsk == 1)
+					{
+						document.write('<td id="pskid" style="display:none" class="tdText">');
+						document.write('<input type=../img/text.gif maxLength=64  size=50  name=wpa_key_text >');
+						document.write('</td>');
+						document.write('<td  id="pskid1" style="display:" class="tdText">');
+						document.write('<input type=password maxLength=64 size=50 name=wpa_key_pass>');
+						document.write('</td>');
+					}
+					else
+					{
+						document.write('<td id="pskid" style="display:" class="tdText">');
+						document.write('<input type=../img/text.gif maxLength=64  size=50  name=wpa_key_text >');
+						document.write('</td>');
+						document.write('<td  id="pskid1" style="display:none" class="tdText">');
+						document.write('<input type=password maxLength=64 size=50 name=wpa_key_pass>');
+						document.write('</td>');
+					}
+					</script><td id="pskid" style="display:" class="tdText"><input type="../img/text.gif" maxlength="64" size="50" name="wpa_key_text"></td><td id="pskid1" style="display: none;" class="tdText"><input type="password" maxlength="64" size="50" name="wpa_key_pass"></td>
+				       </tr>
+					<tr>
+						<td class="tdTitle">Ocultar PSK</td>
+						<td class="tdText">
+							<input type="checkbox" name="obscure_psk" value="1" onclick="click_obscure_psk()">
+						</td>
+					</tr>
+				       <script language="JavaScript">
+				       document.tF.obscure_psk.checked=false;
+document.tF.wpa_key_text.value="vawcktww";
+document.tF.wpa_key_pass.value="vawcktww";
+
+				       </script>
+			</tbody></table>
+			<br>
+			<table border="0" cellspacing="1" cellpadding="5" width="750" class="maincontainwidth">
+				<tbody><tr align="center">
+					<td>
+						<input type="button" value="Borrar Modificaciones" class="submitBtn150" onclick="javascript:window.location.reload(true);return false">
+						<span class="nbsp2"></span><span class="nbsp2"></span>
+						<input type="submit" value="Aplicar Modificaciones" class="submitBtn150" onclick="return evaltF();">
+					</td>
+				</tr>
+			</tbody></table>
+		</td>
+	</tr>
+</tbody></table>
+</form>
+			</td>
+		</tr>
+     </tbody></table>
+
+
+
+</body></html>

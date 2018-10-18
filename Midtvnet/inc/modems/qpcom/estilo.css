@@ -1,0 +1,169 @@
+/*++++++++++++++++++++++ MODEM DE FRENTE +++++++++++++++*/
+
+
+#pwr{
+	position:absolute;
+	width:51px;
+    height:17px;
+	top:350px;
+	left:280px;
+
+}
+
+#sistema{
+	position:absolute;
+	width:51px;
+    height:17px;
+	top:350px;
+	left:310px;
+
+}
+
+#wps{
+	position:absolute;
+	width:51px;
+    height:17px;
+	top:350px;
+	left:340px;
+
+}
+
+#wlan{
+	position:absolute;
+	width:51px;
+    height:17px;
+	top:350px;
+	left:375px;
+
+}
+
+#lan1{
+	position:absolute;
+	width:51px;
+    height:17px;
+	top:350px;
+	left:490px;
+
+}
+
+#lan2{
+	position:absolute;
+	width:51px;
+    height:17px;
+	top:350px;
+	left:460px;
+
+}
+
+#lan3{
+	position:absolute;
+	width:51px;
+    height:17px;
+	top:350px;
+	left:430px;
+
+}
+
+#lan4{
+	position:absolute;
+	width:51px;
+    height:17px;
+	top:350px;
+	left:403px;
+
+}
+
+#wan{
+	position:absolute;
+	width:51px;
+    height:17px;
+	top:350px;
+	left:520px;
+
+}
+
+
+
+.red-tooltip + .tooltip > .tooltip-inner {background-color: #f00;}
+.red-tooltip + .tooltip > .tooltip-arrow { border-bottom-color:#f00  !important;
+}
+
+.encendido
+{ 
+	color:#5AE816;
+}
+
+#atras{
+	color:black !important;
+	text-decoration: none !important;
+	background-color: red;
+}
+
+
+/*++++++++++++++++++++  Atras  ++++++++++++++++++++*/
+
+#wanatras{
+  position:absolute;
+  width:51px;
+  height:17px;
+  top:215px;
+  left:180px;
+
+}
+
+#lan1atras{
+  position:absolute;
+  width:51px;
+  height:17px;
+  top:215px;
+  left:265px;
+
+}
+
+#lan2atras{
+  position:absolute;
+  width:51px;
+  height:17px;
+  top:215px;
+  left:341px;
+
+}
+
+#lan3atras{
+  position:absolute;
+  width:51px;
+  height:17px;
+  top:215px;
+  left:427px;
+
+}
+
+#lan4atras{
+  position:absolute;
+  width:51px;
+  height:17px;
+  top:215px;
+  left:505px;
+
+}
+
+
+
+#rstwps{
+  position:absolute;
+  width:51px;
+  height:17px;
+  top:215px;
+  left:605px;
+
+}
+
+#enchufe{
+  position:absolute;
+  width:51px;
+  height:17px;
+  top:215px;
+  left:680px;
+
+}
+

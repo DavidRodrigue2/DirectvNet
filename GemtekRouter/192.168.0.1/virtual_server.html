@@ -1,0 +1,291 @@
+<html>
+
+<!-- Mirrored from 192.168.0.1/virtual_server.html by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 11 Jan 2017 00:16:10 GMT -->
+<head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+<meta http-equiv="Cache-Control" content="no-cache">
+<meta http-equiv="Content-Style-Type" content="text/css">
+<LINK rel="stylesheet" href="WHR-G300N-160149-style-ENG.css" type="text/css">
+<LINK rel="stylesheet" href="WHR-G300N-160149-style-ad-ENG.css" type="text/css">
+
+<script language="JavaScript" type="text/javascript" src="common.html"></script>
+<script language="JavaScript">
+
+function ChangeRuleOrder(action, index){       
+	//Edit
+	var cf = document.forms[0];
+        document.getElementById("id_action").value = action;
+        document.getElementById("id_change_order").value = index;
+
+        if (action == "edit"){
+                EditRule(index);
+		document.getElementById("rule_add_button").style.display="none";
+		document.getElementById("rule_edit_button").style.display="";
+        }else
+		cf.submit();
+}
+
+function EditRule(index){
+
+	var cf = document.forms[0];
+/*
+	if (nowEdit!=index && nowEdit!=0)
+		restoreEdit(nowEdit);
+	nowEdit=index;
+
+	Hide_error();
+	document.getElementById("id_err_button").style.display="none";
+	document.getElementById("id_add_tmp").style.display="none";
+	document.getElementById("id_edittype").value = "1";
+*/
+	var app_valueObj=document.getElementById("id_app"+index);
+	var en_valueObj = document.getElementById("id_en"+index);
+	var serip_valueObj = document.getElementById("id_serip"+index);
+	var sched_valueObj = document.getElementById("id_sched"+index);
+
+	var app_value= (document.all)?app_valueObj.innerText:app_valueObj.textContent;
+	var en_value= (document.all)?en_valueObj.innerText:en_valueObj.textContent;
+	var serip_value= (document.all)?serip_valueObj.innerText:serip_valueObj.textContent;
+	var sched_value = (document.all)?sched_valueObj.innerText:sched_valueObj.textContent;
+
+	cf.P_app.value = app_value;
+
+	if(en_value == "Enable")
+		cf.P_en.value == "1";
+	else
+		cf.P_en.value == "0";
+
+	cf.P_serip.value = serip_value;
+
+	if(sched_value == "None")
+                cf.P_sched.value = "0";
+        else
+		cf.P_sched.value = sched_value;
+}
+
+function check_ip_format(ip){
+        var n;
+        var lanip='192.168.0.1';
+        var lanmask='255.255.255.0';
+        
+	if (ip=="0.0.0.0" || ip=="255.255.255.255" || ip==lanip){
+		alert("Invalid Server IP Address");
+		return false;
+	}
+
+	if (!isBlank(ip)){
+		n = ip.split('.');
+		if (n.length<4){
+			alert("Invalid IP Address Format");
+			return false;
+		}
+		else{
+			if(isBlank(n[0])){
+				alert("Invalid IP Address Format");
+				return false;
+			} 
+			//else if((isNaN(n[0]))||(n[0]<=0)||!check_integer(n[0])||check_initial_zero(n[0])) 
+			else if((isNaN(n[0]))||(n[0]<=0)||!check_integer(n[0])) {
+				alert("Invalid IP Address Format");
+				return false; 
+			}
+			else if (n[0]==127){
+				alert("Invalid IP Address Format");
+				return false;
+			}
+			else if (n[0]>=224 && n[0]<=239){
+				alert("Invalid IP Address Format");
+				return false;
+			} 
+			else if (n[0]>=240 && n[0]<=255){
+				alert("Invalid IP Address Format");
+				return false;
+			} 
+
+			if(isBlank(n[1])){
+				alert("Invalid IP Address Format");
+				return false;
+			}
+			else if((isNaN(n[1]))||(n[1]<0)||(n[1]>255)||!check_integer(n[1])) {
+				alert("Invalid IP Address Format");
+				return false; 
+			}         
+
+			if(isBlank(n[2])){
+				return false;
+			}
+			else if((isNaN(n[2]))||(n[2]<0)||(n[2]>255)||!check_integer(n[2])) {
+				alert("Invalid IP Address Format");
+				return false; 
+			}
+
+			if(isBlank(n[3])){
+				alert("Invalid IP Address Format");
+				return false;
+			}
+			else if((isNaN(n[3]))||(n[3]<=0)||(n[3]>=255)||!check_integer(n[3])){
+				alert("Invalid IP Address Format");
+				return false; 
+			}
+			if (!isBlank(lanip)){
+				if (!check_the_same_subnet(ip,lanip,lanmask)){
+					alert("Invalid IP Address Format");
+					return false;
+				}
+			}
+		}
+	}
+
+	return true;
+}
+
+function btnApply(){
+        var cf = document.forms[0];
+        var frm = document.forms[1];
+
+	if(document.getElementById("P_serip").value == ""){
+		alert("Invalid IP Address Format");
+		return false;
+	}
+
+	if(!check_ip_format(document.getElementById("P_serip").value))
+    		return false;
+
+	cf.submit();
+}
+
+function frmLoad(){
+
+	document.getElementById("id_action").value = "add";
+}
+
+</script>
+</head>
+
+<body class="BFK_BODY" onLoad="frmLoad();">
+<br>
+<form name="form_log" method="POST">
+<table class="AD_TTL2">
+  <tbody>
+    <tr><td>Agregar un servidor virtual y su direccion IP</td></tr><!--Add Virtaul Server Service and Address-->
+  </tbody>
+  </table>
+<table class="AD_SET">
+    <tr>
+      <th>Servicio</th><!--Service-->
+      <td colspan="2">
+     	<select size="1" name="P_app" id="P_app" onchange="">
+          <option value="FTP" >FTP</option><!--FTP-->
+          <option value="TFTP" >TFTP</option><!--TFTP-->
+          <option value="Telnet" >Telnet</option><!--Telnet-->
+	  <option value="SSH" >SSH</option><!--SSH-->
+        </select>
+      </td>
+    </tr>
+    <tr>
+      <th>Habilitar</th><!--Enable-->
+      <td colspan="2">
+        <select size="1" name="P_en" id="P_en" onclick="">
+          <option value="0" >Desactivar</option><!--Disable-->
+          <option value="1" selected>Habilitar</option><!--Enable-->
+        </select>
+      </td>
+    </tr>
+    <tr>
+      <th>Direccion IP</th><!--IP Address-->
+      <td colspan="2">
+        Direccion IP del Servidor:<!--Server IP Address:--><input type="text" name="P_serip" id="P_serip" size="22" maxlength="18" value="" onChange="">
+      </td>
+    </tr>
+    <tr>
+	<th>Programar</th><!--Schedule-->
+	<td colspan="2">
+	<script language="JavaScript">
+		var schedule_entry="";
+	//	var schedule_entry="22,1,1,1,1,1,1,1,00:00,23:59|5566,1,1,1,1,1,1,1,00:00,23:59|askkd,1,1,1,1,1,1,1,00:00,23:59|";
+		var sched_parts=schedule_entry.split("|");
+		document.write("<select name='P_sched' id='P_sched' onchange='' >");
+		document.write("<option value='0' selected>None</option>");
+		for(i=0;i<sched_parts.length-1;i++){
+			var rule_name=sched_parts[i].split(",");
+			document.write("<option value='"+rule_name[0]+"'>"+rule_name[0]+"</option>");
+		}
+		document.write("</select>");
+	</script>
+	</td>
+    </tr>
+	<input type="hidden" id="id_action" name="id_action">
+	<input type="hidden" id="id_change_order" name="id_change_order">
+  </table>
+
+  <div id="rule_add_button"><input type="button" value="Agregar" onClick="btnApply()"></div> <!--Add-->
+  <div id="rule_addorder_button" style="display: none;">
+	<input type="button" value="Add (Head)" id="id_ADDtop" onClick="">
+	<input type="button" value="Add (Terminus)" id="id_ADD" onClick="">
+  </div>
+
+  <div id="rule_edit_button" style="display: none;">
+	<input type="button" value="Save" name="Do_EDIT" onClick="btnApply()">
+	<input type="button" value="Cancel" name="Do_EDCANSEL" onClick="location.href='virtual_server.html'">
+  </div>
+
+  <hr>
+  <table class="AD_TTL2">
+  <tbody>
+    <tr><td>Virtaul Server </td></tr><!--Virtaul Server-->
+  </tbody>
+  </table>
+
+  <table class="AD_LIST">
+  <tbody>
+    <tr>
+      <th>Service</th><!--Service-->
+      <th>Habilitar</th><!--Enable-->
+      <th>Direccion IP<br><!--IP Address-->
+          Direccion IP del Servidor</th><!--Server IP Address-->
+      <th>Configuracion</th><!--Customize-->
+      <th>Programar</th><!--Schedule-->
+    </tr>
+	<script language="JavaScript">
+		var VirtualNum = 0;
+		var Vir_Count = '0';
+		var VirSvr;
+
+		if(parseInt(Vir_Count) > 0)
+			VirSvr = VirtualSvr.split("!");
+		else
+			VirSvr = "";
+
+		for(i=1; i<=VirtualNum; i++){
+			var VirCom = VirSvr[i-1].split("|");
+			var str_en, str_sched;
+			document.write("<tr>");
+			document.write("<td id='id_app"+i+"'>"+VirCom[0]+"</td>");
+
+			if(VirCom[1] == "1")
+				str_en = "Enable";
+			else
+				str_en = "Disable";
+
+			document.write("<td><span id='id_en"+i+"'>"+str_en+"</span>");
+			document.write("<td><span id='id_serip"+i+"'>"+VirCom[2]+"</span></td>");
+			document.write("<td id='id_status"+i+"'> <input type='button' value='Edit' onclick=ChangeRuleOrder('edit','"+i+"');>");
+			document.write("<input type='button' value='Delete' onclick=ChangeRuleOrder('delete','"+i+"');>");
+
+			if(VirCom[3] == "0")
+                                str_sched = "None";
+			else
+				str_sched = VirCom[3];
+
+			document.write("<td id='id_sched"+i+"'>"+str_sched+"</td>");
+			document.write("</tr>");
+		}
+	</script>
+  </tbody>
+  </table>
+
+</form>
+</body>
+
+<!-- Mirrored from 192.168.0.1/virtual_server.html by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 11 Jan 2017 00:16:10 GMT -->
+</html>

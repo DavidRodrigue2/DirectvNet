@@ -1,0 +1,77 @@
+
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta http-equiv="Pragma" content="no-cache">
+
+<title>WAN | WAN Settings</title>
+<script type="text/javascript" src="b28n.js"></script><style type="text/css"></style>
+<script language="JavaScript" src="gozila.js"></script>
+<script language="JavaScript" src="menu.js"></script>
+<script language="JavaScript" src="table.js"></script>
+
+<link rel="stylesheet" type="text/css" href="../css/style.css">
+</head>
+<body leftmargin="0" topmargin="0" marginheight="0" marginwidth="0" onload="init(document.frmSetup);" class="bg">
+	<table width="100%" border="0" align="center" cellpadding="0" cellspacing="0">
+      <tbody><tr>
+        <td width="33">&nbsp;</td>
+        <td width="679" valign="top">
+		<table width="100%" border="0" align="center" cellpadding="0" cellspacing="0" height="100%">
+          <tbody><tr>
+            <td align="center" valign="top">
+			<table width="98%" border="0" align="center" cellpadding="0" cellspacing="0" height="100%">
+              <tbody><tr>
+                <td align="center" valign="top">
+			<form name="frmSetup" method="POST" action="http://192.168.1.254/goform/AdvSetWan">
+			<input type="hidden" name="GO" value="wan_connectd.asp">
+			<input type="hidden" id="rebootTag" name="rebootTag">
+			<input type="hidden" id="v12_time" name="v12_time">
+			<input type="hidden" name="WANT2" id="WANT2">
+			<table width="100%" border="0" align="center" cellpadding="0" cellspacing="0" class="content1" id="table2">
+			  <tbody><tr class="a1">
+				<td width="100" align="right"><script>document.write(_("mode"));</script>Mode</td>
+			    <td>&nbsp;&nbsp;&nbsp;&nbsp;<select name="WANT1" id="WANT1" onchange="ispSelectChange(document.frmSetup)">
+					<option value="2">PPPOE</option>
+					<option value="0"><script>document.write(_("Static IP"));</script>Static IP</option>
+					
+					
+					<option value="1"><a href="frame/wan_connected.html" target="mainFrame" onclick="MenuClick(event);">DHCP</a></option>
+					
+					
+					
+					
+					<option value="3">PPTP</option>
+					<option value="4">L2TP</option>
+				 </select>
+				 </td>
+			  </tr>
+			</tbody></table>
+				<div id="wan_sec" style="visibility:visibility;"><table class="content1" id="tableppoe" cellpadding="0" cellspacing="0" style="margin-top:0px;">	<tbody><tr class="a2"><td width="100" align="right">Access Account</td>		<td>&nbsp;&nbsp;&nbsp;&nbsp;<input name="PUN" id="PUN" maxlength="50" class="text" size="25" value="admin"></td></tr>	<tr class="a1"><td width="100" align="right">Access Password</td>		<td id="td_PPW">&nbsp;&nbsp;&nbsp;&nbsp;<input name="PPW" id="PPW" maxlength="50" type="password" class="text" size="25" onfocus="chgPPW(this.value)" value="admin"></td></tr>	<tr class="a2"><td width="100" align="right" valign="top">MTU</td>		<td>&nbsp;&nbsp;&nbsp;&nbsp;<input class="text" name="MTU" size="4" value="1492">&nbsp;(DO NOT modify it unless necessary, the default is 1492)</td></tr>	<tr class="a1"><td width="100" align="right">Service name</td>		<td>&nbsp;&nbsp;&nbsp;&nbsp;<input class="text" name="SVC" maxlength="50" size="20" value="">&nbsp;(Don’t enter the information unless necessary.)</td></tr>	<tr class="a3"><td width="100" align="right">Server name</td>		<td>&nbsp;&nbsp;&nbsp;&nbsp;<input class="text" name="AC" maxlength="50" size="20" value="">&nbsp;(Don’t enter the information unless necessary.)</td></tr>	<tr class="a1"><td colspan="2">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Select the corresponding connection mode according to your situation.:</td></tr>	<tr class="a2"><td colspan="2" height="30">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input name="PCM" type="radio" class="radio" value="0" checked="">Connect automatically, Connect automatically to the Internet after rebooting the system or connection failure.</td></tr>	<tr class="a1"><td colspan="2" height="30">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input name="PCM" type="radio" class="radio" value="1">Connect on demand: Re-establish your connection to the Internet when there�s data transmitting.</td></tr>	<tr class="a2"><td colspan="2" height="30"> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Max.idle time 				<input class="text" maxlength="4" name="PIDL" size="4" value="60"> (60-3600 Second) </td></tr>	<tr class="a1"><td colspan="2" height="30">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input name="PCM" type="radio" class="radio" value="2">Connect manually: Connect to the Internet manually by the user.</td></tr>	<tr class="a2"><td colspan="2" height="30">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input name="PCM" type="radio" class="radio" value="3">Connect on fixed time: Connect automatically to the Internet during the time you fix.</td></tr>	<tr class="a1"><td colspan="2" height="30">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Note: The "Connect on fixed time" function goes into effect only when you have set the current time in "Time Settings" from "System Tools".</td></tr>	<tr class="a2"><td colspan="2" height="30">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Connection time: from   		<input class="text" maxlength="2" name="hour1" size="2" value="0"> hours 		<input class="text" maxlength="2" name="minute1" size="2" value="0"> minutes to 		<input class="text" maxlength="2" name="hour2" size="2" value="0"> hours 		<input class="text" maxlength="2" name="minute2" size="2" value="0"> minutes</td></tr>	</tbody></table></div> 
+			
+			
+				<script>tbl_tail_save('document.frmSetup')</script><table width="75%" border="0" cellpadding="0" cellspacing="0" style="padding-top:20px;"><tbody><tr><td align="center"><input type="button" class="button1" value="Ok" onmouseover="style.color=&#39;#FF9933&#39;" onmouseout="style.color=&#39;#000000&#39;" onclick="preSubmit(document.frmSetup)">&nbsp;&nbsp;&nbsp;&nbsp;<input type="button" class="button1" value="Cancel" onmouseover="style.color=&#39;#FF9933&#39;" onmouseout="style.color=&#39;#000000&#39;" onclick="init(document.frmSetup)"></td></tr></tbody></table>
+          </form>
+				</td>
+              </tr>
+            </tbody></table></td>
+          </tr>
+        </tbody></table></td>
+        <td align="center" valign="top" height="100%">
+	<table border="0" cellpadding="0" cellspacing="0" class="left1" style="margin-top:25px;">
+	<tbody><tr><td align="center"><b><script>document.write(_("Help information"));</script>Help information</b></td></tr>
+	<tr><td><div id="message">&nbsp;&nbsp;&nbsp;&nbsp;PPPOE:Inquire your ISP to make sure whether you can use PPPoE. If they provide PPPoE Then enter your username and password.</div></td></tr>
+	</tbody></table>
+		</td>
+      </tr>
+    </tbody></table>
+	<script type="text/javascript">
+	  table_onload('table2');
+    </script>
+
+
+
+
+
+
+
+
+</body></html>

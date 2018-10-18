@@ -1,0 +1,219 @@
+
+<html>
+	<head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+	<link rel="stylesheet" href="../css/styles.css" type="text/css">
+
+
+<title>DoS Setup </title>
+<script language="javascript" type="text/javascript" src="../js/util_gw.js"> </script><style type="text/css"></style>
+<script>
+function dosEnabledClick(){
+	if(document.formDosCfg.dosEnabled.checked){
+		enableTextField(document.formDosCfg.sysfloodSYN);
+		enableTextField(document.formDosCfg.sysfloodFIN);
+		enableTextField(document.formDosCfg.sysfloodUDP);
+		enableTextField(document.formDosCfg.sysfloodICMP);
+		enableTextField(document.formDosCfg.sysfloodSYNcount);
+		enableTextField(document.formDosCfg.sysfloodFINcount);
+		enableTextField(document.formDosCfg.sysfloodUDPcount);
+		enableTextField(document.formDosCfg.sysfloodICMPcount);
+		enableTextField(document.formDosCfg.ipfloodSYN);
+		enableTextField(document.formDosCfg.ipfloodFIN);
+		enableTextField(document.formDosCfg.ipfloodUDP);
+		enableTextField(document.formDosCfg.ipfloodICMP);
+		enableTextField(document.formDosCfg.ipfloodSYNcount);
+		enableTextField(document.formDosCfg.ipfloodFINcount);
+		enableTextField(document.formDosCfg.ipfloodUDPcount);
+		enableTextField(document.formDosCfg.ipfloodICMPcount);
+		enableTextField(document.formDosCfg.TCPUDPPortScan);
+		enableTextField(document.formDosCfg.portscanSensi);
+		enableTextField(document.formDosCfg.ICMPSmurfEnabled);
+		enableTextField(document.formDosCfg.IPLandEnabled);
+		enableTextField(document.formDosCfg.IPSpoofEnabled);
+		enableTextField(document.formDosCfg.IPTearDropEnabled);
+		enableTextField(document.formDosCfg.PingOfDeathEnabled);
+		enableTextField(document.formDosCfg.TCPScanEnabled);
+		enableTextField(document.formDosCfg.TCPSynWithDataEnabled);
+		enableTextField(document.formDosCfg.UDPBombEnabled);
+		enableTextField(document.formDosCfg.UDPEchoChargenEnabled);
+		enableTextField(document.formDosCfg.sourceIPblock);
+		enableTextField(document.formDosCfg.IPblockTime);
+	}
+	else{
+		document.formDosCfg.sysfloodSYN.checked=0;
+		document.formDosCfg.sysfloodFIN.checked=0;
+		document.formDosCfg.sysfloodUDP.checked=0;
+		document.formDosCfg.sysfloodICMP.checked=0;
+		document.formDosCfg.ipfloodSYN.checked=0;
+		document.formDosCfg.ipfloodFIN.checked=0;
+		document.formDosCfg.ipfloodUDP.checked=0;
+		document.formDosCfg.ipfloodICMP.checked=0;
+		document.formDosCfg.TCPUDPPortScan.checked=0;
+		document.formDosCfg.ICMPSmurfEnabled.checked=0;
+		document.formDosCfg.IPLandEnabled.checked=0;
+		document.formDosCfg.IPSpoofEnabled.checked=0;
+		document.formDosCfg.IPTearDropEnabled.checked=0;
+		document.formDosCfg.PingOfDeathEnabled.checked=0;
+		document.formDosCfg.TCPScanEnabled.checked=0;
+		document.formDosCfg.TCPSynWithDataEnabled.checked=0;
+		document.formDosCfg.UDPBombEnabled.checked=0;
+		document.formDosCfg.UDPEchoChargenEnabled.checked=0;
+		document.formDosCfg.sourceIPblock.checked=0;
+		disableTextField(document.formDosCfg.sysfloodSYN);
+		disableTextField(document.formDosCfg.sysfloodFIN);
+		disableTextField(document.formDosCfg.sysfloodUDP);
+		disableTextField(document.formDosCfg.sysfloodICMP);
+		disableTextField(document.formDosCfg.sysfloodSYNcount);
+		disableTextField(document.formDosCfg.sysfloodFINcount);
+		disableTextField(document.formDosCfg.sysfloodUDPcount);
+		disableTextField(document.formDosCfg.sysfloodICMPcount);
+		disableTextField(document.formDosCfg.ipfloodSYN);
+		disableTextField(document.formDosCfg.ipfloodFIN);
+		disableTextField(document.formDosCfg.ipfloodUDP);
+		disableTextField(document.formDosCfg.ipfloodICMP);
+		disableTextField(document.formDosCfg.ipfloodSYNcount);
+		disableTextField(document.formDosCfg.ipfloodFINcount);
+		disableTextField(document.formDosCfg.ipfloodUDPcount);
+		disableTextField(document.formDosCfg.ipfloodICMPcount);
+		disableTextField(document.formDosCfg.TCPUDPPortScan);
+		disableTextField(document.formDosCfg.portscanSensi);
+		disableTextField(document.formDosCfg.ICMPSmurfEnabled);
+		disableTextField(document.formDosCfg.IPLandEnabled);
+		disableTextField(document.formDosCfg.IPSpoofEnabled);
+		disableTextField(document.formDosCfg.IPTearDropEnabled);
+		disableTextField(document.formDosCfg.PingOfDeathEnabled);
+		disableTextField(document.formDosCfg.TCPScanEnabled);
+		disableTextField(document.formDosCfg.TCPSynWithDataEnabled);
+		disableTextField(document.formDosCfg.UDPBombEnabled);
+		disableTextField(document.formDosCfg.UDPEchoChargenEnabled);
+		disableTextField(document.formDosCfg.sourceIPblock);
+		disableTextField(document.formDosCfg.IPblockTime);
+	}
+}
+
+function SelectAll(){
+	if(document.formDosCfg.dosEnabled.checked){
+		document.formDosCfg.sysfloodSYN.checked=1;
+		document.formDosCfg.sysfloodFIN.checked=1;
+		document.formDosCfg.sysfloodUDP.checked=1;
+		document.formDosCfg.sysfloodICMP.checked=1;
+		document.formDosCfg.ipfloodSYN.checked=1;
+		document.formDosCfg.ipfloodFIN.checked=1;
+		document.formDosCfg.ipfloodUDP.checked=1;
+		document.formDosCfg.ipfloodICMP.checked=1;
+		document.formDosCfg.TCPUDPPortScan.checked=1;
+		document.formDosCfg.ICMPSmurfEnabled.checked=1;
+		document.formDosCfg.IPLandEnabled.checked=1;
+		document.formDosCfg.IPSpoofEnabled.checked=1;
+		document.formDosCfg.IPTearDropEnabled.checked=1;
+		document.formDosCfg.PingOfDeathEnabled.checked=1;
+		document.formDosCfg.TCPScanEnabled.checked=1;
+		document.formDosCfg.TCPSynWithDataEnabled.checked=1;
+		document.formDosCfg.UDPBombEnabled.checked=1;
+		document.formDosCfg.UDPEchoChargenEnabled.checked=1;
+	}
+}
+
+function ClearAll(){
+	if(document.formDosCfg.dosEnabled.checked){
+		document.formDosCfg.sysfloodSYN.checked=0;
+		document.formDosCfg.sysfloodFIN.checked=0;
+		document.formDosCfg.sysfloodUDP.checked=0;
+		document.formDosCfg.sysfloodICMP.checked=0;
+		document.formDosCfg.ipfloodSYN.checked=0;
+		document.formDosCfg.ipfloodFIN.checked=0;
+		document.formDosCfg.ipfloodUDP.checked=0;
+		document.formDosCfg.ipfloodICMP.checked=0;
+		document.formDosCfg.TCPUDPPortScan.checked=0;
+		document.formDosCfg.ICMPSmurfEnabled.checked=0;
+		document.formDosCfg.IPLandEnabled.checked=0;
+		document.formDosCfg.IPSpoofEnabled.checked=0;
+		document.formDosCfg.IPTearDropEnabled.checked=0;
+		document.formDosCfg.PingOfDeathEnabled.checked=0;
+		document.formDosCfg.TCPScanEnabled.checked=0;
+		document.formDosCfg.TCPSynWithDataEnabled.checked=0;
+		document.formDosCfg.UDPBombEnabled.checked=0;
+		document.formDosCfg.UDPEchoChargenEnabled.checked=0;
+	}
+}
+
+</script>
+</head>
+
+<body marginwidth="0" marginheight="0" onload="init();"><blockquote>
+
+
+
+<h2>Denegación de servicio</h2>
+<p>Un ataque de "denegación de servicio" (DoS) está caracterizado por un intento explícito por parte de hackers que impide que usuarios legítimos de un servicio utilicen dicho servicio.</p>
+<hr>
+
+<form action="http://192.168.100.1/boafrm/formDosCfg" method="POST" name="formDosCfg">
+  <table border="0">
+  <tbody><tr><td width="300"><font size="2"><b><input type="checkbox" name="dosEnabled" value="ON" onclick="dosEnabledClick()">&nbsp;&nbsp;Activar prevención de DoS</b></font></td>
+  </tr>
+  </tbody></table>
+  <br>
+  <table border="0" width="80%">
+  <tbody><tr><td width="40%">&nbsp;&nbsp;&nbsp;&nbsp;<input type="checkbox" name="sysfloodSYN" value="ON" disabled=""> <font size="2"><b> Desborde del sistema completo: SYN </b></font><br></td>
+  <td width="40%"><input type="text" name="sysfloodSYNcount" size="6" maxlength="4" value="0" disabled=""> <font size="2"><b> Paquetes/Segundo</b></font><br></td></tr>
+  <tr><td width="40%">&nbsp;&nbsp;&nbsp;&nbsp;<input type="checkbox" name="sysfloodFIN" value="ON" disabled=""> <font size="2"><b> Desborde del sistema completo: FIN </b></font><br></td>
+  <td width="40%"><input type="text" name="sysfloodFINcount" size="6" maxlength="4" value="0" disabled=""> <font size="2"><b> Paquetes/Segundo</b></font><br></td></tr>
+  <tr><td width="40%">&nbsp;&nbsp;&nbsp;&nbsp;<input type="checkbox" name="sysfloodUDP" value="ON" disabled=""> <font size="2"><b> Desborde del sistema completo: UDP </b></font><br></td>
+  <td width="40%"><input type="text" name="sysfloodUDPcount" size="6" maxlength="4" value="0" disabled=""> <font size="2"><b> Paquetes/Segundo</b></font><br></td></tr>
+  <tr><td width="40%">&nbsp;&nbsp;&nbsp;&nbsp;<input type="checkbox" name="sysfloodICMP" value="ON" disabled=""> <font size="2"><b> Desborde del sistema completo: ICMP </b></font><br></td>
+  <td width="40%"><input type="text" name="sysfloodICMPcount" size="6" maxlength="4" value="0" disabled=""> <font size="2"><b> Paquetes/Segundo</b></font><br></td></tr>
+
+  <tr><td width="40%">&nbsp;&nbsp;&nbsp;&nbsp;<input type="checkbox" name="ipfloodSYN" value="ON" disabled=""> <font size="2"><b> Desborde por dirección IP de origen: SYN </b></font><br></td>
+  <td width="40%"><input type="text" name="ipfloodSYNcount" size="6" maxlength="4" value="0" disabled=""> <font size="2"><b> Paquetes/Segundo</b></font><br></td></tr>
+  <tr><td width="40%">&nbsp;&nbsp;&nbsp;&nbsp;<input type="checkbox" name="ipfloodFIN" value="ON" disabled=""> <font size="2"><b> Desborde por dirección IP de origen: FIN </b></font><br></td>
+  <td width="40%"><input type="text" name="ipfloodFINcount" size="6" maxlength="4" value="0" disabled=""> <font size="2"><b> Paquetes/Segundo</b></font><br></td></tr>
+  <tr><td width="40%">&nbsp;&nbsp;&nbsp;&nbsp;<input type="checkbox" name="ipfloodUDP" value="ON" disabled=""> <font size="2"><b> Desborde por dirección IP de origen: UDP </b></font><br></td>
+  <td width="40%"><input type="text" name="ipfloodUDPcount" size="6" maxlength="4" value="0" disabled=""> <font size="2"><b> Paquetes/Segundo</b></font><br></td></tr>
+  <tr><td width="40%">&nbsp;&nbsp;&nbsp;&nbsp;<input type="checkbox" name="ipfloodICMP" value="ON" disabled=""> <font size="2"><b> Desborde por dirección IP de origen: ICMP </b></font><br></td>
+  <td width="40%"><input type="text" name="ipfloodICMPcount" size="6" maxlength="4" value="0" disabled=""> <font size="2"><b> Paquetes/Segundo</b></font><br></td></tr>
+
+  <tr><td width="40%">&nbsp;&nbsp;&nbsp;&nbsp;<input type="checkbox" name="TCPUDPPortScan" value="ON" disabled=""> <font size="2"><b> TCP/UDP PortScan </b></font></td>
+	<td width="40%">
+		<select name="portscanSensi" disabled="">
+			<option value="0">Low </option>
+			<option value="1">High </option>
+		</select>
+	<font size="2"><b> Sensitivity </b></font></td>
+  </tr>
+
+  <tr><td width="40%">&nbsp;&nbsp;&nbsp;&nbsp;<input type="checkbox" name="ICMPSmurfEnabled" value="ON" disabled=""> <font size="2"><b> ICMP Smurf </b></font></td></tr>
+  <tr><td width="40%">&nbsp;&nbsp;&nbsp;&nbsp;<input type="checkbox" name="IPLandEnabled" value="ON" disabled=""> <font size="2"><b> IP Land </b></font></td></tr>
+  <tr><td width="40%">&nbsp;&nbsp;&nbsp;&nbsp;<input type="checkbox" name="IPSpoofEnabled" value="ON" disabled=""> <font size="2"><b> IP Spoof </b></font></td></tr>
+  <tr><td width="40%">&nbsp;&nbsp;&nbsp;&nbsp;<input type="checkbox" name="IPTearDropEnabled" value="ON" disabled=""> <font size="2"><b> IP TearDrop </b></font></td></tr>
+  <tr><td width="40%">&nbsp;&nbsp;&nbsp;&nbsp;<input type="checkbox" name="PingOfDeathEnabled" value="ON" disabled=""> <font size="2"><b> PingOfDeath </b></font></td></tr>
+  <tr><td width="40%">&nbsp;&nbsp;&nbsp;&nbsp;<input type="checkbox" name="TCPScanEnabled" value="ON" disabled=""> <font size="2"><b> TCP Scan </b></font></td></tr>
+  <tr><td width="40%">&nbsp;&nbsp;&nbsp;&nbsp;<input type="checkbox" name="TCPSynWithDataEnabled" value="ON" disabled=""> <font size="2"><b> TCP SynWithData </b></font></td></tr>
+  <tr><td width="40%">&nbsp;&nbsp;&nbsp;&nbsp;<input type="checkbox" name="UDPBombEnabled" value="ON" disabled=""> <font size="2"><b> Bomba UDP </b></font></td></tr>
+  <tr><td width="40%">&nbsp;&nbsp;&nbsp;&nbsp;<input type="checkbox" name="UDPEchoChargenEnabled" value="ON" disabled=""> <font size="2"><b> UDP EchoChargen </b></font></td></tr>
+
+    </tbody></table>
+    <br>
+    <input type="button" value=" Seleccionar todo " name="selectAll" onclick="SelectAll()">&nbsp;&nbsp;
+    <input type="button" value=" Eliminar todo " name="clearAll" onclick="ClearAll()">&nbsp;&nbsp;
+    <br>
+  <table border="0" width="600">
+
+  <tbody><tr><td width="40%">&nbsp;&nbsp;&nbsp;&nbsp;<input type="checkbox" name="sourceIPblock" value="ON" disabled=""> <font size="2"><b>Activar bloqueo de dirección IP de origen </b></font></td>
+
+   <td width="40%"><input type="text" name="IPblockTime" size="4" maxlength="3" value="0" disabled=""> <font size="2"><b> Tiempo de bloqueo (seg)</b></font><br></td></tr>
+
+  </tbody></table>
+  <br>
+  <input type="submit" value="Aplicar cambios" name="enableDos">&nbsp;&nbsp;
+
+  <input type="hidden" value="/dos.htm" name="submit-url">
+ <script>
+	dosEnabledClick();
+ </script>
+</form>
+
+
+
+</blockquote></body></html>

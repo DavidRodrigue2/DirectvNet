@@ -1,0 +1,277 @@
+
+<!-- saved from url=(0040)http://192.168.1.254/system_hostname.asp -->
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta http-equiv="Pragma" content="no-cache">
+
+<title>System | Time Settings</title>
+<script type="text/javascript" src="b28n.js"></script><style type="text/css"></style>
+<script language="JavaScript" src="gozila.js"></script>
+<script language="JavaScript" src="menu.js"></script>
+<script language="JavaScript" src="table.js"></script>
+<script language="JavaScript">
+addCfg("HN",0,"ROUTER");
+addCfg("DN",1,"DOMAIN.COM");
+var tz = "10";
+var time = "(null)";
+var mode = "0";
+Butterlate.setTextDomain("system_tool");
+function init(f)
+{
+	var today = new Date();
+	f.year.value = today.getFullYear();
+	f.month.value = today.getMonth()+1;
+	f.day.value = today.getDate();
+	f.hour.value = today.getHours();
+	f.minute.value = today.getMinutes();
+	f.second.value = today.getSeconds();
+	if(mode == 2)
+	{
+		f.manualEN.checked = true;	
+	}
+	else
+	{		
+		f.manualEN.checked = false;
+	}
+	f.TZ.selectedIndex = parseInt(tz);
+	onManualSet();
+}
+function preSubmit(f) {
+	if (!strCheck(f.HN,_("Hostname"))) return;
+	if (!strCheck(f.DN,_("Domain Name"))) return;
+	var loc = "/goform/SysToolTime?GO=system_hostname.asp";
+	if(f.manualEN.checked == true)
+	{
+		var sy = f.year.value;
+		var smo = f.month.value;
+		var sd = f.day.value;
+		var sh = f.hour.value;
+		var smi = f.minute.value;
+		var ss = f.second.value;
+		var t = /^[0-9]{1,4}$/;
+		if(!t.test(sy) || !t.test(smo) || !t.test(sd) || !t.test(sh) || !t.test(smi) || !t.test(ss))
+		{
+			alert(_("Time format wrong"));
+			return false;
+		}
+		if(sy.length<4 || Number(smo)>12 || Number(smo)<1 || smo.length<1 || sd.length<1 || Number(sd)<1)
+		{
+			alert(_("Please enter the valid year ,month and date"));
+			return ;
+		}
+		if( Number(sy)<=1969 || Number(sy)>=2038)
+		{
+			alert(_("The year only can be 1970 to 2037"));
+			return ;
+		}
+		if(Number(smo) == 2)
+		{
+		    if(Number(sy)%400==0||(Number(sy)%4==0&&Number(sy)%100!=0))
+			{
+				if(Number(sd) > 29)
+				{
+					alert(_("Enter a valid date"));
+					return ;
+				}
+			}
+			else if(Number(sd) > 28)
+			{
+			     alert(_("Enter a valid date"));
+				 return ;
+			}
+		}
+		else if(Number(smo)==4 || Number(smo)==6 || Number(smo)==9 || Number(smo)==11)//4.6.9.11
+		{
+			if(Number(sd)>30)
+			{
+				alert(_("Enter a valid date"));
+				return ;
+			}
+		}
+		else
+		{
+			if(Number(sd)>31)
+			{
+				alert(_("Enter a valid date"));
+				return ;
+			}
+		}
+		if(Number(sh)>23 || Number(smi)>59 || Number(ss)>59)
+		{
+			alert(_("Enter a valid time"));
+			return ;
+		}
+		if(sh == "")
+			sh = "00";
+		if(smi == "")
+			smi = "00";
+		if(ss == "")
+			ss = "00";
+		loc += "&manualEN=2";
+		var curdate = new Date(Date.UTC(sy, smo-1 ,sd, sh, smi,ss));
+		var computer = parseInt(curdate.getTime()/1000) ;
+		loc += "&time=" + computer;
+	}
+	else
+	{
+		loc += "&manualEN=0";
+		loc += "&time=";
+	}
+	loc += "&TZ=" + f.TZ.value;
+	var code = 'location="' + loc + '"';
+	eval(code);
+}
+function onManualSet()
+{
+	var f = document.frmSetup;
+	if(f.manualEN.checked == true)
+	{
+		document.getElementById("setTab").disabled = false;
+		document.getElementById("year").disabled = document.getElementById("month").disabled = document.getElementById("day").disabled = document.getElementById("hour").disabled = 
+		document.getElementById("minute").disabled = document.getElementById("second").disabled = document.getElementById("year").disabled = document.getElementById("year").disabled = false;
+	}
+	else
+	{
+		document.getElementById("setTab").disabled = true;
+		document.getElementById("year").disabled = document.getElementById("month").disabled = document.getElementById("day").disabled = document.getElementById("hour").disabled = 
+		document.getElementById("minute").disabled = document.getElementById("second").disabled = document.getElementById("year").disabled = document.getElementById("year").disabled = true;
+	}
+}
+</script>
+<link rel="stylesheet" type="text/css" href="../css/style.css">
+</head>
+<body leftmargin="0" topmargin="0" marginheight="0" marginwidth="0" onload="init(document.frmSetup);" class="bg">
+	<table width="100%" border="0" align="center" cellpadding="0" cellspacing="0">
+      <tbody><tr>
+        <td width="33">&nbsp;</td>
+        <td width="679" valign="top">
+		<table width="100%" border="0" align="center" cellpadding="0" cellspacing="0" height="100%">
+          <tbody><tr>
+            <td align="center" valign="top">
+			<table width="98%" border="0" align="center" cellpadding="0" cellspacing="0" height="100%">
+              <tbody><tr>
+                <td align="center" valign="top">
+				<form name="frmSetup" id="frmSetup" method="POST" action="http://192.168.1.254/goform/SysToolTime">
+				<input type="hidden" id="GO" value="system_hostname.asp">
+				<table cellpadding="0" cellspacing="0" class="content1" id="table1">
+					<tbody><tr class="a1"><td height="30">&nbsp;&nbsp;<script>document.write(_("Time zone"));</script>Time zone: 
+					  <select class="list" id="TZ">
+						<option value="0">(GMT-12:00)<script>document.write(_("West of International Date Line"));</script>West of International Date Line</option>
+						<option value="1">(GMT-11:00)<script>document.write(_("Midway Island, Samoa"));</script>Midway Island, Samoa</option>
+						<option value="2">(GMT-10:00)<script>document.write(_("Hawaii, Honolulu"));</script>Hawaii, Honolulu</option>
+						<option value="3">(GMT-09:00)<script>document.write(_("Alaska"));</script>Alaska</option>
+						<option value="4">(GMT-08:00)<script>document.write(_("Pacific Time"));</script>Pacific Time (U.S. Canada)Tijuana</option>               
+						<option value="5">(GMT-07:00)<script>document.write(_("Mountain Time"));</script>Mountain Time (U.S. Canada)</option>                        
+						<option value="6">(GMT-07:00)<script>document.write(_("Chihuahua, La Paz, Mazatlan"));</script>Chihuahua, La Paz, Mazatlan</option>
+						<option value="7">(GMT-07:00)<script>document.write(_("Arizona"));</script>Arizona</option>  
+						<option value="8">(GMT-06:00)<script>document.write(_("Central Time"));</script>Central Time (U.S. Canada)</option>                        
+						<option value="9">(GMT-06:00)<script>document.write(_("Guadalajara, Mexico City, Monterrey"));</script>Guadalajara, Mexico City, Monterrey</option>
+						<option value="10">(GMT-05:00)<script>document.write(_("Eastern Time"));</script>Eastern Time (U.S. Canada)</option>
+						<option value="11">(GMT-05:00)<script>document.write(_("India to Ann"));</script>India to Ann (East)</option>                               
+						<option value="12">(GMT-05:00)<script>document.write(_("Bogota, Lima, Quito"));</script>Bogota, Lima, Quito</option>                           
+						<option value="13">(GMT-04:30)<script>document.write(_("Caracas, La Paz"));</script>Caracas, La Paz</option>                           
+						<option value="14">(GMT-04:00)<script>document.write(_("Atlantic Time"));</script>Atlantic Time (Canada)</option>                         
+						<option value="15">(GMT-04:00)<script>document.write(_("Manaus"));</script>Manaus</option>                                
+						<option value="16">(GMT-03:30)<script>document.write(_("Newfoundland and Labrador"));</script>Newfoundland and Labrador</option>
+						<option value="17">(GMT-03:00)<script>document.write(_("Brasilia Asia"));</script>Brasilia Asia</option>
+						<option value="18">(GMT-03:00)<script>document.write(_("Greenland"));</script>Greenland</option>   
+						<option value="19">(GMT-03:00)<script>document.write(_("Buenos Aires, Georgetown"));</script>Buenos Aires, Georgetown</option>                       
+						<option value="20">(GMT-02:00)<script>document.write(_("Atlantic"));</script>Atlantic</option>
+						<option value="21">(GMT-01:00)<script>document.write(_("Azores"));</script>Azores</option>                                   
+						<option value="22">(GMT-01:00)<script>document.write(_("Cape Verde Islands"));</script>Cape Verde Islands</option>
+						<option value="23">(GMT)<script>document.write(_("Greenwich Mean Time"));</script>Greenwich Mean Time: Dublin, Edinburgh, Lisbon, London</option>      
+						<option value="24">(GMT)<script>document.write(_("Casablanca , Monrovia"));</script>Casablanca , Monrovia</option>                                
+						<option value="25">(GMT+01:00)<script>document.write(_("Belgrade, Bratislava, Budapest, Ljubljana, Prague"));</script>Belgrade, Bratislava, Budapest, Ljubljana, Prague</option>
+						<option value="26">(GMT+01:00)<script>document.write(_("Sarajevo, Skopje, Warsaw, Zagreb"));</script>Sarajevo, Skopje, Warsaw, Zagreb</option>            
+						<option value="27">(GMT+01:00)<script>document.write(_("Brussels, Copenhagen, Madrid, Paris"));</script>Brussels, Copenhagen, Madrid, Paris</option>
+						<option value="28">(GMT+01:00)<script>document.write(_("West Africa"));</script>West Africa</option> 
+						<option value="29">(GMT+01:00)<script>document.write(_("Amsterdam, Berlin, Bern, Rome, Stockholm, Vienna"));</script>Amsterdam, Berlin, Bern, Rome, Stockholm, Vienna</option>
+						<option value="30">(GMT+02:00)<script>document.write(_("Athens, Bucharest, Istanbul"));</script>Athens, Bucharest, Istanbul</option>                  
+						<option value="31">(GMT+02:00)<script>document.write(_("Minsk"));</script>Minsk</option>   
+						<option value="32">(GMT+02:00)<script>document.write(_("Cairo"));</script>Cairo</option>                                          
+						<option value="33">(GMT+02:00)<script>document.write(_("Helsinki, Kyiv, Riga, Sofia, Tallinn, Vilnius"));</script>Helsinki, Kyiv, Riga, Sofia, Tallinn, Vilnius</option>
+						<option value="34">(GMT+02:00)<script>document.write(_("Jerusalem"));</script>Jerusalem</option>                                      
+						<option value="35">(GMT+02:00)<script>document.write(_("temperature 'll have"));</script>temperature 'll have</option>    
+						<option value="36">(GMT+02:00)<script>document.write(_("grams. Harare, Pretoria"));</script>grams. Harare, Pretoria</option>
+						<option value="37">(GMT+03:00)<script>document.write(_("Moscow, St. Petersburg, Volgograd"));</script>Moscow, St. Petersburg, Volgograd</option>
+						<option value="38">(GMT+03:00)<script>document.write(_("Kuwait, Riyadh"));</script>Kuwait, Riyadh</option>
+						<option value="39">(GMT+03:00)<script>document.write(_("Baghdad"));</script>Baghdad</option> 
+						<option value="40">(GMT+03:00)<script>document.write(_("Nairobi"));</script>Nairobi</option>                                      
+						<option value="41">(GMT+03:30)<script>document.write(_("Tehran"));</script>Tehran</option>                                      
+						<option value="42">(GMT+04:00)<script>document.write(_("Abu Dhabi, Muscat"));</script>Abu Dhabi, Muscat</option>                          
+						<option value="43">(GMT+04:00)<script>document.write(_("Baku"));</script>Baku</option>     
+						<option value="44">(GMT+04:00)<script>document.write(_("Yerevan"));</script>Yerevan</option>                                      
+						<option value="45">(GMT+04:00)<script>document.write(_("Tbilisi"));</script>Tbilisi</option>                                  
+						<option value="46">(GMT+04:30)<script>document.write(_("Kabul"));</script>Kabul</option>                                    
+						<option value="47">(GMT+05:00)<script>document.write(_("Islamabad, Karachi, Tashkent"));</script>Islamabad, Karachi, Tashkent</option>                  
+						<option value="48">(GMT+05:00)<script>document.write(_("Yekaterinburg"));</script>Yekaterinburg</option>                                
+						<option value="49">(GMT+05:30)<script>document.write(_("Chennai, Kolkata, Mumbai, New Delhi"));</script>Chennai, Kolkata, Mumbai, New Delhi</option>
+						<option value="50">(GMT+05:45)<script>document.write(_("Kathmandu"));</script>Kathmandu</option>
+						<option value="51">(GMT+06:00)<script>document.write(_("Astana, Dhaka"));</script>Astana, Dhaka</option>                            
+						<option value="52">(GMT+06:00)<script>document.write(_("Almaty, Novosibirsk"));</script>Almaty, Novosibirsk</option>                      
+						<option value="53">(GMT+06:00)<script>document.write(_("Colombo"));</script>Colombo</option>     
+						<option value="54">(GMT+06:30)<script>document.write(_("Yangon"));</script>Yangon (Rangoon)</option>                              
+						<option value="55">(GMT+07:00)<script>document.write(_("Krasnoyarsk"));</script>Krasnoyarsk</option>                            
+						<option value="56">(GMT+07:00)<script>document.write(_("Bangkok, Hanoi, Jakarta"));</script>Bangkok, Hanoi, Jakarta</option>
+						<option value="57">(GMT+08:00)<script>document.write(_("Beijing, Chongqing, Hong Kong, Urumqi"));</script>Beijing, Chongqing, Hong Kong, Urumqi</option>        
+						<option value="58">(GMT+08:00)<script>document.write(_("Irkutsk grams, Ulaanbaatar"));</script>Irkutsk grams, Ulaanbaatar</option> 
+						<option value="59">(GMT+08:00)<script>document.write(_("Kuala Lumpur, Singapore"));</script>Kuala Lumpur, Singapore</option>            
+						<option value="60">(GMT+08:00)<script>document.write(_("Perth"));</script>Perth</option>     
+						<option value="61">(GMT+09:00)<script>document.write(_("Yakutsk"));</script>Yakutsk</option>                                    
+						<option value="62">(GMT+09:00)<script>document.write(_("Osaka, Sapporo, Tokyo"));</script>Osaka, Sapporo, Tokyo</option>                          
+						<option value="63">(GMT+09:00)<script>document.write(_("Seoul"));</script>Seoul</option>  
+						<option value="64">(GMT+09:30)<script>document.write(_("Darwin"));</script>Darwin</option>                                      
+						<option value="65">(GMT+09:30)<script>document.write(_("Adelaide"));</script>Adelaide</option>                                    
+						<option value="66">(GMT+10:00)<script>document.write(_("Brisbane"));</script>Brisbane</option>                                    
+						<option value="67">(GMT+10:00)<script>document.write(_("Canberra, Melbourne Sydney"));</script>Canberra, Melbourne Sydney</option>                      
+						<option value="68">(GMT+10:00)<script>document.write(_("Guam, Port Moresby"));</script>Guam, Port Moresby</option>
+						<option value="69">(GMT+10:00)<script>document.write(_("Vladivostok"));</script>Vladivostok</option>                              
+						<option value="70">(GMT+10:00)<script>document.write(_("Hobart"));</script>Hobart</option>  
+						<option value="71">(GMT+11:00)<script>document.write(_("Magadan, Solomon Islands, New Caledonia and more"));</script>Magadan, Solomon Islands, New Caledonia and more</option>
+						<option value="72">(GMT+12:00)<script>document.write(_("Fiji Islands, Kamchatka Peninsula, the Marshall Islands"));</script>Fiji Islands, Kamchatka Peninsula, the Marshall Islands</option>          
+						<option value="73">(GMT+12:00)<script>document.write(_("Auckland , Wellington"));</script>Auckland , Wellington</option>
+						<option value="74">(GMT+13:00)<script>document.write(_("Nuku'alofa"));</script>Nuku'alofa</option>                                
+					</select>
+					</td></tr>
+					</tbody></table>
+				<table cellpadding="0" cellspacing="0" class="content3">
+					<tbody><tr><td height="30">&nbsp;&nbsp;(<script>document.write(_("hostname_Note"));</script>Note：GMT time can only be got after accessing to the Internet.)</td>
+					</tr>
+				</tbody></table>
+				<table cellpadding="0" cellspacing="0" class="content3" id="table2">
+					<tbody><tr class="a1"><td height="30">&nbsp;&nbsp;<script>document.write(_("Customized time"));</script>Customized time:
+					  <input type="checkbox" id="manualEN" onclick="onManualSet()">
+					</td></tr><tr class="a2"><td height="30" id="setTab">
+						&nbsp;&nbsp;<input type="text" class="text" id="year" size="4" maxlength="4" disabled=""><script>document.write(_("Year"));</script>Year
+						<input type="text" class="text" id="month" size="2" maxlength="2" disabled=""><script>document.write(_("Month"));</script>Month
+						<input type="text" class="text" id="day" size="2" maxlength="2" disabled=""><script>document.write(_("Date"));</script>Date
+						<input type="text" class="text" id="hour" size="2" maxlength="2" disabled=""><script>document.write(_("Hour"));</script>Hour
+						<input type="text" class="text" id="minute" size="2" maxlength="2" disabled=""><script>document.write(_("Minute"));</script>Minute
+						<input type="text" class="text" id="second" size="2" maxlength="2" disabled=""><script>document.write(_("Second"));</script>Second
+					</td>
+					</tr>
+				</tbody></table>
+					<script>tbl_tail_save("document.frmSetup");</script><table width="75%" border="0" cellpadding="0" cellspacing="0" style="padding-top:20px;"><tbody><tr><td align="center"><input type="button" class="button1" value="Ok" onmouseover="style.color=&#39;#FF9933&#39;" onmouseout="style.color=&#39;#000000&#39;" onclick="preSubmit(document.frmSetup)">&nbsp;&nbsp;&nbsp;&nbsp;<input type="button" class="button1" value="Cancel" onmouseover="style.color=&#39;#FF9933&#39;" onmouseout="style.color=&#39;#000000&#39;" onclick="init(document.frmSetup)"></td></tr></tbody></table>
+				</form>
+				</td>
+              </tr>
+            </tbody></table></td>
+          </tr>
+        </tbody></table></td>
+        <td width="264" align="center" valign="top" height="100%">
+		<script>helpInfo(_("system_hostname_Help_Inf1")+"<br>&nbsp;&nbsp;&nbsp;&nbsp;"+_("system_hostname_Help_Inf2"));</script><table border="0" cellpadding="0" cellspacing="0" class="left1" style="margin-top:25px;"><tbody><tr><td align="center"><b>Help information</b></td></tr><tr><td align="left">&nbsp;&nbsp;&nbsp;&nbsp;This page is used to set the router’s system time, you can choose to either set the time manually, or get the GMT time from the Internet and the system will automatically connect to NTP server to synchronize the time.<br>&nbsp;&nbsp;&nbsp;&nbsp;Note: The time information will be lost after you power off the router, and when you next time access to the Internet, the router will obtain the GMT time automatically. You should firstly access to the Internet to obtain the GMT time or set the time manually on this page, and then the time settings in other functions can be effective.</td></tr></tbody></table>
+		</td>
+      </tr>
+    </tbody></table>
+	<script type="text/javascript">
+	  table_onload('table1');
+	  table_onload('table2');
+    </script>
+
+
+
+
+
+
+
+
+</body></html>

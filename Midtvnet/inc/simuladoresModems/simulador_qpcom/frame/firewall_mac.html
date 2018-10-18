@@ -1,0 +1,87 @@
+
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta http-equiv="Pragma" content="no-cache">
+
+<title>Firewall | MAC Filtering</title>
+
+<link rel="stylesheet" type="text/css" href="../css/style.css">
+</head>
+<body leftmargin="0" topmargin="0" marginheight="0" marginwidth="0" onload="init(document.frmSetup);" class="bg">
+	<table width="100%" border="0" align="center" cellpadding="0" cellspacing="0">
+      <tbody><tr>
+        <td width="33">&nbsp;</td>
+        <td width="679" valign="top">
+		<table width="100%" border="0" align="center" cellpadding="0" cellspacing="0" height="100%">
+          <tbody><tr>
+            <td align="center" valign="top">
+			<table width="98%" border="0" align="center" cellpadding="0" cellspacing="0" height="100%">
+              <tbody><tr>
+                <td align="center" valign="top">
+			<form name="frmSetup" id="frmSetup" method="POST" action="http://192.168.1.254/goform/SafeMacFilter">
+				<table class="content1">
+				<tbody><tr><td height="30" colspan="7">Filter Mode :&nbsp;
+				<select id="filter_mode" onchange="filter_mode_change(document.frmSetup)"><option value="disable">Disable</option><option value="deny">Forbid only</option><option value="pass">Permit only</option></select>
+				</td>
+				</tr>
+				<tr><td class="hline"></td></tr>
+				</tbody></table>
+				<table id="enableTab" cellpadding="0" cellspacing="0" class="content1" style="margin-top: 0px;">
+				<tbody><tr class="a1">
+				<td width="150" height="30" align="right">Access Policy:</td>
+				<td height="30">&nbsp;&nbsp;&nbsp;&nbsp;
+				<select id="curNum" onchange="onChangeNum(document.frmSetup);"><option value="1">(1)</option><option value="2">(2)</option><option value="3">(3)</option><option value="4">(4)</option><option value="5">(5)</option><option value="6">(6)</option><option value="7">(7)</option><option value="8">(8)</option><option value="9">(9)</option><option value="10">(10)</option></select>
+				</td>
+				</tr>
+				<tr class="a2"><td height="30" align="right">Remark:</td>
+				  <td height="30">&nbsp;&nbsp;&nbsp;&nbsp;
+				  <input class="text" size="12" maxlength="12" id="remark"></td>
+				</tr>
+				<tr class="a1">
+				<td height="30" align="right">MAC address:</td>
+				<td height="30">&nbsp;&nbsp;&nbsp;&nbsp;
+				<input class="text" id="mac" size="2" maxlength="2" onkeyup="value=correctMacChar(this.value)">:
+				<input class="text" id="mac" size="2" maxlength="2" onkeyup="value=correctMacChar(this.value)">:
+				<input class="text" id="mac" size="2" maxlength="2" onkeyup="value=correctMacChar(this.value)">:
+				<input class="text" id="mac" size="2" maxlength="2" onkeyup="value=correctMacChar(this.value)">:
+				<input class="text" id="mac" size="2" maxlength="2" onkeyup="value=correctMacChar(this.value)">:
+				<input class="text" id="mac" size="2" maxlength="2" onkeyup="value=correctMacChar(this.value)">
+				</td>
+				</tr>
+				<tr class="a2">
+				<td height="30" align="right">Time:</td>
+				<td height="30">&nbsp;&nbsp;&nbsp;&nbsp;
+				<select id="sh"><option value="0">0</option><option value="1">1</option><option value="2">2</option><option value="3">3</option><option value="4">4</option><option value="5">5</option><option value="6">6</option><option value="7">7</option><option value="8">8</option><option value="9">9</option><option value="10">10</option><option value="11">11</option><option value="12">12</option><option value="13">13</option><option value="14">14</option><option value="15">15</option><option value="16">16</option><option value="17">17</option><option value="18">18</option><option value="19">19</option><option value="20">20</option><option value="21">21</option><option value="22">22</option><option value="23">23</option></select>:<select id="sm"><option value="0">0</option><option value="5">5</option><option value="10">10</option><option value="15">15</option><option value="20">20</option><option value="25">25</option><option value="30">30</option><option value="35">35</option><option value="40">40</option><option value="45">45</option><option value="50">50</option><option value="55">55</option></select>&nbsp;~&nbsp;<select id="eh"><option value="0">0</option><option value="1">1</option><option value="2">2</option><option value="3">3</option><option value="4">4</option><option value="5">5</option><option value="6">6</option><option value="7">7</option><option value="8">8</option><option value="9">9</option><option value="10">10</option><option value="11">11</option><option value="12">12</option><option value="13">13</option><option value="14">14</option><option value="15">15</option><option value="16">16</option><option value="17">17</option><option value="18">18</option><option value="19">19</option><option value="20">20</option><option value="21">21</option><option value="22">22</option><option value="23">23</option></select>:<select id="em"><option value="0">0</option><option value="5">5</option><option value="10">10</option><option value="15">15</option><option value="20">20</option><option value="25">25</option><option value="30">30</option><option value="35">35</option><option value="40">40</option><option value="45">45</option><option value="50">50</option><option value="55">55</option></select>
+				</td>
+				</tr>
+				<tr class="a1">
+				<td height="30" align="right">Date:</td>
+				<td height="30">&nbsp;&nbsp;&nbsp;&nbsp;
+				<select id="startw"><option value="0">Sunday</option><option value="1">Monday</option><option value="2">Tuesday</option><option value="3">Wednesday</option><option value="4">Thursday</option><option value="5">Friday</option><option value="6">Saturday</option></select>&nbsp;~&nbsp;<select id="endw"><option value="0">Sunday</option><option value="1">Monday</option><option value="2">Tuesday</option><option value="3">Wednesday</option><option value="4">Thursday</option><option value="5">Friday</option><option value="6">Saturday</option></select>
+				</td>
+				</tr>
+				<tr class="a2"><td height="30" align="right">Enable:</td>
+				  <td height="30">&nbsp;&nbsp;&nbsp;&nbsp;
+				  <input type="checkbox" id="en" onclick="onSelected()">&nbsp;&nbsp;&nbsp;&nbsp;Clear this item:<input type="button" class="button2" id="delbtn" value="Clear" onmouseover="style.color=&#39;#FF9933&#39;" onmouseout="style.color=&#39;#000000&#39;" onclick="onDel(document.frmSetup)"></td>
+				</tr>
+				</tbody></table>
+				<table width="75%" border="0" cellpadding="0" cellspacing="0" style="padding-top:20px;"><tbody><tr><td align="center"><input type="button" class="button1" value="Ok" onmouseover="style.color=&#39;#FF9933&#39;" onmouseout="style.color=&#39;#000000&#39;" onclick="preSubmit(document.frmSetup)">&nbsp;&nbsp;&nbsp;&nbsp;<input type="button" class="button1" value="Cancel" onmouseover="style.color=&#39;#FF9933&#39;" onmouseout="style.color=&#39;#000000&#39;" onclick="init(document.frmSetup)"></td></tr></tbody></table>
+			</form>
+				</td>
+              </tr>
+            </tbody></table></td>
+          </tr>
+        </tbody></table></td>
+        <td align="center" valign="top" height="100%">
+<table border="0" cellpadding="0" cellspacing="0" class="left1" style="margin-top:25px;"><tbody><tr><td align="center"><b>Help information</b></td></tr><tr><td align="left">&nbsp;&nbsp;&nbsp;&nbsp;MAC address filter function enables you to control the LAN computers’ access to the Internet. Please refer to the user guide for detailed usage.<br>&nbsp;&nbsp;&nbsp;&nbsp;Instructions: If you want to clear one configured item, select it and click the "Clear" button and then click "OK" to bring it into effect.<br>&nbsp;&nbsp;&nbsp;&nbsp;Forbid only: Only forbid the configured MAC to access the Internet.<br>&nbsp;&nbsp;&nbsp;&nbsp;Permit only: Only permit the configured MAC to access the Internet.<br>&nbsp;&nbsp;&nbsp;&nbsp;Note: When the time is set as 0:0~0:0,it means all time segments.</td></tr></tbody></table>
+		</td>
+      </tr>
+    </tbody></table>
+	
+
+
+
+
+
+
+
+</body></html>

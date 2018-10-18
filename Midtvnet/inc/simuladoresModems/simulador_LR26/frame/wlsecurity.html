@@ -1,0 +1,52 @@
+
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+		<link rel="stylesheet" href="../css/styles.css" type="text/css">
+		<title>Configuración de seguridad inalámbrica</title>
+		<script type="text/javascript" src="util_gw.js"> </script><style type="text/css"></style>
+	</head>
+
+<body>
+<blockquote>
+<h2>
+	Configuración de seguridad inalámbrica<p></p>
+</h2>
+
+<form>
+	<p>
+    Esta página permite configurar la seguridad inalámbrica. Activar WEP o WPA a través de las claves de cifrado podría evitar el acceso no autorizado a la red inalámbrica.
+    </p><hr><table border="0" width="100%" cellspacing="4" cellpadding="0">
+    <tbody><tr></tr>
+    <tr></tr>
+</tbody></table><table width="100%" border="0" cellpadding="0" cellspacing="0">
+<tbody><tr> 
+<td height="20" class="MainTD"><font size="2"><b>Selección de SSID:&nbsp;&nbsp;</b>
+<select name="SSID_Setting" onchange="SSIDSelected( this.selectedIndex )">
+<script>SetSSIDSettingOption()</script><option value="0">Root AP - DTVNET_9E9830</option>
+</select>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+	 <input type="button" value="Aplicar cambios" name="save" onclick="ValidateForm(document.formEncrypt, 0);">&nbsp;&nbsp;
+	 <input type="button" value="Restablecer" name="reset1" onclick="ValidateForm(document.formEncrypt, 1);">
+
+</font></td>
+</tr>
+</tbody></table>
+<table width="100%" height="25" border="0" cellpadding="0" cellspacing="0">
+<tbody><tr> 
+<td colspan="2" height="20"> 
+<hr>
+</td>
+</tr>
+</tbody></table>
+<table width="80%" border="0" cellpadding="0" cellspacing="0">
+<tbody><tr> 
+<td rowspan="12" width="540">
+<iframe width="100%" height="400" id="SSIDAuthMode" name="SSIDAuthMode" frameborder="0" marginheight="0" scrolling="no" src="wlsecurity_all.html"> 
+</iframe> </td>
+</tr>
+</tbody></table>
+</form>
+</blockquote>
+
+
+</body></html>

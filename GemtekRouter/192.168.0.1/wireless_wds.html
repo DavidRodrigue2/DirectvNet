@@ -1,0 +1,574 @@
+<!DOCTYPE html>
+<html>
+
+<!-- Mirrored from 192.168.0.1/wireless_wds.html by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 11 Jan 2017 00:16:10 GMT -->
+<head>
+<meta charset="utf-8" />
+<link rel="stylesheet" href="WHR-G300N-160149-style-ENG.css" />
+<link rel="stylesheet" href="WHR-G300N-160149-style-ad-ENG.css" />
+<title>Wireless WPS</title>
+
+<script src="language/es/language.html"></script>
+<script src="common.html"></script>
+
+<script>
+function apply_Button()
+{
+  var submit_Form = document.submit_Form;
+  var wdsnumgui = document.getElementById('id_WdsNum').value;
+
+  if (!validate_Value()) {
+    return;
+  }
+
+  if (document.getElementById('id_WdsEnable').checked) {
+    if ('1' == '0') {
+      alert(translate_str("AlertWirelessWDS", 4));//Please Enable Wireless in Wirelss Basic Page
+      return;
+    } else {
+      if (document.getElementById('id_WdsMode').value == '2') {
+        submit_Form.WIFI_WdsEnable.value = '2';
+      } else {
+        submit_Form.WIFI_WdsEnable.value = '3';
+      }
+    }
+  } else {
+    submit_Form.WIFI_WdsEnable.value = '0';
+  }
+  submit_Form.WIFI_WdsNumGUI.value = wdsnumgui;
+ 
+  submit_Form.WIFI_WdsPhyMode.value = '';
+  submit_Form.WIFI_WdsEncrypType.value = '';
+  submit_Form.WIFI_WdsList.value = '';
+  for (i = 0; i < 4; i++) {
+    eval('submit_Form.WIFI_Wds' + i + 'Key.value = ""');
+  }
+
+  for (i = 0; i < 4; i++) {
+    var j = i + 1;
+
+    if (i < wdsnumgui) {
+      submit_Form.WIFI_WdsPhyMode.value += document.getElementById('id_WdsPhyMode' + j).value;
+      submit_Form.WIFI_WdsEncrypType.value += document.getElementById('id_WdsEncrypType' + j).value;
+      submit_Form.WIFI_WdsList.value += document.getElementById('id_WdsMacAddr' + j).value;
+
+      eval('submit_Form.WIFI_Wds' + i + 'Key.value = document.getElementById("id_WdsEncrypKey' + j +'").value;');
+    } else {
+      submit_Form.WIFI_WdsPhyMode.value += 'CCK';
+      submit_Form.WIFI_WdsEncrypType.value += 'NONE';
+      submit_Form.WIFI_WdsList.value += '';
+
+      eval('submit_Form.WIFI_Wds' + i + 'Key.value = "";');
+    }
+
+    if (i != 3) {
+      submit_Form.WIFI_WdsPhyMode.value += ';';
+      submit_Form.WIFI_WdsEncrypType.value += ';';
+      submit_Form.WIFI_WdsList.value += ';';
+    }
+  }
+  submit_Form.submit();
+}
+
+function cancel_Button()
+{
+  location.href = 'wireless_wds.html';
+}
+
+function change_WdsEnable()
+{
+  show_WdsMode();
+  show_WdsNum();
+  show_WdsTable();
+}
+
+function change_WdsNum()
+{
+  show_WdsTable();
+}
+
+function change_WdsSecurity(i)
+{
+  show_WdsSecurity(i);
+}
+
+function check_MacAddress(mac) {
+  var c = '';
+  var i = 0, j = 0;
+
+  if (mac.toLowerCase() == 'ff:ff:ff:ff:ff:ff' || mac == '00:00:00:00:00:00') {
+    return false;
+  }
+
+  addrParts = mac.split(':');
+  if (addrParts.length != 6) {
+    return false;
+  }
+
+  for (i = 0; i < 6; i++) {
+    if (addrParts[i] == '') {
+      return false;
+    }
+    if (addrParts[i].length != 2) {
+      return false;
+    }
+
+    for ( j = 0; j < addrParts[i].length; j++) {
+      c = addrParts[i].toLowerCase().charAt(j);        
+      if ((c >= '0' && c <= '9') || (c >= 'a' && c <= 'f')) {
+        continue;
+      } else {
+        return false;
+      }
+    }
+  }
+
+  if ((parseInt(addrParts[0], 16) & 1) || 
+      ((parseInt(addrParts[0], 16) & 
+        parseInt(addrParts[1], 16) & 
+        parseInt(addrParts[2], 16) & 
+        parseInt(addrParts[3], 16) & 
+        parseInt(addrParts[4], 16) & 
+        parseInt(addrParts[5], 16)) == 255) || 
+      ((parseInt(addrParts[0], 16) | 
+        parseInt(addrParts[1], 16) | 
+        parseInt(addrParts[2], 16) | 
+        parseInt(addrParts[3], 16) | 
+        parseInt(addrParts[4], 16) | 
+        parseInt(addrParts[5], 16)) == 0)) {
+    return false;
+  }
+
+  return true;
+}
+
+/*
+ 10 or 26 hexadecimal characters (eg: 1234567890) for WEP 
+ 5 or 13 ASCII characters (eg: 12345) for WEP 
+ 8 ~ 63 ASCII characters for TKIP or AES 
+ 64 hexadecimal characters for TKIP or AES
+ */
+
+function check_Key(key_type, key) {
+  var len = key.length;
+
+  if (key_type == 'WEP') {
+    if (len == 5 || len == 13) {
+      return true;
+    } else if (len == 10 || len == 26) {
+      for (i = 0; i < len; i++ ) {
+        if (!is_HexaDigit(key.charAt(i))) {
+          return false;
+        }
+      }
+      return true;
+    } else {
+      return false;
+    }
+  } else if (key_type == 'TKIP' || key_type == 'AES'){
+    if (len == 64) {
+      for (i = 0; i < 64; i++ ) {
+        if (!is_HexaDigit(key.charAt(i))) {
+          return false;
+        }
+      }
+      return true;
+    } else if (len < 8 || len > 63) {
+      return false;
+    }
+  }
+ 
+  return true;
+}
+  
+function init()
+{
+  var wdsenable = '0';
+  var wdsnumgui = '4';
+  var wdsphymode = 'CCK;CCK;CCK;CCK';
+  var wdsencryptype = 'NONE;NONE;NONE;NONE';
+  var wdslist = '';
+  var wds0key = '';
+  var wds1key = '';
+  var wds2key = '';
+  var wds3key = '';
+
+  if (wdsenable != '0') {
+    document.getElementById('id_WdsEnable').checked = true;
+    document.getElementById('id_WdsMode').value = wdsenable;
+  } else {
+    document.getElementById('id_WdsEnable').checked = false;
+  }
+
+  document.getElementById('id_WdsNum').value = wdsnumgui;
+  
+  var wdsphymode_array = wdsphymode.split(';');
+  var wdsencryptype_array = wdsencryptype.split(';'); 
+  var wdslist_array = wdslist.split(';');
+
+  for (var i = 1; i <= wdsphymode_array.length; i++) {
+    var j = i - 1;
+    eval('document.getElementById("id_WdsPhyMode' + i + '").value = wdsphymode_array['+ j +'];');
+    eval('document.getElementById("id_WdsEncrypType' + i + '").value = wdsencryptype_array['+ j +'];');
+    eval('document.getElementById("id_WdsEncrypKey' + i + '").value = wds' + j +'key;');
+    if (wdslist != '') {
+      eval('document.getElementById("id_WdsMacAddr' + i + '").value = wdslist_array['+ j +'];');
+    }
+  }
+  show_WdsMode();
+  show_WdsNum();
+  show_WdsTable();
+
+  for (var i = 1; i <= 4; i++) {
+    show_WdsSecurity(i);
+  }
+}
+
+function is_HexaDigit(digit) {
+  var hexVals = new Array("0", "1", "2", "3", "4", "5", "6", "7", "8", "9",
+      "A", "B", "C", "D", "E", "F", "a", "b", "c", "d", "e", "f");
+  var len = hexVals.length;
+  var i = 0;
+  var ret = false;
+
+  for (i = 0; i < len; i++)
+    if (digit == hexVals[i]) break;
+
+  if (i < len)
+    ret = true;
+
+  return ret;
+}
+
+function show_WdsMode()
+{
+  if (document.getElementById('id_WdsEnable').checked) {
+    document.getElementById('id_WdsModeStat').style.display = '';
+  } else {
+    document.getElementById('id_WdsModeStat').style.display = 'none';
+  }
+}
+
+function show_WdsNum()
+{
+  if (document.getElementById('id_WdsEnable').checked) {
+    document.getElementById('id_WdsNumStat').style.display = '';
+  } else {
+    document.getElementById('id_WdsNumStat').style.display = 'none';
+  }
+}
+
+function show_WdsSecurity(i)
+{
+  if (document.getElementById('id_WdsEncrypType' + i).value == 'NONE') {
+    document.getElementById('id_WdsEncrypKey' + i).disabled = true;
+  } else {
+    document.getElementById('id_WdsEncrypKey' + i).disabled = false;
+  }
+}
+
+function show_WdsTable()
+{
+  var wdsnum = document.getElementById('id_WdsNum').value;
+
+  if (document.getElementById('id_WdsEnable').checked) {
+    for (var i = 1; i <= 4; i++) {
+      eval('document.getElementById("id_WdsTable' + i + '").style.display = "none";');
+      if (parseInt(wdsnum) >= i) {
+        eval('document.getElementById("id_WdsTable' + i + '").style.display = "";');
+      }
+    }
+  } else {
+    for (var i = 1; i <= 4; i++) {
+      eval('document.getElementById("id_WdsTable' + i + '").style.display = "none";');
+    }
+  }
+}
+
+function validate_Value()
+{
+  var macaddr1 = document.getElementById('id_WdsMacAddr1').value;
+  var macaddr2 = document.getElementById('id_WdsMacAddr2').value;
+  var macaddr3 = document.getElementById('id_WdsMacAddr3').value;
+  var macaddr4 = document.getElementById('id_WdsMacAddr4').value;
+  var key1 = document.getElementById('id_WdsEncrypKey1').value;
+  var key2 = document.getElementById('id_WdsEncrypKey2').value;
+  var key3 = document.getElementById('id_WdsEncrypKey3').value;
+  var key4 = document.getElementById('id_WdsEncrypKey4').value;
+  var enctype1 = document.getElementById('id_WdsEncrypType1').value;
+  var enctype2 = document.getElementById('id_WdsEncrypType2').value;
+  var enctype3 = document.getElementById('id_WdsEncrypType3').value;
+  var enctype4 = document.getElementById('id_WdsEncrypType4').value;
+  
+  var addcomment1 = translate_str("AlertWirelessWDS", 0);//Please enter 5 or 13 ASCII characters or 10 or 26 hexadecimal digits for WEP encryption key.
+  var addcomment2 = translate_str("AlertWirelessWDS", 1);//Or please enter 8~63 ASCII characters or 64 hexadecimal digits for TKIP, AES encryption key.
+
+  if (!check_MacAddress(macaddr1) && macaddr1 != '') {
+    alert(translate_str("AlertWirelessWDS", 2) +  macaddr1);//Wrong Mac Addr
+    return false;
+  } else if (!check_MacAddress(macaddr2) && macaddr2 != '') {
+    alert(translate_str("AlertWirelessWDS", 2) +  macaddr2);
+    return false;
+  } else if (!check_MacAddress(macaddr3) && macaddr3 != '') {
+    alert(translate_str("AlertWirelessWDS", 2) +  macaddr3);
+    return false;
+  } else if (!check_MacAddress(macaddr4) && macaddr4 != '') {
+    alert(translate_str("AlertWirelessWDS", 2) +  macaddr4);
+    return false;
+  }
+
+  if (!check_Key(enctype1, key1) && key1 != '') {
+    alert(translate_str("AlertWirelessWDS", 3) + key1 + addcomment1 +  addcomment2);//Wrong Key
+    return false;
+  } else if (!check_Key(enctype2, key2) && key2 != '') {
+    alert(translate_str("AlertWirelessWDS", 3) + key2 + addcomment1 +  addcomment2);
+    return false;
+  } else if (!check_Key(enctype3, key3) && key3 != '') {
+    alert(translate_str("AlertWirelessWDS", 3) + key3 + addcomment1 +  addcomment2);
+    return false;
+  } else if (!check_Key(enctype4, key4) && key4 != '') {
+    alert(translate_str("AlertWirelessWDS", 3) + key4 + addcomment1 +  addcomment2);
+    return false;
+  }
+
+  return true;
+}
+
+</script>
+</head>
+
+<body onLoad="init();">
+<form name="gui_Form">
+  <table class="AD_TTL2">
+    <tr>
+      <td><script>translate_strWrite("WirelessWDS", 0);</script></td><!--Wireless WDS Settings-->
+    </tr>
+  </table>
+  
+  <table class="AD_SET" id="id_WdsEnableTable">
+    <tr>
+      <th width="180"><script>translate_strWrite("WirelessWDS", 1);</script></th><!--WDS-->
+      <td width="400">
+        <input type="checkbox" id="id_WdsEnable" onClick="change_WdsEnable();"/><script>translate_strWrite("WirelessWDS", 2);</script><!--Enable-->
+      </td>
+    </tr>
+    
+    <tr id="id_WdsModeStat">
+      <th><script>translate_strWrite("WirelessWDS", 3);</script></th><!--WDS Mode-->
+      <td>
+        <select id="id_WdsMode">
+          <option value="2"><script>translate_strWrite("WirelessWDS", 4);</script></option><!--Bridge Mode-->
+          <option value="3"><script>translate_strWrite("WirelessWDS", 5);</script></option><!--Repeater Mode-->
+        </select>
+      </td>
+    </tr>
+    
+    <tr id="id_WdsNumStat">
+      <th><script>translate_strWrite("WirelessWDS", 6);</script></th><!--Wireless WDS Number-->
+      <td>
+        <select id="id_WdsNum" onchange="change_WdsNum();">
+          <option value="1" selected>1</option>
+          <option value="2">2</option>
+          <option value="3">3</option>
+          <option value="4">4</option>
+        </select>
+      </td>
+    </tr>
+  </table>
+  
+  <table class="AD_SET" id="id_WdsTable1">
+    <tr>
+      <th colspan="2"><script>translate_strWrite("WirelessWDS", 7);</script></th><!--WDS1-->
+    </tr>
+
+    <tr>
+      <th width="180"><script>translate_strWrite("WirelessWDS", 11);</script></th><!--Phy Mode-->
+      <td width="400">
+        <select id="id_WdsPhyMode1">
+          <option value="CCK"><script>translate_strWrite("WirelessWDS", 12);</script></option><!--CCK-->
+          <option value="OFDM"><script>translate_strWrite("WirelessWDS", 13);</script></option><!--OFDM-->
+          <option value="HTMIX"><script>translate_strWrite("WirelessWDS", 14);</script></option><!--HTMIX-->
+          <option value="GREENFIELD"><script>translate_strWrite("WirelessWDS", 15);</script></option><!--GREENFIELD-->
+        </select>
+      </td>
+    </tr>
+
+    <tr>
+      <th><script>translate_strWrite("WirelessWDS", 16);</script></th><!--Encrypt Type-->
+      <td>
+        <select id="id_WdsEncrypType1" onchange="change_WdsSecurity(1)">
+          <option value="NONE"><script>translate_strWrite("WirelessWDS", 17);</script></option><!--NONE-->
+          <option value="WEP"><script>translate_strWrite("WirelessWDS", 18);</script></option><!--WEP-->
+          <option value="TKIP"><script>translate_strWrite("WirelessWDS", 19);</script></option><!--TKIP-->
+          <option value="AES"><script>translate_strWrite("WirelessWDS", 20);</script></option><!--AES-->
+        </select>
+      </td>
+    </tr>
+
+    <tr>
+      <th><script>translate_strWrite("WirelessWDS", 21);</script></th><!--Encrypt Key-->
+      <td>
+        <input type="text" id="id_WdsEncrypKey1" value="" size="50" maxlength="64" />
+      </td>
+    </tr>
+
+    <tr>
+      <th><script>translate_strWrite("WirelessWDS", 22);</script></th><!--Mac Address-->
+      <td>
+        <input type="text" id="id_WdsMacAddr1" value="" size="50" maxlength="17" />
+      </td>
+    </tr>
+  </table>
+  
+  <table class="AD_SET" id="id_WdsTable2">
+    <tr>
+      <th colspan="2"><script>translate_strWrite("WirelessWDS", 8);</script></th><!--WDS2-->
+    </tr>
+
+    <tr>
+      <th width="180"><script>translate_strWrite("WirelessWDS", 11);</script></th><!--Phy Mode-->
+      <td width="400">
+        <select id="id_WdsPhyMode2">
+          <option value="CCK"><script>translate_strWrite("WirelessWDS", 12);</script></option><!--CCK-->
+          <option value="OFDM"><script>translate_strWrite("WirelessWDS", 13);</script></option><!--OFDM-->
+          <option value="HTMIX"><script>translate_strWrite("WirelessWDS", 14);</script></option><!--HTMIX-->
+          <option value="GREENFIELD"><script>translate_strWrite("WirelessWDS", 15);</script></option><!--GREENFIELD-->
+        </select>
+      </td>
+    </tr>
+
+    <tr>
+      <th><script>translate_strWrite("WirelessWDS", 16);</script></th><!--Encrypt Type-->
+      <td>
+        <select id="id_WdsEncrypType2" onchange="change_WdsSecurity(1)">
+          <option value="NONE"><script>translate_strWrite("WirelessWDS", 17);</script></option><!--NONE-->
+          <option value="WEP"><script>translate_strWrite("WirelessWDS", 18);</script></option><!--WEP-->
+          <option value="TKIP"><script>translate_strWrite("WirelessWDS", 19);</script></option><!--TKIP-->
+          <option value="AES"><script>translate_strWrite("WirelessWDS", 20);</script></option><!--AES-->
+        </select>
+      </td>
+    </tr>
+
+    <tr>
+      <th><script>translate_strWrite("WirelessWDS", 21);</script></th><!--Encrypt Key-->
+      <td>
+        <input type="text" id="id_WdsEncrypKey2" value="" size="50" maxlength="64" />
+      </td>
+    </tr>
+
+    <tr>
+      <th><script>translate_strWrite("WirelessWDS", 22);</script></th><!--Mac Address-->
+      <td>
+        <input type="text" id="id_WdsMacAddr2" value="" size="50" maxlength="17" />
+      </td>
+    </tr>
+  </table>
+
+  <table class="AD_SET" id="id_WdsTable3">
+    <tr>
+      <th colspan="2"><script>translate_strWrite("WirelessWDS", 9);</script></th><!--WDS3-->
+    </tr>
+
+    <tr>
+      <th width="180"><script>translate_strWrite("WirelessWDS", 11);</script></th><!--Phy Mode-->
+      <td width="400">
+        <select id="id_WdsPhyMode3">
+          <option value="CCK"><script>translate_strWrite("WirelessWDS", 12);</script></option><!--CCK-->
+          <option value="OFDM"><script>translate_strWrite("WirelessWDS", 13);</script></option><!--OFDM-->
+          <option value="HTMIX"><script>translate_strWrite("WirelessWDS", 14);</script></option><!--HTMIX-->
+          <option value="GREENFIELD"><script>translate_strWrite("WirelessWDS", 15);</script></option><!--GREENFIELD-->
+        </select>
+      </td>
+    </tr>
+
+    <tr>
+      <th><script>translate_strWrite("WirelessWDS", 16);</script></th><!--Encrypt Type-->
+      <td>
+        <select id="id_WdsEncrypType3" onchange="change_WdsSecurity(1)">
+          <option value="NONE"><script>translate_strWrite("WirelessWDS", 17);</script></option><!--NONE-->
+          <option value="WEP"><script>translate_strWrite("WirelessWDS", 18);</script></option><!--WEP-->
+          <option value="TKIP"><script>translate_strWrite("WirelessWDS", 19);</script></option><!--TKIP-->
+          <option value="AES"><script>translate_strWrite("WirelessWDS", 20);</script></option><!--AES-->
+        </select>
+      </td>
+    </tr>
+
+    <tr>
+      <th><script>translate_strWrite("WirelessWDS", 21);</script></th><!--Encrypt Key-->
+      <td>
+        <input type="text" id="id_WdsEncrypKey3" value="" size="50" maxlength="64" />
+      </td>
+    </tr>
+
+    <tr>
+      <th><script>translate_strWrite("WirelessWDS", 22);</script></th><!--Mac Address-->
+      <td>
+        <input type="text" id="id_WdsMacAddr3" value="" size="50" maxlength="17" />
+      </td>
+    </tr>
+  </table>
+  
+  <table class="AD_SET" id="id_WdsTable4">
+    <tr>
+      <th colspan="2"><script>translate_strWrite("WirelessWDS", 10);</script></th><!--WDS4-->
+    </tr>
+
+    <tr>
+      <th width="180"><script>translate_strWrite("WirelessWDS", 11);</script></th><!--Phy Mode-->
+      <td width="400">
+        <select id="id_WdsPhyMode4">
+          <option value="CCK"><script>translate_strWrite("WirelessWDS", 12);</script></option><!--CCK-->
+          <option value="OFDM"><script>translate_strWrite("WirelessWDS", 13);</script></option><!--OFDM-->
+          <option value="HTMIX"><script>translate_strWrite("WirelessWDS", 14);</script></option><!--HTMIX-->
+          <option value="GREENFIELD"><script>translate_strWrite("WirelessWDS", 15);</script></option><!--GREENFIELD-->
+        </select>
+      </td>
+    </tr>
+
+    <tr>
+      <th><script>translate_strWrite("WirelessWDS", 16);</script></th><!--Encrypt Type-->
+      <td>
+        <select id="id_WdsEncrypType4" onchange="change_WdsSecurity(1)">
+          <option value="NONE"><script>translate_strWrite("WirelessWDS", 17);</script></option><!--NONE-->
+          <option value="WEP"><script>translate_strWrite("WirelessWDS", 18);</script></option><!--WEP-->
+          <option value="TKIP"><script>translate_strWrite("WirelessWDS", 19);</script></option><!--TKIP-->
+          <option value="AES"><script>translate_strWrite("WirelessWDS", 20);</script></option><!--AES-->
+        </select>
+      </td>
+    </tr>
+
+    <tr>
+      <th><script>translate_strWrite("WirelessWDS", 21);</script></th><!--Encrypt Key-->
+      <td>
+        <input type="text" id="id_WdsEncrypKey4" value="" size="50" maxlength="64" />
+      </td>
+    </tr>
+    
+    <tr>
+      <th><script>translate_strWrite("WirelessWDS", 22);</script></th><!--Mac Address-->
+      <td>
+        <input type="text" id="id_WdsMacAddr4" value="" size="50" maxlength="17" />
+      </td>
+    </tr>
+  </table>
+      <input type="button" id="id_ApplyButton" value="Apply" onclick="apply_Button();" />
+      <script>setButtonValue("id_ApplyButton", "Button", 0);</script><!--Apply-->
+      <input type="button" id="id_CancelButton" value="Cancel" onClick="cancel_Button();" />
+      <script>setButtonValue("id_CancelButton", "Button", 1);</script><!--Cancel-->
+</form>
+
+<form method="POST" name="submit_Form">
+  <input type="hidden" name="WIFI_WdsEnable" />
+  <input type="hidden" name="WIFI_WdsNumGUI" />
+  <input type="hidden" name="WIFI_WdsPhyMode" />
+  <input type="hidden" name="WIFI_WdsEncrypType" />
+  <input type="hidden" name="WIFI_WdsList" />
+  <input type="hidden" name="WIFI_Wds0Key" />
+  <input type="hidden" name="WIFI_Wds1Key" />
+  <input type="hidden" name="WIFI_Wds2Key" />
+  <input type="hidden" name="WIFI_Wds3Key" />
+</form>
+</body>
+
+<!-- Mirrored from 192.168.0.1/wireless_wds.html by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 11 Jan 2017 00:16:10 GMT -->
+</html>

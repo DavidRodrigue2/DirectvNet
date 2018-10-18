@@ -1,0 +1,214 @@
+<html>
+
+<!-- Mirrored from 192.168.0.1/menu.html by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 11 Jan 2017 00:15:43 GMT -->
+<head>
+<title>DeviceMenu</title>
+<meta HTTP-EQUIV="Content-Type" Content="text/html; charset=UTF-8"></meta>
+<meta http-equiv="Pragma" content="no-cache">
+<meta http-equiv="Cache-Control" content="no-cache">
+<meta http-equiv="Expires" content="Thu, 01 Dec 1994 16:00:00 GMT">
+<META http-equiv="Content-Style-Type" content="text/css">
+<LINK rel="stylesheet" href="WHR-G300N-160149-style-ENG.css" type="text/css">
+<LINK rel="stylesheet" href="WHR-G300N-160149-style-ad-ENG.css" type="text/css">
+<META http-equiv="Content-Style-Type" content="text/css">
+<script src="OnceOnly.html"></script>
+<script language="JavaScript">
+<!--
+function ChangeMenuCss(url,meu,helpurl,subnum)
+{
+		var index;
+		for(i=0;i<=6;i++)
+		{
+			document.getElementById("meu1_"+i).className="UNSELECTED";
+			document.getElementById("meu1_"+i+"s").className="UNSELECTED";
+			document.getElementById("ttl_menu2_"+i).style.display="none";
+		}
+		document.getElementById(meu).className = "SELECTED";
+		document.getElementById(meu+"s").className = "SELECTED";
+
+		top.frames[2].location.href = url;
+		top.frames[3].location.href = "./help/"+helpurl;
+		index = meu.substring(5);
+		document.getElementById("ttl_menu2_"+index).style.display="";
+		
+		var subindex=parseInt(index);
+		subindex = subindex+1;
+		var j;
+		for(j=0;j<=subnum;j++)
+		{
+			document.getElementById("sub_meu"+subindex+"_"+j).className="UNSELECTED";
+		}
+		document.getElementById("sub_meu"+subindex+"_0").className = "SELECTED";
+		
+		if("on"=="off")
+		{
+			document.getElementById("sub_meu2_0").className="UNSELECTED";
+			document.getElementById("sub_meu2_3").className = "SELECTED";
+		}
+		else
+		{
+			document.getElementById("sub_meu2_0").className="SELECTED";
+			document.getElementById("sub_meu2_3").className = "UNSELECTED";
+		}
+
+		//FOR DIRECTV
+                if(url == "vpn_pass_through.html") {
+			document.getElementById("sub_meu4_0").className = "UNSELECTED";
+			document.getElementById("sub_meu4_2").className = "SELECTED";
+                }
+		if(url == "password.html") {
+                        document.getElementById("sub_meu6_0").className = "UNSELECTED";
+                        document.getElementById("sub_meu6_1").className = "SELECTED";
+                }
+                    
+}
+function ChangeMenu2Css(url,meu,num,helpurl)
+{
+	var menu_name;
+	for(i=0;i<=num;i++)
+	{
+		menu_name = meu.substring(0,9);
+		document.getElementById(menu_name+i).className="UNSELECTED";
+	}
+	document.getElementById(meu).className = "SELECTED"
+	top.frames[2].location.href = url;
+	top.frames[3].location.href = "./help/"+helpurl;
+	
+}
+
+//-->
+</SCRIPT>
+</head>
+<body class="TTL_BODY" onload="ChangeMenuCss('nat_reg.html','meu1_4','help_nat_reg.html',3);						ChangeMenu2Css('nat_reg.html','sub_meu5_0','3','help_nat_reg.html');">
+<table class="INFO">
+  <tbody>
+     <tr>
+     	<td class="INFO_L"></td>
+     	<td class="INFO_REPEAT">&nbsp;</td>
+     	<td class="INFO_R">&nbsp;</td>
+     </tr>
+   </tbody>
+</table>
+<table class="TTL_FRAME">
+  <tr>
+    <td>
+	<table class="TTL_MENU1">
+	  <tbody>
+	    <tr>
+	      	<td id="meu1_0" class="SELECTED"><nobr><span id="meu1_0s" class="SELECTED" onMouseover=this.cursor='hand' onClick="ChangeMenuCss('top_main.html','meu1_0','help_top_setup.html',0);">Configuraci&oacute;n</span></nobr></td>
+	      	<td id="meu1_1" class="UNSELECTED"><nobr><span id="meu1_1s" class="UNSELECTED" onMouseover=this.cursor='hand' onClick="ChangeMenuCss('wan.html','meu1_1','help_wan_port.html',7);">INTERNET/LAN</span></nobr></td>
+          	<td id="meu1_2" class="UNSELECTED"><nobr><span id="meu1_2s" class="UNSELECTED" onMouseover=this.cursor='hand' onClick="ChangeMenuCss('wireless_basic.html','meu1_2','help_wireless_basic.html',4);">Config. inal.</span></nobr></td>
+          	<td id="meu1_3" class="UNSELECTED"><nobr><span id="meu1_3s" class="UNSELECTED" onMouseover=this.cursor='hand' onClick="ChangeMenuCss('vpn_pass_through.html','meu1_3','help_vpn_pass_through.html',4);">Seguridad</span></nobr></td>
+          	<td id="meu1_4" class="UNSELECTED" ><nobr><span id="meu1_4s" class="UNSELECTED" onMouseover=this.cursor='hand' onClick="ChangeMenuCss('nat_reg.html','meu1_4','help_nat_reg.html',4);">Puertos juegos</span></nobr></td>
+          	<td id="meu1_5" class="UNSELECTED"><nobr><span id="meu1_5s" class="UNSELECTED" onMouseover=this.cursor='hand' onClick="ChangeMenuCss('password.html','meu1_5','help_password.html',8);">Config. admin.</span></nobr></td>
+          	<td id="meu1_6" class="UNSELECTED"><nobr><span id="meu1_6s" class="UNSELECTED" onMouseover=this.cursor='hand' onClick="ChangeMenuCss('info.html','meu1_6','help_info.html',5);">Diagn&oacute;stico</span></nobr></td>
+	    </tr>
+	  </tbody>
+	</table>
+     </td>
+   </tr>
+   <tr>
+     <td>
+     	<table class="TTL_MENU2">
+     	  <tbody>
+     	  
+     	  <!--*** sub_meu1 **-->
+     	    <tr id="ttl_menu2_0" style="display:block">
+     	      <td><nobr><span id="sub_meu1_0" class="SELECTED"><a href="javascript:;" onClick="ChangeMenu2Css('top_main.html','sub_meu1_0','0','help_top_setup.html');">Asistentes y resumen</a></span></nobr></td>
+     	      <td class="TAIL">&nbsp;</td>
+     	    </tr>
+     	    
+     	  <!--*** sub_meu2 **-->
+     	    <tr id="ttl_menu2_1" style="display:none">
+     	      <td><nobr>
+     	        <span id="sub_meu2_0" class="SELECTED"><a href="javascript:;" onClick="ChangeMenu2Css('wan.html','sub_meu2_0','7','help_wan_port.html');">Internet</a></span>
+     	        <span id="sub_meu2_1" class="UNSELECTED" style="display:none"><a href="javascript:;" onClick="ChangeMenu2Css('pppoe.html','sub_meu2_1','7','help_pppoe.html');">Configuraci&oacute;n de la WAN</a></span><!--PPPoE-->
+		<span id="sub_meu2_2" class="UNSELECTED" style="display:none" ><a href="javascript:;" onClick="ChangeMenu2Css('pptp_l2tp.html','sub_meu2_2','7','help_pptp_l2tp.html');">PPTP/L2TP</a></span>
+     	        <span id="sub_meu2_3" class="UNSELECTED"><a href="javascript:;" onClick="ChangeMenu2Css('ddns.html','sub_meu2_3','7','');">DDNS</a></span>
+     	        <span id="sub_meu2_4" class="UNSELECTED"><a href="javascript:;" onClick="ChangeMenu2Css('lan.html','sub_meu2_4','7','help_lan.html');">LAN</a></span><!--LAN-->
+     	        <span id="sub_meu2_5" class="UNSELECTED" ><a href="javascript:;" onClick="ChangeMenu2Css('dhcps_lease.html','sub_meu2_5','7','help_dhcps_lease.html');">Concesi&oacute;n DHCP</a></span><!--DHCP Lease-->
+     	        <span id="sub_meu2_6" class="UNSELECTED" ><a href="javascript:;" onClick="ChangeMenu2Css('nat.html','sub_meu2_6','7','help_nat.html');">NAT</a></span><!--NAT-->
+     	        <span id="sub_meu2_7" class="UNSELECTED"><a href="javascript:;" onClick="ChangeMenu2Css('route_reg.html','sub_meu2_7','7','help_route_reg.html');">Enrutamiento</a></span>				
+				</nobr></td>
+     	      <td class="TAIL">&nbsp;</td>
+     	    </tr>
+     	    
+          <!--For new WiFi Page-->
+          <tr id="ttl_menu2_2" style="display:none">
+            <td><nobr><span id="sub_meu3_0" class="UNSELECTED"><a href="javascript:;" onClick="ChangeMenu2Css('wireless_basic.html','sub_meu3_0','4','help_wireless_basic.html');">Configuracion Basica</a></span>
+              <span id="sub_meu3_1" class="UNSELECTED" style="display:none"><a href="javascript:;" onClick="ChangeMenu2Css('wireless_advanced.html','sub_meu3_1','4','help_wireless_adv.html');">Avanzada</a></span>
+              <span id="sub_meu3_2" class="UNSELECTED"><a href="javascript:;" onClick="ChangeMenu2Css('wireless_macfilter.html','sub_meu3_2','4','help_wireless_mac.html');">Filtros por MAC</a></span>
+              <span id="sub_meu3_3" class="UNSELECTED"><a href="javascript:;" onClick="ChangeMenu2Css('wireless_wps.html','sub_meu3_3','4','help_wireless_wps.html');">WPS</a></span>
+              <span id="sub_meu3_4" class="UNSELECTED" style="display:none"><a href="javascript:;" onClick="ChangeMenu2Css('wireless_wds.html','sub_meu3_4','4','help_wireless_wds.html');">WDS</a></span>
+            </nobr></td>
+            <td class="TAIL">&nbsp;</td>
+          </tr>
+
+     	     <!--*** sub_meu4 **-->
+     	    <tr id="ttl_menu2_3" style="display:none">
+     	      <td><nobr><span id="sub_meu4_0" class="SELECTED" style="display:none"><a href="javascript:;" onClick="ChangeMenu2Css('filter.html','sub_meu4_0','4','help_filter.html');">Cortafuegos</a></span>
+     	        <span id="sub_meu4_1" class="UNSELECTED" style="display:none"><a href="javascript:;" onClick="ChangeMenu2Css('filter_ip.html','sub_meu4_1','4','help_filter_ip.html');">Filtro de IP</a></span>
+     	      	<span id="sub_meu4_2" class="UNSELECTED"><a href="javascript:;" onClick="ChangeMenu2Css('vpn_pass_through.html','sub_meu4_2','4','help_vpn_pass_through.html');">Paso VPN</a></span>
+		<span id="sub_meu4_3" class="UNSELECTED" style="display:none"><a href="javascript:;" onClick="ChangeMenu2Css('block_domain.html','sub_meu4_3','4','help_block_site.html');">Sitio Bloqueado</a></span>
+		        <span id="sub_meu4_4" class="UNSELECTED"><a href="javascript:;" onClick="ChangeMenu2Css('virtual_server.html','sub_meu4_4','4','help_virtual_server.html');">Servidores Virtuales</a></span>
+     	      </nobr></td>
+     	      <td class="TAIL">&nbsp;</td>
+     	    </tr>
+     	    
+     	     <!--*** sub_meu5 **-->
+     	    <tr id="ttl_menu2_4" style="display:none">
+     	      <td><nobr><span id="sub_meu5_0"  class="SELECTED"><a href="javascript:;" onClick="ChangeMenu2Css('nat_reg.html','sub_meu5_0','4','help_nat_reg.html');">Redireccionamiento de puertos</a></span>
+     	        <span id="sub_meu5_1"  class="UNSELECTED"><a href="javascript:;" onClick="ChangeMenu2Css('dmz.html','sub_meu5_1','4','help_dmz.html');">DMZ</a></span>
+     	        <span id="sub_meu5_2"  class="UNSELECTED"><a href="javascript:;" onClick="ChangeMenu2Css('upnp.html','sub_meu5_2','4','help_upnp.html');">UPnP</a></span>
+     	        <span id="sub_meu5_3"  class="UNSELECTED"><a href="javascript:;" onClick="ChangeMenu2Css('qos.html','sub_meu5_3','4','help_qos.html');">QoS</a></span>
+		        <span id="sub_meu5_4"  class="UNSELECTED" style="display:none"><a href="javascript:;" onClick="ChangeMenu2Css('schedules.html','sub_meu5_4','4','help_schedule.html');">Horarios</a></span>
+     	      </nobr></td>
+     	      <td class="TAIL">&nbsp;</td>
+     	    </tr>
+     	    
+     	    <!--*** sub_meu6 **-->
+     	    <tr id="ttl_menu2_5" style="display:none">
+     	      <td><nobr><span id="sub_meu6_0" class="SELECTED" style="display:none"><a href="javascript:;" onClick="ChangeMenu2Css('ap.html','sub_meu6_0','8','help_ap.html');">Nombre</a></span>
+     	        <span id="sub_meu6_1" class="UNSELECTED"><a href="javascript:;" onClick="ChangeMenu2Css('password.html','sub_meu6_1','8','help_password.html');">Contrase&ntilde;a</a></span>
+     	        <span id="sub_meu6_2" class="UNSELECTED"><a href="javascript:;" onClick="ChangeMenu2Css('date.html','sub_meu6_2','8','help_date.html');">Fecha</a></span>
+     	        <span id="sub_meu6_3" class="UNSELECTED"><a href="javascript:;" onClick="ChangeMenu2Css('ntp.html','sub_meu6_3','8','help_ntp.html');">NTP</a></span>
+     	        <span id="sub_meu6_4" class="UNSELECTED" style="display:none"><a href="javascript:;" onClick="ChangeMenu2Css('access_limit.html','sub_meu6_4','8','help_access_limit.html');">Acceso</a></span>
+     	        <span id="sub_meu6_5" class="UNSELECTED" style="display:none"><a href="javascript:;" onClick="ChangeMenu2Css('log.html','sub_meu6_5','8','help_log.html');">Registro</a></span>
+     	        <span id="sub_meu6_6" class="UNSELECTED" style="display:none"><a href="javascript:;" onClick="ChangeMenu2Css('save.html','sub_meu6_6','8','help_save.html');">Guardar/restablecer</a></span>
+     	        <span id="sub_meu6_7" class="UNSELECTED"><a href="javascript:;" onClick="ChangeMenu2Css('init.html','sub_meu6_7','8','help_init.html');">Inicializar/reiniciar</a></span>
+     	        <span id="sub_meu6_8" class="UNSELECTED"><a href="javascript:;" onClick="ChangeMenu2Css('fwupdate.html','sub_meu6_8','8','help_fwupdate.html');">Actualizar</a></span>
+     	        </nobr></td>
+     	      <td class="TAIL">&nbsp;</td>
+     	   </tr>
+     	   
+     	   <tr id="ttl_menu2_6" style="display:none">
+     	     <td><nobr><span id="sub_meu7_0" class="SELECTED"><a href="javascript:;" onClick="ChangeMenu2Css('info.html','sub_meu7_0','5','help_info.html');">Informaci&oacute;n del sistema</a></span>
+     	       <span id="sub_meu7_1" class="UNSELECTED"><a href="javascript:;" onClick="ChangeMenu2Css('log_disp.html','sub_meu7_1','5','help_log_disp.html');">Informaci&oacute;n del registro</a></span>
+	       <span id="sub_meu7_2" class="UNSELECTED" style="display:none"><a href="javascript:;" onClick="ChangeMenu2Css('email.html','sub_meu7_2','5','help_email.html');">alertas</a></span>
+     	       <span id="sub_meu7_3" class="UNSELECTED"><a href="javascript:;" onClick="ChangeMenu2Css('packet.html','sub_meu7_3','5','help_packet.html');">Informaci&oacute;n del paquete</a></span>
+     	       <span id="sub_meu7_4" class="UNSELECTED"><a href="javascript:;" onClick="ChangeMenu2Css('client.html','sub_meu7_4','5','help_client.html');">Monitor de clientes</a></span>
+     	       <span id="sub_meu7_5" class="UNSELECTED"><a href="javascript:;" onClick="ChangeMenu2Css('ping.html','sub_meu7_5','5','help_ping.html');">Ping/WOL</a></span>
+		</nobr></td>
+     	     <td class="TAIL">&nbsp;</td>
+     	   </tr>
+     	  </tbody>
+     	</table>
+     	<div class="ITEM_LOGOUT">
+		  <table>
+		    <tr>
+			<td style="font-size: 14px">
+		     	  <!--<nobr><A href="http://www.gemtek.com.tw/" target=_blank>Manual</A></nobr>-->
+				  <br>
+		     	  <nobr><A href="logout.html" target=_top>Cierre de sesi&oacute;n</A></nobr>
+			</td>
+		    </tr>
+		  </table>
+     	</div>
+     </td>
+   </tr>
+</tbody>
+</table>
+</body>
+
+<!-- Mirrored from 192.168.0.1/menu.html by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 11 Jan 2017 00:16:05 GMT -->
+</html>

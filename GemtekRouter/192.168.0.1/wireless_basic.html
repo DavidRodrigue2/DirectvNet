@@ -1,0 +1,897 @@
+<!DOCTYPE html>
+<html>
+
+<!-- Mirrored from 192.168.0.1/wireless_basic.html by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 11 Jan 2017 00:16:09 GMT -->
+<head>
+<meta charset="utf-8" />
+<link rel="stylesheet" href="WHR-G300N-160149-style-ENG.css" />
+<link rel="stylesheet" href="WHR-G300N-160149-style-ad-ENG.css" />
+<title>Wireless Basic</title>
+
+<script src="language/es/language.html"></script>
+<script src="common.html"></script>
+
+<script>
+function apply_Button()
+{
+  var submit_Form = document.submit_Form;
+
+  var wifi_countrycode = document.getElementById('id_WirelessCountryCode').value;
+  submit_Form.WIFI_CountryCode.value = wifi_countrycode;
+
+  if (wifi_countrycode == 'US' || wifi_countrycode == 'TW') {
+    submit_Form.WIFI_CountryRegion.value = '0';
+  } else if (wifi_countrycode == 'JP') {
+    submit_Form.WIFI_CountryRegion.value = '5';
+  } else {
+    submit_Form.WIFI_CountryRegion.value = '1';
+  } 
+
+  if (document.getElementById('id_WirelessEnable').checked) {
+    submit_Form.WIFI_Enable.value = '1';
+  } else {
+    submit_Form.WIFI_Enable.value = '0';
+  }  
+  
+  submit_Form.WIFI_WirelessMode.value = document.getElementById('id_WirelessMode').value;
+  submit_Form.WIFI_Channel.value = document.getElementById('id_WirelessChannel').value;
+  
+  if (document.getElementById('id_WirelessChannel').value == '0') {
+	  submit_Form.WIFI_AutoChannelSelect.value = '1';
+    submit_Form.WIFI_HT_BW.disabled = true;
+  } else {
+	  submit_Form.WIFI_AutoChannelSelect.value = '0';
+    submit_Form.WIFI_HT_BW.value = document.getElementById('id_WirelessBandWidth').value;
+  }
+  submit_Form.WIFI_HT_EXTCHA.value = document.getElementById('id_WirelessSideBand').value;
+  
+  var rate = document.getElementById('id_Rate').value;
+  var wirelessmode = document.getElementById('id_WirelessMode').value;
+
+  submit_Form.WIFI_GUI_Rate.value = rate;
+  
+  if (wirelessmode == '0' || wirelessmode == '2' || wirelessmode == '4') {
+    if (rate == '1' || rate == '2' || rate == '5' || rate == '11') {
+      submit_Form.WIFI_FixedTxMode.value = 'CCK';
+    } else {
+      submit_Form.WIFI_FixedTxMode.value = 'OFDM';
+    }
+    if (rate == '1' || rate == '6') {
+      submit_Form.WIFI_HT_MCS.value = '0';
+    } else if (rate == '2' || rate == '9') {
+      submit_Form.WIFI_HT_MCS.value = '1';
+    } else if (rate == '5' || rate == '12') {
+      submit_Form.WIFI_HT_MCS.value = '2';
+    } else if (rate == '11' || rate == '18') {
+      submit_Form.WIFI_HT_MCS.value = '3';
+    } else if (rate == '24') {
+      submit_Form.WIFI_HT_MCS.value = '4';
+    } else if (rate == '36') {
+      submit_Form.WIFI_HT_MCS.value = '5';
+    } else if (rate == '48') {
+      submit_Form.WIFI_HT_MCS.value = '6';
+    } else if (rate == '54') {
+      submit_Form.WIFI_HT_MCS.value = '7';
+    } else {
+      submit_Form.WIFI_HT_MCS.value = '33';
+    }
+  } else {
+    submit_Form.WIFI_FixedTxMode.value = 'HT';
+    submit_Form.WIFI_HT_MCS.value = document.getElementById('id_Mcs').value;
+  }
+
+
+  if (document.getElementById('id_WirelessHideSSID').checked) {
+    submit_Form.WIFI_HideSSID.value = '0';
+  } else {
+    submit_Form.WIFI_HideSSID.value = '1';
+  }  
+  
+  //submit_Form.WIFI_BssidNum.value = document.getElementById('id_WirelessNum').value;
+  submit_Form.WIFI_BssidNum.value = '1';
+  
+  if (document.getElementById('id_WirelessIso1').checked) {
+    submit_Form.WIFI_NoForwarding.value = '1';
+  } else {
+    submit_Form.WIFI_NoForwarding.value = '0';
+  }  
+  
+  submit_Form.WIFI_SSID1.value = document.getElementById('id_WirelessSsid1').value;
+
+  var authtype1 = document.getElementById('id_WirelessAuthType1').value;
+  var encryptype1 = document.getElementById('id_WirelessEncrypType1').value;
+  
+  if (authtype1 == '8021X') {
+    submit_Form.WIFI_IEEE8021X.value = '1';
+  } else {
+    submit_Form.WIFI_IEEE8021X.value = '0';
+  }
+
+  if (authtype1 == '8021X') {
+    submit_Form.WIFI_AuthMode.value = 'OPEN';
+  } else if (authtype1 == 'OPEN' && encryptype1 == 'WEP') {
+    submit_Form.WIFI_AuthMode.value = 'WEPAUTO';
+  } else {
+    submit_Form.WIFI_AuthMode.value = document.getElementById('id_WirelessAuthType1').value;
+  }
+  
+  submit_Form.WIFI_EncrypType.value = document.getElementById('id_WirelessEncrypType1').value;
+
+
+  for (var i = 0; i < 4; i++) {
+    if (document.gui_Form.name_RadioKeyIndex1[i].checked)
+      submit_Form.WIFI_DefaultKeyID.value = i + 1;
+  }
+
+  var wepkeytype = document.getElementById('id_WirelessWEP1KeyType').value;
+  if (wepkeytype == 'H10' || wepkeytype == 'H26') {
+    submit_Form.WIFI_Key1Type.value = '0';
+  } else {
+    submit_Form.WIFI_Key1Type.value = '1';
+  }
+
+  /*check column*/
+  if (apply_Check() == false) return false;
+
+  submit_Form.WIFI_Key1Str1.value = document.getElementById('id_WirelessWEP1Key1').value;
+  submit_Form.WIFI_Key2Str1.value = document.getElementById('id_WirelessWEP1Key2').value;
+  submit_Form.WIFI_Key3Str1.value = document.getElementById('id_WirelessWEP1Key3').value;
+  submit_Form.WIFI_Key4Str1.value = document.getElementById('id_WirelessWEP1Key4').value;
+  submit_Form.WIFI_WPAPSK1.value = document.getElementById('id_WirelessWPAPSK1').value;
+  submit_Form.WIFI_RekeyInterval.value = document.getElementById('id_WirelessRekeyInterval').value;
+  submit_Form.WIFI_RADIUS_Server.value = document.getElementById('id_RadiusServer').value;
+  submit_Form.WIFI_RADIUS_Port.value = document.getElementById('id_RadiusPort').value;
+  submit_Form.WIFI_RADIUS_Key.value = document.getElementById('id_ShareKey').value;
+  submit_Form.WIFI_own_ip_addr.value = '192.168.0.1';
+
+  submit_Form.submit();
+}
+
+function apply_Check()
+{
+  if (document.getElementById('id_WirelessSsid1').value == "" || !check_char(document.getElementById('id_WirelessSsid1').value)) {
+    alert(translate_str("AlertWirelessBasic", 0));//SSID can not null!
+    return false;
+  }
+
+  var auth_type = document.getElementById('id_WirelessAuthType1').value;
+  if (auth_type == 'OPEN') {
+    if (document.getElementById('id_WirelessEncrypType1').value == 'WEP') {
+      var num = document.gui_Form.name_RadioKeyIndex1.value;
+      var key_value = document.getElementById('id_WirelessWEP1Key'+num).value;
+      var key_type = document.getElementById('id_WirelessWEP1KeyType').value;
+      var key_length = 0;
+
+      if (key_type == 'A5')
+        key_length = 5;
+      else if (key_type == 'A13')
+        key_length = 13;
+      else if (key_type == 'H10')
+        key_length = 10;
+      else if (key_type == 'H26')
+        key_length = 26;
+
+      if ((key_value.length < key_length && key_value.length > 0) || key_value.length == 0 || (key_value.length > key_length)) {
+        alert(translate_str("AlertWirelessBasic", 1));//Please enter correct length on wep key
+        return false;
+      }
+      if (key_type=="A5" || key_type=="A13") {
+        if (/[^\x00-\xff]/g.test(key_value)) {
+          alert(translate_str("AlertWirelessBasic", 2));//Contains invalid character on wep key
+          return false;
+        }
+      }
+      if (key_type=="H10" || key_type=="H26") {
+        if (check_0Tof(key_value) == false) {
+          alert(translate_str("AlertWirelessBasic", 2));//Contains invalid character on wep key
+          return false;
+        }
+      }
+    }
+  } else if (auth_type == 'WPAPSK' || auth_type == 'WPA2PSK' || auth_type == 'WPAPSKWPA2PSK') {
+    var key_value = document.getElementById('id_WirelessWPAPSK1').value;
+    if (key_value.length < 8 || key_value.length > 64 || (key_value.length==64 && !check_0Tof(key_value)) || (!wifipskcheck(key_value))) {
+      alert(translate_str("AlertWirelessBasic", 3));//WPA-PSK pre-shared key must be between 8 and 63 ASCII characters or 64 hexadecimal digits
+      return false;
+    }
+  } else if (auth_type == '8021X' || auth_type == 'WPA' || auth_type == 'WPA2' || auth_type == 'WPA1WPA2') {
+    var key_value = document.getElementById('id_WirelessWPAPSK1').value;
+    if (check_integer(document.getElementById('id_WirelessRekeyInterval').value) == false) {
+      alert(translate_str("AlertWirelessBasic", 4));//Invalid Rekey interval
+      return false;
+    }
+    if (check_ip(document.getElementById('id_RadiusServer').value) > 0 || document.getElementById('id_RadiusServer').value == "") {
+      alert(translate_str("AlertWirelessBasic", 5));//Invalid RadiusServer
+      return false;
+    }
+    if (check_integer_range(document.getElementById('id_RadiusPort').value, 0, 65535) == false || document.getElementById('id_RadiusPort').value ==  "") {
+      alert(translate_str("AlertWirelessBasic", 6));//Invalid RadiusPort
+      return false;
+    }
+  }
+  return true;
+}
+
+function build_AuthSelect()
+{
+  var obj_auth = document.getElementById('id_WirelessAuthType1');
+  for (var i = obj_auth.length - 1; i >= 0; i--) {
+    obj_auth.remove(obj_auth.options[i]);
+  }
+
+  var wirelessmode = document.getElementById('id_WirelessMode').value;
+  if (wirelessmode == '0' || wirelessmode == '1' || wirelessmode == '2' || wirelessmode == '3' || wirelessmode == '4' || wirelessmode == '14') {
+    obj_auth.options[0] = new Option(translate_str("WirelessBasic", 57), 'OPEN', 0, 0);//No authentication
+    obj_auth.options[1] = new Option(translate_str("WirelessBasic", 58), 'WPAPSK', 0, 0);//WPA-PSK
+    obj_auth.options[2] = new Option(translate_str("WirelessBasic", 59), 'WPA2PSK', 0, 0);//WPA2-PSK
+    obj_auth.options[3] = new Option(translate_str("WirelessBasic", 60), 'WPAPSKWPA2PSK', 0, 0);//WPA/WPA2 mixed mode - PSK
+    obj_auth.options[4] = new Option(translate_str("WirelessBasic", 61), '8021X', 0, 0);//802.1X
+    obj_auth.options[5] = new Option(translate_str("WirelessBasic", 62), 'WPA', 0, 0);//WPA-Enterprise
+    obj_auth.options[6] = new Option(translate_str("WirelessBasic", 63), 'WPA2', 0, 0);//WPA2-Enterprise
+    obj_auth.options[7] = new Option(translate_str("WirelessBasic", 64), 'WPA1WPA2', 0, 0);//WPA/WPA2-Enterprise mixed mode
+  } else {
+    obj_auth.options[0] = new Option(translate_str("WirelessBasic", 57), 'OPEN', 0, 0);//No authentication
+    obj_auth.options[1] = new Option(translate_str("WirelessBasic", 59), 'WPA2PSK', 0, 0);//WPA2-PSK
+    obj_auth.options[2] = new Option(translate_str("WirelessBasic", 60), 'WPAPSKWPA2PSK', 0, 0);//WPA/WPA2 mixed mode - PSK
+    obj_auth.options[3] = new Option(translate_str("WirelessBasic", 63), 'WPA2', 0, 0);//WPA2-Enterprise
+    obj_auth.options[4] = new Option(translate_str("WirelessBasic", 64), 'WPA1WPA2', 0, 0);//WPA/WPA2-Enterprise mixed mode
+  }
+}
+
+function build_BandSelect()
+{
+  var wifi_wirelessmode = document.getElementById('id_WirelessMode').value;
+  var obj_wirelessband = document.getElementById('id_WirelessBandWidth');
+  var obj_wirelesschannel = document.getElementById('id_WirelessChannel');
+  
+  if (wifi_wirelessmode == '0') {
+    obj_wirelessband.value = '0';
+    obj_wirelessband.disabled = true;
+  } else {
+    if (obj_wirelesschannel.value == '0') {
+      obj_wirelessband.value = '0';
+      obj_wirelessband.disabled = true;
+    } else {
+      obj_wirelessband.disabled = false;
+    }
+  }
+}
+
+function build_ChannelSelect()
+{
+  var wifi_countrycode = document.getElementById('id_WirelessCountryCode').value;
+  var obj_channel =  document.getElementById('id_WirelessChannel');
+
+  for (var i = obj_channel.length - 1; i >= 0; i--) {
+    obj_channel.remove(obj_channel.options[i]);
+  }
+
+  if (wifi_countrycode == 'US' || wifi_countrycode == 'TW' || wifi_countrycode == 'BR') {
+    obj_channel.options[0] = new Option(translate_str("WirelessBasic", 88), '0', 0, 0);
+    for (var i = 1; i <= 11; i++) {
+      obj_channel.options[i] = new Option(translate_str("WirelessBasic", 89) + i, i, 0, 0);
+    }
+  } else if (wifi_countrycode == 'JP') {
+    obj_channel.options[0] = new Option(translate_str("WirelessBasic", 88), '0', 0, 0);
+    for (var i = 1; i <= 14; i++) {
+      obj_channel.options[i] = new Option(translate_str("WirelessBasic", 89) + i, i, 0, 0);
+    }
+  } else {
+    obj_channel.options[0] = new Option(translate_str("WirelessBasic", 88), '0', 0, 0);
+    for (var i = 1; i <= 13; i++) {
+      obj_channel.options[i] = new Option(translate_str("WirelessBasic", 89) + i, i, 0, 0);
+    }
+  }
+}
+
+function build_Encryption()
+{
+  var wifi_wirelessmode = document.getElementById('id_WirelessMode').value;
+  var wifi_auth = document.getElementById('id_WirelessAuthType1').value;
+  var obj_encryptype = document.getElementById('id_WirelessEncrypType1');
+
+  for (var i = obj_encryptype.length - 1; i >= 0; i--) {
+    obj_encryptype.remove(obj_encryptype.options[i]);
+  }
+
+  if (wifi_auth == 'OPEN') {
+    obj_encryptype.options[0] = new Option(translate_str("WirelessBasic", 66), 'NONE', 0, 0);//No encryption
+    if (wifi_wirelessmode == '0')
+      obj_encryptype.options[1] = new Option(translate_str("WirelessBasic", 67), 'WEP', 0, 0);//WEP
+  } else if (wifi_auth == '8021X'){
+      obj_encryptype.options[0] = new Option(translate_str("WirelessBasic", 67), 'WEP', 0, 0);//WEP
+  } else {
+    if (wifi_wirelessmode == '5' || wifi_wirelessmode == '6' || wifi_wirelessmode == '7' || wifi_wirelessmode == '8' ||
+        wifi_wirelessmode == '9' || wifi_wirelessmode == '10' || wifi_wirelessmode == '11') {
+      obj_encryptype.options[0] = new Option(translate_str("WirelessBasic", 69), 'AES', 0, 0);//AES
+      obj_encryptype.options[1] = new Option(translate_str("WirelessBasic", 70), 'TKIPAES', 0, 0);//TKIP/AES
+    } else {
+      obj_encryptype.options[0] = new Option(translate_str("WirelessBasic", 68), 'TKIP', 0, 0);//TKIP
+      obj_encryptype.options[1] = new Option(translate_str("WirelessBasic", 69), 'AES', 0, 0);//AES
+      obj_encryptype.options[2] = new Option(translate_str("WirelessBasic", 70), 'TKIPAES', 0, 0);//TKIP/AES
+    }
+  }
+}
+
+function build_SideBandSelect()
+{
+  var wifi_countryregion = '1';
+  var head, tail;
+  var obj_wirelessmode = document.getElementById('id_WirelessMode');
+  var obj_wirelesschannel = document.getElementById('id_WirelessChannel');
+  var obj_wirelesssideband = document.getElementById('id_WirelessSideBand');
+  var wifi_wirelessband = document.getElementById('id_WirelessBandWidth').value;
+  var cur_channel = parseInt(obj_wirelesschannel.value);
+
+  if (obj_wirelessmode.value == '9') {
+    if (obj_wirelesschannel.value == '0') {
+      for (var i = obj_wirelesssideband.length - 1; i >= 0; i--) {
+        obj_wirelesssideband.remove(obj_wirelesssideband.options[i]);
+      }
+      obj_wirelesssideband.disabled = true;
+    } else {
+      if (wifi_wirelessband == '0') {
+        document.getElementById('id_WirelessSideBand').disabled = true;
+      } else {
+        if (wifi_countryregion == '1') {
+          head = 1;
+          tail = 13;
+        } else if (wifi_countryregion == '5') {
+          head = 1;
+          tail = 14;
+        } else {
+          head = 1;
+          tail = 11;
+        }
+
+        for (var i = obj_wirelesssideband.length - 1; i >= 0; i--) {
+          obj_wirelesssideband.remove(obj_wirelesssideband.options[i]);
+        }
+
+        if ((cur_channel - 4) >= head)
+          obj_wirelesssideband.options[0] = new Option("Channel" + (cur_channel - 4), 0, 1, 1);
+        if ((cur_channel + 4) <= tail) {
+          if (cur_channel > 4) {
+            obj_wirelesssideband.options[1] = new Option("Channel" + (cur_channel + 4), 1, 0, 0);
+          } else {
+            obj_wirelesssideband.options[0] = new Option("Channel" + (cur_channel + 4), 1, 1, 1);
+          }
+        }
+        obj_wirelesssideband.disabled = false;
+        document.getElementById('id_WirelessSideBand').disabled = false;
+      }
+    }
+  } else {
+    for (var i = obj_wirelesssideband.length - 1; i >= 0; i--) {
+      obj_wirelesssideband.remove(obj_wirelesssideband.options[i]);
+    }
+    obj_wirelesssideband.disabled = true;
+  }  
+}
+
+function cancel_Button()
+{
+  location.href = 'wireless_basic.html';
+}
+
+function change_AuthType()
+{
+  build_Encryption();
+  show_WepKeyTable();
+  show_8021xTable();
+}
+
+function change_EncryptType()
+{
+  show_WepKeyTable();
+}
+
+function change_WirelessBandWidth()
+{
+  build_SideBandSelect();
+}
+
+function change_WirelessChannel()
+{
+  build_BandSelect();
+  build_SideBandSelect();
+}
+
+function change_WirelessCountryCode()
+{
+  build_ChannelSelect();
+}
+
+function change_WirelessMode()
+{
+  build_BandSelect();
+  build_SideBandSelect();
+  show_RateMcs();
+  build_AuthSelect();
+  build_Encryption();
+  show_WepKeyTable();
+  show_8021xTable();
+}
+
+function init()
+{
+  var wifi_countrycode = 'US';
+  var wifi_enable = '1';
+  var wifi_wirelessmode = '9';
+  var wifi_channel = '0';
+  var wifi_autochannel = '1';
+  var wifi_ht_bw = '1';
+  var wifi_htextcha = '0';
+  var wifi_hidessid = '0';
+  var wifi_gui_rate = '0';
+  var wifi_mcs = '33';
+  var wifi_bssidnum = '1';
+  var wifi_ssid1 = 'DTVNET_';
+  var wifi_noforwarding = '0';
+  var wifi_authmode = 'WPAPSKWPA2PSK';
+  var wifi_encryptype = 'TKIPAES';
+  var wifi_keytype = '0';
+  var wifi_defaultkeyid = '1';
+  var wifi_key1str1 = '';
+  var wifi_key2str1 = '';
+  var wifi_key3str1 = '';
+  var wifi_key4str1 = '';
+  var wifi_wpapsk1 = '87654321';
+  var wifi_reinterkey = '3599';
+  var wifi_8021x = '0';
+  var wifi_rdserver = '192.168.12.1';
+  var wifi_rdport = '1812';
+  var wifi_rdkey = 'Gemtek';
+ 
+  document.getElementById('id_WirelessCountryCode').value = wifi_countrycode;
+
+  build_ChannelSelect();
+
+  if (wifi_enable == '1') {
+    document.getElementById('id_WirelessEnable').checked =  true;
+  } else {
+    document.getElementById('id_WirelessEnable').checked =  false;
+  }
+  
+  document.getElementById('id_WirelessMode').value = wifi_wirelessmode;
+
+  if (wifi_autochannel == '1') {
+    document.getElementById('id_WirelessChannel').value = '0';
+  } else {
+    document.getElementById('id_WirelessChannel').value = wifi_channel;
+  }
+    document.getElementById('id_WirelessBandWidth').value = wifi_ht_bw;
+
+  build_BandSelect();
+  build_SideBandSelect();
+
+  document.getElementById('id_WirelessSideBand').value = wifi_htextcha;
+
+  document.getElementById('id_Rate').value = wifi_gui_rate;
+  document.getElementById('id_Mcs').value = wifi_mcs;
+  show_RateMcs();
+
+  if (wifi_hidessid == '0') {
+    document.getElementById('id_WirelessHideSSID').checked = true;
+  } else {
+    document.getElementById('id_WirelessHideSSID').checked = false;
+  }
+  
+  //document.getElementById('id_WirelessNum').value = wifi_bssidnum;
+  document.getElementById('id_WirelessSsid1').value = wifi_ssid1;
+
+  if (wifi_noforwarding == '1') { 
+    document.getElementById('id_WirelessIso1').checked = true;
+  } else {
+    document.getElementById('id_WirelessIso1').checked = false;
+  }
+  
+  build_AuthSelect();
+  if (wifi_8021x == '1') {
+    if (wifi_authmode == 'OPEN') {
+      document.getElementById('id_WirelessAuthType1').value = '8021X';
+    }
+  } else if (wifi_authmode == 'WEPAUTO') {
+    document.getElementById('id_WirelessAuthType1').value = 'OPEN';
+  } else {
+    document.getElementById('id_WirelessAuthType1').value = wifi_authmode;
+  }
+ 
+  build_Encryption();
+  if (wifi_authmode == 'WEPAUTO') {
+    document.getElementById('id_WirelessEncrypType1').value = 'WEP';
+  } else {
+    document.getElementById('id_WirelessEncrypType1').value = wifi_encryptype;
+  }
+  show_WepKeyTable(); 
+
+  show_8021xTable();
+
+  document.gui_Form.name_RadioKeyIndex1[wifi_defaultkeyid - 1].checked = true;
+
+  eval('var wepkey = wifi_key'+wifi_defaultkeyid+'str1;');
+  if (wifi_keytype == '1') {
+    if (wepkey.length == 13)
+      document.getElementById('id_WirelessWEP1KeyType').value = 'A13';
+    else
+      document.getElementById('id_WirelessWEP1KeyType').value = 'A5';
+  } else {
+    if (wepkey.length == 26)
+      document.getElementById('id_WirelessWEP1KeyType').value = 'H26';
+    else
+      document.getElementById('id_WirelessWEP1KeyType').value = 'H10';
+  }
+  document.getElementById('id_WirelessWEP1Key1').value = wifi_key1str1;
+  document.getElementById('id_WirelessWEP1Key2').value = wifi_key2str1;
+  document.getElementById('id_WirelessWEP1Key3').value = wifi_key3str1;
+  document.getElementById('id_WirelessWEP1Key4').value = wifi_key4str1;
+  document.getElementById('id_WirelessWPAPSK1').value = wifi_wpapsk1;
+  document.getElementById('id_WirelessRekeyInterval').value = wifi_reinterkey;
+  document.getElementById('id_RadiusServer').value = wifi_rdserver;
+  document.getElementById('id_RadiusPort').value = wifi_rdport;
+  document.getElementById('id_ShareKey').value = wifi_rdkey;
+}
+
+function show_8021xTable()
+{
+  var wifi_auth = document.getElementById('id_WirelessAuthType1').value;
+  if (wifi_auth == '8021X' || wifi_auth == 'WPA' || wifi_auth == 'WPA2' || wifi_auth == 'WPA1WPA2') {
+    document.getElementById('id_8021x_Setting_Head').style.display = '';
+    document.getElementById('id_8021x_Setting_Table').style.display = '';
+  } else {
+    document.getElementById('id_8021x_Setting_Head').style.display = 'none';
+    document.getElementById('id_8021x_Setting_Table').style.display = 'none';
+  }
+}
+
+function show_RateMcs()
+{
+  var wifi_wirelessmode = document.getElementById('id_WirelessMode').value;
+  if (wifi_wirelessmode == '9') {
+    document.getElementById('id_RateTable').style.display = 'none'; 
+    document.getElementById('id_McsTable').style.display = ''; 
+  } else {
+    document.getElementById('id_RateTable').style.display = ''; 
+    document.getElementById('id_McsTable').style.display = 'none'; 
+  }
+}
+
+function show_SsidTable()
+{
+  var ssidnum = document.getElementById('id_WirelessNum').value;
+  for (var i = 2; i <= 4; i++) {
+    eval('document.getElementById("id_Table_Ssid' + i + '").style.display = "none";');
+    if (parseInt(ssidnum) >= i) {
+      eval('document.getElementById("id_Table_Ssid' + i + '").style.display = "";');
+    }
+  }
+}
+
+function show_WepKeyTable()
+{
+  var wifi_auth = document.getElementById('id_WirelessAuthType1').value;
+  var wifi_encrytype = document.getElementById('id_WirelessEncrypType1').value;
+
+  if (wifi_auth == 'OPEN' && wifi_encrytype == 'WEP')
+    document.getElementById('id_wep1_tbl').style.display = '';
+  else
+    document.getElementById('id_wep1_tbl').style.display = 'none';
+  
+  if (wifi_auth == 'OPEN' || wifi_auth == '8021X' || wifi_auth == 'WPA' || wifi_auth == 'WPA2' || wifi_auth == 'WPA1WPA2') {
+    document.getElementById('id_psk1_tbl').style.display = 'none';
+  } else {
+    document.getElementById('id_psk1_tbl').style.display = '';
+  }
+}
+</script>
+</head>
+
+<body onLoad="init();"><br>
+<form name="gui_Form">
+  <div id="basic_content">
+    <div id= "id_errtbl" class="C_ERR"></div>
+    
+    <table class="AD_TTL2">
+      <tr>
+        <td><script>translate_strWrite("WirelessBasic", 0);</script></td><!--Wireless Basic Settings-->
+      </tr>
+    </table>
+    
+    <table class="AD_SET">
+      <tr>
+        <th width="180"><script>translate_strWrite("WirelessBasic", 1);</script></th><!--Wireless CountryCode-->
+        <td width="400">
+          <select id="id_WirelessCountryCode" onchange="change_WirelessCountryCode();" >
+            <option value="US"><script>translate_strWrite("WirelessBasic", 2);</script></option><!--United States-->
+            <option value="JP"><script>translate_strWrite("WirelessBasic", 3);</script></option><!--Japan-->
+            <option value="EU"><script>translate_strWrite("WirelessBasic", 4);</script></option><!--Europe-->
+            <option value="TW"><script>translate_strWrite("WirelessBasic", 5);</script></option><!--Taiwan-->
+            <option value="BR"><script>translate_strWrite("WirelessBasic", 87);</script></option><!--Brazil-->
+          </select>
+        </td>
+      </tr>
+
+      <tr>
+        <th><script>translate_strWrite("WirelessBasic", 6);</script></th><!--Wireless Radio-->
+        <td>
+          <input type="checkbox" id="id_WirelessEnable" /><script>translate_strWrite("WirelessBasic", 7);</script><!--Enable-->
+        </td>
+      </tr>
+
+      <tr>
+        <th  width="180"><script>translate_strWrite("WirelessBasic", 8);</script></th><!--Wireless Mode-->
+        <td  width="400">
+          <select id="id_WirelessMode" onchange="change_WirelessMode();" >
+            <option value="0"><script>translate_strWrite("WirelessBasic", 9);</script></option><!--b/g-->
+            <option value="9"><script>translate_strWrite("WirelessBasic", 10);</script></option><!--b/g/n-->
+          </select>
+        </td>
+      </tr>
+
+      <tr>
+        <th><script>translate_strWrite("WirelessBasic", 11);</script></th><!--Wireless Channel-->
+        <td>
+          <select id="id_WirelessChannel" onchange="change_WirelessChannel();" >
+          </select>
+          (
+          <script>translate_strWrite("WirelessBasic", 90);</script>
+          1
+          )
+        </td>
+      </tr>
+
+      <tr>
+        <th><script>translate_strWrite("WirelessBasic", 12);</script></th><!--Wireless Bandwidth-->
+        <td><script>translate_strWrite("WirelessBasic", 13);</script><!--Bandwidth:-->
+          <select id="id_WirelessBandWidth" onchange="change_WirelessBandWidth();" >
+            <option value="0" ><script>translate_strWrite("WirelessBasic", 14);</script></option><!--20 MHz-->
+            <option value="1" ><script>translate_strWrite("WirelessBasic", 15);</script></option><!--40 MHz-->
+          </select>
+          <br><script>translate_strWrite("WirelessBasic", 16);</script><!--Extension Channel:-->
+          <select size="1" id="id_WirelessSideBand"></select>
+        </td>
+      </tr>
+     
+      <tr id="id_RateTable">
+        <th><script>translate_strWrite("WirelessBasic", 17);</script></th><!--Rate-->
+        <td> 
+          <select id="id_Rate" size="1">
+            <option value = "0"><script>translate_strWrite("WirelessBasic", 18);</script></option><!--Auto-->
+            <option value = "1"><script>translate_strWrite("WirelessBasic", 19);</script></option><!--1 Mbps-->
+            <option value = "2"><script>translate_strWrite("WirelessBasic", 20);</script></option><!--2 Mbps-->
+            <option value = "5"><script>translate_strWrite("WirelessBasic", 21);</script></option><!--5.5 Mbps-->
+            <option value = "6"><script>translate_strWrite("WirelessBasic", 22);</script></option><!--6 Mbps-->
+            <option value = "9"><script>translate_strWrite("WirelessBasic", 23);</script></option><!--9 Mbps-->
+            <option value = "11"><script>translate_strWrite("WirelessBasic", 24);</script></option><!--11 Mbps-->
+            <option value = "12"><script>translate_strWrite("WirelessBasic", 25);</script></option><!--12 Mbps-->
+            <option value = "18"><script>translate_strWrite("WirelessBasic", 26);</script></option><!--18 Mbps-->
+            <option value = "24"><script>translate_strWrite("WirelessBasic", 27);</script></option><!--24 Mbps-->
+            <option value = "36"><script>translate_strWrite("WirelessBasic", 28);</script></option><!--36 Mbps-->
+            <option value = "48"><script>translate_strWrite("WirelessBasic", 29);</script></option><!--48 Mbps-->
+            <option value = "54"><script>translate_strWrite("WirelessBasic", 30);</script></option><!--54 Mbps-->
+          </select>
+        </td>
+      </tr>
+
+      <tr id="id_McsTable">
+        <th><script>translate_strWrite("WirelessBasic", 31);</script></th><!--MCS-->
+        <td>
+          <select id="id_Mcs" size="1">
+            <option value = "0"><script>translate_strWrite("WirelessBasic", 32);</script></option><!--0-->
+            <option value = "1"><script>translate_strWrite("WirelessBasic", 33);</script></option><!--1-->
+            <option value = "2"><script>translate_strWrite("WirelessBasic", 34);</script></option><!--2-->
+            <option value = "3"><script>translate_strWrite("WirelessBasic", 35);</script></option><!--3-->
+            <option value = "4"><script>translate_strWrite("WirelessBasic", 36);</script></option><!--4-->
+            <option value = "5"><script>translate_strWrite("WirelessBasic", 37);</script></option><!--5-->
+            <option value = "6"><script>translate_strWrite("WirelessBasic", 38);</script></option><!--6-->
+            <option value = "7"><script>translate_strWrite("WirelessBasic", 39);</script></option><!--7-->
+            <option value = "8"><script>translate_strWrite("WirelessBasic", 40);</script></option><!--8-->
+            <option value = "9"><script>translate_strWrite("WirelessBasic", 41);</script></option><!--9-->
+            <option value = "10"><script>translate_strWrite("WirelessBasic", 42);</script></option><!--10-->
+            <option value = "11"><script>translate_strWrite("WirelessBasic", 43);</script></option><!--11-->
+            <option value = "12"><script>translate_strWrite("WirelessBasic", 44);</script></option><!--12-->
+            <option value = "13"><script>translate_strWrite("WirelessBasic", 45);</script></option><!--13-->
+            <option value = "14"><script>translate_strWrite("WirelessBasic", 46);</script></option><!--14-->
+            <option value = "15"><script>translate_strWrite("WirelessBasic", 47);</script></option><!--15-->
+            <option value = "32"><script>translate_strWrite("WirelessBasic", 48);</script></option><!--32-->
+            <option value = "33"><script>translate_strWrite("WirelessBasic", 49);</script></option><!--Auto-->
+          </select>
+        </td>
+      </tr>
+
+      <tr>
+        <th><script>translate_strWrite("WirelessBasic", 50);</script></th><!--Broadcast SSID-->
+        <td>
+          <input type="checkbox" id="id_WirelessHideSSID" /><script>translate_strWrite("WirelessBasic", 51);</script><!--Allow-->
+        </td>
+      </tr>
+
+      <!--
+      <tr>
+        <th><script>translate_strWrite("WirelessBasic", 52);</script></th>Wireless SSID Number
+        <td>
+          <select id="id_WirelessNum">
+            <option value="1" selected>1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+            <option value="4">4</option>
+          </select>
+        </td>
+      </tr>
+      -->
+
+      <tr>
+        <th><script>translate_strWrite("WirelessBasic", 53);</script></th><!--Isolated SSID-->
+        <td>
+          <input type="checkbox" id="id_WirelessIso1" /><script>translate_strWrite("WirelessBasic", 54);</script><!--Use-->
+        </td>
+      </tr>
+
+      <tr>
+        <th><script>translate_strWrite("WirelessBasic", 55);</script></th><!--SSID-->
+        <td>
+          <input type="text" size="40" maxlength="32" id="id_WirelessSsid1" />
+        </td>
+      </tr>
+
+      <tr>
+        <th><script>translate_strWrite("WirelessBasic", 56);</script></th><!--Authentication-->
+        <td>
+          <select id="id_WirelessAuthType1" onChange="change_AuthType();" >
+            <option value="OPEN" selected><script>translate_strWrite("WirelessBasic", 57);</script></option><!--No authentication-->
+            <option value="WPAPSK" ><script>translate_strWrite("WirelessBasic", 58);</script></option><!--WPA-PSK-->
+            <option value="WPA2PSK" ><script>translate_strWrite("WirelessBasic", 59);</script></option><!--WPA2-PSK-->
+            <option value="WPAPSKWPA2PSK" ><script>translate_strWrite("WirelessBasic", 60);</script></option><!--WPA/WPA2 mixed mode - PSK-->
+            <option value="8021X" ><script>translate_strWrite("WirelessBasic", 61);</script></option><!--802.1X-->
+            <option value="WPA" ><script>translate_strWrite("WirelessBasic", 62);</script></option><!--WPA-Enterprise-->
+            <option value="WPA2" ><script>translate_strWrite("WirelessBasic", 63);</script></option><!--WPA2-Enterprise-->
+            <option value="WPA1WPA2" ><script>translate_strWrite("WirelessBasic", 64);</script></option><!--WPA/WPA2-Enterprise mixed mode-->
+          </select>
+        </td>
+      </tr>
+
+      <tr>
+        <th><script>translate_strWrite("WirelessBasic", 65);</script></th><!--Encryption-->
+        <td>
+          <select id="id_WirelessEncrypType1"  onchange="change_EncryptType();">
+            <option value="NONE" selected><script>translate_strWrite("WirelessBasic", 66);</script></option><!--No encryption-->
+            <option value="WEP"><script>translate_strWrite("WirelessBasic", 67);</script></option><!--WEP-->
+            <option value="TKIP"><script>translate_strWrite("WirelessBasic", 68);</script></option><!--TKIP-->
+            <option value="AES"><script>translate_strWrite("WirelessBasic", 69);</script></option><!--AES-->
+            <option value="TKIPAES"><script>translate_strWrite("WirelessBasic", 70);</script></option><!--TKIP/AES-->
+          </select>
+        </td>
+      </tr>
+
+      <tr id="id_wep1_tbl">
+        <th><script>translate_strWrite("WirelessBasic", 71);</script></th><!--Setup WEP encryption key-->
+        <td>
+          <table>
+            <tr>
+              <td>
+                <select id="id_WirelessWEP1KeyType">
+                  <option value="A5" ><script>translate_strWrite("WirelessBasic", 72);</script></option><!--Character Input : 5 characters (WEP64)-->
+                  <option value="A13" selected><script>translate_strWrite("WirelessBasic", 73);</script></option><!--Character Input : 13 characters (WEP128)-->
+                  <option value="H10" ><script>translate_strWrite("WirelessBasic", 74);</script></option><!--Hexadecimal Input : 10 digits (WEP64)-->
+                  <option value="H26" ><script>translate_strWrite("WirelessBasic", 75);</script></option><!--Hexadecimal Input : 26 digits (WEP128)-->
+                </select>
+              </td>
+            </tr>
+
+            <tr>
+              <td>
+                <input type="radio" name="name_RadioKeyIndex1" value="1" checked /><script>translate_strWrite("WirelessBasic", 76);</script><!--1:-->
+                <input type="password" id="id_WirelessWEP1Key1" size="40" maxlength="26" />
+              </td>
+            </tr>
+
+            <tr>
+              <td>
+                <input type="radio" name="name_RadioKeyIndex1" value="2" /><script>translate_strWrite("WirelessBasic", 77);</script><!--2:-->
+                <input type="password" id="id_WirelessWEP1Key2" size="40" maxlength="26" />
+              </td>
+            </tr>
+
+            <tr>
+              <td>
+                <input type="radio" name="name_RadioKeyIndex1" value="3" /><script>translate_strWrite("WirelessBasic", 78);</script><!--3:-->
+                <input type="password" id="id_WirelessWEP1Key3" size="40" maxlength="26" />
+              </td>
+            </tr>
+
+            <tr>
+              <td>
+                <input type="radio" name="name_RadioKeyIndex1" value="4" /><script>translate_strWrite("WirelessBasic", 79);</script><!--4:-->
+                <input type="password" id="id_WirelessWEP1Key4" size="40" maxlength="26" />
+              </td>
+            </tr>
+          </table>
+        </td>
+      </tr>
+
+      <tr id="id_psk1_tbl">
+        <th><script>translate_strWrite("WirelessBasic", 80);</script></th><!--WPA-PSK (Pre-shared Key)-->
+        <td>
+          <input type="password" id="id_WirelessWPAPSK1" size="60" maxlength="64" />
+        </td>
+      </tr>
+    </table>
+   
+    <table class="AD_TTL2" id="id_8021x_Setting_Head">
+      <tr>
+        <td><script>translate_strWrite("WirelessBasic", 81);</script></td><!--802.1x Settings-->
+      </tr>
+    </table>
+
+    <table class="AD_SET" id="id_8021x_Setting_Table">
+      <tr>
+        <th width="180"><script>translate_strWrite("WirelessBasic", 82);</script></th><!--Rekey Interval-->
+        <td width="400">
+          <input type="text" id="id_WirelessRekeyInterval" size="10" maxlength="4" /><script>translate_strWrite("WirelessBasic", 83);</script><!--minutes-->
+        </td>
+      </tr>
+      
+      <tr>
+        <th><script>translate_strWrite("WirelessBasic", 84);</script></th><!--RADIUS Server-->
+        <td>
+          <input type="text" size="50" id="id_RadiusServer" />
+        </td>
+      </tr>
+
+      <tr>
+        <th><script>translate_strWrite("WirelessBasic", 85);</script></th><!--RADIUS Port-->
+        <td>
+          <input type="text" size="50" maxlength="4" id="id_RadiusPort" />
+        </td>
+      </tr>
+
+      <tr>
+        <th><script>translate_strWrite("WirelessBasic", 86);</script></th><!--Shared Key-->
+        <td>
+          <input type="text" size="50" id="id_ShareKey" />
+        </td>
+      </tr>
+    </table>
+      <input type="button" name="nosave_apply" id="id_nosave_apply" value="Apply" onclick="apply_Button();" />
+      <script>setButtonValue("id_nosave_apply", "Button", 0);</script><!--Apply-->
+      <input type="button" name="nosave_back" id="id_nosave_back" value="Cancel" onClick="cancel_Button();" />
+      <script>setButtonValue("id_nosave_back", "Button", 1);</script><!--Cancel-->
+  </div>
+</form>
+
+<form method="POST" name="submit_Form">
+  <input type="hidden" name="WIFI_CountryCode" />
+  <input type="hidden" name="WIFI_CountryRegion" />
+  <input type="hidden" name="WIFI_Enable" />
+  <input type="hidden" name="WIFI_WirelessMode" />
+  <input type="hidden" name="WIFI_Channel" />
+  <input type="hidden" name="WIFI_HT_BW"  />
+  <input type="hidden" name="WIFI_AutoChannelSelect"/>
+  <input type="hidden" name="WIFI_HT_EXTCHA" />
+  <input type="hidden" name="WIFI_GUI_Rate" />
+  <input type="hidden" name="WIFI_HT_MCS" />
+  <input type="hidden" name="WIFI_FixedTxMode" />
+  <input type="hidden" name="WIFI_HideSSID" />
+  <input type="hidden" name="WIFI_BssidNum" />
+  <input type="hidden" name="WIFI_NoForwarding" />
+  <input type="hidden" name="WIFI_SSID1" />
+  <input type="hidden" name="WIFI_AuthMode" />
+  <input type="hidden" name="WIFI_EncrypType" />
+  <input type="hidden" name="WIFI_DefaultKeyID">
+  <input type="hidden" name="WIFI_Key1Type" />
+  <input type="hidden" name="WIFI_Key1Str1" />
+  <input type="hidden" name="WIFI_Key2Str1" />
+  <input type="hidden" name="WIFI_Key3Str1" />
+  <input type="hidden" name="WIFI_Key4Str1" />
+  <input type="hidden" name="WIFI_WPAPSK1"  />
+  <input type="hidden" name="WIFI_RekeyInterval" />
+  <input type="hidden" name="WIFI_IEEE8021X" />
+  <input type="hidden" name="WIFI_RADIUS_Server" />
+  <input type="hidden" name="WIFI_RADIUS_Port" />
+  <input type="hidden" name="WIFI_RADIUS_Key" />
+  <input type="hidden" name="WIFI_own_ip_addr" />
+</form>
+</body>
+
+<!-- Mirrored from 192.168.0.1/wireless_basic.html by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 11 Jan 2017 00:16:09 GMT -->
+</html>

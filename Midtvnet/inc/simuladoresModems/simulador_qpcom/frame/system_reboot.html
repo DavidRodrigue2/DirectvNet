@@ -1,0 +1,136 @@
+
+<!-- saved from url=(0038)http://192.168.1.254/system_reboot.asp -->
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta http-equiv="Pragma" content="no-cache">
+
+<title>System | Reboot</title>
+<script type="text/javascript" src="b28n.js"></script><style type="text/css"></style>
+<script language="JavaScript" src="gozila.js"></script>
+<script language="JavaScript" src="menu.js"></script>
+<script language="JavaScript" src="table.js"></script>
+<script language="JavaScript">
+var lanip = "192.168.1.254";
+var time = 0;
+var pc = 0;
+Butterlate.setTextDomain("system_tool");
+function initTranslate(){
+	var e=document.getElementById("rebootBtn");
+	e.value=_("Reboot the router");
+}
+function init(f)
+{
+	initTranslate();
+}
+function preSubmit() {
+	if(window.confirm(_("The system will re-connect to the initial page in about 50 seconds")))
+	{	
+		document.frmSetup.style.cursor = "wait";
+		document.getElementById("rebootBtn").disabled = true;
+	    var code = "/goform/SysToolReboot";
+		var request = GetReqObj();
+		request.open("GET", code, true);
+		request.onreadystatechange = RequestRes;
+		request.setRequestHeader("If-Modified-Since","0");
+		request.send(null);	
+		reboot();
+	}
+	else
+		return;
+}
+function RequestRes()
+{
+}
+function reboot()
+{
+	pc+=1; 
+	if (pc > 100) 
+	{ 
+		window.top.location = "http://" + lanip;
+		document.frmSetup.style.cursor = "auto";
+		clearTimeout(time); 
+		return;
+	} 
+	setWidth(self, "lpc", pc + "%");
+	document.getElementById("percent").innerHTML = pc + "%"
+	time = setTimeout("reboot()",500);
+}
+function setWidth(windowObj, el, newwidth)
+{
+    if (document.all)
+	{
+	  if (windowObj.document.all(el) )
+        windowObj.document.all(el).style.width = newwidth ;
+	}
+	else if (document.getElementById)
+	{
+	  if (windowObj.document.getElementById(el) )
+	    windowObj.document.getElementById(el).style.width = newwidth;
+	}
+}
+</script>
+<link rel="stylesheet" type="text/css" href="../css/style.css">
+</head>
+<body leftmargin="0" topmargin="0" marginheight="0" marginwidth="0" onload="init(document.frmSetup);" class="bg">
+	<table width="100%" border="0" align="center" cellpadding="0" cellspacing="0">
+      <tbody><tr>
+        <td width="33">&nbsp;</td>
+        <td width="679" valign="top">
+		<table width="100%" border="0" align="center" cellpadding="0" cellspacing="0" height="100%">
+          <tbody><tr>
+            <td align="center" valign="top">
+			<table width="98%" border="0" align="center" cellpadding="0" cellspacing="0" height="100%">
+              <tbody><tr>
+                <td align="center" valign="top">
+				<form name="frmSetup" method="POST" action="http://192.168.1.254/goform/SysToolReboot">
+				<input type="hidden" name="CMD" value="SYS_CONF">
+				<input type="hidden" name="GO" value="system_reboot.asp">
+				<input type="hidden" name="CCMD" value="0">
+				<table cellpadding="0" cellspacing="0" class="content2">
+			    <tbody><tr><td colspan="2" valign="top">&nbsp;&nbsp;<script>document.write(_("Click this button and the router will reboot"));</script>Click this button and the router will reboot.</td>
+			    </tr>
+				</tbody></table>
+				<table cellpadding="0" cellspacing="0" class="content3" id="table1">
+					<tbody><tr class="a1"><td>
+					&nbsp;&nbsp;
+					<input class="button2" onclick="preSubmit()" value="Reboot the router" type="button" onmouseover="style.color=&#39;#FF9933&#39;" onmouseout="style.color=&#39;#000000&#39;" id="rebootBtn">
+					</td>
+					<td height="30" id="percent" style="font-size:24px"></td>
+					</tr>		
+				<tr class="a2"> <td align="left" width="400" colspan="2">
+				<table width="100%" align="left" bgcolor="#ffffff" cellpadding="0" cellspacing="0" bordercolor="#999999" id="AutoNumber19" style="border-style: solid; border-width: 1px; margin-left:5px; margin-top:5px;">
+			   <tbody><tr>
+				<td align="left"> 
+				<table id="lpc" bgcolor="#3366CC" height="20">
+				<tbody><tr>
+				  <td></td>
+				</tr>
+				</tbody></table> 
+			   </td>				
+			   </tr>
+			   </tbody></table> 
+				</td>
+				</tr>
+				</tbody></table>
+			</form>
+				</td>
+              </tr>
+            </tbody></table></td>
+          </tr>
+        </tbody></table></td>
+        <td align="center" valign="top" height="100%">
+		<script>helpInfo(_("system_reboot_Help_Inf"));</script><table border="0" cellpadding="0" cellspacing="0" class="left1" style="margin-top:25px;"><tbody><tr><td align="center"><b>Help information</b></td></tr><tr><td align="left">&nbsp;&nbsp;&nbsp;&nbsp;Rebooting the router will bring the modified settings into effect. While rebooting, all connections will be cut. Click "OK" to reboot.</td></tr></tbody></table>
+		</td>
+      </tr>
+    </tbody></table>
+	<script type="text/javascript">
+	  table_onload('table1');
+    </script>
+
+
+
+
+
+
+
+
+</body></html>

@@ -1,0 +1,68 @@
+
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+<link rel="stylesheet" href="../css/styles.css" type="text/css">
+<title>Filtrado de URL</title>
+
+</head>
+
+<body marginwidth="0" marginheight="0">
+<blockquote>
+<h2>Filtrado de URL</h2>
+
+<table border="0" width="100%" cellspacing="4" cellpadding="0">
+<tbody><tr><td><p>
+ El filtro de URL se utiliza para denegar el acceso a Internet a los usuarios de la red LAN. Se bloquearán las direcciones URL que contengan las palabras clave que se detallan a continuación.
+</p></td></tr>
+
+<tr><td><hr></td></tr>
+
+<tr><td><font size="2"><b>
+   	<input type="checkbox" name="enabled" value="ON" checked>&nbsp;&nbsp;Enable Filtrado de URL</b><br>
+    </font></td>
+</tr>
+<input type="hidden" name="urlFilterMode">
+<tr>
+    <td width="100%" colspan="2"><font size="2">
+		<input type="radio" value="blackList" name="urlFilter">Denegar dirección URL (lista negra)      
+	</font></td>
+</tr>
+<tr>
+    <td width="100%" colspan="2"><font size="2">
+        <input type="radio" value="whiteList" name="urlFilter" onclick="urlFilterModeWhite()" >Permitir dirección URL (lista blanca)      
+	</font></td>
+</tr>
+<tr><td>
+     <font size="2"><b>Dirección URL: </b> <input type="text" name="url" size="30" maxlength="30" >&nbsp;&nbsp;</font>
+     </td>
+</tr><tr>
+</tr><tr><td>
+     <p><input type="submit" value="Aplicar cambios" name="addFilterUrl" onclick="return addClick()">&nbsp;&nbsp;
+        <input type="reset" value="Restablecer" name="reset">
+        <input type="hidden" value="/urlfilter.htm" name="submit-url">
+     </p>
+     </td>
+</tr><tr>
+ 
+</tr></tbody></table>
+
+<br>
+<form>
+  <font size="2"><b>Tabla de filtros actuales:</b></font><table border="0" width="500" class="list">
+  <tbody><tr></tr>
+  <tr><th width="70%">Dirección URL</th>
+<th width="30%">Seleccionar</th></tr>
+
+  </tbody></table>
+  <br>
+  <input type="submit" value="Eliminar selección" name="deleteSelFilterUrl" onclick="return deleteClick()" >&nbsp;&nbsp;
+  <input type="submit" value="Eliminar todo" name="deleteAllFilterUrl" onclick="return deleteAllClick()" >&nbsp;&nbsp;&nbsp;
+  <input type="reset" value="Restablecer" name="reset">
+  <input type="hidden" value="/urlfilter.htm" name="submit-url">
+
+</form>
+
+</blockquote>
+
+
+</body></html>

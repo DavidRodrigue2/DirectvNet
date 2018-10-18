@@ -1,0 +1,83 @@
+
+<!-- saved from url=(0038)http://192.168.1.254/routing_table.asp -->
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta http-equiv="Pragma" content="no-cache">
+
+<title>Routing | Routing Table</title>
+<script type="text/javascript" src="b28n.js"></script><style type="text/css"></style>
+<script language="JavaScript" src="gozila.js"></script>
+<script language="JavaScript" src="menu.js"></script>
+<script language="JavaScript" src="table.js"></script>
+<script language="JavaScript">
+Butterlate.setTextDomain("index_routing_virtual");
+var rte=new Array('192.168.1.0,255.255.255.0,192.168.1.0,0,br0');
+function showRTE()
+{
+	for (var i=0; i<rte.length;i++)
+	{
+		var s=rte[i].split(",");
+		if (s.length!=5) break;
+    var  m='<tr align=center>';
+        m+='<td>'+s[0]+'</td>';
+		m+='<td>'+s[1]+'</td>';
+		m+='<td>'+s[2]+'</td>';
+		m+='<td>'+s[3]+'</td>';
+		m+='<td>'+s[4]+'</td>';
+        m+='</tr>';
+		document.write(m);
+	}
+}
+</script>
+<link rel="stylesheet" type="text/css" href="../css/style.css">
+</head>
+<body leftmargin="0" topmargin="0" marginheight="0" marginwidth="0" class="bg">
+	<table width="100%" border="0" align="center" cellpadding="0" cellspacing="0">
+      <tbody><tr>
+        <td width="33">&nbsp;</td>
+        <td width="679" valign="top">
+		<table width="100%" border="0" align="center" cellpadding="0" cellspacing="0" height="100%">
+          <tbody><tr>
+            <td align="center" valign="top">
+			<table width="98%" border="0" align="center" cellpadding="0" cellspacing="0" height="100%">
+              <tbody><tr>
+                <td align="center" valign="top">
+				<form name="frmSetup">	
+				<table class="content1" border="1" cellspacing="0" id="table1">
+					<tbody><tr align="center" class="a1">
+						<th><script>document.write(_("Destination IP"));</script>Destination IP</th>
+						<th><script>document.write(_("Subnet mask"));</script>Subnet mask</th>
+						<th><script>document.write(_("Gateway"));</script>Gateway</th>
+						<th><script>document.write(_("Hops"));</script>Hops</th>
+						<th><script>document.write(_("Interface"));</script>Interface</th>
+					</tr>
+					<script>
+						showRTE();
+					</script><tr align="center" class="a2"><td>192.168.1.0</td><td>255.255.255.0</td><td>192.168.1.0</td><td>0</td><td>br0</td></tr>
+				</tbody></table>
+					<script>
+						var m='<input class=button2 value='+_("Refresh")+' onMouseOver="style.color=\'#FF9933\'" onMouseOut="style.color=\'#000000\'"  type=button onclick=refresh("routing_table.asp")>';
+						tbl_tail(m);
+					</script><table width="75%" border="0" cellpadding="0" cellspacing="0"><tbody><tr><td height="40">&nbsp;<input class="button2" value="Refresh" onmouseover="style.color=&#39;#FF9933&#39;" onmouseout="style.color=&#39;#000000&#39;" type="button" onclick="refresh(&quot;routing_table.asp&quot;)"></td></tr></tbody></table>
+				</form>
+				</td>
+              </tr>
+            </tbody></table></td>
+          </tr>
+        </tbody></table></td>
+        <td align="center" valign="top" height="100%">
+		<script>helpInfo(_("routing_table_Help_Inf1")+"<br>&nbsp;&nbsp;&nbsp;&nbsp;"+_("routing_table_Help_Inf2"));</script><table border="0" cellpadding="0" cellspacing="0" class="left1" style="margin-top:25px;"><tbody><tr><td align="center"><b>Help information</b></td></tr><tr><td align="left">&nbsp;&nbsp;&nbsp;&nbsp;Hops:interface metrics.<br>&nbsp;&nbsp;&nbsp;&nbsp;Interface: three types of interfaces are provided:vlan2: WAN interface, ppp0:PPPoE interface, br0:LAN interface.</td></tr></tbody></table>
+		</td>
+      </tr>
+    </tbody></table>
+	<script type="text/javascript">
+	  table_onload('table1');
+    </script>
+
+
+
+
+
+
+
+
+</body></html>

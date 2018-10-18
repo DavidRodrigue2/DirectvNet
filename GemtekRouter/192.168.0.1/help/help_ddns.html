@@ -1,0 +1,125 @@
+
+
+<html>
+
+
+<!-- Mirrored from 192.168.0.1/help/help_ddns.html by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 11 Jan 2017 00:16:14 GMT -->
+<head>
+<META http-equiv="Content-Style-Type "content="text/css"><LINK rel="stylesheet" href="WHR-G300N-160149-style-help-ENG.css" type="text/css">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<script src="OpenHelp.html"></script>
+<title> Help </title>
+<script src="OnceOnly.html"></script>
+</head>
+<body>
+<p class="HELP_TTL1">Configuraci&oacute;n de DNS din&aacute;mico</p><hr>
+<p class="HELP_BODY1">
+Configuraci&oacute;n de DNS din&aacute;mico.<br> Antes de configurar estas opciones, es necesario registrarse con un proveedor de servicio DNS din&aacute;mico.<br>
+</p><br>
+
+<p class="HELP_TTL2">Servicio DNS din&aacute;mico</p>
+<p class="HELP_BODY2">
+Seleccione un proveedor de servicio DNS din&aacute;mico.<br> Puede seleccionar &quot;DynDNS&quot; o &quot;TZO&quot;.
+<ul>
+<li>DynDNS</li>
+<li>TZO</li>
+</ul>
+</p><br>
+
+<p class="HELP_BODY2">
+Los siguientes valores son diferentes seg&uacute;n el proveedor del servicio DNS din&aacute;mico.
+</p><br>
+
+<p class="HELP_TTL2">DynDNS</p>
+<p class="HELP_TTL3">Nombre de usuario, contrase&ntilde;a, nombre de host</p>
+<p class="HELP_BODY3">
+Escriba la informaci&oacute;n recibida de DynDNS.
+</p><br>
+<p class="HELP_TTL4">Nombre de usuario</p>
+<p class="HELP_BODY4">
+Se pueden introducir 64 caracteres como m&aacute;ximo.
+</p><br>
+<p class="HELP_TTL4">Contrase&ntilde;a</p>
+<p class="HELP_BODY4">
+Se pueden introducir 64 caracteres como m&aacute;ximo.
+</p><br>
+<p class="HELP_TTL4">Nombre de host</p>
+<p class="HELP_BODY4">
+Se pueden usar caracteres alfanum&eacute;ricos&#x2C; puntos &quot;.&quot; y guiones &quot;-&quot;. La longitud m&aacute;xima son 255 caracteres. <!--(Si solo se usan caracteres alfanuméricos, la longitud máxima son 64 caracteres)<br>La cadena dividida por &#x2C; puntos &quot;.&quot; es de hasta 64 caracteres.--> La cadena dividida por &#x2C; puntos &quot;.&quot; no debe comenzar ni terminar con un guión.<br>
+<!--GetString("HelpNet","109");-->
+</p><br>
+<p class="HELP_TTL4">Periodo de actualizaci&oacute;n de direcciones IP</p>
+<p class="HELP_BODY4">
+Periodo durante el cual la Device notifica al proveedor del servicio DNS din&aacute;mico una direcci&oacute;n IP.<br> El intervalo de valores v&aacute;lidos es de 0 a 35 d&iacute;as.<br>
+El valor predeterminado es 7 d&iacute;as. Cuando se establece en 0 d&iacute;as, no se realizar&aacute; ninguna actualizaci&oacute;n peri&oacute;dica de direcciones.
+</p><br>
+
+<p class="HELP_TTL2">TZO</p>
+<p class="HELP_TTL3">Direcci&oacute;n de correo electr&oacute;nico, contrase&ntilde;a de TZO, nombre de dominio</p>
+<p class="HELP_BODY3">
+Escriba la informaci&oacute;n con la que se ha registrado en TZO.
+</p><br>
+<p class="HELP_TTL4">Direcci&oacute;n de correo electr&oacute;nico</p>
+<p class="HELP_BODY4">
+Se pueden introducir 64 caracteres como m&aacute;ximo.
+</p><br>
+<p class="HELP_TTL4">TZO Key</p>
+<p class="HELP_BODY4">
+Se pueden introducir 64 caracteres como m&aacute;ximo.
+</p><br>
+<p class="HELP_TTL4">Nombre de dominio</p>
+<p class="HELP_BODY4">
+El nombre de dominio puede tener una longitud de hasta 255 caracteres alfanum&eacute;ricos, y se permite usar guiones &quot;-&quot; y puntos &quot;.&quot;, pero el nombre no puede comenzar ni acabar con ninguno de esos caracteres.
+</p><br>
+<p class="HELP_TTL4">Periodo de actualizaci&oacute;n de direcciones IP</p>
+<p class="HELP_BODY4">
+Periodo durante el cual la Device notifica al proveedor del servicio DNS din&aacute;mico una direcci&oacute;n IP.<br> El intervalo de valores v&aacute;lidos es de 0 a 99 d&iacute;as.<br>
+El valor predeterminado es 7 d&iacute;as. Cuando se establece en 0 d&iacute;as, no se realizar&aacute; ninguna actualizaci&oacute;n peri&oacute;dica de direcciones.
+</p><br>
+
+<p class="HELP_TTL2"><span class="C_WARN">Nota:</span></p>
+<p class="HELP_BODY2">
+Es necesario notificar peri&oacute;dicamente la direcci&oacute;n IP al proveedor del servicio DNS din&aacute;mico. Cuando el periodo de actualizaci&oacute;n es demasiado largo, la informaci&oacute;n del dominio se puede eliminar del servicio DNS din&aacute;mico.
+</p><br>
+<p class="HELP_BODY2">
+Cuando se actualiza la direcci&oacute;n IP de la INTERNET (por ejemplo, conectando de nuevo el PPPoE), la Device notifica una direcci&oacute;n IP al proveedor del servicio DNS din&aacute;mico, con independencia del periodo de actualizaci&oacute;n de direcciones IP. En ese momento, se calcula el siguiente periodo de actualizaci&oacute;n.
+</p><br>
+<p class="HELP_BODY2">
+No se puede realizar la notificaci&oacute;n de direcciones IP en las siguientes circunstancias. <ul> <li>La direcci&oacute;n IP de la INTERNET es una direcci&oacute;n IP privada.</li> <li>La direcci&oacute;n IP de la INTERNET se obtiene mediante una IP sin numerar.</li> <li>La traducci&oacute;n de direcciones de red est&aacute; deshabilitada.</li> </ul>
+</p><br>
+<p class="HELP_BODY2">
+Incluso si la configuración es correcta, "Error de actualización" podría aparecer por los motivos que se enumeran a continuación. <ul> <li>Cuando el proveedor del servicio de DNS dinámico rechaza la configuración. (Es posible que el proveedor del servicio de DNS dinámico haya rechazado el registro continuo.)</li> <li>Cuando no se puede detectar el nombre de dominio registrado en el proveedor del servicio de DNS dinámico. (La notificación a todos los servidores de DNS puede durar unos cuantos días. El nombre de dominio no se detecta inmediatamente después de registrarse en el servicio de DNS dinámico.)</li> </ul>
+</p><br>
+
+
+<hr>
+
+<a name="info"></a>
+<p class="HELP_TTL1">Informaci&oacute;n actual de DNS din&aacute;mico</p><hr>
+
+<p class="HELP_TTL2">Direcci&oacute;n IP de la INTERNET</p>
+<p class="HELP_BODY2">
+<a href="help_glossary.html#IPADDR">Direcci&oacute;n IP</a> del <a href="help_glossary.html#WANport">Puerto INTERNET</a> de la Device actual.<br> La Device notifica esta direcci&oacute;n al proveedor del servicio DNS din&aacute;mico.
+</p><br>
+
+<p class="HELP_TTL2">Nombre de dominio</p>
+<p class="HELP_BODY2">
+Nombre de dominio asignado por el proveedor del servicio DNS din&aacute;mico.<br> Con este nombre de dominio es posible tener acceso a la Device desde Internet.
+</p><br>
+
+<p class="HELP_TTL2">Estado</p>
+<p class="HELP_BODY2">
+El estado de la conexi&oacute;n del servicio DNS din&aacute;mico
+</p><br>
+
+<p class="HELP_TTL3">Bot&oacute;n [Actualizar]</p>
+<p class="HELP_BODY3">
+Al hacer clic en este bot&oacute;n, se actualizar&aacute; la informaci&oacute;n del DNS din&aacute;mico mostrada.
+</p><br>
+
+
+
+</body>
+
+<!-- Mirrored from 192.168.0.1/help/help_ddns.html by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 11 Jan 2017 00:16:14 GMT -->
+</html>

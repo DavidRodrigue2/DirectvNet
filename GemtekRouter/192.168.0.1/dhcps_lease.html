@@ -1,0 +1,293 @@
+<HTML>
+<!-- Mirrored from 192.168.0.1/dhcps_lease.html by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 11 Jan 2017 00:16:09 GMT -->
+<HEAD><TITLE>Lista de IP reservadas de DHCP</TITLE>
+<meta http-equiv="expires" content="0">
+<meta http-equiv="cache-control" content="no-cache">
+<meta http-equiv="pragma" content="no-cache">
+<META http-equiv=Content-Type content="text/html; charset=UTF-8">
+<link rel="stylesheet" type="text/css" href="WHR-G300N-160149-style-ENG.css">
+<link rel="stylesheet" type="text/css" href="WHR-G300N-160149-style-ad-ENG.css">
+<script language="javascript" type="text/javascript" src="common.html"></script>
+<script language="JavaScript">
+<!--
+var err_item="ERROR:";
+var err_description="descripci&oacute;n:";
+var nowEdit=0;
+var oldEdit;
+var EditIndex=0;
+function setMau(index){
+	document.getElementById("id_AUTOIP").disabled=false;
+	document.getElementById("id_AUTOMAC").disabled=false;
+	document.getElementById("id_AUTOIP").value=document.getElementById("id_TblIP"+index).value;
+	document.getElementById("id_AUTOMAC").value=document.getElementById("id_TblMAC"+index).value;
+	document.autodhcp.submit();
+	
+}
+
+function load_init()
+{
+        window.focus();
+}
+
+function rule_edit(index) {
+	if (nowEdit!=index && nowEdit!=0)
+		restoreEdit(nowEdit);
+	nowEdit=index;
+	EditIndex=index;
+	var buttonObj=document.getElementById("id_BtuStatus"+index);
+	document.getElementById("add_btn_section").style.display="none";
+    	document.getElementById("edit_btn_section").style.display="";
+	document.getElementById("id_DEdit").value=index;
+	document.getElementById("id_DEdit").disabled=false;
+	document.getElementById("id_errtbl").style.display="none";
+	document.getElementById("err_section").style.display="none";
+	oldEdit=buttonObj.innerHTML;
+	buttonObj.innerHTML="<center><span class=C_MOD>Editando</span></center>";//Editing
+	document.getElementById("id_IP").value=document.getElementById("id_TblIP"+index).value;
+	document.getElementById("id_MAC").value=document.getElementById("id_TblMAC"+index).value;
+	document.getElementById("t_cintent").innerHTML="editar informaci&oacute;n de cliente";
+}
+
+function SetErrRule()
+{
+	var DNum=document.getElementById("id_TblNum").value;
+	if ((parseInt(DNum)==0)&&(document.getElementById("emptycont")!=null))
+		document.getElementById("emptycont").style.display="none";
+	document.getElementById("err_section").style.display="";
+}
+
+function restoreEdit(index)
+{
+	var buttonObj=document.getElementById("id_BtuStatus"+index);
+	document.getElementById("id_IP").value="";
+	document.getElementById("id_MAC").value="";
+	buttonObj.innerHTML = oldEdit;
+}
+
+function rule_delete(index) {
+	document.getElementById("id_DDelete").value=index;
+	document.getElementById("id_DDelete").disabled=false;
+	document.dhcpreserved_status.submit();
+}
+
+function DoRefresh() {
+if(window.navigator.appName=="Microsoft Internet Explorer")
+	window.location.reload();
+else
+	window.location.replace("dhcps_lease.html");
+}
+
+function ChkDuplicated(item, type, index) {
+	var i=0;
+	var oldrule;
+	var newrule;
+	var DNum=document.getElementById("id_TblNum").value;
+	for (i=1;i<=DNum;i++)
+	{
+		oldrule=document.getElementById("id_Tbl"+item+i).value;
+		newrule=document.getElementById("id_"+item).value;
+		oldrule=oldrule.toUpperCase();
+		newrule=newrule.toUpperCase();
+		if (oldrule==newrule)
+		{
+			if((type=="edit")&&(parseInt(index,10)==i))
+				return true;
+			else
+				return false;
+		}
+	}
+	return true;
+}
+
+function ChkDHCPPool(ip)
+{
+	var startip="192.168.0.2";
+	var endip="192.168.0.65";
+	var start, end, n;
+	var chkip;
+	start=startip.split('.');
+	startip=Math.pow(255,3)*(parseInt(start[0],10))+Math.pow(255,2)*(parseInt(start[1],10))+255*(parseInt(start[2],10))+(parseInt(start[3],10));
+ 	end=endip.split('.');
+ 	endip=Math.pow(255,3)*(parseInt(end[0],10))+Math.pow(255,2)*(parseInt(end[1],10))+255*(parseInt(end[2],10))+(parseInt(end[3],10));
+	n=ip.split('.');
+	chkip=Math.pow(255,3)*(parseInt(n[0],10))+Math.pow(255,2)*(parseInt(n[1],10))+255*(parseInt(n[2],10))+(parseInt(n[3],10));
+	if (((parseInt(chkip,10)-parseInt(startip,10))>(parseInt(endip,10)-parseInt(startip,10)))||
+	(parseInt(chkip,10)<parseInt(startip,10)))
+		return false;
+	else
+		return true;	
+	 
+}
+
+function ChkDHCPRule(type) {
+	var lan_ip="192.168.0.1";
+	var lan_mask="255.255.255.0";
+	var err_item="Direcci&oacute;n IP de la informaci&oacute;n de concesi&oacute;n";
+	if (document.getElementById("id_IP").value=="")
+	{
+		Show_error(err_item, "No configurado");
+    		return false;		
+	}
+	else
+	{	
+		if (document.getElementById("id_IP").value=="0.0.0.0")
+		{
+			Show_error(err_item, "No se puede usar la direcci&oacute;n reservada (0.0.0.0)");
+    			return false;		
+		}
+		else if (check_ip(document.getElementById("id_IP").value)!=0)
+		{
+			Show_error(err_item, "Formato de direcci&oacute;n IP no v&aacute;lido");
+    			return false;		
+		}
+		else if (!check_the_same_subnet(document.getElementById("id_IP").value, lan_ip, lan_mask))
+		{
+			Show_error(err_item, "Fuera del rango de direcciones de red de la LAN");
+    			return false;		
+		}
+		else if (document.getElementById("id_IP").value==lan_ip)
+		{
+			Show_error(err_item, "No se puede especificar la direcci&oacute;n IP de la LAN de esta Device");
+    			return false;			
+		}
+		else if ((!ChkDHCPPool(document.getElementById("id_IP").value))&&("1"=="1"))
+		{
+			Show_error(err_item, "Fuera de rango");
+    			return false;			
+		}
+		else if(!ChkDuplicated("IP", type, EditIndex))
+		{
+			Show_error(err_item, "Direcci&oacute;n IP duplicada");
+    			return false;			
+		}
+	}
+	err_item="Direcci&oacute;n MAC de la informaci&oacute;n de concesi&oacute;n";
+	var LeaseMac=document.getElementById("id_MAC").value;
+	if (LeaseMac=="")
+	{
+		Show_error(err_item, "No configurado");
+    		return false;		
+	}
+	else
+	{
+	    var check_mac_num=check_mac(LeaseMac);    
+		if(check_mac_num!="0")
+		{
+	        if((check_mac_num=="1")||(check_mac_num=="2"))
+	        {
+				Show_error(err_item, "N&uacute;mero de caracteres no v&aacute;lido");
+	    			return false;	
+	        }
+		}
+		if(!ChkDuplicated("MAC", type, EditIndex))
+		{
+			Show_error(err_item, "Direcci&oacute;n MAC duplicada");
+    			return false;			
+		}
+	}
+	return true;	
+}
+
+function SetDHCP(type) {
+	var DNum=document.getElementById("id_TblNum").value;
+ 	if (!ChkDHCPRule(type))
+    	{
+		var ipObj = document.getElementById("id_err_ip");
+		var macObj = document.getElementById("id_err_mac");
+    		ipObj.innerHTML=document.getElementById("id_IP").value;
+		macObj.innerHTML=document.getElementById("id_MAC").value;
+    		if (type=="add")
+    			SetErrRule();
+    		return; 
+    	}
+    	if ((parseInt(DNum)==0)&&(document.getElementById("emptycont")!=null))
+    		document.getElementById("emptycont").style.display="";
+	document.getElementById("err_section").style.display="none";
+	document.dhcpreserved.nosave_dhcp_ip.value = ip_normalize_0(document.dhcpreserved.nosave_dhcp_ip.value);
+	document.dhcpreserved.submit();
+}
+
+-->
+</script>
+</HEAD>
+
+<BODY class="BFK_BODY" bgColor=white onload=load_init()>
+<br>
+<FORM name="dhcpreserved" method="post">
+<div id="id_errtbl" class="C_ERR" style="display:none;">
+</div>
+<input type="hidden" name="nosave_DEdit" id="id_DEdit" value="" disabled>
+<table class="AD_TTL2">
+    <tbody><tr><td id="t_cintent">
+     Agregar informaci&oacute;n de cliente   
+    </td></tr>
+    </tbody>
+</table>
+
+  <table class="AD_SET">
+    <tr>
+      <th>Direcci&oacute;n IP</th>
+      <td>
+        <input type="text" name="nosave_dhcp_ip" id="id_IP" size="20" maxlength="15">
+      </td>
+    </tr>
+	<tr>
+      <th>Direcci&oacute;n MAC</th>
+      <td>
+        <input type="text" name="nosave_dhcp_mac" id="id_MAC" size="20" maxlength="17">
+      </td>
+    </tr>
+  </table>
+  <div id="add_btn_section">
+  	<p><input type="button" value="Agregar" onClick="SetDHCP('add')"></p>
+  </div>
+  <div id="edit_btn_section" style="display: none;">
+  	<p><input type="button" value="Guardar" onClick="SetDHCP('edit')">
+    	<input type="button" value="Cancelar" onClick="location.href='dhcps_lease.html'"></p>
+  </div>
+<hr>
+
+  <table class="AD_TTL2">
+    <tbody>
+    <tr><td>Informaci&oacute;n actual de cliente DHCP </td></tr>
+    </tbody>
+  </table>
+</form>
+<form name="dhcpreserved_status" method="post">
+  <table class="AD_LIST">
+   <input type="hidden" name="nosave_DDelete" id="id_DDelete" value="" disabled>
+    <tbody>
+    <tr>
+      <th>Direcci&oacute;n IP</th>
+      <th>Direcci&oacute;n MAC</th>
+      <th>Periodo de concesi&oacute;n</th>
+      <th>Estado</th>
+      <th>Personalizar</th>
+    </tr>
+    <tr id="err_section" style="display: none;">
+    	<td id="id_err_ip">&nbsp;</td>
+	<td id="id_err_mac">&nbsp;</td>
+	<td>--:--:--</td>
+	<td>Manual</td>
+        <td><center><span class="C_MOD">Editando</span></center></td>
+    </tr>
+	<input type="hidden" id="id_TblNum" value="0">
+<tr id="emptycont"><td colspan="5" class="NO_ENTRY">Ninguna direcci&oacute;n IP asignada</td></tr>
+
+    </tbody>
+  </table>
+  
+   <p class="notice">&#x28;*&#x29; La direcci&oacute;n IP del cliente que configura esta Device es&#x28;192.168.0.2&#x29;</p> 
+  <p>
+    <input type="button" value="Actualizar" onClick="DoRefresh()">
+  </p>
+</form>
+<FORM name="autodhcp" method="post">
+	<input type="hidden" name="auto_dhcp_mac" id="id_AUTOMAC" value="" disabled>
+	<input type="hidden" name="auto_dhcp_ip" id="id_AUTOIP" value="" disabled>
+</form>
+</body>
+
+<!-- Mirrored from 192.168.0.1/dhcps_lease.html by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 11 Jan 2017 00:16:09 GMT -->
+</html>
+

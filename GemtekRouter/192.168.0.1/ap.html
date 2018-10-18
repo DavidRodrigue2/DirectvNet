@@ -1,0 +1,113 @@
+
+
+
+<!-- Mirrored from 192.168.0.1/ap.html by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 11 Jan 2017 00:16:10 GMT -->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta http-equiv="Pragma" content="no-cache">
+<meta http-equiv="Cache-Control" content="no-cache">
+<META http-equiv="Content-Style-Type" content="text/css">
+<LINK rel="stylesheet" href="WHR-G300N-160149-style-ENG.css" type="text/css">
+<LINK rel="stylesheet" href="WHR-G300N-160149-style-ad-ENG.css" type="text/css">
+
+<script language="JavaScript" type="text/javascript" src="common.html"></script>
+<script language="JavaScript">
+<!--
+function setValue(val)
+{
+	var rval = (document.getElementById("id_" + val).checked)?"1":"0";		
+	document.getElementById("mm_" + val).value = rval;
+}
+
+function isEmpty(s)
+{
+	if(s.length==0)
+	{
+		Show_error("Nombre de la Device", "No configurado");
+		return true;
+	}
+	else
+	{
+		return false;
+	}
+}
+
+function isAllowValue(s)
+{
+  var i;
+	for (i=0; i<s.length; i++)
+	{
+		var c;
+		
+		c=s.charAt(i);
+	
+		if (((c>='0')&&(c<='9')) || ((c>='a')&&(c<='z')) || ((c>='A')&&(c<='Z')) || (c=='-'))
+		{
+		  if ((c=='-') && ((i==0) || (i==s.length-1)))
+		  {
+		    Show_error("Nombre de la Device", "No se puede usar este car&aacute;cter como car&aacute;cter inicial ni final");
+		    return false;
+		  }
+		}
+		else
+		{
+		  Show_error("Nombre de la Device", "Contiene un car&aacute;cter no v&aacute;lido");
+			return false;
+		}
+	}
+	
+	return true;
+}
+
+function apply()
+{
+  if (!isEmpty(document.forms[0].DeviceName.value) && (isAllowValue(document.forms[0].DeviceName.value)==true))
+    document.forms[0].submit();
+  else
+	return false;  
+}
+//-->
+</script>
+
+</head>
+<body class="BFK_BODY">
+<p>
+<br>
+
+</p>
+
+<form method="POST" onsubmit = "return apply();"> 
+<div id="id_errtbl" class="C_ERR" style="display:none;"></div>
+  <table class="AD_SET">
+    <tr>
+      <th>Nombre de la Device</th>
+      <td>
+        <input type="text" name="DeviceName" size="30" maxlength="32" value='DIRECTV_INTERNET'>
+      </td>
+    </tr>
+  </table>
+  <!--
+    <table class="AD_SET">
+     <tr>
+      <th></th>
+      <td>
+      	<input type="hidden" name="NetWatchdEnable" id="mm_NetWatchdEnable" value="">
+        <input type="checkbox" id="id_NetWatchdEnable"  onclick="setValue('NetWatchdEnable')">
+      </td>
+    </tr>
+  </table>
+  -->
+  <table class="AD_SET">
+     <tr>
+      <th>Introduzca una dirección IP de la dirección privada rangos 10.0.0.1-10.255.255.254 172.16.0.1 ~ 172.31.255.254 y 192.168.0.1 ~ 192.168.255.254.</th>
+      <td>
+      	<input type="hidden" name="NetworkServiceEnable" id="mm_NetworkServiceEnable" value='1'>
+        <input type="checkbox" id="id_NetworkServiceEnable" checked onclick="setValue('NetworkServiceEnable')">Habilitar
+      </td>
+    </tr>
+  </table>
+
+
+<p><input type="button" value="Aplicar" name="nosave_action" onclick="apply()"></p>
+</form>
+</body>

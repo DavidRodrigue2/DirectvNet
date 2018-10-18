@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html>
+
+<!-- Mirrored from 192.168.0.1/wireless_advanced.html by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 11 Jan 2017 00:15:41 GMT -->
+<head>
+<meta charset="utf-8" />
+<link rel="stylesheet" href="WHR-G300N-160149-style-ENG.css" />
+<link rel="stylesheet" href="WHR-G300N-160149-style-ad-ENG.css" />
+<title>Wireless Advanced</title>
+
+<script src="language/es/language.html"></script>
+<script src="common.html"></script>
+
+<script>
+function apply_Button()
+{
+  var submit_Form = document.submit_Form;
+  submit_Form.WIFI_BeaconPeriod.value = document.getElementById('id_WirelessBecon').value;
+  submit_Form.WIFI_DtimPeriod.value = document.getElementById('id_WirelessDTIM').value;
+  submit_Form.WIFI_FragThreshold.value = document.getElementById('id_WirelessFragement').value;
+  submit_Form.WIFI_RTSThreshold.value = document.getElementById('id_WirelessRTS').value;
+  submit_Form.WIFI_TxPower.value = document.getElementById('id_WirelessTxPower').value;
+  submit_Form.WIFI_TxPreamble.value = document.getElementById('id_WirelessPreamble').value;
+  
+  if (document.getElementById('id_WMMEnable').checked) {
+    submit_Form.WIFI_WmmCapable.value = '1';
+  } else {
+    submit_Form.WIFI_WmmCapable.value = '0';
+  }
+  
+  submit_Form.submit();
+}
+
+function cancel_Button()
+{
+  location.href = 'wireless_advanced.html';
+}
+
+function init()
+{
+  var wifi_beacon = '100';
+  var wifi_dtim = '1';
+  var wifi_frag = '2346';
+  var wifi_rts = '2347';
+  var wifi_txpower = '100';
+  var wifi_txpreamble = '0';
+  var wifi_wmm = '1';
+
+  document.getElementById('id_WirelessBecon').value = wifi_beacon;
+  document.getElementById('id_WirelessDTIM').value = wifi_dtim;
+  document.getElementById('id_WirelessFragement').value = wifi_frag;
+  document.getElementById('id_WirelessRTS').value = wifi_rts;
+  document.getElementById('id_WirelessTxPower').value =  wifi_txpower;
+  document.getElementById('id_WirelessPreamble').value = wifi_txpreamble;
+
+  if (wifi_wmm == '1') {
+    document.getElementById('id_WMMEnable').checked = true;
+  } else {
+    document.getElementById('id_WMMEnable').checked = false;
+  }
+
+}
+
+</script>
+</head>
+
+<body onLoad="init();"><br>
+<form name="gui_Form">
+  <div id="basic_content">
+    <table class="AD_TTL2">
+      <tr>
+        <td><script>translate_strWrite("WirelessAdvanced", 0);</script></td><!--Wireless Advanced Settings-->
+      </tr>
+    </table>
+    
+    <table class="AD_SET">
+      <tr>
+        <th width="180"><script>translate_strWrite("WirelessAdvanced", 1);</script></th><!--Beacon Interval-->
+        <td width="400">
+          <input type="text" size="10" maxlength="3" id="id_WirelessBecon" />
+          <script>translate_strWrite("WirelessAdvanced", 2);</script><!--ms (range 20 - 999, default 100)-->
+        </td>
+      </tr>
+
+      <tr>
+        <th><script>translate_strWrite("WirelessAdvanced", 3);</script></th><!--Data Beacon Rate (DTIM)-->
+        <td>
+          <input type="text" size="10" maxlength="3" id="id_WirelessDTIM" />
+          <script>translate_strWrite("WirelessAdvanced", 4);</script><!--ms (range 1 - 255, default 1)-->
+        </td>
+      </tr>
+
+      <tr>
+        <th><script>translate_strWrite("WirelessAdvanced", 5);</script></th><!--Fragment Threshold-->
+        <td>
+          <input type="text" size="10" maxlength="4" id="id_WirelessFragement" />
+          <script>translate_strWrite("WirelessAdvanced", 6);</script><!--(range 256 - 2346, default 2346)-->
+        </td>
+      </tr>
+
+      <tr>
+        <th><script>translate_strWrite("WirelessAdvanced", 7);</script></th><!--RTS Threshold-->
+        <td>
+          <input type="text" size="10" maxlength="4" id="id_WirelessRTS" />
+          <script>translate_strWrite("WirelessAdvanced", 8);</script><!--(range 1 - 2347, default 2347)-->
+        </td>
+      </tr>
+
+      <tr>
+        <th><script>translate_strWrite("WirelessAdvanced", 9);</script></th><!--TX Power-->
+        <td>
+          <input type="text" size="10" maxlength="3" id="id_WirelessTxPower" />
+          <script>translate_strWrite("WirelessAdvanced", 10);</script><!--(range 1 - 100, default 100)-->
+        </td>
+      </tr>
+
+      <tr>
+        <th><script>translate_strWrite("WirelessAdvanced", 11);</script></th><!--Preamble Mode-->
+        <td>
+          <select id="id_WirelessPreamble">
+            <option value="0"><script>translate_strWrite("WirelessAdvanced", 12);</script></option><!--Long Preamble-->
+            <option value="1"><script>translate_strWrite("WirelessAdvanced", 13);</script></option><!--Short Preamble-->
+          </select>
+        </td>
+      </tr>
+    </table>
+    
+    <table class="AD_TTL2">
+      <tr>
+        <td><script>translate_strWrite("WirelessAdvanced", 14);</script></td><!--Wireless WMM Settings-->
+      </tr>
+    </table>
+    
+    <table class="AD_SET">
+      <tr>
+        <th width="180"><script>translate_strWrite("WirelessAdvanced", 15);</script></th><!--Wi-Fi Multimedia (WMM)-->
+        <td width="400">
+          <input type="checkbox" id="id_WMMEnable" value="1"><script>translate_strWrite("WirelessAdvanced", 16);</script><!--Enable-->
+        </td>
+      </tr>
+    </table>
+      <input type="button" name="nosave_apply" id="id_nosave_apply" value="Apply" onclick="apply_Button();" />
+      <script>setButtonValue("id_nosave_apply", "Button", 0);</script><!--Apply-->
+      <input type="button" name="nosave_back" id="id_nosave_back" value="Cancel" onClick="cancel_Button();" />
+      <script>setButtonValue("id_nosave_back", "Button", 1);</script><!--Cancel-->
+  </div>
+</form>
+
+<form method="POST" name="submit_Form">
+  <input type="hidden" name="WIFI_BeaconPeriod" />
+  <input type="hidden" name="WIFI_DtimPeriod" />
+  <input type="hidden" name="WIFI_FragThreshold" />
+  <input type="hidden" name="WIFI_RTSThreshold" />
+  <input type="hidden" name="WIFI_TxPower" />
+  <input type="hidden" name="WIFI_TxPreamble" />
+  <input type="hidden" name="WIFI_WmmCapable" />
+</form>
+</body>
+
+<!-- Mirrored from 192.168.0.1/wireless_advanced.html by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 11 Jan 2017 00:15:42 GMT -->
+</html>
