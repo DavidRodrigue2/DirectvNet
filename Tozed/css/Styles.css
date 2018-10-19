@@ -2,15 +2,32 @@ body{
   margin: 0;
   font-family: Verdana, Geneva, Tahoma, sans-serif;
 }
+/*  ----------------------------------HEADER --------------------------------------- */
+.header{
+  border-bottom: 1px solid #0085D0;
+  display: flex;
+}
 .header figure{
   margin: 0;
+  height: 67px;
 }
-.header img{
-  width: 100%;
+.header .logo{
+  width: 200px;
+  height: 67px;
 }
+.header .status{
+  display: flex;
+}
+.status p{
+  margin: 0;
+}
+.conect p{
+  margin: 0;
+}
+/*  ----------------------------------LEFT --------------------------------------- */
 .left{
   border-right: 1px solid #0085D0;
-  width: 177px;
+  width: 200px;
   height: 100vh;
 }
 .loginContainer{
@@ -80,11 +97,48 @@ body{
 
   display: none; /* quitar */
 }
+/*  ----------------------------------CENTER --------------------------------------- */
 .center figure{
   position: absolute;
   top: 64px;
-  left: 155px;
+  left: 180px;
 }
 .hidden{
   display: none;
+}
+/*  ----------------------------------LEFT MENU --------------------------------------- */
+.left .menu{
+  font-size: 15px;
+}
+.left .menu ol{
+  margin: 0;
+  padding: 0;
+}
+.left .menu ol h3{
+  font-size: 15px;
+  font-weight: normal;
+  padding: 10px 5px 10px 15px;
+  color: #000;
+  margin: 0;
+  width: 180px;
+  cursor: pointer;
+}
+.left .menu li{
+  display: none;
+  list-style: none;
+  color: #0085D0;
+  background-color: #ECECEC;  
+  border-bottom: 1px dashed #CCC;
+  padding: 3px 4px 3px 15px;
+  cursor: pointer;
+}
+.left .menu li:hover{
+  background-color: #CADBF0;
+}
+.left .menu ol:hover{
+  background: url('../Images/menu.gif') no-repeat bottom;
+}
+.left .menu ol h3:hover{
+  color: #fff;
+  background: #0099CC;
 }
