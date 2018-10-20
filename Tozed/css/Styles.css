@@ -7,7 +7,7 @@ body{
   border-bottom: 1px solid #0085D0;
   display: flex;
 }
-.header figure{
+.header img{
   margin: 0;
   height: 67px;
 }
@@ -15,14 +15,9 @@ body{
   width: 200px;
   height: 67px;
 }
-.header .status{
-  display: flex;
-}
-.status p{
-  margin: 0;
-}
-.conect p{
-  margin: 0;
+.header .logo2{
+  width: 85%;
+  height: 67px;
 }
 /*  ----------------------------------LEFT --------------------------------------- */
 .left{
@@ -34,37 +29,27 @@ body{
   position: relative;
   left: 15px;
   top: 100px;
-
-  display: none; /* quitar */
 }
 .loginContainer p{
   width: 147px;
   margin: 3px 0;
   font-size: 14.5px;
-
-  display: none; /* quitar */
 }
 .loginContainer .idioma{
   border: 1px solid grey;
   padding: 2px 0;
   height: 23px;
   font-size: 12px;
-
-  display: none; /* quitar */
 }
 .loginContainer input{
   width: 147px;
   height: 23px;
   margin: 3px 0;
-
-  display: none; /* quitar */
 }
 .loginContainer button{
   width: 150px;
   margin-top: 2px;
   height: 30px;
-
-  display: none; /* quitar */
 }
 .left .help{
   position: relative;
@@ -75,15 +60,11 @@ body{
   background-color: #f90;
   padding: 8px 0;
   cursor: pointer;  
-
-  display: none; /* quitar */
 }
 .left .text{
   color: #fff;
   font-size: 13px;
   text-decoration: underline;
-
-  display: none; /* quitar */
 }
 .left .ChangePass{
   position: relative;
@@ -94,8 +75,6 @@ body{
   background-color: #f90;
   padding: 8px 0;
   cursor: pointer;  
-
-  display: none; /* quitar */
 }
 /*  ----------------------------------CENTER --------------------------------------- */
 .center figure{
@@ -110,11 +89,12 @@ body{
 .left .menu{
   font-size: 15px;
 }
-.left .menu ol{
+.left .ol{
   margin: 0;
   padding: 0;
 }
-.left .menu ol h3{
+.left .h3{
+  background: #ECECEC;
   font-size: 15px;
   font-weight: normal;
   padding: 10px 5px 10px 15px;
@@ -123,22 +103,30 @@ body{
   width: 180px;
   cursor: pointer;
 }
-.left .menu li{
+.left .li{
   display: none;
   list-style: none;
   color: #0085D0;
   background-color: #ECECEC;  
   border-bottom: 1px dashed #CCC;
-  padding: 3px 4px 3px 15px;
+  padding: 3px 9px 3px 15px;
   cursor: pointer;
 }
-.left .menu li:hover{
+.left .menu .li:hover{
+  color: #990000;
+  background-color: #fff;
+}
+.left .activLi{
+  display: list-item;
+}
+.left .selectLi{
   background-color: #CADBF0;
 }
-.left .menu ol:hover{
-  background: url('../Images/menu.gif') no-repeat bottom;
+.left .activOl{
+  padding: 0 0 8px 0;
+  background: url('../Images/menu.gif') no-repeat bottom; 
 }
-.left .menu ol h3:hover{
+.left .activH{ /*cuando este activo*/
   color: #fff;
   background: #0099CC;
 }
