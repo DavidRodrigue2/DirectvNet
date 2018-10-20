@@ -3,8 +3,6 @@ const login = document.getElementById('login');
 const loginCenter = document.getElementById('loginCenter');
 const menu = document.getElementById('menu');
 
-// const link = document.getElementById('a1');
-
 buttonLogin.addEventListener('click', (event)=>{
   login.classList.add('hidden');
   loginCenter.classList.add('hidden');
@@ -12,7 +10,5 @@ buttonLogin.addEventListener('click', (event)=>{
 });
 
 function doClick(n){
-  alert('ok'+ n);
-  console.log(n);
   
 }
