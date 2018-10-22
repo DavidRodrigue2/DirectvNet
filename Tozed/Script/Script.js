@@ -42,8 +42,6 @@ function doClick(n){
       li.classList.add('activLi');
     }
     var r = (n * 10) + 1;
-    // const li1 = document.getElementById('li'+r);
-    // li1.classList.add('selectLi');
     center(r);
     ol.classList.add('activOl');
     h.classList.add('activH');
