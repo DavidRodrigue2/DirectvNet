@@ -1,10 +1,5 @@
 var child = document.getElementById('left').childNodes;
 const iframe = document.getElementById('iframeCenter');
-const link = document.getElementById('a1');
-link.addEventListener('click', (event)=>{
-  console.log(iframe.src);
-}
-);
 
 var cant = (child.length - 1) / 2;  
 function doClick(n)

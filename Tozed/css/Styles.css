@@ -126,7 +126,7 @@ body{
   padding: 0 0 8px 0;
   background: url('../Images/menu.gif') no-repeat bottom; 
 }
-.left .activH{ /*cuando este activo*/
+.left .activH{ 
   color: #fff;
   background: #0099CC;
 }
