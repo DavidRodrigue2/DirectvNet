@@ -41,27 +41,35 @@ function doClick(n){
       const li = document.getElementById('li'+a);
       li.classList.add('activLi');
     }
-    var n = (n * 10) + 1;
-    const li1 = document.getElementById('li' +n);
-    li1.classList.add('selectLi');
+    var r = (n * 10) + 1;
+    // const li1 = document.getElementById('li'+r);
+    // li1.classList.add('selectLi');
+    center(r);
     ol.classList.add('activOl');
     h.classList.add('activH');
   }
   else{
-    if (n == 11){
-      img.src = "Images/center.png";
-    }
-    if (n == 12){
-      img.src = "Images/Version.png";
-    }
-    if (n == 13){
-      img.src = "Images/Dispositivos.png";
-    }
-    if (n == 14){
-      img.src = "Images/Estadisticas.png";
-    }
-    if (n == 15){
-      img.src = "Images/EstadoLTE.png";
-    }
+    center(n);
   }
+}
+
+function center(n){
+  if (n == 11){
+    img.src = "Images/center.png";
+  }
+  if (n == 12){
+    img.src = "Images/Version.png";
+  }
+  if (n == 13){
+    img.src = "Images/Dispositivos.png";
+  }
+  if (n == 14){
+    img.src = "Images/Estadisticas.png";
+  }
+  if (n == 15){
+    img.src = "Images/EstadoLTE.png";
+  }  
+  if (n == 21){
+    img.src = "Images/ConfigWiFi.png";
+  }  
 }
