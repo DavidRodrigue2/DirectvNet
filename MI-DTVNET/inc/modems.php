@@ -28,7 +28,7 @@ $(document).ready(function(){
 	<div class="col-xs-12">
 		<ul class="ch-grid">
 			<li><a id="tozed" class="botondesc">
-				<div class="ch-item ch-img-5">
+				<div class="ch-item ch-img-1">
 					<div class="ch-info">
 						<h3>TOZED</h3>
 					</div>
@@ -74,7 +74,7 @@ $(document).ready(function(){
 			</li>
 
 			<li><a id="wr740" class="botondesc">
-				<div class="ch-item ch-img-1">
+				<div class="ch-item ch-img-5">
 					<div class="ch-info">
 						<h3>TPLINK</h3>
 						<p>TL-WR740N</p>

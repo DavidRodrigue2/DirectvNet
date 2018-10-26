@@ -52,10 +52,7 @@ $(document).ready(function(){
 						
 						<area shape="rect" coords="424,251,454,269" alt="senal" title="Señal" data-toggle="tooltip" data-placement="bottom" viewport: '#viewport' id="senal" class="red-tooltip botondesc">
 			</map>
-
 		</div>
-	
-		
 	</div>
 
 

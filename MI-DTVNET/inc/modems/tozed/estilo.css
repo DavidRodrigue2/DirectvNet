@@ -3,90 +3,36 @@
 #power{
   position:absolute;
   width:51px;
-    height:17px;
+  height:17px;
   top:270px;
   left:395px;
-
+  
 }
 
 #power{
 	position:absolute;
 	width:51px;
-    height:17px;
+  height:17px;
 	top:270px;
 	left:364px;
 
 }
 
-#sistema{
+#wifi{
 	position:absolute;
 	width:51px;
-    height:17px;
+  height:17px;
 	top:270px;
 	left:395px;
 
 }
 
-#wlan{
+#senal{
 	position:absolute;
 	width:51px;
     height:17px;
 	top:270px;
 	left:426px;
-
-}
-
-#lan1{
-	position:absolute;
-	width:51px;
-    height:17px;
-	top:270px;
-	left:460px;
-
-}
-
-#lan2{
-	position:absolute;
-	width:51px;
-    height:17px;
-	top:270px;
-	left:490px;
-
-}
-
-#lan3{
-	position:absolute;
-	width:51px;
-    height:17px;
-	top:270px;
-	left:524px;
-
-}
-
-#lan4{
-	position:absolute;
-	width:51px;
-    height:17px;
-	top:270px;
-	left:556px;
-
-}
-
-#wan{
-	position:absolute;
-	width:51px;
-    height:17px;
-	top:270px;
-	left:587px;
-
-}
-
-#wps{
-	position:absolute;
-	width:51px;
-    height:17px;
-	top:270px;
-	left:620px;
 
 }
 
@@ -187,8 +133,3 @@
   left:443px;
 
 }
-
-
-
-
-

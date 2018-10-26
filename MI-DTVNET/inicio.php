@@ -7,34 +7,32 @@
 	<meta charset="UTF-8">
 	<meta http-equiv="content-Type" content="text/html; charset=iso-8859-1" /> 
 	<meta http-equiv="content-type" content="Mime-Type; charset=iso-8859-1" />  
-<?php include 'inc/head_common.php';?>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
+<?php include 'inc/head_common.php';?> <!-- no lo he ovido -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script> <!-- no lo he ovido -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css"> <!-- no lo he ovido -->
 <link rel="stylesheet" href="css/estilo.css">
 
 
 
-
-
- <link rel="stylesheet" href="css/font-awesome.min.css"> 
-<link rel="stylesheet" href="css/font-awesome.min.css">
+ <link rel="stylesheet" href="css/font-awesome.min.css"> <!-- no lo he ovido -->
+<link rel="stylesheet" href="css/font-awesome.min.css"> <!-- no lo he ovido -->
 
 <!--------------------------- fuentes locales -------------------------- -->
 
-<script src="js/jquery-1.11.3.js"></script>
+<script src="js/jquery-1.11.3.js"></script> <!-- no lo he ovido -->
 
 <!-- Latest compiled and minified CSS
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script> -->
  
-<link rel="stylesheet" href="css/bootstrap.css">
-<link rel="stylesheet" href="css/estilo.css">
+<link rel="stylesheet" href="css/bootstrap.css"> <!-- no lo he ovido -->
+<link rel="stylesheet" href="css/estilo.css"> <!-- no lo he ovido -->
 
 <!-- fuentes -->
 
 <link href='http://fonts.googleapis.com/css?family=Droid+Serif' rel='stylesheet' type='text/css'>
 <link href='http://fonts.googleapis.com/css?family=Comfortaa:400,700' rel='stylesheet' type='text/css'>
 
- <link rel="stylesheet" href="css/font-awesome.min.css"> 
+ <link rel="stylesheet" href="css/font-awesome.min.css"> <!-- no lo he ovido -->
  
 <!--<link rel="stylesheet" href="http://localhost/directv/css/font-awesome.min.css">-->
 
@@ -163,31 +161,9 @@ if (typeof console === "undefined") {
 }
 </script>
 
-
-
-
-
-
-
-
-
-
 <script src="js/script.js"></script>
 
-
 <?php include 'inc/footer_common.php';?>
-
-
-
-
-
-
-
-
-
-
-
-
 	
 	</body>
 </html>
