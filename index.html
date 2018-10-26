@@ -4,95 +4,21 @@
   <meta charset="UTF-8">
   <title>MI-DTVNET</title>
   <link rel="stylesheet" href="css/estilo.css" />
-  <link rel="stylesheet" type="text/css" href="css/mockup2.css" />
   <link href='http://fonts.googleapis.com/css?family=Droid+Serif' rel='stylesheet' type='text/css' />
   <link href='http://fonts.googleapis.com/css?family=Comfortaa:400,700' rel='stylesheet' type='text/css' />
 </head>
-<body class="">
-  <nav role="navigation" class="navbar navbar-default navbar-fixed-top barra">
-    <div class="row">
-      <div class="col-xs-5">
-        <div id="wrapper" class="toggled">
-          <!-- Sidebar -->
-          <div id="sidebar-wrapper">
-            <ul class="sidebar-nav">
-              <li class="sidebar-brand">
-                <a href="#" class="navbar-brand scroll-top">MI-DTVNET</a>
-              </li>				
-              <li>
-                <a href="#" id="herramientas2" class="scroll-link" data-id="modem">Modem's</a>
-              </li>
-              <li>
-                <a href="#" id="gestiones2" class="scroll-link" data-id="simuladores">Simuladores S.O.</a>
-              </li>
-            </ul>
-          </div>
-          <a id="nav-toggle" href="#menu-toggle"><span></span></a>
-          <div class="logos"></div>
-        </div>
-      </div>
-      <div class="col-xs-4"><h1 class="nombreApp">MI-DTVNET</h1></div>
-    </div>
-  </nav>
-
-  <div class="page-section intro carrusel">
-    <div class="row">
-      <div class="contenedorinicio">
-      <!-- Top Navigation -->
-        <div id="wrap" class="wrap">
-          <div class="mockup">
-            <img class="mockup__img" src="img/fondo.jpg" />
-            <div class="screen">
-              <ul id="slideshow" class="slideshow">
-                <li class="slideshow__item"><img src="img/large/3.jpg"/></li>
-                <li class="slideshow__item"><img src="img/large/2.jpg"/></li>
-                <li class="slideshow__item"><img src="img/large/1.jpg"/></li>
-              </ul>
-            </div>
-          </div>
-        </div>
-      </div><!-- /container -->
-      
+<body>
+  <div class="header">
+    <h1>MI-DTVNET</h1>
+  </div>
+  <div class="header2">
+    <!-- <div class="fondo"> -->
+      <img class="fondo" src="img/fondo.jpg" alt="fondo">
+    <!-- </div> -->
+    <div class="carrusel">
+      <img src="img/large/1.jpg" alt="">
     </div>
   </div>
-  <script>
-    (function() {
-			new Slideshow( document.getElementById( 'slideshow' ) );
-				/* Mockup responsiveness */
-				var body = docElem = window.document.documentElement,
-				wrap = document.getElementById( 'wrap' ),
-				mockup = wrap.querySelector( '.mockup' ),
-				mockupWidth = mockup.offsetWidth;
-				 scaleMockup();
-
-  			function scaleMockup() {
-	  			var wrapWidth = wrap.offsetWidth,
-		  		val = wrapWidth / mockupWidth;
-
-			  	mockup.style.transform = 'scale3d(' + val + ', ' + val + ', 1)';
-				}
-				
-				window.addEventListener( 'resize', resizeHandler );
-
-				function resizeHandler() {
-				 function delayed() {
-				  resize();
-				  resizeTimeout = null;
-				 }
-				 if ( typeof resizeTimeout != 'undefined' ) {
-				  clearTimeout( resizeTimeout );
-				 }
-				 resizeTimeout = setTimeout( delayed, 50 );
-				}
-
-				function resize() {
-				  scaleMockup();
-				}
-		})();
-	</script>
-  <script src="js/classie.js"></script>
-  <script src="js/main.js"></script>
   <script src="js/script.js"></script>
-  <script src="js/modernizr.custom.js"></script>
 </body>
 </html>
