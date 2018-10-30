@@ -49,6 +49,10 @@ body{
 .header .volver {
   color: #3399cc;
 }
+.header .volver a{
+  text-decoration: none;
+  color: #3399cc;
+}
 .icon-circle-left:before {
   content: "\ea44";
 }
@@ -75,4 +79,10 @@ body{
 }
 .center{
   display: flex;
+}
+.center .col-xs-2{
+  width: 144.3px;
+}
+.center .col-xs-8{
+  width: 800px;
 }
