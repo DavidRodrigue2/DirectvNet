@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+	<title>arcadyan</title>
+	<link href='http://fonts.googleapis.com/css?family=Comfortaa:400,700' rel='stylesheet' type='text/css' />
+	<link href="../../css/estilo.css" rel="stylesheet">
+	<link href="style.css" rel="stylesheet">
+</head>
+<body>
+	<div class="container">
+
+		<div class="header">
+			<div class="volver">
+				<a href="../../../index.html#modems" id="volver"><span class="icon-circle-left"></span> Volver</a>
+			</div>
+			<div class="vista">
+				<h1>ARCADYAN: vista de frente</h1>
+			</div>
+			<div class="frente">
+				<div id="frente" class="thumbnailherramientas">
+					<a href="atras.html"><img src="../../../img/arcadyan/arcadyanatras.jpg" alt="atras" title="Vista de atras" viewport: '#viewport'></a>
+				</div>
+			</div>
+		</div>
+		
+		<div class="title">
+			<h4>SIMULADOR GUI: 	<a href="../../simuladoresModems/simulador_arcadyan/192.168.100.1.html" target="_blank">192.168.100.1</a></h4>
+		</div>
+	
+		<div class="center">
+			<div class="col-xs-2" id="carga">
+			<p>Presiona el indicador para tener mas información</p>
+			</div>
+			<div class="col-xs-8" id="arcadyanFrente">
+				<img src="../../../img/arcadyan/arcadyanfrente.png" alt="arcadyanFrente" usemap="#arcadyanFrente" >
+	
+				<map name="arcadyanFrente">
+							<area shape="rect" coords="918,286,980,313" alt="lte" title="LTE" viewport: '#viewport' id="lte" onclick="doClick(9)">
+							<area shape="rect" coords="946,328,989,342" alt="onoff" title="ON/OFF" viewport: '#viewport' id="onofff" onclick="doClick(10)">
+							<area shape="rect" coords="946,350,995,364" alt="internet" title="INTERNET" viewport: '#viewport' id="internet" onclick="doClick(11)">
+							<area shape="rect" coords="946,371,992,389" alt="data" title="DATA" viewport: '#viewport' id="data" onclick="doClick(12)">
+							<area shape="rect" coords="946,393,994,413" alt="wifi" title="WIFI" viewport: '#viewport' id="wifi" onclick="doClick(13)">
+							<area shape="rect" coords="946,415,994,437" alt="lan" title="LAN" viewport: '#viewport' id="lan" onclick="doClick(14)">
+							<area shape="rect" coords="946,437,994,462" alt="sim" title="SIM" viewport: '#viewport' id="sim" onclick="doClick(15)">
+				</map>
+			</div>
+		</div>
+	</div>
+  <script src="script.js"></script>
+  <!-- <script type="text/javascript">
+    const carga2 = document.getElementById('arcadyanFrente');
+    carga2.addEventListener('click', (event)=>{
+      console.log(event);
+    });
+  </script> -->
+</body>
+</html>

@@ -1,3 +1,62 @@
+#lte{
+  position:absolute;
+  width:63px;
+  height:34px;
+  top:284px;
+  left:917px;
+  /* border: 1px solid red; */
+}
+#onofff{
+  position:absolute;
+  width:49px;
+  height:19px;
+  top:326px;
+  left:945px;
+  /* border: 1px solid red; */
+}
+#internet{
+  position:absolute;
+  width:49px;
+  height:19px;
+  top:349px;
+  left:945px;
+  /* border: 1px solid red; */
+}
+#data{
+  position:absolute;
+  width:49px;
+  height:19px;
+  top:371px;
+  left:945px;
+  /* border: 1px solid red; */
+}
+#wifi{
+  position:absolute;
+  width:49px;
+  height:19px;
+  top:393px;
+  left:945px;
+  /* border: 1px solid red; */
+}
+#lan{
+  position:absolute;
+  width:49px;
+  height:19px;
+  top:415px;
+  left:945px;
+  /* border: 1px solid red; */
+}
+#sim{
+  position:absolute;
+  width:49px;
+  height:19px;
+  top:442px;
+  left:945px;
+  /* border: 1px solid red; */
+}
+/* ---------------------------------------------------------
+------------------------ATRAS----------------------------
+--------------------------------------------------------- */
 #onoff{
   position:absolute;
   width:20px;

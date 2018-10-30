@@ -19,7 +19,7 @@
 			</div>
 			<div class="frente">
 				<div id="frente" class="thumbnailherramientas">
-					<img src="../../../img/arcadyan/arcadyanfrente.png" alt="frente" title="Vista de frente" data-toggle="tooltip" data-placement="bottom" viewport: '#viewport' class="red-tooltip">
+					<a href="frente.html"><img src="../../../img/arcadyan/arcadyanfrente.png" alt="frente" title="Vista de frente" viewport: '#viewport'></a>
 				</div>
 			</div>
 		</div>
@@ -36,55 +36,19 @@
 				<img src="../../../img/arcadyan/atras.png" alt="arcadyanAtras" usemap="#arcadyanAtras" >
 	
 				<map name="arcadyanAtras">
-							<area shape="rect" coords="651,542,665,556" alt="onoff" title="ON/OFF" data-toggle="tooltip" data-placement="bottom" viewport: '#viewport' id="onoff" onclick="doClick(0)">
-							<area shape="rect" coords="676,539,689,556" alt="power" title="ENCHUFE" data-toggle="tooltip" data-placement="bottom" viewport: '#viewport' id="power" onclick="doClick(1)">
-							<area shape="rect" coords="695,545,706,555" alt="reset" title="RESET" data-toggle="tooltip" data-placement="bottom" viewport: '#viewport' id="reset" onclick="doClick(2)">
-							<area shape="rect" coords="733,539,758,558" alt="lan1" title="LAN1" data-toggle="tooltip" data-placement="bottom" viewport: '#viewport' id="lan1atras" onclick="doClick(3)">
-							<area shape="rect" coords="761,539,782,558" alt="lan2" title="LAN2" data-toggle="tooltip" data-placement="bottom" viewport: '#viewport' id="lan2atras" onclick="doClick(4)">
-							<area shape="rect" coords="788,539,810,558" alt="lan3" title="LAN3" data-toggle="tooltip" data-placement="bottom" viewport: '#viewport' id="lan3atras" onclick="doClick(5)">
-							<area shape="rect" coords="815,539,837,558" alt="lan4" title="LAN4" data-toggle="tooltip" data-placement="bottom" viewport: '#viewport' id="lan4atras" onclick="doClick(6)">
-							<area shape="rect" coords="595,498,608,531" alt="simcard" title="SIMCARD" data-toggle="tooltip" data-placement="bottom" viewport: '#viewport' id="simcard" onclick="doClick(7)">
-							<area shape="rect" coords="874,494,	896,541" alt="wps" title="WPS" data-toggle="tooltip" data-placement="bottom" viewport: '#viewport' id="wps" onclick="doClick(8)">
+							<area shape="rect" coords="651,542,665,556" alt="onoff" title="ON/OFF" viewport: '#viewport' id="onoff" onclick="doClick(0)">
+							<area shape="rect" coords="676,539,689,556" alt="power" title="ENCHUFE" viewport: '#viewport' id="power" onclick="doClick(1)">
+							<area shape="rect" coords="695,545,706,555" alt="reset" title="RESET" viewport: '#viewport' id="reset" onclick="doClick(2)">
+							<area shape="rect" coords="733,539,758,558" alt="lan1" title="LAN1" viewport: '#viewport' id="lan1atras" onclick="doClick(3)">
+							<area shape="rect" coords="761,539,782,558" alt="lan2" title="LAN2" viewport: '#viewport' id="lan2atras" onclick="doClick(4)">
+							<area shape="rect" coords="788,539,810,558" alt="lan3" title="LAN3" viewport: '#viewport' id="lan3atras" onclick="doClick(5)">
+							<area shape="rect" coords="815,539,837,558" alt="lan4" title="LAN4" viewport: '#viewport' id="lan4atras" onclick="doClick(6)">
+							<area shape="rect" coords="595,498,608,531" alt="simcard" title="SIMCARD" viewport: '#viewport' id="simcard" onclick="doClick(7)">
+							<area shape="rect" coords="874,494,	896,541" alt="wps" title="WPS" viewport: '#viewport' id="wps" onclick="doClick(8)">
 				</map>
 			</div>
 		</div>
 	</div>
-  
-	<script type="text/javascript">
-	var carga = document.getElementById('carga');
-	function doClick(n){
-			switch(n){
-				case 0:
-					carga.innerHTML = "<h3>ON/OFF</h3><br>Boton de encendido y apagado del modem.";
-					break;
-				case 1:
-					carga.innerHTML = "<h3>ENCHUFE</h3><p>El enchufe es donde se conecte el adaptador de corriente. Utilice el adaptador de corriente suministrado.</p>";
-					break;
-				case 2:
-					carga.innerHTML = "<h3>RESET</h3><p>Se utiliza para realizar un reinicio de fabrica. Con el router encendido, se debe presionar el orificio con un clip (unos 10 segundos) hasta que los led's se vuelvan intermitente.</p>";
-					break;
-				case 3:
-					carga.innerHTML = "<h3>PUERTO ETHERNET</h3><p>Permite a un dispositivo conectarse a la red mediante el cable ethernet.</p>";
-					break;
-				case 4:
-					carga.innerHTML = "<h3>PUERTO ETHERNET</h3><p>Permite a un dispositivo conectarse a la red mediante el cable ethernet.</p>";
-					break;
-				case 5:
-					carga.innerHTML = "<h3>PUERTO ETHERNET</h3><p>Permite a un dispositivo conectarse a la red mediante el cable ethernet.</p>";
-					break;
-				case 6:
-					carga.innerHTML = "<h3>PUERTO ETHERNET</h3><p>Permite a un dispositivo conectarse a la red mediante el cable ethernet.</p>";
-					break;
-				case 7:
-					carga.innerHTML = "<h3>SIM CARD</h3><p>Ranura donde se encuentra la SIM CARD.</p>";
-					break;
-				case 8:
-					carga.innerHTML = "<h3>WPS</h3><p>Al presionar el boton por 5 segundos se activa la funcion wps (Wi-Fi Protected Setup).</p>";
-					break;
-				default:
-				carga.innerHTML = "<p>Presiona el indicador para tener mas información</p>";
-			}
-		}
-  </script>
+  <script src="script.js"></script>
 </body>
 </html>
