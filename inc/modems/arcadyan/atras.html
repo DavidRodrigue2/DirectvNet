@@ -4,7 +4,8 @@
   <meta charset="UTF-8">
 	<title>arcadyan</title>
 	<link href='http://fonts.googleapis.com/css?family=Comfortaa:400,700' rel='stylesheet' type='text/css' />
-	<link href="estilo.css" rel="stylesheet">
+	<link href="../../css/estilo.css" rel="stylesheet">
+	<link href="style.css" rel="stylesheet">
 </head>
 <body>
 	<div class="container">
@@ -31,49 +32,29 @@
 			<div class="col-xs-2" id="carga">
 			<p>Presiona el indicador para tener mas información</p>
 			</div>
-			<div class="col-xs-8">
-				<img src="../../../img/arcadyan/atras.png" alt="arcadyanAtras" usemap="#wr740atras" >
+			<div class="col-xs-8" id="arcadyanAtras">
+				<img src="../../../img/arcadyan/atras.png" alt="arcadyanAtras" usemap="#arcadyanAtras" >
 	
-				<map name="wr740atras">
-							<area shape="rect" coords="70,151,79,161" alt="reset" title="RESET" data-toggle="tooltip" data-placement="bottom" viewport: '#viewport' id="reset" class="red-tooltip botondesc">
-							
-							<area shape="rect" coords="93,130,125,169" alt="enchufe" title="ENCHUFE" data-toggle="tooltip" data-placement="bottom" viewport: '#viewport' id="enchufe" class="red-tooltip botondesc">
-							
-							<area shape="rect" coords="132,135,162,166" alt="onoff" title="ON/OFF" data-toggle="tooltip" data-placement="bottom" viewport: '#viewport' id="onoff" class="red-tooltip botondesc">
-	
-							<area shape="rect" coords="157,124,211,169" alt="lan1" title="LAN1" data-toggle="tooltip" data-placement="bottom" viewport: '#viewport' id="lan1atras" class="red-tooltip botondesc">
-							<area shape="rect" coords="209,124,261,169" alt="lan2" title="LAN2" data-toggle="tooltip" data-placement="bottom" viewport: '#viewport' id="lan2atras" class="red-tooltip botondesc">
-							<area shape="rect" coords="263,124,307,169" alt="lan3" title="LAN3" data-toggle="tooltip" data-placement="bottom" viewport: '#viewport' id="lan3atras" class="red-tooltip botondesc">
-							<area shape="rect" coords="310,124,364,169" alt="lan4" title="LAN4" data-toggle="tooltip" data-placement="bottom" viewport: '#viewport' id="lan4atras" class="red-tooltip botondesc">
-	
-							<area shape="rect" coords="366,124,417,169" alt="wan" title="WAN" data-toggle="tooltip" data-placement="bottom" viewport: '#viewport' id="wanatras" class="red-tooltip botondesc">
-	
-							<area shape="rect" coords="444,150,460,163" alt="wpsreset" title="WPS" data-toggle="tooltip" data-placement="bottom" viewport: '#viewport' id="wps2" class="red-tooltip botondesc">
+				<map name="arcadyanAtras">
+							<area shape="rect" coords="651,542,665,556" alt="onoff" title="ON/OFF" data-toggle="tooltip" data-placement="bottom" viewport: '#viewport' id="onoff" class="red-tooltip botondesc">
+							<area shape="rect" coords="676,539,689,556" alt="power" title="POWER" data-toggle="tooltip" data-placement="bottom" viewport: '#viewport' id="power" class="red-tooltip botondesc">
+							<area shape="rect" coords="695,545,706,555" alt="reset" title="RESET" data-toggle="tooltip" data-placement="bottom" viewport: '#viewport' id="reset" class="red-tooltip botondesc">
+							<area shape="rect" coords="733,539,758,558" alt="lan1" title="LAN1" data-toggle="tooltip" data-placement="bottom" viewport: '#viewport' id="lan1atras" class="red-tooltip botondesc">
+							<area shape="rect" coords="761,539,782,558" alt="lan2" title="LAN2" data-toggle="tooltip" data-placement="bottom" viewport: '#viewport' id="lan2atras" class="red-tooltip botondesc">
+							<area shape="rect" coords="788,539,810,558" alt="lan3" title="LAN3" data-toggle="tooltip" data-placement="bottom" viewport: '#viewport' id="lan3atras" class="red-tooltip botondesc">
+							<area shape="rect" coords="815,539,837,558" alt="lan4" title="LAN4" data-toggle="tooltip" data-placement="bottom" viewport: '#viewport' id="lan4atras" class="red-tooltip botondesc">
+							<area shape="rect" coords="595,498,608,531" alt="simcard" title="SIMCARD" data-toggle="tooltip" data-placement="bottom" viewport: '#viewport' id="simcard" class="red-tooltip botondesc">
+							<area shape="rect" coords="874,494,	896,541" alt="wps" title="WPS" data-toggle="tooltip" data-placement="bottom" viewport: '#viewport' id="wps" class="red-tooltip botondesc">
 				</map>
 			</div>
 		</div>
 	</div>
   
-  <script type="text/javascript">
-  // $(document).ready(function(){
-  //     $('[data-toggle="tooltip"]').tooltip();
-
-
-  //     $(".botondesc").click(function(){
-  //       var boton=$(this).attr("id");
-  //       $("#carga").load("inc/modems/arcadyan/descripcion.php?boton="+boton);
-  //     });
-
-  // });
-
-
-  //     $("#volver").click(function(){
-  //     $("#contenedor_modem").load("inc/modems.php");
-  //     });
-
-  //     $("#frente").click(function(){
-  //     $("#contenedor_modem").load("inc/modems/arcadyan/frente.php");
-  //     });
+	<script type="text/javascript">
+	// const arcadyan = document.getElementById('arcadyanAtras');
+	// arcadyan.addEventListener('click', (event)=>{
+	// 	console.log(event);
+	// });
 
   </script>
 </body>

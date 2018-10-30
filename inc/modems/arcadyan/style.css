@@ -1,0 +1,72 @@
+#onoff{
+  position:absolute;
+  width:20px;
+  height:17px;
+  top:542px;
+  left:647px;
+  border: 1px solid red;
+}
+#power{
+  position:absolute;
+  width:15px;
+  height:21px;
+  top:538px;
+  left:674px;
+  border: 1px solid red;
+}
+#reset{
+  position:absolute;
+  width:15px;
+  height:14px;
+  top:543px;
+  left:694px;
+  border: 1px solid red;
+}
+#lan1atras{
+  position:absolute;
+  width:22px;
+  height:19px;
+  top:539px;
+  left:734px;
+  border: 1px solid red;
+}
+#lan2atras{
+  position:absolute;
+  width:22px;
+  height:19px;
+  top:539px;
+  left:760px;
+  border: 1px solid red;
+}
+#lan3atras{
+  position:absolute;
+  width:22px;
+  height:19px;
+  top:539px;
+  left:786px;
+  border: 1px solid red;
+}
+#lan4atras{
+  position:absolute;
+  width:22px;
+  height:19px;
+  top:539px;
+  left:812px;
+  border: 1px solid red;
+} 
+#simcard{
+  position:absolute;
+  width:18px;
+  height:41px;
+  top:496px;
+  left: 593px;
+  border: 1px solid red;
+} 
+#wps{
+  position:absolute;
+  width:19px;
+  height:52px;
+  top:491px;
+  left: 876px;
+  border: 1px solid red;
+} 
