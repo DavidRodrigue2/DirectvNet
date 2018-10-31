@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+	<title>LR26</title>
+	<link href='http://fonts.googleapis.com/css?family=Comfortaa:400,700' rel='stylesheet' type='text/css' />
+	<link href="../../css/estilo.css" rel="stylesheet">
+	<link href="style.css" rel="stylesheet">
+</head>
+<body>
+	<div class="container">
+
+		<div class="header">
+			<div class="volver">
+				<a href="../../../index.html#modems" id="volver"><span class="icon-circle-left"></span> Volver</a>
+			</div>
+			<div class="vista">
+				<h1>LR26: vista de atras</h1>
+			</div>
+			<div class="frente">
+				<div id="frente" class="thumbnailherramientas">
+					<a href="frente.html"><img src="../../../img/lr26/frente.png" alt="frente" title="Vista de frente" viewport: '#viewport'></a>
+				</div>
+			</div>
+		</div>
+		
+		<div class="title">
+			<h4>SIMULADOR GUI: 	<a href="../../simuladoresModems/simulador_LR26/index.html" target="_blank">192.168.100.1</a></h4>
+		</div>
+	
+		<div class="center">
+			<div class="col-xs-2" id="carga">
+			<p>Presiona el indicador para tener mas información</p>
+			</div>
+			<div class="col-xs-8" id="LR26Atras">
+				<img src="../../../img/lr26/atras.png" alt="LR26Atras" usemap="#LR26Atras" >
+	
+				<map name="LR26Atras">
+					<area shape="rect" alt="enchufe" title="ENCHUFE" viewport: '#viewport' id="enchufe" onclick="doClick(4)">
+					<area shape="rect" alt="lan1" title="LAN1" viewport: '#viewport' id="lan1atras" onclick="doClick(5)">
+					<area shape="rect" alt="reset" title="RESET" viewport: '#viewport' id="reset" onclick="doClick(6)">
+					<area shape="rect" alt="simcard" title="SIMCARD"" viewport: '#viewport' id="simcard" onclick="doClick(7)">
+				</map>
+			</div>
+		</div>
+	</div>
+  <script src="script.js"></script>
+</body>
+</html>
