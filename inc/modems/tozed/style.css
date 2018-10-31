@@ -1,0 +1,24 @@
+#power{
+  position:absolute;
+  width:25px;
+  height:16px;
+  top:312px;
+  left:543px;
+  /* border: 1px solid red; */
+}
+#wifi{
+  position:absolute;
+  width:25px;
+  height:16px;
+  top:330px;
+  left:543px;
+  /* border: 1px solid red; */
+}
+#lte{
+  position:absolute;
+  width:25px;
+  height:16px;
+  top:347px;
+  left:543px;
+  /* border: 1px solid red; */
+}

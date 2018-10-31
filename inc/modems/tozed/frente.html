@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+	<title>arcadyan</title>
+	<link href='http://fonts.googleapis.com/css?family=Comfortaa:400,700' rel='stylesheet' type='text/css' />
+	<link href="../../css/estilo.css" rel="stylesheet">
+	<link href="style.css" rel="stylesheet">
+</head>
+<body>
+	<div class="container">
+
+		<div class="header">
+			<div class="volver">
+				<a href="../../../index.html#modems" id="volver"><span class="icon-circle-left"></span> Volver</a>
+			</div>
+			<div class="vista">
+				<h1>TOZED: vista de frente</h1>
+			</div>
+			<div class="frente">
+				<div id="frente" class="thumbnailherramientas">
+					<a href="atras.html"><img src="../../../img/Tozed/atras.png" alt="atras" title="Vista de atras" viewport: '#viewport'></a>
+				</div>
+			</div>
+		</div>
+		
+		<div class="title">
+			<h4>SIMULADOR GUI: 	<a href="../../simuladoresModems/Tozed/index.html" target="_blank">192.168.100.1</a></h4>
+		</div>
+	
+		<div class="center">
+			<div class="col-xs-2" id="carga">
+			<p>Presiona el indicador para tener mas información</p>
+			</div>
+			<div class="col-xs-8" id="arcadyanFrente">
+				<img src="../../../img/Tozed/frente.png" alt="arcadyanFrente" usemap="#arcadyanFrente" >
+	
+				<map name="arcadyanFrente">
+							<area shape="rect" alt="power" title="POWER" viewport: '#viewport' id="power" onclick="doClick(0)">
+							<area shape="rect" alt="wifi" title="WIFI" viewport: '#viewport' id="wifi" onclick="doClick(1)">
+							<area shape="rect" alt="lte" title="4G LTE" viewport: '#viewport' id="lte" onclick="doClick(2)">
+				</map>
+			</div>
+		</div>
+	</div>
+  <script src="script.js"></script>
+  <script type="text/javascript">
+    const carga2 = document.getElementById('arcadyanFrente');
+    carga2.addEventListener('click', (event)=>{
+      console.log(event);
+    });
+  </script>
+</body>
+</html>
