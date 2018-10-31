@@ -1,0 +1,79 @@
+body{
+  margin: 0 auto;
+  font-family: Helvetica, Arial, sans-serif;
+  font-size: 14px;
+  line-height: 1.42857143;
+}
+.container{
+  display: flex;
+  margin: 0 -20px 0 20px;
+  padding: 0 15px;
+}
+.login{
+  width: 25%;
+  padding: 50px 15px 0 15px; 
+}
+.login .form{
+  background-color: #f3f3f3;
+  border: 1px solid #fff;
+  padding: 20px 10px 50px 10px;
+  border-radius: 5px;
+  box-shadow: 5px 5px 5px rgba(20%,20%,40%,0.5);
+}
+.login .form .logo{
+  margin: 0 auto;
+  width: 200px;
+}
+.login .form .logo img{
+  height: auto;
+  max-width: 100%;
+}
+.login .form .form-user{
+  margin: 0 -15px 15px -15px;
+}
+.form-user .loginUser{
+  margin: 0 auto;
+  padding: 0 15px;
+  font-weight: 700;
+}
+.form-user input{
+  margin: 6px 0px 6px 16px;
+  background-color: #f1f1f1;
+  color: #000000;
+  border: none;
+  border-radius: 2px;
+  height: 40px;
+  width: 89%;
+}
+.login .form .form-validate{
+  margin: 0 -15px 15px -15px;
+}
+.login .form .form-validate button{
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  padding: 10px;
+  width: 89%;
+  text-align: center;
+  color: white;
+  border-radius: 4px;
+}
+.form .form-validate .inicio{
+  background-color: #00aeef;
+  border-bottom: 3px solid #0091ca;
+}
+.form .form-validate .idioma{
+  background-color: #0073ae;
+  border-bottom: 3px solid #005885;
+  margin-bottom: 4px;
+}
+.form .form-validate .ayuda{
+  background-color: #f99d25;
+  border-bottom: 3px solid #f58a00;
+}
+
+.info{
+  width: 75%;
+  padding: 0 15px;
+  margin: 20px 0;
+}

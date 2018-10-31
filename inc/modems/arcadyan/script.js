@@ -35,7 +35,7 @@ var carga = document.getElementById('carga');
 					carga.innerHTML = "<h3>ON/OFF</h3><p><strong>Encendido (PWR):</strong> </p><p>El modem esta encendido.</p><p><strong>Apagado (PWR):</strong></p><p>El modem esta apagado.</p>";
           break;
         case 11:
-					carga.innerHTML = "<h3>INTERNET</h3><p><strong>Encendido:</strong> </p><p>Hay servicio de internet.</p><p><strong>Apagado o Intermitente:</strong></p><p>No hay servicio de internet.</p>";
+					carga.innerHTML = "<h3>INTERNET</h3><p><strong>Encendido:</strong> </p><p>Hay servicio de internet.</p><p><strong>Apagado o Intermitente	:</strong></p><p>No hay servicio de internet.</p>";
           break;
         case 12:
 					carga.innerHTML = "<h3>DATA</h3><p><strong>Encendido:</strong> </p><p>Hay conexión con la radio base.</p><p><strong>Apagado:</strong></p><p>No hay conexión con la radio base.</p>";
