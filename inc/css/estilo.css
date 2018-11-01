@@ -84,5 +84,6 @@ body{
   width: 144.3px;
 }
 .center .col-xs-8{
+  position: relative;
   width: 800px;
 }

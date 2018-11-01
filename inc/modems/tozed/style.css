@@ -1,24 +1,27 @@
 #power{
-  position:absolute;
-  width:25px;
-  height:16px;
-  top:312px;
-  left:543px;
+  position: absolute;
+  width: 40px;
+  height: 16px;
+  top: 117px;
+  left: 177px;
+  cursor: pointer;
   /* border: 1px solid red; */
 }
 #wifi{
-  position:absolute;
-  width:25px;
-  height:16px;
-  top:330px;
-  left:543px;
+  position: absolute;
+  width: 40px;
+  height: 16px;
+  top: 134px;
+  left: 177px;
+  cursor: pointer;
   /* border: 1px solid red; */
 }
 #lte{
-  position:absolute;
-  width:25px;
-  height:16px;
-  top:347px;
-  left:543px;
+  position: absolute;
+  width: 40px;
+  height: 16px;
+  top: 151px;
+  left: 177px;
+  cursor: pointer;
   /* border: 1px solid red; */
 }
