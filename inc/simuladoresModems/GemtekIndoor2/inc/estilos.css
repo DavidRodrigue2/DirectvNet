@@ -1,0 +1,104 @@
+body{
+  margin: 0 auto;
+  font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+  font-size: 14px;
+  line-height: 1.42857143;
+}
+.header{
+  height: 62px;
+  display: flex;
+  justify-content: space-between;
+  border-bottom: 5px solid #e1e1e1;
+  background: linear-gradient(to bottom, #fbfbfb 0%,#e9e9e9 100%);
+}
+.header .logo{
+  display: flex;
+}
+.header .logo .dtv{
+  width: 200px;
+  height: 43px;
+  padding-top: 14px;
+}
+.header .logo p{
+  color: #1b2c5d;
+  padding-top: 19px;
+}
+.header .logo .signal{
+  margin-top: 20px;
+  width: 47px;
+  height: 45px;
+  background-image: url(../img/icons/Signal.png);
+  background-position: bottom;
+  background-repeat: no-repeat;
+}
+.header .logo .wifi2{
+  margin-top: 20px;
+  width: 33px;
+  height: 35px;
+  background-image: url(../img/icons/WifiStatus.png);
+  background-position-y: -62px;
+  background-position-x: 1px;
+  background-repeat: no-repeat;
+}
+.header .logo .wifi5{
+  margin-top: 20px;
+  width: 33px;
+  height: 35px;
+  background-image: url(../img/icons/WifiStatus.png);
+  background-position-y: -94px;
+  background-position-x: 1px;
+  background-repeat: no-repeat;
+}
+
+.header .login{
+  display: flex;
+  justify-content: space-evenly;
+  width: 190px;
+  align-items: center;
+}
+.header .login p{
+  display: flex;
+  font-size: 11px;
+  color: #1b2c5d;
+}
+/* ----------------------------------------------------------- */
+/* -----------------------FIN DE HEADER----------------------- */
+/* ----------------------------------------------------------- */
+/* -------------------------INICIO LEFT----------------------- */
+/* ----------------------------------------------------------- */
+.left{
+  position: relative;
+  width: 250px;
+  background: #1B2C5D;
+}
+
+.left .nivel1{
+  margin: 0;
+  padding: 8px 10px 8px 4px;
+  color: #ffffff;
+  height: 40px;
+  cursor: pointer;
+  line-height: 36px;
+}
+.left div img{
+  display: inline-block;
+}
+.left .nivel1:hover{
+  background-color: #00aeef;
+}
+.nivel2{
+  margin: 0;
+  padding: 10px 15px 10px 15px;
+  color: #ffffff;
+  height: 29px;
+  cursor: pointer;
+  line-height: 30px;
+}
+.nivel3{
+  margin: 0;
+  padding: 10px 15px 10px 55px;
+  color: #ffffff;
+  height: 29px;
+  cursor: pointer;
+  line-height: 30px;
+}
