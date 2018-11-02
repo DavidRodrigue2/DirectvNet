@@ -1,0 +1,148 @@
+#power{
+  position: absolute;
+  width: 30px;
+  height: 50px;
+  top: 345px;
+  left: 274px;
+  cursor: pointer;
+  /* border: 1px solid red; */
+}
+#sistema{
+  position: absolute;
+  width: 24px;
+  height: 50px;
+  top: 345px;
+  left: 307px;
+  cursor: pointer;
+  /* border: 1px solid red; */
+}
+#wps{
+  position: absolute;
+  width: 24px;
+  height: 50px;
+  top: 345px;
+  left: 336px;
+  cursor: pointer;
+  /* border: 1px solid red; */
+}
+#wlan{
+  position: absolute;
+  width: 30px;
+  height: 50px;
+  top: 345px;
+  left: 365px;
+  cursor: pointer;
+  /* border: 1px solid red; */
+}
+#lan4{
+  position: absolute;
+  width: 22px;
+  height: 50px;
+  top: 345px;
+  left: 399px;
+  cursor: pointer;
+  /* border: 1px solid red; */
+}
+#lan3{
+  position: absolute;
+  width: 22px;
+  height: 50px;
+  top: 345px;
+  left: 428px;
+  cursor: pointer;
+  /* border: 1px solid red; */
+}
+#lan2{
+  position: absolute;
+  width: 22px;
+  height: 50px;
+  top: 345px;
+  left: 457px;
+  cursor: pointer;
+  /* border: 1px solid red; */
+}
+#lan1{
+  position: absolute;
+  width: 22px;
+  height: 50px;
+  top: 345px;
+  left: 487px;
+  cursor: pointer;
+  /* border: 1px solid red; */
+}
+#wan{
+  position: absolute;
+  width: 30px;
+  height: 50px;
+  top: 345px;
+  left: 514px;
+  cursor: pointer;
+  /* border: 1px solid red; */
+}
+
+/* ---------------------------------------------------------
+------------------------ATRAS----------------------------
+--------------------------------------------------------- */
+#wanAtras{
+  position: absolute;
+  width: 74px;
+  height: 64px;
+  top: 163px;
+  left: 150px;
+  cursor: pointer;
+  /* border: 1px solid red; */
+}
+#lan1atras{
+  position: absolute;
+  width: 74px;
+  height: 64px;
+  top: 163px;
+  left: 235px;
+  cursor: pointer;
+  /* border: 1px solid red; */
+}
+#lan2atras{
+  position: absolute;
+  width: 74px;
+  height: 64px;
+  top: 163px;
+  left: 317px;
+  cursor: pointer;
+  /* border: 1px solid red; */
+}
+#lan3atras{
+  position: absolute;
+  width: 74px;
+  height: 64px;
+  top: 163px;
+  left: 400px;
+  cursor: pointer;
+  /* border: 1px solid red; */
+}
+#lan4atras{
+  position: absolute;
+  width: 74px;
+  height: 64px;
+  top: 163px;
+  left: 484px;
+  cursor: pointer;
+  /* border: 1px solid red; */
+}
+#reset{
+  position: absolute;
+  width: 62px;
+  height: 59px;
+  top: 182px;
+  left: 586px;
+  cursor: pointer;
+  /* border: 1px solid red; */
+}
+#enchufe{
+  position: absolute;
+  width: 62px;
+  height: 66px;
+  top: 168px;
+  left: 665px;
+  cursor: pointer;
+  /* border: 1px solid red; */
+}
