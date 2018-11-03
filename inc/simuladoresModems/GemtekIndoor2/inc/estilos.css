@@ -1,3 +1,42 @@
+@font-face {
+  font-family: 'icomoon';
+  src:  url('fonts/icomoon.eot?j8gw2p');
+  src:  url('fonts/icomoon.eot?j8gw2p#iefix') format('embedded-opentype'),
+    url('fonts/icomoon.ttf?j8gw2p') format('truetype'),
+    url('fonts/icomoon.woff?j8gw2p') format('woff'),
+    url('fonts/icomoon.svg?j8gw2p#icomoon') format('svg');
+  font-weight: normal;
+  font-style: normal;
+}
+[class^="icon-"], [class*=" icon-"] {
+  /* use !important to prevent issues with browser extensions that change fonts */
+  font-family: 'icomoon' !important;
+  speak: none;
+  font-style: normal;
+  font-weight: normal;
+  font-variant: normal;
+  text-transform: none;
+  line-height: 1;
+
+  /* Better Font Rendering =========== */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+.icon-play:before {
+  content: "\ea1c";
+  font-size: 10px;
+  padding: 0 20px 0 7px;
+}
+.icon-ctrl-left:before {
+  content: "\ea50";
+  color: white;
+  line-height: 3;
+}
+.icon-ctrl-down:before {
+  content: "\ea51";
+}
+
+
 body{
   margin: 0 auto;
   font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
@@ -69,6 +108,7 @@ body{
 .left{
   position: relative;
   width: 250px;
+  height: calc(100vh - 67px);
   background: #1B2C5D;
 }
 
@@ -79,12 +119,26 @@ body{
   height: 40px;
   cursor: pointer;
   line-height: 36px;
+  position: relative;
+
+  display: flex;
+  justify-content: space-between;
 }
-.left div img{
+.left .nivel1 img{
   display: inline-block;
+}
+.left .nivel1 p{
+  display: inline-block;
+  position: absolute;
+  top: 0;
 }
 .left .nivel1:hover{
   background-color: #00aeef;
+}
+.level2{
+  display: flex;
+  justify-content: space-between;
+  padding-right: 10px;
 }
 .nivel2{
   margin: 0;
@@ -96,9 +150,15 @@ body{
 }
 .nivel3{
   margin: 0;
-  padding: 10px 15px 10px 55px;
+  padding: 10px 15px 10px 40px;
   color: #ffffff;
   height: 29px;
   cursor: pointer;
   line-height: 30px;
+}
+.select{
+
+}
+.hidden{
+  display: none;
 }
