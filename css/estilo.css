@@ -17,10 +17,6 @@ body{
   font-size: 28px;
   color: #3399cc;
 }
-.header2{
-  position: absolute;
-  top: 0;
-}
 .fondo{
   position: relative;
   z-index: 1;
@@ -28,5 +24,5 @@ body{
 }
 .modems{
   position: relative;
-  top: 660px;
+  top: 0;
 }

@@ -139,6 +139,7 @@ body{
   display: flex;
   justify-content: space-between;
   padding-right: 10px;
+  cursor: pointer;
 }
 .nivel2{
   margin: 0;
@@ -156,9 +157,9 @@ body{
   cursor: pointer;
   line-height: 30px;
 }
-.select{
-
-}
 .hidden{
   display: none;
+}
+.select{
+  color: #00aeef;
 }

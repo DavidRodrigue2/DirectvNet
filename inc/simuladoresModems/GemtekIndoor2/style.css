@@ -48,7 +48,7 @@ body{
 .login .form .form-validate{
   margin: 0 -15px 15px -15px;
 }
-.login .form .form-validate button{
+.login .form .form-validate a{
   display: block;
   margin-left: auto;
   margin-right: auto;
@@ -61,6 +61,7 @@ body{
 .form .form-validate .inicio{
   background-color: #00aeef;
   border-bottom: 3px solid #0091ca;
+  text-decoration: none;
 }
 .form .form-validate .idioma{
   background-color: #0073ae;
