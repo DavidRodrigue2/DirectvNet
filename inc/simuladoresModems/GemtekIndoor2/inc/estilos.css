@@ -30,7 +30,6 @@
 .icon-ctrl-left:before {
   content: "\ea50";
   color: white;
-  line-height: 3;
 }
 .icon-ctrl-down:before {
   content: "\ea51";
@@ -108,54 +107,57 @@ body{
 .left{
   position: relative;
   width: 250px;
-  height: calc(100vh - 67px);
+  /* height: calc(100vh - 67px); */
+  /* height: 100vh; */
   background: #1B2C5D;
 }
-
-.left .nivel1{
+.nivel1{
   margin: 0;
-  padding: 8px 10px 8px 4px;
-  color: #ffffff;
-  height: 40px;
+  padding: 0;
+  color: #ebd4d4;
   cursor: pointer;
-  line-height: 36px;
+  line-height: 29px;
   position: relative;
-
-  display: flex;
-  justify-content: space-between;
 }
-.left .nivel1 img{
-  display: inline-block;
+.left .nivel1 .cont{
+  padding: 5px 10px 4px 4px;
+  height: 100%;
 }
-.left .nivel1 p{
-  display: inline-block;
-  position: absolute;
-  top: 0;
-}
-.left .nivel1:hover{
+.left .nivel1 .cont:hover{
   background-color: #00aeef;
 }
-.level2{
-  display: flex;
-  justify-content: space-between;
-  padding-right: 10px;
-  cursor: pointer;
+.nivel1 .cont .text{
+  margin: 0;
+  display: inline-block;
+  position: absolute;
+  top: 10px;
+}
+.icon-ctrl-left{
+  float: right; 
+  position: relative;
+  top: 12px;
+}
+.icon-play{
+  position: relative;
+}
+
+li{
+  list-style: none;
 }
 .nivel2{
   margin: 0;
-  padding: 10px 15px 10px 15px;
+  padding: 10px 10px 10px 10px;
   color: #ffffff;
-  height: 29px;
   cursor: pointer;
-  line-height: 30px;
+}
+.nivel2 p{
+  margin: 0;
 }
 .nivel3{
   margin: 0;
-  padding: 10px 15px 10px 40px;
+  padding: 10px 10px 10px 19px;
   color: #ffffff;
-  height: 29px;
   cursor: pointer;
-  line-height: 30px;
 }
 .hidden{
   display: none;
