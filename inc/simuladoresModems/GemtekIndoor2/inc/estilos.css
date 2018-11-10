@@ -107,8 +107,7 @@ body{
 .left{
   position: relative;
   width: 250px;
-  /* height: calc(100vh - 67px); */
-  /* height: 100vh; */
+  height: 100%;
   background: #1B2C5D;
 }
 .nivel1{
