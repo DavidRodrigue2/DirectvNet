@@ -1,0 +1,165 @@
+#power{
+  position: absolute;
+  width: 24px;
+  height: 21px;
+  top: 202px;
+  left: 294px;
+  cursor: pointer;
+  /* border: 1px solid red; */
+}
+#sistema{
+  position: absolute;
+  width: 24px;
+  height: 21px;
+  top: 202px;
+  left: 322px;
+  cursor: pointer;
+  /* border: 1px solid red; */
+}
+#wlan{
+  position: absolute;
+  width: 21px;
+  height: 21px;
+  top: 202px;
+  left: 350px;
+  cursor: pointer;
+  /* border: 1px solid red; */
+}
+#lan1{
+  position: absolute;
+  width: 22px;
+  height: 21px;
+  top: 202px;
+  left: 375px;
+  cursor: pointer;
+  /* border: 1px solid red; */
+}
+#lan2{
+  position: absolute;
+  width: 21px;
+  height: 21px;
+  top: 202px;
+  left: 402px;
+  cursor: pointer;
+  /* border: 1px solid red; */
+}
+#lan3{
+  position: absolute;
+  width: 20px;
+  height: 21px;
+  top: 202px;
+  left: 428px;
+  cursor: pointer;
+  /* border: 1px solid red; */
+}
+#lan4{
+  position: absolute;
+  width: 21px;
+  height: 21px;
+  top: 202px;
+  left: 454px;
+  cursor: pointer;
+  /* border: 1px solid red; */
+}
+#wan{
+  position: absolute;
+  width: 22px;
+  height: 21px;
+  top: 202px;
+  left: 480px;
+  cursor: pointer;
+  /* border: 1px solid red; */
+}
+#wps{
+  position: absolute;
+  width: 18px;
+  height: 21px;
+  top: 202px;
+  left: 508px;
+  cursor: pointer;
+  /* border: 1px solid red; */
+}
+/* ---------------------------------------------------------
+------------------------ATRAS----------------------------
+--------------------------------------------------------- */
+#reset{
+  position: absolute;
+  width: 20px;
+  height: 24px;
+  top: 144px;
+  left: 64px;
+  cursor: pointer;
+  /* border: 1px solid red; */
+}
+#enchufe{
+  position: absolute;
+  width: 38px;
+  height: 43px;
+  top: 128px;
+  left: 88px;
+  cursor: pointer;
+  /* border: 1px solid red; */
+}
+#onOff{
+  position: absolute;
+  width: 37px;
+  height: 40px;
+  top: 129px;
+  left: 128px;
+  cursor: pointer;
+  /* border: 1px solid red; */
+}
+#lan1atras{
+  position: absolute;
+  width: 48px;
+  height: 43px;
+  top: 125px;
+  left: 175px;
+  cursor: pointer;
+  /* border: 1px solid red; */
+}
+#lan2atras{
+  position: absolute;
+  width: 48px;
+  height: 43px;
+  top: 125px;
+  left: 225px;
+  cursor: pointer;
+  /* border: 1px solid red; */
+}
+#lan3atras{
+  position: absolute;
+  width: 48px;
+  height: 43px;
+  top: 125px;
+  left: 273px;
+  cursor: pointer;
+  /* border: 1px solid red; */
+}
+#lan4atras{
+  position: absolute;
+  width: 48px;
+  height: 43px;
+  top: 125px;
+  left: 323px;
+  cursor: pointer;
+  /* border: 1px solid red; */
+}
+#wanAtras{
+  position: absolute;
+  width: 53px;
+  height: 43px;
+  top: 125px;
+  left: 377px;
+  cursor: pointer;
+  /* border: 1px solid red; */
+}
+#wpsAtras{
+  position: absolute;
+  width: 29px;
+  height: 28px;
+  top: 141px;
+  left: 438px;
+  cursor: pointer;
+  /* border: 1px solid red; */
+}

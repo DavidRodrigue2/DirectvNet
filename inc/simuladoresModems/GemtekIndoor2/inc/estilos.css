@@ -110,22 +110,25 @@ body{
   height: 100%;
   background: #1B2C5D;
 }
+.left ol{
+  padding: 0;
+  margin: 0;
+}
 .nivel1{
   margin: 0;
-  padding: 0;
   color: #ebd4d4;
   cursor: pointer;
-  line-height: 29px;
+  /* line-height: 29px; */
   position: relative;
+  padding: 5px 10px 4px 4px;
 }
 .left .nivel1 .cont{
-  padding: 5px 10px 4px 4px;
   height: 100%;
 }
-.left .nivel1 .cont:hover{
+.left .nivel1:hover{
   background-color: #00aeef;
 }
-.nivel1 .cont .text{
+.nivel1 .text{
   margin: 0;
   display: inline-block;
   position: absolute;
@@ -134,7 +137,7 @@ body{
 .icon-ctrl-left{
   float: right; 
   position: relative;
-  top: 12px;
+  top: 5px;
 }
 .icon-play{
   position: relative;
@@ -154,7 +157,7 @@ li{
 }
 .nivel3{
   margin: 0;
-  padding: 10px 10px 10px 19px;
+  padding: 20px 10px 10px 19px;
   color: #ffffff;
   cursor: pointer;
 }
