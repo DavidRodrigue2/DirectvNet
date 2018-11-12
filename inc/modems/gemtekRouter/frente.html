@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+	<title>Gemtek Router</title>
+	<link href='https://fonts.googleapis.com/css?family=Comfortaa:400,700' rel='stylesheet' type='text/css' />
+	<link href="../../css/estilo.css" rel="stylesheet">
+	<link href="style.css" rel="stylesheet">
+</head>
+<body>
+	<div class="container">
+
+		<div class="header">
+			<div class="volver">
+				<a href="../../../index.html#modems" id="volver"><span class="icon-circle-left"></span> Volver</a>
+			</div>
+			<div class="vista">
+				<h1>GEMTEK ROUTER: vista de frente</h1>
+			</div>
+			<div class="frente">
+				<div id="frente" class="thumbnailherramientas">
+					<a href="atras.html"><img src="../../../img/GemtekRouter/atras2.jpg" alt="atras" title="Vista de atras"></a>
+				</div>
+			</div>
+		</div>
+		
+		<div class="title">
+			<h4>SIMULADOR GUI: 	<a href="../../simuladoresModems/GemtekRouter/index.html" target="_blank">192.168.0.1</a></h4>
+		</div>
+	
+		<div class="center">
+			<div class="col-xs-2" id="carga">
+			<p>Presiona el indicador para tener mas información</p>
+			</div>
+			<div class="col-xs-8" id="gemtekFrente">
+				<img src="../../../img/GemtekRouter/frente.jpg" alt="gemtekFrente">
+				<div alt="sistema" title="DIAGNOSTICO" id="sistema" onclick="doClick(0)"></div>
+				<div alt="wan" title="WAN" id="wan" onclick="doClick(1)"></div>
+				<div alt="wlan" title="WLAN" id="wlan" onclick="doClick(2)"></div>
+				<div alt="wps" title="WPS" id="wps" onclick="doClick(3)"></div>
+				<div alt="power" title="POWER" id="power" onclick="doClick(4)"></div>
+			</div>
+		</div>
+	</div>
+  <script src="script.js"></script>
+</body>
+</html>

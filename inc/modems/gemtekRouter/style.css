@@ -1,0 +1,112 @@
+#sistema{
+  position: absolute;
+  width: 34px;
+  height: 66px;
+  top: 402px;
+  left: 274px;
+  cursor: pointer;
+  /* border: 1px solid red; */
+}
+#wan{
+  position: absolute;
+  width: 30px;
+  height: 65px;
+  top: 402px;
+  left: 325px;
+  cursor: pointer;
+  /* border: 1px solid red; */
+}
+#wlan{
+  position: absolute;
+  width: 30px;
+  height: 65px;
+  top: 402px;
+  left: 375px;
+  cursor: pointer;
+  /* border: 1px solid red; */
+}
+#wps{
+  position: absolute;
+  width: 30px;
+  height: 65px;
+  top: 402px;
+  left: 422px;
+  cursor: pointer;
+  /* border: 1px solid red; */
+}
+#power{
+  position: absolute;
+  width: 30px;
+  height: 65px;
+  top: 402px;
+  left: 471px;
+  cursor: pointer;
+  /* border: 1px solid red; */
+}
+
+/* ---------------------------------------------------------
+------------------------ATRAS----------------------------
+--------------------------------------------------------- */
+#reset{
+  position: absolute;
+  width: 48px;
+  height: 69px;
+  top: 246px;
+  left: 109px;
+  cursor: pointer;
+  /* border: 1px solid red; */
+}
+#lan1atras{
+  position: absolute;
+  width: 80px;
+  height: 83px;
+  top: 232px;
+  left: 169px;
+  cursor: pointer;
+  /* border: 1px solid red; */
+}
+#lan2atras{
+  position: absolute;
+  width: 80px;
+  height: 83px;
+  top: 232px;
+  left: 260px;
+  cursor: pointer;
+  /* border: 1px solid red; */
+}
+#lan3atras{
+  position: absolute;
+  width: 80px;
+  height: 83px;
+  top: 232px;
+  left: 344px;
+  cursor: pointer;
+  /* border: 1px solid red; */
+}
+#lan4atras{
+  position: absolute;
+  width: 80px;
+  height: 83px;
+  top: 232px;
+  left: 429px;
+  cursor: pointer;
+  /* border: 1px solid red; */
+}
+#wanAtras{
+  position: absolute;
+  width: 86px;
+  height: 88px;
+  top: 232px;
+  left: 533px;
+  cursor: pointer;
+  /* border: 1px solid red; */
+}
+#enchufe{
+  position: absolute;
+  width: 66px;
+  height: 88px;
+  top: 232px;
+  left: 635px;
+  cursor: pointer;
+  /* border: 1px solid red; */
+}

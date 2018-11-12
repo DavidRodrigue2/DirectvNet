@@ -1,0 +1,48 @@
+#lan{
+  position: absolute;
+  width: 91px;
+  height: 98px;
+  top: 217px;
+  left: 375px;
+  cursor: pointer;
+  /* border: 1px solid red; */
+}
+#simCard{
+  position: absolute;
+  width: 101px;
+  height: 102px;
+  top: 217px;
+  left: 506px;
+  cursor: pointer;
+  /* border: 1px solid red; */
+}
+/* ---------------------------------------------------------
+------------------------ATRAS----------------------------
+--------------------------------------------------------- */
+#wan{
+  position: absolute;
+  width: 157px;
+  height: 29px;
+  top: 127px;
+  left: 151px;
+  cursor: pointer;
+  /* border: 1px solid red; */
+}
+#energia{
+  position: absolute;
+  width: 118px;
+  height: 87px;
+  top: 7px;
+  left: 367px;
+  cursor: pointer;
+  /* border: 1px solid red; */
+}
+#lan{
+  position: absolute;
+  width: 111px;
+  height: 94px;
+  top: 257px;
+  left: 390px;
+  cursor: pointer;
+  /* border: 1px solid red; */
+}
