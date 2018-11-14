@@ -21,8 +21,8 @@
         <div class="form-validate">
           <a href="inc/login.html" class="inicio">Iniciar Sesión</a>
           <a class="idioma">Idioma</a>
-          <a class="ayuda">Centro de ayuda DIRECTV</a>
-          <a class="ayuda">Configuración rapida WiFi</a>
+          <a href="http://www.directv.com.co/ayuda/categories.aspx?FaId=115" target="_blank" class="ayuda">Centro de ayuda DIRECTV</a>
+          <a id="configWifi" class="ayuda">Configuración rapida WiFi</a>
         </div>
       </div>
     </div>
@@ -32,5 +32,72 @@
       </div>
     </div>
   </div>
+  <div class="overlay hidden" id="overlay">
+    <div class="content-modal">
+      <div class="modal-header">
+        <button class="close" id="close">x</button>
+        <h4 class="modal-title">Configuración rapida WiFi</h4>
+      </div>
+      <div class="modal-body">
+        <div class="WiFi">
+          <p class="body-title">WiFi 2.4 GHz</p>
+          <p class="name">Nombre de Red Wi-Fi</p>
+          <input type="text" class="valueName" value="DIRECTV_034658">
+          <p class="name">Contraseña Wi-Fi</p>
+          <input type="password" class="valueName" id="pass" value="DIRECTV_034658">
+          <label>
+            <input type="checkbox" id="Checkpass" name="mostrar" value="mostrar Contraseña" /> mostrar Contraseña
+          </label>
+        </div>
+        <div class="WiFi_5G">
+          <p class="body-title">WiFi 5 GHz</p>
+          <p class="name">Nombre de Red Wi-Fi 5G</p>
+          <input type="text" class="valueName" value="DIRECTV_5G_034658">
+          <p class="name">Contraseña Wi-Fi 5G</p>
+          <input type="password" class="valueName" id="pass2" value="DIRECTV_5G_034658">
+          <label>
+            <input type="checkbox" id="Checkpass2" name="mostrar" value="mostrar Contraseña" /> mostrar Contraseña
+          </label>
+        </div>
+        <button id="cerrar">Cerrar</button>
+        <button>Iniciar sesión</button>
+      </div>
+    </div>
+  </div>
+  <script>
+    const pass = document.getElementById('pass');
+    const Checkpass = document.getElementById('Checkpass');
+    const pass2 = document.getElementById('pass2');
+    const Checkpass2 = document.getElementById('Checkpass2');
+    Checkpass.addEventListener('click', (event)=>{
+      if(Checkpass.checked == true){
+        pass.type = "text";
+      }
+      else{
+        pass.type = "password";
+      }
+    });
+    Checkpass2.addEventListener('click', (event)=>{
+      if(Checkpass2.checked == true){
+        pass2.type = "text";
+      }
+      else{
+        pass2.type = "password";
+      }
+    });
+    const close = document.getElementById('close');
+    const cerrar = document.getElementById('cerrar');
+    const overlay = document.getElementById('overlay');
+    const configWifi = document.getElementById('configWifi');
+
+    close.addEventListener('click', x);
+    cerrar.addEventListener('click', x);
+    function x(){
+      overlay.classList.add('hidden');
+    }
+    configWifi.addEventListener('click', (event)=>{
+      overlay.classList.remove('hidden');
+    });
+  </script>
 </body>
 </html>
