@@ -42,6 +42,9 @@ body{
   font-size: 14px;
   line-height: 1.42857143;
 }
+.container{
+  background: #F1F1F1;
+}
 .header{
   height: 62px;
   display: flex;
@@ -106,9 +109,10 @@ body{
 /* ----------------------------------------------------------- */
 .left{
   position: relative;
-  width: 250px;
+  width: 18%;
   height: 100%;
   background: #1B2C5D;
+  display: inline-block;
 }
 .left ol{
   padding: 0;
@@ -118,7 +122,6 @@ body{
   margin: 0;
   color: #ebd4d4;
   cursor: pointer;
-  /* line-height: 29px; */
   position: relative;
   padding: 5px 10px 4px 4px;
 }
@@ -166,4 +169,18 @@ li{
 }
 .select{
   color: #00aeef;
+}
+/* ----------------------------------------------------------- */
+/* -------------------------FIN DE LEFT----------------------- */
+/* ----------------------------------------------------------- */
+/* -----------------------INICIO CENTRO----------------------- */
+/* ----------------------------------------------------------- */
+.centro{
+  width: 82%;
+  display: inline-block;
+  position: absolute;
+  top: 67px;
+}
+.centro .intro img{
+  width: 100%;
 }
