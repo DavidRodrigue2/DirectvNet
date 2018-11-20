@@ -81,116 +81,144 @@
         <img src="img/Wifi-estado.jpg" alt="Wifi estado">
       </div>
       <div class="WifiAjustes">
-        <div class="ajustes">
-          <table>
-            <tr><td>Ajustes Inalámbricos</td></tr>
-            <tr>
-              <td>Estado de interfaz</td>
-              <td>
-                <button disabled="disabled">Habilitar</button>
-                <button>Deshabilitar</button>
-              </td>
-            </tr>
-            <tr>
-              <td>Nombre de Red Wi-Fi</td>
-              <td><input type="text" value="DIRECTV_034658"/></td>
-            </tr>
-            <tr>
-              <td>Canal de Radio</td>
-              <td><select name="wifi-channel" id="wifi-channel">
-                <option value="0">Auto</option>
-                <option value="36">36</option>
-                <option value="40">40</option>
-                <option value="44">44</option>
-                <option value="48">48</option>
-                <option value="149">149</option>
-                <option value="153">153</option>
-                <option value="157">157</option>
-                <option value="161">161</option>
-                <option value="165">165</option>
-              </select></td>
-            </tr>
-            <tr>
-              <td>Modo de Trabajo</td>
-              <td><select name="Modo-trabajo" id="Modo-trabajo">
-                <option value="0">802.11b/g/n</option>
-                <option value="1">802.11g/n</option>
-                <option value="2">802.11b/g</option>
-                <option value="3">802.11g</option>
-                <option value="4">802.11n</option>
-                <option value="5">802.11b</option>
-              </select></td>
-            </tr>
-            <tr>
-              <td>Ancho de Banda (solo 11n)</td>
-              <td><select name="Ancho-banda" id="Ancho-banda">
-                <option value="0">20M</option>
-                <option value="1">20M/40M</option>
-              </select></td>
-            </tr>
-            <tr>
-              <td>Propagación Wi-Fi</td>
-              <td><select name="propagacion" id="propagacion">
-                <option value="0">Habilitar</option>
-                <option value="1">Deshabilitar</option>
-              </select></td>
-            </tr>
-            <tr>
-              <td>Isolación AP</td>
-              <td><select name="isolacion" id="isolacion">
-                <option value="0">Habilitar</option>
-                <option value="1">Deshabilitar</option>
-              </select></td>
-            </tr>
-          </table>
-        </div>
-        <div class="seguridad">
-          <table>
-            <tr><td>Seguridad</td></tr>
-            <tr>
-              <td>Configuración de Tipo de Seguridad</td>
-            </tr>
-            <tr>
-              <td>Autenticación</td>
-              <td><select name="autenticacion" id="autenticacion">
-                  <option value="0">Sistema abierto</option>
-                  <option value="1">802.1x</option>
-                  <option value="2">WEP auto</option>
-                  <option value="3">WPA2-Personal</option>
-                  <option value="4">WPA-personal</option>
-                  <option value="5" selected>WPA-WPA2-Personal Modo Mixto</option>
-                  <option value="6">WPA2-Empresa</option>
-                  <option value="7">WPA-empresa</option>
-                  <option value="8">WPA/WPA2-empresa Modo Mixto</option>
+        <h1 class="title">Ajustes</h1>
+        <div class="container">
+          <div class="bloque">
+            <table>
+              <tr><th colspan="2" class="table-title">Ajustes Inalámbricos</th></tr>
+              <tr>
+                <td class="table-left">Estado de interfaz</td>
+                <td>
+                  <button disabled="disabled">Habilitar</button>
+                  <button class="active">Deshabilitar</button>
+                </td>
+              </tr>
+              <tr>
+                <td class="table-left">Nombre de Red Wi-Fi</td>
+                <td class="table-right"><input type="text" class="option2" value="DIRECTV_034658"/></td>
+              </tr>
+              <tr>
+                <td class="table-left">Canal de Radio</td>
+                <td class="table-right"><select class="option" name="wifi-channel" id="wifi-channel">
+                  <option value="0">Auto</option>
+                  <option value="36">36</option>
+                  <option value="40">40</option>
+                  <option value="44">44</option>
+                  <option value="48">48</option>
+                  <option value="149">149</option>
+                  <option value="153">153</option>
+                  <option value="157">157</option>
+                  <option value="161">161</option>
+                  <option value="165">165</option>
                 </select></td>
-            </tr>
-            <tr>
-              <td>Encriptado</td>
-              <td><select name="Encriptado" id="Encriptado">
-                <option value="0">TKIP/AES</option>
-                <option value="1">TKIP</option>
-                <option value="2">AES</option>
-              </select></td>
-            </tr>
-            <tr>
-              <td>Intervalo Rekey</td>
-              <td><input type="text">3600</td>
-            </tr>
-            <tr>
-              <td>Contraseña Wi-Fi</td>
-              <td><input type="text">DIRECTV_034658</td>
-            </tr>
-            <tr>
-              <td>Ajustes protegido Wi-Fi (WPS)</td>
-            </tr>
-            <tr>
-              <td>Habilitar WPS</td>
-              <td>
-                <input type="checkbox" name="" id="">
-                <button>WPS</button>
-              </td>
-            </tr>
-          </table>
+              </tr>
+              <tr>
+                <td class="table-left">Modo de Trabajo</td>
+                <td class="table-right"><select class="option" name="Modo-trabajo" id="Modo-trabajo">
+                  <option value="0">802.11b/g/n</option>
+                  <option value="1">802.11g/n</option>
+                  <option value="2">802.11b/g</option>
+                  <option value="3">802.11g</option>
+                  <option value="4">802.11n</option>
+                  <option value="5">802.11b</option>
+                </select></td>
+              </tr>
+              <tr>
+                <td class="table-left">Ancho de Banda (solo 11n)</td>
+                <td class="table-right"><select class="option" name="Ancho-banda" id="Ancho-banda">
+                  <option value="0">20M</option>
+                  <option value="1">20M/40M</option>
+                </select></td>
+              </tr>
+              <tr>
+                <td class="table-left">Propagación Wi-Fi</td>
+                <td class="table-right"><select class="option" name="propagacion" id="propagacion">
+                  <option value="0">Habilitar</option>
+                  <option value="1">Deshabilitar</option>
+                </select></td>
+              </tr>
+              <tr>
+                <td class="table-left">Isolación AP</td>
+                <td class="table-right"><select class="option" name="isolacion" id="isolacion">
+                  <option value="0">Habilitar</option>
+                  <option value="1">Deshabilitar</option>
+                </select></td>
+              </tr>
+            </table>
+          </div>
+          <div class="bloque">
+            <table>
+              <tr><th colspan="2" class="table-title">Seguridad</th></tr>
+              <tr>
+                <td colspan="2" class="table-subtitle">Configuración de Tipo de Seguridad</td>
+              </tr>
+              <tr>
+                <td class="table-left">Autenticación</td>
+                <td class="table-right"><select class="option" name="autenticacion" id="autenticacion">
+                    <option value="0">Sistema abierto</option>
+                    <option value="1">802.1x</option>
+                    <option value="2">WEP auto</option>
+                    <option value="3">WPA2-Personal</option>
+                    <option value="4">WPA-personal</option>
+                    <option value="5" selected>WPA-WPA2-Personal Modo Mixto</option>
+                    <option value="6">WPA2-Empresa</option>
+                    <option value="7">WPA-empresa</option>
+                    <option value="8">WPA/WPA2-empresa Modo Mixto</option>
+                  </select></td>
+              </tr>
+              <tr>
+                <td class="table-left">Encriptado</td>
+                <td class="table-right"><select class="option" name="Encriptado" id="Encriptado">
+                  <option value="0">TKIP/AES</option>
+                  <option value="1">TKIP</option>
+                  <option value="2">AES</option>
+                </select></td>
+              </tr>
+              <tr>
+                <td colspan="2" class="table-subtitle">Ajustes Pre-Compartidos</td>
+              </tr>
+              <tr>
+                <td class="table-left">Intervalo Rekey</td>
+                <td class="table-right"><input type="text" class="option2" value="3600"></td>
+              </tr>
+              <tr>
+                <td class="table-left">Contraseña Wi-Fi</td>
+                <td class="table-right"><input type="text" class="option2" value="DIRECTV_034658"></td>
+              </tr>
+              <tr>
+                <td colspan="2" class="table-subtitle">Ajustes protegido Wi-Fi (WPS)</td>
+              </tr>
+              <tr>
+                <td class="table-left">Habilitar WPS</td>
+                <td class="table-right">
+                  <input type="checkbox" name="" id="">
+                  <button class="active">WPS Button</button>
+                </td>
+              </tr>
+            </table>
+          </div>
+          <div class="bloque">
+            <table>
+              <tr><th colspan="2" class="table-title">Lista de Control de Accesos</th></tr>
+              <tr>
+                <td colspan="2" class="table-subtitle">Configuración de Tipo de Seguridad</td>
+              </tr>
+              <tr>
+                <td class="table-left">Autenticación</td>
+                <td class="table-right"><select class="option" name="autenticacion" id="autenticacion">
+                    <option value="0">Sistema abierto</option>
+                    <option value="1">802.1x</option>
+                    <option value="2">WEP auto</option>
+                    <option value="3">WPA2-Personal</option>
+                    <option value="4">WPA-personal</option>
+                    <option value="5" selected>WPA-WPA2-Personal Modo Mixto</option>
+                    <option value="6">WPA2-Empresa</option>
+                    <option value="7">WPA-empresa</option>
+                    <option value="8">WPA/WPA2-empresa Modo Mixto</option>
+                  </select></td>
+              </tr>
+            </table>
+          </div>
         </div>
       </div>
     </div>
