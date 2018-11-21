@@ -190,6 +190,9 @@ li{
 .centro .WifiAjustes5G{
   padding-top: 17px;
 }
+.centro .configLan{
+  padding-top: 17px;
+}
 .centro h1{
   margin: 0;
   margin-left: 5%;
@@ -257,4 +260,66 @@ li{
 }
 .centro .configWan{
   padding-top: 17px;
+}
+.centro .configLan .ip{
+  width: 42px;
+  text-align: center;
+  border-radius: 2px;
+  border: 1px solid grey;
+  padding: 4px;
+}
+.centro .container .bloque2{
+  width: 965px;
+  border: 2px solid #00aeef;
+  border-radius: 7px;
+  display: inline-grid;
+  margin-left: 58px;
+  margin-top: 10px;
+}
+.centro .bloque2 table{
+  border-spacing: 0;
+  padding-bottom: 13px;
+}
+.centro .bloque2 .table-title2{
+  background: #00aeef;
+  height: 30px;
+  color: white;
+  text-align: left;
+}
+.centro .bloque2 .table-left{
+  text-align: left;
+}
+.centro .bloque2 .table-right{
+  text-align: right;
+  padding-right: 10px;
+}
+.centro .bloque2 .table-right button{
+  background: gray;
+  color: white;
+  border: 1px solid white;
+  padding: 3px 14px;
+  border-radius: 3px;
+}
+.centro .bloque2 .addRegla{
+  text-align: center;
+}
+.centro .bloque2 .reglas{
+  text-align: center;
+}
+.centro .bloque2 .newRegla{
+  text-align: center;
+}
+.centro .bloque2 .newRegla input{
+  border: 1px solid gray;
+  border-radius: 3px;
+  padding: 3px;
+}
+.centro .bloque2 .newRegla .host input{
+  width: 150px;
+}
+.centro .bloque2 .newRegla .mac input{
+  width: 45px;
+}
+.centro .bloque2 .newRegla .dirIp input{
+  width: 31px;
 }
