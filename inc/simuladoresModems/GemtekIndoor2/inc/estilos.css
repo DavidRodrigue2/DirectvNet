@@ -187,21 +187,24 @@ li{
 .centro .WifiAjustes{
   padding-top: 17px;
 }
-.centro .WifiAjustes h1{
+.centro .WifiAjustes5G{
+  padding-top: 17px;
+}
+.centro h1{
   margin: 0;
   margin-left: 5%;
   font-size: 18px;
   color: gray;
   font-weight: 500;
 }
-.centro .WifiAjustes .container .bloque{
+.centro .container .bloque{
   width: 450px;
   border: 2px solid #00aeef;
   border-radius: 7px;
   display: inline-grid;
   margin-left: 58px;
 }
-.centro .WifiAjustes .bloque table{
+.centro .bloque table{
   width: 100%;
   border-spacing: 0;
 }
@@ -216,39 +219,42 @@ li{
   padding-left: 10px;
   font-size: 14px;
 }
-.centro .WifiAjustes .bloque tr{
+.centro .bloque tr{
   height: 40px;
 }
-.centro .WifiAjustes .bloque .option{
+.centro .bloque .option{
   border: 1px solid grey;
   border-radius: 4px;
   height: 33px;
   padding: 0 0 0 10px;
   width: 95%;
 }
-.centro .WifiAjustes .bloque .option2{
+.centro .bloque .option2{
   border: 1px solid grey;
   border-radius: 4px;
   height: 33px;
   padding: 0 0 0 10px;
   width: 90%;
 }
-.centro .WifiAjustes .bloque .table-left{
+.centro .bloque .table-left{
   width: 40%;
   padding-left: 10px;
   font-size: 12px;
   font-weight: 600;
 }
-.centro .WifiAjustes .bloque .table-right{
+.centro .bloque .table-right{
   width: 60%;
 }
 .centro .bloque button{
   border: 1px solid gray;
   border-radius: 4px;
   padding: 7px;
+  cursor: pointer;
 }
 .centro .bloque .active{
   background: #00aeef;
   color: white;
-  
+}
+.centro .configWan{
+  padding-top: 17px;
 }
