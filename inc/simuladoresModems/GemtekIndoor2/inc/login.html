@@ -396,7 +396,7 @@
           </div>
         </div>
       </div>
-      <div class="configLan">
+      <div class="configLan hidden">
         <h1>Condiguración LAN</h1>
         <div class="container">
           <div class="bloque">
@@ -482,7 +482,282 @@
                 </td>
                 <td class="dirIp">192.168.100.<input type="text"></td>
                 <td class="habilitar"><input type="checkbox"></td>
-                <td class="eliminar"></td>
+                <td class="eliminar" id="eliminar">
+                  <span class="icon-delete"></span>
+                </td>
+              </tr>
+            </table>
+          </div>
+        </div>
+      </div>
+      <div class="enrutador hidden">
+        <h1>Enrutador de puertos</h1>
+        <div class="container">
+          <div class="bloque2">
+            <table>
+              <tr class="table-title2">
+                <th colspan="5" class="table-left">Ajustes</th>
+                <td class="table-right"><button id="agregar2">Agregar+</button></td>
+              </tr>
+              <tr class="reglas">
+                <td rowspan="2">Protocolo</td>
+                <td>Puerto WAN</td>
+                <td>Puerto LAN</td>
+                <td rowspan="2">LAN IP</td>
+                <td rowspan="2">Habilitar</td>
+                <td rowspan="2">Eliminar</td>
+              </tr>
+              <tr class="time">
+                <td>Comienzo  / Fin</td>
+                <td>Comienzo  / Fin</td>
+              </tr>
+              <tr class="newRegla hidden" id="newRegla2">
+                <td class="host">
+                  <select name="protocolo">
+                    <option value="0">TCP</option>
+                    <option value="1">UDP</option>
+                  </select>
+                </td>
+                <td class="mac">
+                  <input type="text">
+                  <input type="text">
+                </td>
+                <td class="mac">
+                  <input type="text">
+                  <input type="text">
+                </td>
+                <td class="dirIp">192.168.100.<input type="text"></td>
+                <td class="habilitar"><input type="checkbox"></td>
+                <td class="eliminar" id="eliminar2">
+                  <span class="icon-delete"></span>
+                </td>
+              </tr>
+            </table>
+          </div>
+        </div>
+      </div>
+      <div class="trigger hidden">
+        <h1>Port Trigger</h1>
+        <div class="container">
+          <div class="bloque2">
+            <table>
+              <tr class="table-title2">
+                <th colspan="4" class="table-left">Ajustes</th>
+                <td class="table-right"><button id="agregar3">Agregar+</button></td>
+              </tr>
+              <tr class="reglas">
+                <td>Nombre de Aplicación</td>
+                <td>Rando Desencadenado</td>
+                <td>Rango Reenviado</td>
+                <td>Habilitar</td>
+                <td>Eliminar</td>
+              </tr>
+              <tr class="newRegla hidden" id="newRegla3">
+                <td class="rango">
+                  <input type="text">
+                </td>
+                <td class="rango">
+                  <input type="text"> ~
+                  <input type="text">
+                </td>
+                <td class="rango">
+                  <input type="text"> ~
+                  <input type="text">
+                </td>
+                <td class="habilitar"><input checked type="checkbox"></td>
+                <td class="eliminar" id="eliminar3">
+                  <span class="icon-delete"></span>
+                </td>
+              </tr>
+            </table>
+          </div>
+        </div>
+      </div>
+      <div class="MGMT hidden">
+        <h1>Servicio MGMT</h1>
+        <div class="container">
+          <div class="bloque">
+            <table>
+              <tr><th colspan="2" class="table-title">Configuración DDNS</th></tr>
+              <tr>
+                <td class="table-left">Habilitar DDNS</td>
+                <td class="table-right">
+                  <input type="checkbox" id="ddns" class="ddns">
+                </td>
+              </tr>
+              <tr>
+                <td class="table-left">Proveedor de Servicio DDNS</td>
+                <td class="table-right">
+                  <select name="" id="">
+                    <option value="0">dyndns.org</option>
+                  </select>
+                </td>
+              </tr>
+              <tr class="hidden" id="nameDDNS">
+                <td class="table-left">Nombre de Usuario DDNS</td>
+                <td class="table-right">
+                  <input type="text" class="ip2">
+                </td>
+              </tr>
+              <tr class="hidden" id="passDDNS">
+                <td class="table-left">Contraseña DDNS</td>
+                <td class="table-right">
+                  <input type="text" class="ip2">
+                </td>
+              </tr>
+              <tr class="hidden" id="hostDDNS">
+                <td class="table-left">Nombre de Host DDNS</td>
+                <td class="table-right">
+                  <input type="text" class="ip2">
+                </td>
+              </tr>
+            </table>
+          </div>
+          <div class="bloque">
+            <table>
+              <tr><th colspan="2" class="table-title">Servicio HTTPs</th></tr>
+              <tr>
+                <td class="table-left">Puerto HTTPs</td>
+                <td class="table-right">
+                    <input type="text" disabled class="ip" value="443">
+                </td>
+              </tr>
+            </table>
+          </div>
+        </div>
+      </div>
+      <div class="IPV6estado hidden">
+        <h1>Estado</h1>
+        <div class="container">
+          <div class="bloque">
+            <table>
+              <tr><th colspan="2" class="table-title">Estado IPV6</th></tr>
+              <tr>
+                <td class="table-left">Tipo de Conexión WAN</td>
+                <td class="table-right">AutoConfiguration(SLAAC/DHCPV6)</td>
+              </tr>
+              <tr>
+                <td class="table-left">WAN Dirección IPV6</td>
+                <td class="table-right">2803:2a80:2553:5b00:1:1:9c7d:3c7d</td>
+              </tr>
+              <tr>
+                <td class="table-left">WAN IPV6 Link-Local Address</td>
+                <td class="table-right">fe80::1:1:9c7d:3c7d</td>
+              </tr>
+            </table>
+          </div>
+          <div class="bloque">
+            <table>
+              <tr><th colspan="2" class="table-title">Dirección de autoconfiguraciones LAN</th></tr>
+              <tr>
+                <td class="table-left">LAN Prefix Type</td>
+                <td class="table-right">Extend WAN Prefix</td>
+              </tr>
+              <tr>
+                <td class="table-left">LAN IPV6 Address</td>
+                <td class="table-right">2803:2a80:2553:5b00:a039:e3ff:feda:200e</td>
+              </tr>
+              <tr>
+                <td class="table-left">LAN IPV6 Link-Local Address</td>
+                <td class="table-right">fe80:a039:e3ff:feda:200e</td>
+              </tr>
+              <tr>
+                <td class="table-left">Tipo de autoconfiguración</td>
+                <td class="table-right">SLAAC+DHCP</td>
+              </tr>
+            </table>
+          </div>
+        </div>
+      </div>
+      <div class="IPV6ajustes hidden">
+        <h1>Estado</h1>
+        <div class="container">
+          <div class="bloque">
+            <table>
+              <tr><th colspan="2" class="table-title">Tipo de conexión de internet</th></tr>
+              <tr>
+                <td class="table-left">Tipo de Conexión IPV6: </td>
+                <td class="table-right">
+                  <select id="">
+                    <option value="0">AutoConfiguration(SLAAC-DHCPv6)</option>
+                  </select>
+                </td>
+              </tr>
+              <tr>
+                <td class="table-left">DNS desde: </td>
+                <td class="table-right">
+                  <select id="">
+                    <option value="0">Automático</option>
+                    <option value="1">Estático</option>
+                  </select>
+                </td>
+              </tr>
+            </table>
+          </div>
+          <div class="bloque">
+            <table>
+              <tr><th colspan="2" class="table-title">IPV6 LAN Address Setting</th></tr>
+              <tr>
+                <td class="table-left">LAN Prefix Type: </td>
+                <td class="table-right">
+                  <select name="" id="">
+                    <option value="0">Extend WAN Prefix</option>
+                    <option value="1">Prefix Delegation</option>
+                    <option value="2">Estático</option>
+                  </select>
+                </td>
+              </tr>
+              <tr>
+                <td class="table-left">LAN IPV6 Address: </td>
+                <td class="table-right">2803:2a80:2553:5b00:a039:e3ff:feda:200e</td>
+              </tr>
+              <tr>
+                <td class="table-left">LAN IPV6 Link-Local Address: </td>
+                <td class="table-right">fe80:a039:e3ff:feda:200e</td>
+              </tr>
+              <tr>
+                <td class="table-subtitle" colspan="2">Address AutoConfiguration Setting</td>
+              </tr>
+              <tr>
+                <td class="table-left">Auto IPv6 Address Assignment:</td>
+                <td class="table-right">
+                  <input type="checkbox" checked name="" id="">
+                </td>
+              </tr>
+            </table>
+          </div>
+        </div>
+      </div>
+      <div class="FirewallBasico">
+        <h1>Básico</h1>
+        <div class="container">
+          <div class="bloque">
+            <table>
+              <tr><th colspan="2" class="table-title">Ajustes</th></tr>
+              <tr>
+                <td class="table-left">Habilitar Firewall</td>
+                <td class="table-right">
+                  <input type="checkbox" name="" checked id="">
+                </td>
+              </tr>
+              <tr>
+                <td class="table-left">Dirección DMZ IP</td>
+                <td class="table-right">
+                  <input type="checkbox" name="" id="ip">
+                  192.168.100 <input type="text" id="dmz" disabled class="dmz">
+                </td>
+              </tr>
+              <tr>
+                <td class="table-left">Filtro Multicast</td>
+                <td class="table-right">
+                  <input type="checkbox" name="" id="">
+                </td>
+              </tr>
+              <tr>
+                <td class="table-left">Habilitar UPnP IGD</td>
+                <td class="table-right">
+                  <input type="checkbox" name="" checked id="">
+                </td>
               </tr>
             </table>
           </div>
@@ -494,8 +769,53 @@
   <script>
     const newRegla = document.getElementById('newRegla');
     const agregar = document.getElementById('agregar');
+    const eliminar = document.getElementById('eliminar');
+    const newRegla2 = document.getElementById('newRegla2');
+    const agregar2 = document.getElementById('agregar2');
+    const eliminar2 = document.getElementById('eliminar2');
+    const newRegla3 = document.getElementById('newRegla3');
+    const agregar3 = document.getElementById('agregar3');
+    const eliminar3 = document.getElementById('eliminar3');
+
+    const ddns = document.getElementById('ddns');
+    const nameDDNS = document.getElementById('nameDDNS');
+    const passDDNS = document.getElementById('passDDNS');
+    const hostDDNS = document.getElementById('hostDDNS');
+    ddns.addEventListener('click', (event)=>{
+      nameDDNS.classList.toggle('hidden');
+      passDDNS.classList.toggle('hidden');
+      hostDDNS.classList.toggle('hidden');
+    });
+
+
     agregar.addEventListener('click', (event)=>{
       newRegla.classList.remove('hidden');
+    });
+    eliminar.addEventListener('click', (event)=>{
+      newRegla.classList.add('hidden');
+    });
+    agregar2.addEventListener('click', (event)=>{
+      newRegla2.classList.remove('hidden');
+    });
+    eliminar2.addEventListener('click', (event)=>{
+      newRegla2.classList.add('hidden');
+    });
+    agregar3.addEventListener('click', (event)=>{
+      newRegla3.classList.remove('hidden');
+    });
+    eliminar3.addEventListener('click', (event)=>{
+      newRegla3.classList.add('hidden');
+    });
+
+    const ip = document.getElementById('ip');
+    const dmz = document.getElementById('dmz');
+    ip.addEventListener('click', (evet)=>{
+      if(dmz.disabled == false){
+        dmz.disabled = true;
+      }
+      else{
+        dmz.disabled = false;
+      }
     });
   </script>
 </body>
