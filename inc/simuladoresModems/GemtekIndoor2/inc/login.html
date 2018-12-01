@@ -21,7 +21,7 @@
         <p>Ajuste</p>
       </div>
     </div>
-    <div class="left">
+    <div class="left" id="left">
       <ol id="ol1"><div id="nivel1_1" class="nivel1" onclick="doClick(1)"><img src="../img/icons/LTE.png" alt=""><p class="text">Red LTE</p><span class="icon-ctrl-left" id="icon-left1"></span></div>
         <ul id="nivel2_11" class="nivel2 hidden">
           <p onclick="doClick(11)"><span class="icon-play"></span>Estado<span class="icon-ctrl-left" id="icon-left11"></span></p>
@@ -74,15 +74,15 @@
       <div class="intro hidden">
         <img src="img/intro.jpg" alt="intro">
       </div>
-      <div class="red hidden">
+      <div class="red hidden" id="left_1">
         <img src="img/red.jpg" alt="Red LTE">
       </div>
-      <div class="wifiEstado hidden">
+      <div class="wifiEstado hidden" id="left_2">
         <img src="img/Wifi-estado.jpg" alt="Wifi estado">
       </div>
-      <div class="WifiAjustes hidden">
-        <h1 class="title">Ajustes</h1>
+      <div class="WifiAjustes hidden" id="left_122">
         <div class="container">
+          <h1 class="title">Ajustes</h1>
           <div class="bloque">
             <table>
               <tr><th colspan="2" class="table-title">Ajustes Inalámbricos</th></tr>
@@ -219,11 +219,15 @@
               </tr>
             </table>
           </div>
+          <div class="cambios">
+              <button>Cancelar</button>
+              <button>Aplicar</button>
+            </div>
         </div>
       </div>
-      <div class="WifiAjustes5G hidden">
-        <h1 class="title">Ajustes</h1>
+      <div class="WifiAjustes5G hidden" id="left_123">
         <div class="container">
+          <h1 class="title">Ajustes</h1>
           <div class="bloque">
             <table>
               <tr><th colspan="2" class="table-title">Ajustes Inalámbricos</th></tr>
@@ -360,14 +364,18 @@
               </tr>
             </table>
           </div>
+          <div class="cambios">
+              <button>Cancelar</button>
+              <button>Aplicar</button>
+            </div>
         </div>
       </div>
-      <div class="RedEstado hidden">
+      <div class="RedEstado hidden" id="left_3">
         <img src="" alt="">
       </div>
-      <div class="configWan hidden">
-        <h1>Condiguración WAN</h1>
+      <div class="configWan hidden" id="left_32">
         <div class="container">
+          <h1>Condiguración WAN</h1>
           <div class="bloque">
             <table>
               <tr><th colspan="2" class="table-title">Basic Config</th></tr>
@@ -394,11 +402,15 @@
               </tr>
             </table>
           </div>
+          <div class="cambios">
+            <button>Cancelar</button>
+            <button>Aplicar</button>
+          </div>
         </div>
       </div>
-      <div class="configLan hidden">
-        <h1>Condiguración LAN</h1>
+      <div class="configLan hidden" id="left_33">
         <div class="container">
+          <h1>Condiguración LAN</h1>
           <div class="bloque">
             <table>
               <tr><th colspan="2" class="table-title">Configuración LAN</th></tr>
@@ -488,11 +500,15 @@
               </tr>
             </table>
           </div>
+          <div class="cambios">
+            <button>Cancelar</button>
+            <button>Aplicar</button>
+          </div>
         </div>
       </div>
-      <div class="enrutador hidden">
-        <h1>Enrutador de puertos</h1>
+      <div class="enrutador hidden" id="left_34">
         <div class="container">
+          <h1>Enrutador de puertos</h1>
           <div class="bloque2">
             <table>
               <tr class="table-title2">
@@ -534,11 +550,15 @@
               </tr>
             </table>
           </div>
+          <div class="cambios">
+            <button>Cancelar</button>
+            <button>Aplicar</button>
+          </div>
         </div>
       </div>
-      <div class="trigger hidden">
-        <h1>Port Trigger</h1>
+      <div class="trigger hidden" id="left_135">
         <div class="container">
+          <h1>Port Trigger</h1>
           <div class="bloque2">
             <table>
               <tr class="table-title2">
@@ -571,11 +591,15 @@
               </tr>
             </table>
           </div>
+          <div class="cambios">
+            <button>Cancelar</button>
+            <button>Aplicar</button>
+          </div>
         </div>
       </div>
-      <div class="MGMT hidden">
-        <h1>Servicio MGMT</h1>
+      <div class="MGMT hidden" id="left_35">
         <div class="container">
+          <h1>Servicio MGMT</h1>
           <div class="bloque">
             <table>
               <tr><th colspan="2" class="table-title">Configuración DDNS</th></tr>
@@ -624,11 +648,15 @@
               </tr>
             </table>
           </div>
+          <div class="cambios">
+            <button>Cancelar</button>
+            <button>Aplicar</button>
+          </div>
         </div>
       </div>
-      <div class="IPV6estado hidden">
-        <h1>Estado</h1>
+      <div class="IPV61 hidden" id="left_4">
         <div class="container">
+          <h1>Estado</h1>
           <div class="bloque">
             <table>
               <tr><th colspan="2" class="table-title">Estado IPV6</th></tr>
@@ -667,11 +695,15 @@
               </tr>
             </table>
           </div>
+          <div class="cambios">
+            <button>Refrescar</button>
+            <button>Automático</button>
+          </div>
         </div>
       </div>
-      <div class="IPV6ajustes hidden">
-        <h1>Estado</h1>
+      <div class="IPV62 hidden" id="left_42">
         <div class="container">
+          <h1>Ajustes</h1>
           <div class="bloque">
             <table>
               <tr><th colspan="2" class="table-title">Tipo de conexión de internet</th></tr>
@@ -726,11 +758,15 @@
               </tr>
             </table>
           </div>
+          <div class="cambios">
+            <button>Cancelar</button>
+            <button>Aplicar</button>
+          </div>
         </div>
       </div>
-      <div class="FirewallBasico">
-        <h1>Básico</h1>
+      <div class="Firewall1 hidden" id="left_5">
         <div class="container">
+          <h1>Básico</h1>
           <div class="bloque">
             <table>
               <tr><th colspan="2" class="table-title">Ajustes</th></tr>
@@ -761,62 +797,142 @@
               </tr>
             </table>
           </div>
+          <div class="cambios">
+            <button>Cancelar</button>
+            <button>Aplicar</button>
+          </div>
         </div>
       </div>
+      <div class="Firewall2 hidden" id="left_52">
+        <div class="container">
+          <h1>Restricción de Acceso</h1>
+          <div class="bloque2">
+            <table>
+              <tr class="table-title2">
+                <th colspan="4" class="table-left">Ajustes</th>
+                <td class="table-right"><button id="agregar3">Agregar+</button></td>
+              </tr>
+              <tr class="reglas">
+                <td>Nombre de Aplicación</td>
+                <td>Rando Desencadenado</td>
+                <td>Rango Reenviado</td>
+                <td>Habilitar</td>
+                <td>Eliminar</td>
+              </tr>
+              <tr class="newRegla hidden" id="newRegla3">
+                <td class="rango">
+                  <input type="text">
+                </td>
+                <td class="rango">
+                  <input type="text"> ~
+                  <input type="text">
+                </td>
+                <td class="rango">
+                  <input type="text"> ~
+                  <input type="text">
+                </td>
+                <td class="habilitar"><input checked type="checkbox"></td>
+                <td class="eliminar" id="eliminar3">
+                  <span class="icon-delete"></span>
+                </td>
+              </tr>
+            </table>
+          </div>
+          <div class="cambios">
+            <button>Cancelar</button>
+            <button>Aplicar</button>
+          </div>
+        </div>
+      </div>
+      <div class="Admin1 hidden" id="left_6">
+        <div class="container">
+          <h1>Cuenta</h1>
+          <div class="bloque">
+            <table>
+              <tr><th colspan="2" class="table-title">Cuenta usuario final</th></tr>
+              <tr>
+                <td class="table-left">Nombre de usuario anterior</td>
+                <td class="table-right">
+                  <input type="text" class="option2">
+                </td>
+              </tr>
+              <tr>
+                <td class="table-left">Contraseña anterior</td>
+                <td class="table-right">
+                  <input type="text" class="option2">
+                </td>
+              </tr>
+              <tr>
+                <td class="table-left">Nombre de usuario nuevo</td>
+                <td class="table-right">
+                  <input type="text" class="option2">
+                </td>
+              </tr>
+              <tr>
+                <td class="table-left">Nueva Contraseña</td>
+                <td class="table-right">
+                  <input type="text" class="option2">
+                </td>
+              </tr>
+              <tr>
+                <td class="table-left">Confirmar la Contraseña nueva</td>
+                <td class="table-right">
+                  <input type="text" class="option2">
+                </td>
+              </tr>
+            </table>
+          </div>
+          <div class="cambios">
+            <button>Cancelar</button>
+            <button>Aplicar</button>
+          </div>
+        </div>
+      </div>
+      <div class="Admin2 hidden" id="left_62">
+          <div class="container">
+            <h1>Configuración del Dispositivo</h1>
+            <div class="bloque">
+              <table>
+                <tr><th colspan="2" class="table-title">TimeOut/Actualizar Configuración</th></tr>
+                <tr>
+                  <td class="table-left">TimeOut de la Gestión de la Sesión</td>
+                  <td class="table-right">
+                    <input type="text" class="time" disabled value="10"> Minutos
+                  </td>
+                </tr>
+                <tr>
+                  <td class="table-left">Tiempo de Actualización GUI</td>
+                  <td class="table-right">
+                    <input type="text" class="time" disabled value="10"> Segundos
+                  </td>
+                </tr>
+              </table>
+            </div>
+            <div class="bloque">
+              <table>
+                <tr><th colspan="2" class="table-title">Nombre del Dispositivo</th></tr>
+                <tr>
+                  <td class="table-left">Nombre del Dispositivo Actual</td>
+                  <td class="table-right">
+                    <input type="text" class="name" value="DIRECTV_034658" disabled>
+                  </td>
+                </tr>
+                <tr>
+                  <td class="table-left">Nuevo Nombre del Dispositivo</td>
+                  <td class="table-right">
+                    <input type="text" class="name">
+                  </td>
+                </tr>
+              </table>
+            </div>
+            <div class="cambios">
+              <button>Cancelar</button>
+              <button>Aplicar</button>
+            </div>
+          </div>
+        </div>
     </div>
   </div>
   <script src="script.js"></script>
-  <script>
-    const newRegla = document.getElementById('newRegla');
-    const agregar = document.getElementById('agregar');
-    const eliminar = document.getElementById('eliminar');
-    const newRegla2 = document.getElementById('newRegla2');
-    const agregar2 = document.getElementById('agregar2');
-    const eliminar2 = document.getElementById('eliminar2');
-    const newRegla3 = document.getElementById('newRegla3');
-    const agregar3 = document.getElementById('agregar3');
-    const eliminar3 = document.getElementById('eliminar3');
-
-    const ddns = document.getElementById('ddns');
-    const nameDDNS = document.getElementById('nameDDNS');
-    const passDDNS = document.getElementById('passDDNS');
-    const hostDDNS = document.getElementById('hostDDNS');
-    ddns.addEventListener('click', (event)=>{
-      nameDDNS.classList.toggle('hidden');
-      passDDNS.classList.toggle('hidden');
-      hostDDNS.classList.toggle('hidden');
-    });
-
-
-    agregar.addEventListener('click', (event)=>{
-      newRegla.classList.remove('hidden');
-    });
-    eliminar.addEventListener('click', (event)=>{
-      newRegla.classList.add('hidden');
-    });
-    agregar2.addEventListener('click', (event)=>{
-      newRegla2.classList.remove('hidden');
-    });
-    eliminar2.addEventListener('click', (event)=>{
-      newRegla2.classList.add('hidden');
-    });
-    agregar3.addEventListener('click', (event)=>{
-      newRegla3.classList.remove('hidden');
-    });
-    eliminar3.addEventListener('click', (event)=>{
-      newRegla3.classList.add('hidden');
-    });
-
-    const ip = document.getElementById('ip');
-    const dmz = document.getElementById('dmz');
-    ip.addEventListener('click', (evet)=>{
-      if(dmz.disabled == false){
-        dmz.disabled = true;
-      }
-      else{
-        dmz.disabled = false;
-      }
-    });
-  </script>
 </body>
 </html>
