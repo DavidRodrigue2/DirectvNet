@@ -1,30 +1,45 @@
 function doClick(n){
-  // const left = document.getElementById('left');
-  // if(n >= 1 && n <= 8){
-  //   const ol = document.getElementById('ol'+n);
-  //   var level1 = ol.childElementCount - 1;
-  //   for(var i = 1; i<= level1; i++){
-  //     var x = (n * 10) + i;
-  //     const nivel2 = document.getElementById('nivel2_'+x);
-  //     nivel2.classList.toggle('hidden');
-  //   }
-  // }
-  // if(n >= 11 && n <= 73){
-  //   const nivel2 = document.getElementById('nivel2_'+n);
-  //   var level2 = nivel2.childElementCount - 1;
-  //   if(level2 >= 1){
-  //     var z = n;
-  //     for(var a = 1; a <= level2; a++){
-  //       const nivel3 = document.getElementById('nivel3_'+z);
-  //       nivel3.classList.remove('hidden');
-  //       z +=1;
-  //     }
-  //   }
-  // }
-  // const ol = document.getElementById('ol'+n);
-  // console.log(ol.childElementCount);  
+  //Mostrar contenido del centro
   const left_n = document.getElementById('left_'+n);
-  left_n.classList.remove('hidden');
+  // left_n.classList.remove('hidden');
+  // fin de mostrar contenido del centro
+
+  if(n < 9){
+    ocultar();
+    const nivel1 = document.getElementById('op'+n);
+    var cant = nivel1.childElementCount -1;
+    var x = (n * 10) + 1;
+    for(var i = 0; i< cant; i++){
+      const nivel2 = document.getElementById('op'+x);
+      nivel2.classList.toggle('hidden');
+      x+=1;
+    }
+  }
+  else if(n > 10 && n < 74){
+    const level2 = document.getElementById('op'+n);
+    var cant2 = level2.childElementCount -1;
+    if(cant2 != 0){
+      var z = n + 100;
+      for(var c = 0; c< cant2; c++){
+        const nivel3 = document.getElementById('op'+z);
+        nivel3.classList.toggle('hidden');
+        z+=1;
+      }
+    }
+  }
+}
+
+function ocultar(){
+  for(var m= 1; m< 9; m++){
+    const lv1  = document.getElementById('op'+m);
+    var w = lv1.childElementCount -1;
+    var f = (m*10) + 1;
+    for(var l = 0; l < w; l++){
+      const lv2  = document.getElementById('op'+f);
+      lv2.classList.add('hidden');
+      f+=1;
+    }
+  }
 }
 
 const newRegla = document.getElementById('newRegla');
