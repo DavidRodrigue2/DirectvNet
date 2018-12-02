@@ -1,18 +1,30 @@
 function doClick(n){
-  //Mostrar contenido del centro
   const left_n = document.getElementById('left_'+n);
-  // left_n.classList.remove('hidden');
-  // fin de mostrar contenido del centro
+  const left0 = document.getElementById('left_0');
+  left0.classList.add('hidden');
 
   if(n < 9){
     ocultar();
     const nivel1 = document.getElementById('op'+n);
     var cant = nivel1.childElementCount -1;
     var x = (n * 10) + 1;
-    for(var i = 0; i< cant; i++){
+    if(cant == 1){
       const nivel2 = document.getElementById('op'+x);
       nivel2.classList.toggle('hidden');
-      x+=1;
+      var j = x + 100;
+      const lv3 = document.getElementById('op'+j);
+      lv3.classList.remove('hidden');
+      left_n.classList.remove('hidden');
+    }
+    else{
+      for(var i = 0; i< cant; i++){
+        const nivel2 = document.getElementById('op'+x);
+        nivel2.classList.toggle('hidden');
+        x+=1;
+        if(i == 1){
+          left_n.classList.remove('hidden');
+        }
+      }
     }
   }
   else if(n > 10 && n < 74){
@@ -30,7 +42,9 @@ function doClick(n){
 }
 
 function ocultar(){
-  for(var m= 1; m< 9; m++){
+  for(var m= 1; m< 6; m++){
+    const left1  = document.getElementById('left_'+m);
+    left1.classList.add('hidden');
     const lv1  = document.getElementById('op'+m);
     var w = lv1.childElementCount -1;
     var f = (m*10) + 1;
@@ -38,9 +52,15 @@ function ocultar(){
       const lv2  = document.getElementById('op'+f);
       lv2.classList.add('hidden');
       f+=1;
+      if(l == 2){
+        console.log(f);
+        const left2 = document.getElementById('left_'+f);
+        left2.classList.add('hidden');
+      }
     }
   }
 }
+
 
 const newRegla = document.getElementById('newRegla');
 const agregar = document.getElementById('agregar');
