@@ -59,7 +59,7 @@
         <li id="op61" class="nivel2 hidden" onclick="doClick(61)"><p><span class="icon-play"></span>Cuenta</p></li>
         <li id="op62" class="nivel2 hidden" onclick="doClick(62)"><p><span class="icon-play"></span>Configuración del dispositivo</p></li>
         <li id="op63" class="nivel2 hidden" onclick="doClick(63)"><p><span class="icon-play"></span>Configuración de hora</p></li>
-        <li id="op64" class="nivel2 hidden" onclick="doClick(64)"><p><span class="icon-play"></span>Restablecer pordefecto</p></li>
+        <li id="op64" class="nivel2 hidden" onclick="doClick(64)"><p><span class="icon-play"></span>Restablecer por defecto</p></li>
         <li id="op65" class="nivel2 hidden" onclick="doClick(65)"><p><span class="icon-play"></span>Software</p></li>
       </ol>
       <ol id="op7"><div class="nivel1" onclick="doClick(7)"><img src="../img/icons/Monitoreo.png" alt=""><p class="text">Monitoreo</p><span class="icon-ctrl-left" id="icon-left1"></span></div>
@@ -80,7 +80,7 @@
       <div class="wifiEstado hidden" id="left_2">
         <img src="img/Wifi-estado.jpg" alt="Wifi estado">
       </div>
-      <div class="WifiAjustes hidden" id="left_122">
+      <div class="WifiAjustes hidden" id="left_22">
         <div class="container">
           <h1 class="title">Ajustes</h1>
           <div class="bloque">
@@ -371,7 +371,7 @@
         </div>
       </div>
       <div class="RedEstado hidden" id="left_3">
-        <img src="" alt="">
+        <img src="img/red.jpg" alt="">
       </div>
       <div class="configWan hidden" id="left_32">
         <div class="container">
@@ -889,47 +889,321 @@
         </div>
       </div>
       <div class="Admin2 hidden" id="left_62">
-          <div class="container">
-            <h1>Configuración del Dispositivo</h1>
-            <div class="bloque">
-              <table>
-                <tr><th colspan="2" class="table-title">TimeOut/Actualizar Configuración</th></tr>
-                <tr>
-                  <td class="table-left">TimeOut de la Gestión de la Sesión</td>
-                  <td class="table-right">
-                    <input type="text" class="time" disabled value="10"> Minutos
-                  </td>
-                </tr>
-                <tr>
-                  <td class="table-left">Tiempo de Actualización GUI</td>
-                  <td class="table-right">
-                    <input type="text" class="time" disabled value="10"> Segundos
-                  </td>
-                </tr>
-              </table>
-            </div>
-            <div class="bloque">
-              <table>
-                <tr><th colspan="2" class="table-title">Nombre del Dispositivo</th></tr>
-                <tr>
-                  <td class="table-left">Nombre del Dispositivo Actual</td>
-                  <td class="table-right">
-                    <input type="text" class="name" value="DIRECTV_034658" disabled>
-                  </td>
-                </tr>
-                <tr>
-                  <td class="table-left">Nuevo Nombre del Dispositivo</td>
-                  <td class="table-right">
-                    <input type="text" class="name">
-                  </td>
-                </tr>
-              </table>
-            </div>
-            <div class="cambios">
-              <button>Cancelar</button>
-              <button>Aplicar</button>
-            </div>
+        <div class="container">
+          <h1>Configuración del Dispositivo</h1>
+          <div class="bloque">
+            <table>
+              <tr><th colspan="2" class="table-title">TimeOut/Actualizar Configuración</th></tr>
+              <tr>
+                <td class="table-left">TimeOut de la Gestión de la Sesión</td>
+                <td class="table-right">
+                  <input type="text" class="time" disabled value="10"> Minutos
+                </td>
+              </tr>
+              <tr>
+                <td class="table-left">Tiempo de Actualización GUI</td>
+                <td class="table-right">
+                  <input type="text" class="time" disabled value="10"> Segundos
+                </td>
+              </tr>
+            </table>
           </div>
+          <div class="bloque">
+            <table>
+              <tr><th colspan="2" class="table-title">Nombre del Dispositivo</th></tr>
+              <tr>
+                <td class="table-left">Nombre del Dispositivo Actual</td>
+                <td class="table-right">
+                  <input type="text" class="name" value="DIRECTV_034658" disabled>
+                </td>
+              </tr>
+              <tr>
+                <td class="table-left">Nuevo Nombre del Dispositivo</td>
+                <td class="table-right">
+                  <input type="text" class="name">
+                </td>
+              </tr>
+            </table>
+          </div>
+          <div class="cambios">
+            <button>Cancelar</button>
+            <button>Aplicar</button>
+          </div>
+        </div>
+      </div>
+      <div class="Admin3 hidden" id="left_63">
+        <div class="container">
+          <h1>Configuración de Hora</h1>
+          <div class="bloque">
+            <table>
+              <tr><th colspan="2" class="table-title">Hora del Dispositivo</th></tr>
+              <tr>
+                <td class="table-left">Hora Local Actual</td>
+                <td class="table-right">
+                  <p>Dic 04 2018 02:34</p>
+                  <button>Sincronizar con PC</button>
+                </td>
+              </tr>
+              <tr>
+                <td class="table-left">Zona Horaria</td>
+                <td class="table-right">
+                  <select name="" id="">
+                    <option value="0">(GMT-05:00 Bogota, Lima, Quito, Rio Branco)</option>
+                  </select>
+                </td>
+              </tr>
+              <tr>
+                <td class="table-left">Ajuste Automático de hora de verano</td>
+                <td class="table-right">
+                  <input type="checkbox" name="" checked id="">
+                </td>
+              </tr>
+            </table>
+          </div>
+          <div class="bloque">
+            <table>
+              <tr><th colspan="2" class="table-title">Información del Temporizador del Servidor</th></tr>
+              <tr>
+                <td class="table-left">NTP1</td>
+                <td class="table-right">
+                  <input type="text" class="name" value="191.102.192.253">
+                </td>
+              </tr>
+              <tr>
+                <td class="table-left">NTP2</td>
+                <td class="table-right">
+                  <input type="text" class="name" value="191.102.192.244">
+                </td>
+              </tr>
+            </table>
+          </div>
+          <div class="cambios">
+            <button>Cancelar</button>
+            <button>Aplicar</button>
+          </div>
+        </div>
+      </div>
+      <div class="Admin3 hidden" id="left_64">
+        <div class="container">
+          <h1>Reestablecer por defecto</h1>
+          <div class="bloque">
+            <table>
+              <tr><th colspan="2" class="table-title">Reestablecer Ajustes por Defecto</th></tr>
+              <tr>
+                <td class="table-left">Reestablecer Ajustes por Defecto</td>
+                <td class="table-right">
+                  <button>Reestablecer</button>
+                </td>
+              </tr>
+            </table>
+          </div>
+          <div class="bloque">
+            <table>
+              <tr><th colspan="2" class="table-title">Última Buena Configuración</th></tr>
+              <tr><th colspan="2" class="table-subtitle">Última Buena Configuración: No existe</th></tr>
+              <tr>
+                <td colspan="2" class="ctn">
+                  <button class="btn">Grabar Última Buena</button>
+                </td>
+              </tr>
+              <tr>
+                <td colspan="2" class="ctn">
+                  <button class="btn">Quitar Última Buena</button>
+                </td>
+              </tr>
+              <tr>
+                <td colspan="2" class="ctn">
+                  <button class="btn">Reestablecer Última Buena</button>
+                </td>
+              </tr>
+            </table>
+          </div>
+        </div>
+      </div>
+      <div class="Admin5 hidden" id="left_65">
+        <div class="container">
+          <h1>Software</h1>
+          <div class="bloque">
+            <table>
+              <tr><th colspan="2" class="table-title">Actualizar Software</th></tr>
+              <tr>
+                <td class="table-left">
+                  <input type="text" disabled name="" id="">
+                </td>
+                <td class="table-right">
+                  <button>Vistazo</button>
+                  <button>Actualizar</button>
+                </td>
+              </tr>
+              <tr class="sub"><th colspan="2" class="table-subtitle">Versión del Software del Dispositivo: 01.02.01.020</th></tr>
+            </table>
+          </div>
+          <div class="bloque3">
+            <table>
+              <tr><th colspan="2" class="table-title">Configuración de Respaldo</th></tr>
+              <tr>
+                <td class="table-left">
+                  <input type="text" disabled name="" id="">
+                </td>
+                <td class="table-right">
+                  <button>Vistazo</button>
+                  <button>Reestablecer</button>
+                  <button>Guardar</button>
+                </td>
+              </tr>
+            </table>
+          </div>
+          <div class="bloque">
+            <table>
+              <tr><th colspan="2" class="table-title">Actualización por FOTA</th></tr>
+              <tr>
+                <td class="table-left2">Estado de FOTA</td>
+                <td class="table-right2">Se actualizó correctamente por FOTA</td>
+              </tr>
+              <tr>
+                <td colspan="2" class="btn2"><button>Verificar de nuevo firmware</button></td>
+              </tr>
+            </table>
+          </div>
+        </div>
+      </div>
+      <div class="Monitoreo1 hidden" id="left_7">
+        <img src="img/red.jpg" alt="">
+      </div>
+      <div class="Monitoreo2 hidden" id="left_72">
+        <div class="container">
+          <h1>Iperf</h1>
+          <div class="bloque">
+            <table>
+              <tr><th colspan="2" class="table-title">Ajustes</th></tr>
+              <tr>
+                <td class="table-left">Estado</td>
+                <td class="table-right">
+                  <button class="activo">Habilitar</button>
+                  <button class="desactivo" disabled="disabled">Deshabilitar</button>
+                </td>
+              </tr>
+              <tr class="subtitle"><th colspan="2" class="table-subtitle">Última fecha y hora de medición</th></tr>
+              <tr>
+                <td class="table-left">Dirección del Servidor</td>
+                <td class="table-right">
+                  <input type="text" class="option2">
+                </td>
+              </tr>
+              <tr>
+                <td class="table-left">Puerto del servidor</td>
+                <td class="table-right">
+                  <input type="text" class="option2" value="5001">
+                </td>
+              </tr>
+              <tr>
+                <td class="table-left">Puerto de Administración</td>
+                <td class="table-right">
+                  <input type="text" class="option2" value="5001">
+                </td>
+              </tr>
+              <tr class="medicion">
+                <td class="table-left">Tiempo de Medición</td>
+                <td class="table-right">
+                  <input type="text" class="option2" value="60"> Segundos
+                </td>
+              </tr>
+              <tr>
+                <td class="table-left">Tipo de Protocolo</td>
+                <td class="table-right">
+                  <select name="" id="">
+                    <option value="0">TCP</option>
+                  </select>
+                </td>
+              </tr>
+              <tr>
+                <td class="table-left">Numero de Cliente TCP</td>
+                <td class="table-right">
+                  <input type="text" class="option2" value="1">
+                </td>
+              </tr>
+            </table>
+          </div>
+          <div class="bloque2">
+            <table>
+              <tr><th colspan="2" class="table-title2">Resultado</th></tr>
+              <tr>
+                <th colspan="2" class="table-subtitle">
+                  <input type="text" disabled>
+                </th>
+              </tr>
+            </table>
+          </div>
+        </div>
+      </div>
+      <div class="Monitoreo2 hidden" id="left_73">
+        <div class="container">
+          <h1>Herramientas de Diagnóstico</h1>
+          <div class="bloque">
+            <table>
+              <tr><th colspan="2" class="table-title">Ajustes</th></tr>
+              <tr>
+                <td class="table-left">Estado</td>
+                <td class="table-right">
+                  <button class="activo">Inicio</button>
+                  <button class="desactivo" disabled>Detener</button>
+                </td>
+              </tr>
+              <tr>
+                <td class="table-left">Tipo de Diagnóstico</td>
+                <td class="table-right">
+                  <select name="" id="">
+                    <option value="0">Ping</option>
+                    <option value="1">Traceroute</option>
+                  </select>
+                </td>
+              </tr>
+              <tr>
+                <td class="table-left">Dirección IP / Dominio</td>
+                <td class="table-right">
+                  <input type="text" class="option2">
+                </td>
+              </tr>
+              <tr>
+                <td class="table-left">Cuenta de Ping</td>
+                <td class="table-right">
+                  <input type="text" class="option2" value="4">
+                </td>
+              </tr>
+              <tr>
+                <td class="table-left">Tamaño de Packet</td>
+                <td class="table-right">
+                  <input type="text" class="medicion" value="56">Bytes
+                </td>
+              </tr>
+              <tr>
+                <td class="table-left">Ping Timeout</td>
+                <td class="table-right">
+                  <input type="text" class="medicion" value="10"> Segundos
+                </td>
+              </tr>
+              <tr>
+                <td class="table-left">Hops Máximo</td>
+                <td class="table-right">
+                  <input type="text" class="option2" disabled value="30">
+                </td>
+              </tr>
+            </table>
+          </div>
+          <div class="bloque">
+            <table>
+              <tr><th colspan="2" class="table-title">Resultado</th></tr>
+              <tr>
+                <th colspan="2" class="table-subtitle">
+                  <input type="text" disabled>
+                </th>
+              </tr>
+            </table>
+          </div>
+        </div>
+      </div>
+      <div class="Acerca hidden" id="left_8">
+          <img src="img/red.jpg" alt="Red LTE">
         </div>
     </div>
   </div>

@@ -3,6 +3,7 @@ function doClick(n){
   const left0 = document.getElementById('left_0');
   left0.classList.add('hidden');
 
+  ocultar2();
   if(n < 9){
     ocultar();
     const nivel1 = document.getElementById('op'+n);
@@ -33,18 +34,24 @@ function doClick(n){
     if(cant2 != 0){
       var z = n + 100;
       for(var c = 0; c< cant2; c++){
+        const left4 = document.getElementById('left_'+z);
         const nivel3 = document.getElementById('op'+z);
         nivel3.classList.toggle('hidden');
+        left4.classList.remove('hidden');
         z+=1;
       }
     }
+    else {
+      left_n.classList.remove('hidden');
+    }
+  }
+  else if(n > 73){
+    left_n.classList.remove('hidden');
   }
 }
 
 function ocultar(){
-  for(var m= 1; m< 6; m++){
-    const left1  = document.getElementById('left_'+m);
-    left1.classList.add('hidden');
+  for(var m= 1; m< 9; m++){
     const lv1  = document.getElementById('op'+m);
     var w = lv1.childElementCount -1;
     var f = (m*10) + 1;
@@ -52,10 +59,41 @@ function ocultar(){
       const lv2  = document.getElementById('op'+f);
       lv2.classList.add('hidden');
       f+=1;
-      if(l == 2){
-        console.log(f);
-        const left2 = document.getElementById('left_'+f);
-        left2.classList.add('hidden');
+    }
+  }
+}
+function ocultar2(){
+  for(var m= 1; m< 9; m++){
+    const left1  = document.getElementById('left_'+m);
+    left1.classList.add('hidden');
+    const lv1  = document.getElementById('op'+m);
+    var w = lv1.childElementCount -1;
+    var f = (m*10) + 1;
+    // console.log(m);
+    if(w != 0){
+      for(var l = 0; l < w; l++){
+        const lv2 = document.getElementById('op'+f);
+        var e = lv2.childElementCount -1;
+        if(l > 0){
+          // console.log('-- '+f);
+          const left2 = document.getElementById('left_'+f);
+          left2.classList.add('hidden');
+          var t = f + 101;
+          for(k = 0; k < e; k++){
+            if(k > 0){
+              const left3 = document.getElementById('left_'+t);
+              left3.classList.add('hidden');
+              // console.log('---'+t)
+              t+=1;
+            }
+          }
+        }
+        else{
+          if(e !=0){
+            // console.log('---e');
+          }
+        }
+        f+=1;
       }
     }
   }

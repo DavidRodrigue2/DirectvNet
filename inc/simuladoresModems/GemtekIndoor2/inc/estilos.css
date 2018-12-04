@@ -292,6 +292,7 @@ li{
   height: 30px;
   color: white;
   text-align: left;
+  padding-left: 15px;
 }
 .centro .bloque2 .table-left{
   text-align: left;
@@ -381,4 +382,137 @@ li{
   border: 1px solid gray;
   border-radius: 3px;
   padding-left: 10px;
+}
+.centro .Admin3 .table-left{
+  width: 40%;
+}
+.centro .Admin3 .table-right{
+  width: 60%;
+  margin-left: 0; 
+}
+.centro .Admin3 .table-right select{  
+  margin-left: 0; 
+}
+.centro .Admin3 .table-right button{  
+  background: #00aeef;
+  color: white;
+}
+.centro .Admin3 .table-right input{  
+  border-radius: 3px;
+  border: 1px solid gray;
+  height: 21px;
+  padding-left: 11px;
+}
+.centro .Admin3 .ctn{
+  text-align: center;
+}
+.centro .Admin3 .ctn .btn{  
+  background: #00aeef;
+  color: white;
+  width: 83%;
+}
+.centro .Admin5 .table-left input{
+  width: 98%;
+  border: 1px solid gray;
+  border-radius: 3px;
+  height: 22px;
+}
+.centro .Admin5 .table-right{
+  width: 40%;
+}
+.centro .Admin5 .table-left{
+  width: 60%;
+}
+.centro .Admin5 .sub{
+  height: 16px;
+}
+.centro .Admin5 .sub .table-subtitle{
+  font-size: 10px;
+  text-align: left;
+  padding-bottom: 15px;
+}
+.centro .Admin5 .table-right button{
+  background: #00aeef;
+  color: white;
+}
+.centro .Admin5 .bloque3{
+  width: 593px;
+  border: 2px solid #00aeef;
+  border-radius: 7px;
+  display: inline-grid;
+  margin-left: 58px;
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+.centro .bloque3 .table-title{
+  background: #00aeef;
+  height: 30px;
+  color: white;
+  text-align: left;
+  padding-left: 15px;
+}
+.centro .bloque3 table{
+  width: 100%;
+  border-spacing: 0;
+}
+.centro .bloque3 tr{
+  height: 37px;
+}
+.centro .bloque3 button {
+  border: 1px solid gray;
+  border-radius: 4px;
+  padding: 5px;
+  cursor: pointer;
+}
+.centro .Admin5 .table-left2{
+  font-weight: 600;
+  font-size: 13px;
+  padding-left: 15px;
+}
+.centro .Admin5 .btn2{
+  padding-left: 10px;
+}
+.centro .Admin5 .btn2 button{
+  color: white;
+  background: #00aeef;
+}
+.centro .Monitoreo2 .table-subtitle{
+  text-align: left;
+  font-size: 12px;
+}
+.centro .Monitoreo2 .activo{
+  margin-left: 23px;
+  color: white;
+  background: #00aeef;
+}
+.centro .Monitoreo2 .subtitle{
+  height: 26px;
+}
+.centro .Monitoreo2 .medicion input{
+  width: 50%;
+}
+.centro .Monitoreo2 .bloque2 .table-subtitle input{
+  width: 95%;
+  border: 1px solid gray;
+  border-radius: 3px;
+  height: 40px;
+}
+.centro .Monitoreo2 .bloque2 .table-subtitle{
+  text-align: center;
+  padding-top: 10px;
+}
+.centro .Monitoreo2 .medicion{
+  width: 50%;
+  border: 1px solid grey;
+  border-radius: 4px;
+  height: 25px;
+  padding: 0 0 0 10px;
+  margin-left: 23px;
+}
+.centro .Monitoreo2 .table-subtitle input{
+  width: 97%;
+  height: 150px;
+  margin: 10px 0 10px 0;
+  border: 1px solid gray;
+  border-radius: 3px;
 }
