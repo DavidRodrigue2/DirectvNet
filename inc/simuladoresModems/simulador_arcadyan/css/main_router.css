@@ -180,3 +180,18 @@ a.moreinfo:hover {color:#ff0000; text-decoration:none; }
 
 .imgbottom { vertical-align:text-bottom; }
 .imgtop { vertical-align:text-top; }
+
+.showLogin .a :hover {
+	color: #000000 !important;
+	text-decoration: none !important;
+}
+.showLogin .a{
+	font-family: Arial,Helvetica, sans-serif;
+	font-size: 11px;
+	border-color: #cccccc;
+	background-color: #cccccc;
+	color: #000000;
+	font-weight: normal;
+	width: 150px;
+	height: 22px;
+}
