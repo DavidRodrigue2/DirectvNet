@@ -1,147 +1,138 @@
-#lte{
+#power{
   position: absolute;
-  width: 63px;
+  width: 31px;
   height: 34px;
-  top: 88px;
-  left: 571px;
+  top: 87px;
+  left: 261px;
   cursor: pointer;
   /* border: 1px solid red; */
 }
-#onofff{
+#Wifi-2-4G{
   position: absolute;
-  width: 49px;
-  height: 19px;
-  top: 129px;
-  left: 597px;
+  width: 31px;
+  height: 34px;
+  top: 87px;
+  left: 302px;
   cursor: pointer;
   /* border: 1px solid red; */
 }
-#internet{
+#WiFi-5G{
   position: absolute;
-  width: 49px;
-  height: 19px;
-  top: 153px;
-  left: 597px;
-  cursor: pointer;
-  /* border: 1px solid red; */
-}
-#data{
-  position: absolute;
-  width: 49px;
-  height: 19px;
-  top: 177px;
-  left: 597px;
-  cursor: pointer;
-  /* border: 1px solid red; */
-}
-#wifi{
-  position: absolute;
-  width: 49px;
-  height: 19px;
-  top: 200px;
-  left: 597px;
+  width: 31px;
+  height: 34px;
+  top: 87px;
+  left: 344px;
   cursor: pointer;
   /* border: 1px solid red; */
 }
 #lan{
   position: absolute;
-  width: 49px;
-  height: 19px;
-  top: 224px;
-  left: 597px;
+  width: 31px;
+  height: 34px;
+  top: 87px;
+  left: 384px;
   cursor: pointer;
   /* border: 1px solid red; */
 }
-#sim{
+#internet{
   position: absolute;
-  width: 49px;
-  height: 19px;
-  top: 247px;
-  left: 597px;
+  width: 31px;
+  height: 34px;
+  top: 87px;
+  left: 422px;
+  cursor: pointer;
+  /* border: 1px solid red; */
+}
+#senal{
+  position: absolute;
+  width: 31px;
+  height: 34px;
+  top: 87px;
+  left: 462px;
+  cursor: pointer;
+  /* border: 1px solid red; */
+}
+#senal1{
+  position: absolute;
+  width: 31px;
+  height: 34px;
+  top: 87px;
+  left: 500px;
+  cursor: pointer;
+  /* border: 1px solid red; */
+}
+#senal2{
+  position: absolute;
+  width: 31px;
+  height: 34px;
+  top: 87px;
+  left: 535px;
+  cursor: pointer;
+  /* border: 1px solid red; */
+}
+#senal3{
+  position: absolute;
+  width: 31px;
+  height: 34px;
+  top: 87px;
+  left: 570px;
+  cursor: pointer;
+  /* border: 1px solid red; */
+}
+#senal4{
+  position: absolute;
+  width: 31px;
+  height: 34px;
+  top: 87px;
+  left: 603px;
   cursor: pointer;
   /* border: 1px solid red; */
 }
 /* ---------------------------------------------------------
 ------------------------ATRAS----------------------------
 --------------------------------------------------------- */
-#onoff{
+#energia{
   position: absolute;
-  width: 20px;
-  height: 17px;
-  top: 345px;
-  left: 300px;
+  width: 39px;
+  height: 51px;
+  top: 356px;
+  left: 195px;
   cursor: pointer;
   /* border: 1px solid red; */
 }
-#power{
+#wps{
   position: absolute;
-  width: 15px;
-  height: 21px;
-  top: 342px;
-  left: 327px;
+  width: 39px;
+  height: 22px;
+  top: 353px;
+  left: 237px;
   cursor: pointer;
   /* border: 1px solid red; */
 }
 #reset{
   position: absolute;
-  width: 15px;
+  width: 39px;
   height: 22px;
-  top: 343px;
-  left: 348px;
+  top: 377px;
+  left: 237px;
   cursor: pointer;
   /* border: 1px solid red; */
 }
 #lan1atras{
   position: absolute;
-  width: 22px;
-  height: 23px;
-  top: 339px;
-  left: 387px;
+  width: 39px;
+  height: 51px;
+  top: 348px;
+  left: 292px;
   cursor: pointer;
   /* border: 1px solid red; */
 }
 #lan2atras{
   position: absolute;
-  width: 22px;
-  height: 23px;
-  top: 339px;
-  left: 415px;
+  width: 39px;
+  height: 51px;
+  top: 348px;
+  left: 335px;
   cursor: pointer;
   /* border: 1px solid red; */
 }
-#lan3atras{
-  position: absolute;
-  width: 22px;
-  height: 23px;
-  top: 339px;
-  left: 440px;
-  cursor: pointer;
-  /* border: 1px solid red; */
-}
-#lan4atras{
-  position: absolute;
-  width: 22px;
-  height: 23px;
-  top: 339px;
-  left: 466px;
-  cursor: pointer;
-  /* border: 1px solid red; */
-} 
-#simcard{
-  position: absolute;
-  width: 18px;
-  height: 41px;
-  top: 298px;
-  left: 248px;
-  cursor: pointer;
-  /* border: 1px solid red; */
-} 
-#wps{
-  position: absolute;
-  width: 19px;
-  height: 52px;
-  top: 294px;
-  left: 531px;
-  cursor: pointer;
-  /* border: 1px solid red; */
-} 
