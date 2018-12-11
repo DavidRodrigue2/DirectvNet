@@ -6,18 +6,58 @@ body{
 .header{
   border-bottom: 1px solid #0085D0;
   display: flex;
-}
-.header img{
-  margin: 0;
   height: 67px;
+  justify-content: space-between;
 }
 .header .logo{
   width: 200px;
   height: 67px;
 }
-.header .logo2{
-  width: 85%;
-  height: 67px;
+.header .status p{
+  margin: 0;
+  height: 20px;
+}
+.header .status img{
+  margin-left: 10px;
+  height: 20px;
+}
+.header .status{
+  display: flex;
+  align-items: center;
+}
+.header .status .senal{
+  display: flex;
+}
+.header .status .sim{
+  display: flex;
+}
+.header .status .wifi{
+  display: flex;
+}
+.header .sesion{
+  display: grid;
+  margin-right: 20px;
+}
+.header .sesion p{
+  margin: 0;
+  font-size: 15px;
+}
+.header .sesion .bloque1{
+  display: flex;
+  align-items: center;
+}
+.header .sesion .bloque1 .logOut{
+  margin-left: 5px;
+}
+.header .sesion .bloque2{
+  display: flex;
+  align-items: center;
+}
+.header .sesion .bloque2 .online{
+  margin-right: 5px;
+  background: rgb(51, 154, 214);
+  color: white;
+  padding: 4px;
 }
 /*  ----------------------------------LEFT --------------------------------------- */
 .left{
@@ -36,14 +76,15 @@ body{
   font-size: 14.5px;
 }
 .loginContainer .idioma{
-  border: 1px solid grey;
+  /* border: 1px solid grey; */
   padding: 2px 0;
   height: 23px;
+  width: 147px;
   font-size: 12px;
 }
 .loginContainer input{
   width: 147px;
-  height: 23px;
+  height: 19px;
   margin: 3px 0;
 }
 .loginContainer button{
