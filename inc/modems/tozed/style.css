@@ -25,3 +25,51 @@
   cursor: pointer;
   /* border: 1px solid red; */
 }
+/* ------------------------------------------------------------------------ */
+/* -----------------------------------ATRAS-------------------------------- */
+/* ------------------------------------------------------------------------ */
+#energia{
+  position: absolute;
+  width: 40px;
+  height: 28px;
+  top: 376px;
+  left: 114px;
+  cursor: pointer;
+  /* border: 1px solid red; */
+}
+#wps{
+  position: absolute;
+  width: 14px;
+  height: 24px;
+  top: 118px;
+  left: 108px;
+  cursor: pointer;
+  /* border: 1px solid red; */
+}
+#reset{
+  position: absolute;
+  width: 17px;
+  height: 24px;
+  top: 118px;
+  left: 124px;
+  cursor: pointer;
+  /* border: 1px solid red; */
+}
+#lan{
+  position: absolute;
+  width: 41px;
+  height: 49px;
+  top: 275px;
+  left: 107px;
+  cursor: pointer;
+  /* border: 1px solid red; */
+}
+#sim{
+  position: absolute;
+  width: 23px;
+  height: 49px;
+  top: 150px;
+  left: 128px;
+  cursor: pointer;
+  /* border: 1px solid red; */
+}
