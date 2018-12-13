@@ -1,5 +1,3 @@
-
-
 <html>
 	<head>
 		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -9,296 +7,298 @@
 		<link rel="stylesheet" type="text/css" href="../css/main_router.css">
 		<link rel="stylesheet" href="../css/direct_ltr.css" type="text/css">
 		<script src="../js/md5.js" language="JavaScript"></script>
-
-<script language="JavaScript">
-
-$(document).ready(function(){
-	$('#inputlogin').toggle(
-		function(){
-			$('#showlogin').show();
-			$('table[id^="showstatus"]').hide();
-			$('#inputlogin').val(">> Status page");
-		},
-		function(){
-			$('table[id^="showstatus"]').show();
-		    $('#showlogin').hide();
-		    $('#inputlogin').val(">> Login page");
-		}
-	);
-});
-
-
-</script>
-</head>
-<body leftmargin="0" topmargin="0" marginwidth="0" marginheight="0" onload="refreshload();">
-<table width="100%" border="0" margin="0" cellspacing="0" cellpadding="0" height="100%">
-<tbody><tr>
-<td class="maincontentcss">
-<table border="0" cellspacing="0" cellpadding="0" style="position:absolute;top:0px;left:0px; width:201px; height:100%; background-color:#F0F8FF;" id="menuheight">
-	<tbody>
-		<tr>
-    		<td valign="top" width="200" height="100%">
-      		<table cellspacing="0" cellpadding="0" width="200" align="left">
-				<tbody><tr><td></td></tr></tbody>
-	     	</table>
-		</td>
-	</tr>
-</tbody>
-</table>
-</td>
-<td id="tableheight" class="tableheightcss">
-<table border="0">
-	<tbody><tr>
-		<td style="position:absolute; margin-left:3px; top:3px; margin-top:3px;">
-			<input type="button" id="inputlogin" value="&gt;&gt; Login page">
-		</td>
-	</tr>
-</tbody></table>
-<table border="0" id="showstatus1" style="position:absolute; margin-left:3px; top:20px; margin-top:20px; width:800px; height:330px;">
-	<tbody><tr>
-		<td style="position:absolute; margin-right: 10px; width: 350px;">
-		<!-- Internet Settings  -->
-			<span style="font-size: 9pt; color: #F20000;">Parámetros de internet</span>
-			<table class="copy_m" border="0" cellspacing="2" cellpadding="1">
-				<tbody><tr class="talternate">
-					<td class="ss175">&nbsp;Dirección MAC de la WAN</td>
-<td class="ss220"><div class="ltrR">4C:09:D4:3E:1B:97</div></td>
-
-				</tr>
-				<tr class="talternate">
-				<td class="ss175">&nbsp;Tipo de Conexión</td>
-<td class="ss220">
-Dinámico
-</td>
-
-				</tr>
-				<tr class="talternate">
-				<td class="ss175">&nbsp;IP de la WAN</td><td class="ss220">0.0.0.0</td>
-
-				</tr>
-				<tr class="talternate">
-				<td class="ss175">&nbsp;Máscara de Subred</td><td class="ss220">0.0.0.0</td>
-
-				</tr>
-
-				<tr class="talternate">
-				<td class="ss175">&nbsp;Gateway Estándar</td>
-<td class="ss220">
-0.0.0.0
-</td>
-
-				</tr>
-				<tr class="talternate">
-				<td class="ss175">&nbsp;Dirección DNS</td>
-<td class="ss220">
-0.0.0.0</td>
-
-				</tr>
-				
-			</tbody></table>
-		</td>
-
-		<!--   LAN Settings  -->
-		<td style="position:absolute; margin-right: 10px; margin-top: 172px;width: 350px;">
-			<span style="font-size: 9pt; color: #F20000;">Parámetros de la LAN</span>
-			<table class="copy_m" border="0" cellspacing="2" cellpadding="1">
-				<tbody><tr class="talternate">
-					<td class="ss175">&nbsp;MAC de la LAN/WLAN</td><td class="ss220">4C:09:D4:3E:1B:96</td>
-				</tr>
-		   		<tr class="talternate">
-					<td class="ss175">&nbsp;Dirección IP</td><td class="ss220">192.168.100.1</td>
-				</tr>
-				<tr class="talternate">
-					<td class="ss175">&nbsp;Máscara de Subred</td><td class="ss220">255.255.255.0</td>
-				</tr>
-				<tr class="talternate">
-					<td class="ss175">&nbsp;Servidor DHCP</td>
-<td class="ss220">
-Habilitado
- (1 LAN, 0 WLAN Clientes)
-</td>
-
-				</tr>
-			</tbody></table>
-		</td>
-
-		<!-- LTE/UMTS Settings -->
-		<td style="position:absolute; width: 350px; margin-left: 400px;">
-			<span style="font-size: 9pt; color: #F20000;">Configuraciones LTE/UMTS</span>
-			<table class="copy_m" border="0" cellspacing="2" cellpadding="1">
-				<tbody><tr class="talternate">
-				<td class="ss175">&nbsp;Informaciones del proveedor</td><td class="ss220">Altair (Altair USB Product ALT3100)</td>
-				</tr>
-				<tr class="talternate">
-				<td class="ss175">&nbsp;Versión</td><td class="ss220">04_05_06_00_24_3B</td>
-				</tr>
-				<tr class="talternate">
-				<td class="ss175">&nbsp;IMEI</td><td class="ss220"></td>
-				</tr>
-				<tr class="talternate">
-				<td class="ss175">&nbsp;IMSI</td><td class="ss220"></td>
-				</tr>
-				<tr class="talternate">
-				<td class="ss175">&nbsp;Global Cell ID</td><td class="ss220">0</td>
-				</tr>
-				<tr class="talternate">
-				<td class="ss175">&nbsp;PCID</td><td class="ss220">0</td>
-				</tr>
-				<tr class="talternate">
-				<td class="ss175">&nbsp;RSRP</td><td class="ss220">0 dBm</td>
-				</tr>
-				<tr class="talternate">
-				<td class="ss175">&nbsp;RSRQ</td><td class="ss220">0 dB</td>
-				</tr>
-				<tr class="talternate">
-				<td class="ss175">&nbsp;RSSI</td><td class="ss220">0</td>
-				</tr>
-				<tr class="talternate">
-				<td class="ss175">&nbsp;SINR</td><td class="ss220">0.0 dB</td>
-				</tr>
-				<tr class="talternate">
-				<td class="ss175">&nbsp;TX Power</td><td class="ss220">0 dBm</td>
-
-				</tr>
-			</tbody></table>
-		</td>
-	</tr>
-</tbody></table>
-<table border="0" id="showstatus2" style="position:absolute; margin-left: 3px; margin-top:350px; width: 800px">
-	<tbody><tr>
-		<td style="position:absolute; margin-right: 10px; width: 350px;">
-		<!--  Version Info  -->
-			<span style="font-size: 9pt; color: #F20000;">Datos de la Versión</span>
-			<table class="copy_m" border="0" cellspacing="2" cellpadding="1">
-				<tbody><tr class="talternate">
-					<td class="ss175">&nbsp;Versión del Firmware</td><td class="ss220">1.10.31DV (Nov 14 2014 19:43:46)</td>
-				</tr>
-				<tr class="talternate">
-					<td class="ss175">&nbsp;Versión del Boot</td><td class="ss220">2.064</td>
-				</tr>
-				<tr class="talternate">
-					<td class="ss175">&nbsp;Hardware</td><td class="ss220">02</td>
-				</tr>
-				<tr class="talternate">
-					<td class="ss175">&nbsp;No. Serie</td><td class="ss220">J448265865</td>
-				</tr>
-				<tr class="talternate">
-					<td class="ss175">&nbsp;Modelo del Producto</td><td class="ss220">MR7015AL</td>
-				</tr>
-				<tr class="talternate">
-					<td class="ss175">&nbsp;Proveedor del Servicio</td><td class="ss220">Directv</td>
-				</tr>
-			</tbody></table>
-
-		<!-- Features -->
-		</td><td style="position:absolute; width: 350px; margin-left: 400px;">
-			<span style="font-size:9pt; color:#F20000;">Recursos</span>
-			<table class="copy_m" border="0" cellspacing="2" cellpadding="1">
-				<tbody><tr class="talternate">
-					<td class="ss175">&nbsp;Parámetros del Firewall</td>
-					<td class="ss220">
-					Deshabilitado
-
+		<script language="JavaScript">
+			$(document).ready(function(){
+				$('#inputlogin').toggle(
+					function(){
+						$('#showlogin').show();
+						$('table[id^="showstatus"]').hide();
+						$('#inputlogin').val(">> Status page");
+					},
+					function(){
+						$('table[id^="showstatus"]').show();
+							$('#showlogin').hide();
+							$('#inputlogin').val(">> Login page");
+					}
+				);
+			});
+		</script>
+	</head>
+	<body leftmargin="0" topmargin="0" marginwidth="0" marginheight="0" onload="refreshload();">
+		<table width="100%" border="0" margin="0" cellspacing="0" cellpadding="0" height="100%">
+			<tbody>
+				<tr>
+					<td class="maincontentcss">
+						<table border="0" cellspacing="0" cellpadding="0" style="position:absolute;top:0px;left:0px; width:201px; height:100%; background-color:#F0F8FF;" id="menuheight">
+							<tbody>
+								<tr>
+									<td valign="top" width="200" height="100%">
+										<table cellspacing="0" cellpadding="0" width="200" align="left">
+											<tbody>
+												<tr>
+													<td></td>
+												</tr>
+											</tbody>
+										</table>
+									</td>
+								</tr>
+							</tbody>
+						</table>
+					</td>
+					<td id="tableheight" class="tableheightcss">
+						<table border="0">
+							<tbody>
+								<tr>
+									<td style="position:absolute; margin-left:3px; top:3px; margin-top:3px;">
+										<input type="button" id="inputlogin" value="&gt;&gt; Login page">
+									</td>
+								</tr>
+							</tbody>
+						</table>
+						<table border="0" id="showstatus1" style="position:absolute; margin-left:3px; top:20px; margin-top:20px; width:800px; height:330px;">
+							<tbody>
+								<tr>
+									<td style="position:absolute; margin-right: 10px; width: 350px;">
+										<!-- Internet Settings  -->
+										<span style="font-size: 9pt; color: #F20000;">Parámetros de internet</span>
+										<table class="copy_m" border="0" cellspacing="2" cellpadding="1">
+											<tbody>
+												<tr class="talternate">
+													<td class="ss175">&nbsp;Dirección MAC de la WAN</td>
+													<td class="ss220"><div class="ltrR">4C:09:D4:3E:1B:97</div></td>
+												</tr>
+												<tr class="talternate">
+													<td class="ss175">&nbsp;Tipo de Conexión</td>
+													<td class="ss220">Dinámico</td>
+												</tr>
+												<tr class="talternate">
+													<td class="ss175">&nbsp;IP de la WAN</td>
+													<td class="ss220">0.0.0.0</td>
+												</tr>
+												<tr class="talternate">
+													<td class="ss175">&nbsp;Máscara de Subred</td>
+													<td class="ss220">0.0.0.0</td>
+												</tr>
+												<tr class="talternate">
+													<td class="ss175">&nbsp;Gateway Estándar</td>
+													<td class="ss220">0.0.0.0</td>
+												</tr>
+												<tr class="talternate">
+													<td class="ss175">&nbsp;Dirección DNS</td>
+													<td class="ss220">0.0.0.0</td>
+												</tr>
+											</tbody>
+										</table>
+									</td>
+									<!--   LAN Settings  -->
+									<td style="position:absolute; margin-right: 10px; margin-top: 172px;width: 350px;">
+										<span style="font-size: 9pt; color: #F20000;">Parámetros de la LAN</span>
+										<table class="copy_m" border="0" cellspacing="2" cellpadding="1">
+											<tbody>
+												<tr class="talternate">
+													<td class="ss175">&nbsp;MAC de la LAN/WLAN</td>
+													<td class="ss220">4C:09:D4:3E:1B:96</td>
+												</tr>
+												<tr class="talternate">
+													<td class="ss175">&nbsp;Dirección IP</td>
+													<td class="ss220">192.168.100.1</td>
+												</tr>
+												<tr class="talternate">
+													<td class="ss175">&nbsp;Máscara de Subred</td>
+													<td class="ss220">255.255.255.0</td>
+												</tr>
+												<tr class="talternate">
+													<td class="ss175">&nbsp;Servidor DHCP</td>
+													<td class="ss220">Habilitado(1 LAN, 0 WLAN Clientes)</td>
+												</tr>
+											</tbody>
+										</table>
+									</td>
+										<!-- LTE/UMTS Settings -->
+									<td style="position:absolute; width: 350px; margin-left: 400px;">
+										<span style="font-size: 9pt; color: #F20000;">Configuraciones LTE/UMTS</span>
+										<table class="copy_m" border="0" cellspacing="2" cellpadding="1">
+											<tbody>
+												<tr class="talternate">
+													<td class="ss175">&nbsp;Informaciones del proveedor</td>
+													<td class="ss220">Altair (Altair USB Product ALT3100)</td>
+												</tr>
+												<tr class="talternate">
+													<td class="ss175">&nbsp;Versión</td>
+													<td class="ss220">04_05_06_00_24_3B</td>
+												</tr>
+												<tr class="talternate">
+													<td class="ss175">&nbsp;IMEI</td>
+													<td class="ss220"></td>
+												</tr>
+												<tr class="talternate">
+													<td class="ss175">&nbsp;IMSI</td>
+													<td class="ss220"></td>
+												</tr>
+												<tr class="talternate">
+													<td class="ss175">&nbsp;Global Cell ID</td>
+													<td class="ss220">0</td>
+												</tr>
+												<tr class="talternate">
+													<td class="ss175">&nbsp;PCID</td>
+													<td class="ss220">0</td>
+												</tr>
+												<tr class="talternate">
+													<td class="ss175">&nbsp;RSRP</td>
+													<td class="ss220">0 dBm</td>
+												</tr>
+												<tr class="talternate">
+													<td class="ss175">&nbsp;RSRQ</td>
+													<td class="ss220">0 dB</td>
+												</tr>
+												<tr class="talternate">
+													<td class="ss175">&nbsp;RSSI</td>
+													<td class="ss220">0</td>
+												</tr>
+												<tr class="talternate">
+													<td class="ss175">&nbsp;SINR</td>
+													<td class="ss220">0.0 dB</td>
+												</tr>
+												<tr class="talternate">
+													<td class="ss175">&nbsp;TX Power</td>
+													<td class="ss220">0 dBm</td>
+												</tr>
+											</tbody>
+										</table>
+									</td>
+								</tr>
+							</tbody>
+						</table>
+						<table border="0" id="showstatus2" style="position:absolute; margin-left: 3px; margin-top:350px; width: 800px">
+							<tbody>
+								<tr>
+									<td style="position:absolute; margin-right: 10px; width: 350px;">
+										<!--  Version Info  -->
+										<span style="font-size: 9pt; color: #F20000;">Datos de la Versión</span>
+										<table class="copy_m" border="0" cellspacing="2" cellpadding="1">
+											<tbody>
+												<tr class="talternate">
+													<td class="ss175">&nbsp;Versión del Firmware</td>
+													<td class="ss220">1.10.31DV (Nov 14 2014 19:43:46)</td>
+												</tr>
+												<tr class="talternate">
+													<td class="ss175">&nbsp;Versión del Boot</td>
+													<td class="ss220">2.064</td>
+												</tr>
+												<tr class="talternate">
+													<td class="ss175">&nbsp;Hardware</td>
+													<td class="ss220">02</td>
+												</tr>
+												<tr class="talternate">
+													<td class="ss175">&nbsp;No. Serie</td>
+													<td class="ss220">J448265865</td>
+												</tr>
+												<tr class="talternate">
+													<td class="ss175">&nbsp;Modelo del Producto</td>
+													<td class="ss220">MR7015AL</td>
+												</tr>
+												<tr class="talternate">
+													<td class="ss175">&nbsp;Proveedor del Servicio</td>
+													<td class="ss220">Directv</td>
+												</tr>
+											</tbody>
+										</table>
+										<!-- Features -->
+									</td>
+									<td style="position:absolute; width: 350px; margin-left: 400px;">
+										<span style="font-size:9pt; color:#F20000;">Recursos</span>
+										<table class="copy_m" border="0" cellspacing="2" cellpadding="1">
+											<tbody>
+												<tr class="talternate">
+													<td class="ss175">&nbsp;Parámetros del Firewall</td>
+													<td class="ss220">Deshabilitado</td>
+												</tr>
+												<tr class="talternate">
+													<td class="ss175">&nbsp;SSID</td>
+													<td class="ss220">DTVNET_3E1B96</td>
+												</tr>
+												<tr class="talternate">
+													<td class="ss175">&nbsp;Seguridad</td>
+													<td class="ss220">WPA-Personal ( PSK )</td>
+												</tr>
+												<tr class="talternate">
+													<td class="ss175">&nbsp;UPnP</td>
+													<td class="ss220">Deshabilitado</td>
+												</tr>
+												<tr class="talternate">
+													<td class="ss175">&nbsp;Gerenciamiento Remoto</td>
+													<td class="ss220">Habilitado</td>
+												</tr>
+												<tr class="talternate">
+													<td class="ss175">&nbsp;WPS</td>
+													<td class="ss220">Habilitado</td>
+												</tr>
+											</tbody>
+										</table>
+									</td>
+								</tr>
+							</tbody>
+						</table>
+						<br>
+						<table id="showlogin" class="showLogin" border="0" cellspacing="0" cellpadding="0" align="left" width="100%" height="100%" style="display: none">
+							<input type="hidden" name="totalMSec" value="">
+							<tbody>
+								<tr>
+									<td valign="top" width="99%" height="100%" class="head_bold">
+									<!--This is Login.stm-->
+										<table border="0" class="copy_1">
+											<tbody>
+												<tr>
+													<td width="5">&nbsp;</td>
+													<td>
+														<table width="480" border="0" cellspacing="5" cellpadding="0" align="left" class="copy_1">
+															<tbody>
+																<tr>
+																	<td width="69" height="41">&nbsp;</td>
+																	<td height="41" class="body" colspan="2">Antes que usted pueda modificar las configuraciones, usted precisa hacer o login con una clave y hacer un clic en "Aceptar." </td>
+																</tr>
+																<tr>
+																	<td colspan="3">&nbsp;</td>
+																</tr>
+																<tr>
+																	<td width="69">&nbsp;</td>
+																	<td width="146" class="body"><b>Login</b></td>
+																	<td width="250"><input type="text" maxlength="16" size="16" name="user"></td>
+																</tr>
+																<tr>
+																	<td colspan="3">&nbsp;</td>
+																</tr>
+																<tr>
+																	<td width="69">&nbsp;</td>
+																	<td width="146" class="body"><b>Clave</b></td>
+																	<td width="250"><input type="password" maxlength="16" size="16" name="pws"></td>
+																</tr>
+																<tr>
+																	<td width="69" colspan="3">&nbsp;</td>
+																</tr>
+																<tr>
+																	<td width="69">&nbsp;</td>
+																	<td colspan="2" align="center">
+																		<nobr>
+																			<input type="reset" value="Limpiar" class="submitBtn150" onmouseover="window.status=&#39;Clear&#39;; return true;" onmouseout="window.status=&#39;&#39;; return true;">
+																			<span class="nbsp2"></span><span class="nbsp2"></span>
+																			<input type="submit" value="Aceptar" class="submitBtn150" onclick="window.location.href = 'lan_main.html'">
+																		</nobr>
+																	</td>
+																</tr>
+															</tbody>
+														</table>
+													</td>
+												</tr>
+											</tbody>
+										</table>
+									</td>
+								</tr>
+							</tbody>
+						</table>
 					</td>
 				</tr>
-
-				<tr class="talternate"><td class="ss175">&nbsp;SSID</td><td class="ss220">DTVNET_3E1B96</td></tr>
-
-				<tr class="talternate">
-					<td class="ss175">&nbsp;Seguridad</td>
-<td class="ss220">
-WPA-Personal ( PSK )
-</td>
-
-				</tr>
-
-				<tr class="talternate">
-				<td class="ss175">&nbsp;UPnP</td>
-<td class="ss220">
-Deshabilitado
-</td>
-
-				</tr>
-
-				<tr class="talternate">
-					<td class="ss175">&nbsp;Gerenciamiento Remoto</td>
-<td class="ss220">
-Habilitado
-</td>
-
-				</tr>
-
-				<tr class="talternate">
-					<td class="ss175">&nbsp;WPS</td>
-<td class="ss220">
-Habilitado
-</td>
-
-				</tr>
-			</tbody></table>
-		</td>
-	</tr>
-</tbody></table>
-<br>
-<table id="showlogin" class="showLogin" border="0" cellspacing="0" cellpadding="0" align="left" width="100%" height="100%" style="display: none">
-<!-- <form action="lan_main.html" method="post" name="tF"> -->
-<input type="hidden" name="totalMSec" value="">
-	<tbody><tr>
-	<td valign="top" width="99%" height="100%" class="head_bold">
-	<!--This is Login.stm-->
-		<table border="0" class="copy_1">
-			<tbody><tr>
-				<td width="5">&nbsp;</td>
-				<td>
-					<table width="480" border="0" cellspacing="5" cellpadding="0" align="left" class="copy_1">
-						<tbody><tr>
-							<td width="69" height="41">&nbsp;</td>
-							<td height="41" class="body" colspan="2">
-								Antes que usted pueda modificar las configuraciones, usted precisa hacer o login con una clave y hacer un clic en "Someter." 
-							</td>
-						</tr>
-						<tr>
-							<td colspan="3">&nbsp;</td>
-						</tr>
-						<tr>
-							<td width="69">&nbsp;</td>
-							<td width="146" class="body"><b>Login</b></td>
-							<td width="250"><input type="text" maxlength="16" size="16" name="user"></td>
-						</tr>
-						<tr>
-							<td colspan="3">&nbsp;</td>
-						</tr>
-						<tr>
-							<td width="69">&nbsp;</td>
-							<td width="146" class="body"><b>Clave</b></td>
-							<td width="250"><input type="password" maxlength="16" size="16" name="pws"></td>
-						</tr>
-						<tr><td width="69" colspan="3">&nbsp;</td></tr>
-						<tr>
-							<td width="69">&nbsp;</td>
-							<td colspan="2" align="center">
-								<nobr>
-								<input type="reset" value="Limpiar" class="submitBtn150" onmouseover="window.status=&#39;Clear&#39;; return true;" onmouseout="window.status=&#39;&#39;; return true;">
-								<span class="nbsp2"></span><span class="nbsp2"></span>
-								<!-- <a href="lan_main.html">Aceptar</a> -->
-								<input type="submit" value="Aceptar" class="submitBtn150" onclick="window.location.href = 'lan_main.html'">
-							</nobr></td>
-								
-							
-						</tr>
-					</tbody></table>
-				</td>
-			</tr>
-		</tbody></table>
-	</td>
-</tr>
-
-</tbody>
-<!-- </form> -->
-</table>
-			</td>
-		</tr>
-     </tbody></table>
-
-
-</body></html>
+			</tbody>
+		</table>
+	</body>
+</html>

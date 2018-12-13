@@ -45,6 +45,9 @@ var carga = document.getElementById('carga');
           break;
         case 14:
 					carga.innerHTML = "<h3>PUERTO ETHERNET</h3><p>Permite a un dispositivo conectarse a la red mediante el cable ethernet.</p>";
+					break;
+				case 15:
+					carga.innerHTML = "<h3>RANURA DE SIM CARD</h3>";
           break;
 				default:
 				carga.innerHTML = "<p>Presiona el indicador para tener mas información</p>";

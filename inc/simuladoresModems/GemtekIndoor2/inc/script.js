@@ -12,9 +12,11 @@ function doClick(n){
     if(cant == 1){
       const nivel2 = document.getElementById('op'+x);
       nivel2.classList.toggle('hidden');
+      nivel2.style.color = "#00aeef";
       var j = x + 100;
       const lv3 = document.getElementById('op'+j);
       lv3.classList.remove('hidden');
+      lv3.style.color = "#00aeef";
       left_n.classList.remove('hidden');
     }
     else{
@@ -23,6 +25,10 @@ function doClick(n){
         const nivel2 = document.getElementById('op'+x);
         nivel2.classList.toggle('hidden');
         x+=1;
+        if(i == 0)
+        {
+          nivel2.style.color = "#00aeef";
+        }
         if(i == 1){
           left_n.classList.remove('hidden');
         }
@@ -31,6 +37,7 @@ function doClick(n){
   }
   else if(n > 10 && n < 74){
     const level2 = document.getElementById('op'+n);
+    level2.style.color = "#00aeef";
     var cant2 = level2.childElementCount -1;
     if(cant2 != 0){
       var z = n + 100;
@@ -38,6 +45,7 @@ function doClick(n){
         const nivel3 = document.getElementById('op'+z);
         nivel3.classList.remove('hidden');
         if(c == 0){
+          nivel3.style.color = "#00aeef";
           const left_4 = document.getElementById('left_'+n);
           left_4.classList.remove('hidden');
         }
@@ -57,6 +65,7 @@ function doClick(n){
   }
   else if(n > 73){
     const level3 = document.getElementById('op'+n);
+    level3.style.color = "#00aeef";
     if(level3.className == 'nivel3 firt'){
       var z = (n-100);
       const left_4 = document.getElementById('left_'+z);
@@ -90,7 +99,14 @@ function ocultar2(){
     if(w != 0){
       for(var l = 0; l < w; l++){
         const lv2 = document.getElementById('op'+f);
+        lv2.style.color = "white";
         var e = lv2.childElementCount -1;
+        var o = f + 100;
+        for(var g = 0; g<e; g++){
+          const lvl3 = document.getElementById('op'+o);
+          lvl3.style.color = "white";
+          o+=1;
+        }
         if(l > 0){
           const left2 = document.getElementById('left_'+f);
           left2.classList.add('hidden');
@@ -119,6 +135,9 @@ const eliminar2 = document.getElementById('eliminar2');
 const newRegla3 = document.getElementById('newRegla3');
 const agregar3 = document.getElementById('agregar3');
 const eliminar3 = document.getElementById('eliminar3');
+const newRegla4 = document.getElementById('newRegla4');
+const agregar4 = document.getElementById('agregar4');
+const eliminar4 = document.getElementById('eliminar4');
 
 const ddns = document.getElementById('ddns');
 const nameDDNS = document.getElementById('nameDDNS');
@@ -148,6 +167,12 @@ agregar3.addEventListener('click', (event)=>{
 });
 eliminar3.addEventListener('click', (event)=>{
   newRegla3.classList.add('hidden');
+});
+agregar4.addEventListener('click', (event)=>{
+  newRegla4.classList.remove('hidden');
+});
+eliminar4.addEventListener('click', (event)=>{
+  newRegla4.classList.add('hidden');
 });
 
 const ip = document.getElementById('ip');

@@ -95,8 +95,8 @@
   position: absolute;
   width: 39px;
   height: 51px;
-  top: 356px;
-  left: 195px;
+  top: 312px;
+  left: 220px;
   cursor: pointer;
   /* border: 1px solid red; */
 }
@@ -104,8 +104,8 @@
   position: absolute;
   width: 39px;
   height: 22px;
-  top: 353px;
-  left: 237px;
+  top: 311px;
+  left: 262px;
   cursor: pointer;
   /* border: 1px solid red; */
 }
@@ -113,8 +113,8 @@
   position: absolute;
   width: 39px;
   height: 22px;
-  top: 377px;
-  left: 237px;
+  top: 336px;
+  left: 262px;
   cursor: pointer;
   /* border: 1px solid red; */
 }
@@ -122,8 +122,8 @@
   position: absolute;
   width: 39px;
   height: 51px;
-  top: 348px;
-  left: 292px;
+  top: 306px;
+  left: 306px;
   cursor: pointer;
   /* border: 1px solid red; */
 }
@@ -131,8 +131,17 @@
   position: absolute;
   width: 39px;
   height: 51px;
-  top: 348px;
-  left: 335px;
+  top: 306px;
+  left: 345px;
+  cursor: pointer;
+  /* border: 1px solid red; */
+}
+#sim{
+  position: absolute;
+  width: 134px;
+  height: 61px;
+  top: 438px;
+  left: 152px;
   cursor: pointer;
   /* border: 1px solid red; */
 }
