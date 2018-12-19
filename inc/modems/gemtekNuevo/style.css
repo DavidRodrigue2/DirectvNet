@@ -95,8 +95,8 @@
   position: absolute;
   width: 39px;
   height: 51px;
-  top: 312px;
-  left: 220px;
+  top: 353px;
+  left: 194px;
   cursor: pointer;
   /* border: 1px solid red; */
 }
@@ -104,8 +104,8 @@
   position: absolute;
   width: 39px;
   height: 22px;
-  top: 311px;
-  left: 262px;
+  top: 352px;
+  left: 240px;
   cursor: pointer;
   /* border: 1px solid red; */
 }
@@ -113,8 +113,8 @@
   position: absolute;
   width: 39px;
   height: 22px;
-  top: 336px;
-  left: 262px;
+  top: 378px;
+  left: 240px;
   cursor: pointer;
   /* border: 1px solid red; */
 }
@@ -122,8 +122,8 @@
   position: absolute;
   width: 39px;
   height: 51px;
-  top: 306px;
-  left: 306px;
+  top: 348px;
+  left: 291px;
   cursor: pointer;
   /* border: 1px solid red; */
 }
@@ -131,17 +131,20 @@
   position: absolute;
   width: 39px;
   height: 51px;
-  top: 306px;
-  left: 345px;
+  top: 347px;
+  left: 334px;
   cursor: pointer;
   /* border: 1px solid red; */
 }
+/* ---------------------------------------------------------
+------------------------ABAJO----------------------------
+--------------------------------------------------------- */
 #sim{
   position: absolute;
   width: 134px;
   height: 61px;
-  top: 438px;
-  left: 152px;
+  top: 188px;
+  left: 132px;
   cursor: pointer;
   /* border: 1px solid red; */
 }

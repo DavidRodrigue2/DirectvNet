@@ -64,6 +64,7 @@ body{
   border-right: 1px solid #0085D0;
   width: 200px;
   height: 100vh;
+  display: inline-block;
 }
 .loginContainer{
   position: relative;
@@ -118,6 +119,11 @@ body{
   cursor: pointer;  
 }
 /*  ----------------------------------CENTER --------------------------------------- */
+.center{
+  display: inline-block;
+  width: calc(100% - 210px);
+  height: 100%;
+}
 .center figure{
   position: absolute;
   top: 64px;
