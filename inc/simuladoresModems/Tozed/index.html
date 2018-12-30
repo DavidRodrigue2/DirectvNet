@@ -25,10 +25,12 @@
       </div>
     </div>
     <div class="sesion">
-      <div class="bloque1">
+      <div class="bloque1 hidden" id="bloque1">
         <div class="idioma">
           <select name="" id="">
-            <option value="0">Español</option>
+            <option value="0">English</option>
+            <option selected value="1">Español</option>
+            <option value="2">Portugués</option>
           </select>
         </div>
         <div class="logOut">
@@ -42,6 +44,31 @@
         <div class="date">
           <p>2018-12-11 11:02</p>
         </div>
+      </div>
+    </div>
+  </div>
+  <div class="modal-reinicio" id="modalReinicio">
+    <div class="modal-content">
+      <div class="modal-body">
+        <table>
+          <tbody>
+            <tr>
+              <td>Configuración rápida Wi-Fi</td>
+              <td><button>Cerrar</button></td>
+            </tr>
+            <tr>
+              <td>Nombre de red Wi-Fi</td>
+              <td><input type="text" value="DTVNET_1CB879"></td>
+            </tr>
+            <tr>
+              <td>Contraseña Wi-Fi</td>
+              <td><input type="text" value="69B64FDA"><P>La clave de seguridad debe estar entre 8 y 63 caracteres de longitud.</P></td>
+            </tr>
+            <tr>
+              <td colspan="2"><button>Guardar</button></td>
+            </tr>
+          </tbody>
+        </table>
       </div>
     </div>
   </div>

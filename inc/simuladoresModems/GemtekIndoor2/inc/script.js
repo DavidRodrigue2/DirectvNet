@@ -185,3 +185,28 @@ ip.addEventListener('click', (evet)=>{
     dmz.disabled = false;
   }
 });
+
+const idioma = document.getElementById('idioma');
+const lenguajes = document.getElementById('lenguajes');
+const ajustes = document.getElementById('ajustes');
+const logout = document.getElementById('logout');
+idioma.addEventListener('click', (event)=>{
+  lenguajes.classList.toggle('hidden');
+});
+ajustes.addEventListener('click', (event)=>{
+  logout.classList.toggle('hidden');
+});
+
+const close = document.getElementById('close');
+const idx = document.getElementById('idx');
+const reiniciar = document.getElementById('reiniciar');
+const modalReinicio = document.getElementById('modalReinicio');
+reiniciar.addEventListener('click', (event)=>{
+  modalReinicio.classList.remove('hidden');
+});
+close.addEventListener('click', (event)=>{
+  modalReinicio.classList.add('hidden');
+});
+idx.addEventListener('click', (event)=>{
+  modalReinicio.classList.add('hidden');
+});

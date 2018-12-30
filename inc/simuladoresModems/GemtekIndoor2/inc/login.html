@@ -16,9 +16,36 @@
         <div class="wifi5"></div>
       </div>
       <div class="login">
-        <p>Usuario Final</p>
-        <p>idioma</p>
-        <p><a href="../index.html">Ajuste</a></p>
+        <div class="login-menu">
+          <p>Usuario Final</p>
+        </div>
+        <div class="login-menu" id="idioma">
+          <p>idioma</p>
+            <div class="sub-menu hidden" id="lenguajes">
+              <li><a href="#">English</a></li>
+              <li><a href="#">Spanish</a></li>
+              <li><a href="#">Portugués</a></li>
+            </div>
+        </div>
+        <div class="login-menu" id="ajustes">
+          <p>Ajuste</p>
+          <div class="sub-menu hidden" id="logout">
+            <li><a href="">Resumen</a></li>
+            <li><a id="reiniciar">Reiniciar</a></li>
+            <li><a href="../index.html">Cerrar Sesión</a></li>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="modal-reinicio hidden" id="modalReinicio">
+      <div class="modal-content">
+        <div class="modal-body">
+          <h3>¿Reiniciar el sistema?</h3>
+        </div>
+        <div class="modal-footer">
+          <button class="btn close" id="close">Cancelar</button>
+          <button class="btn idx" id="idx">Si</button>
+        </div>
       </div>
     </div>
     <div class="left" id="left">
@@ -371,7 +398,7 @@
         </div>
       </div>
       <div class="RedEstado hidden" id="left_3">
-        <img src="img/red.jpg" alt="">
+        <img src="img/red-estado.jpg" alt="Red Estado">
       </div>
       <div class="configWan hidden" id="left_32">
         <div class="container">
@@ -389,16 +416,6 @@
               <tr>
                 <td class="table-left">Nombre de Host</td>
                 <td class="table-right"><input class="option2" type="text" name="host" id="host" value="DIRECTV_034658"></td>
-              </tr>
-              <tr>
-                <td colspan="2" class="table-subtitle">WAN IP Setting</td>
-              </tr>
-            </table>
-          </div><div class="bloque">
-            <table>
-              <tr><th colspan="2" class="table-title">WAN DNS Setting</th></tr>
-              <tr>
-                <td colspan="2" class="table-subtitle"></td>
               </tr>
             </table>
           </div>
@@ -460,9 +477,6 @@
                   <input type="text" disabled class="ip" value="100">
                   <input type="text" class="ip" value="254">
                 </td>
-              </tr>
-              <tr>
-                <td colspan="2" class="table-subtitle">DNS Setting</td>
               </tr>
             </table>
           </div>
@@ -614,6 +628,20 @@
                 <td class="table-right">
                   <select name="" id="">
                     <option value="0">dyndns.org</option>
+                    <option value="1">freedns.afraid.org</option>
+                    <option value="2">zoneedit.com</option>
+                    <option value="3">no-ip.com</option>
+                    <option value="4">easydns.com</option>
+                    <option value="5">3322.org</option>
+                    <option value="6">sitelutions.com</option>
+                    <option value="7">dnsomatic.com</option>
+                    <option value="8">tunnelbroker.net</option>
+                    <option value="9">tzo.com</option>
+                    <option value="10">dynsip.org</option>
+                    <option value="11">dhis.org</option>
+                    <option value="12">majimoto.net</option>
+                    <option value="13">zerigo.com</option>
+                    <option value="14">custom</option>
                   </select>
                 </td>
               </tr>
@@ -643,7 +671,7 @@
               <tr>
                 <td class="table-left">Puerto HTTPs</td>
                 <td class="table-right">
-                    <input type="text" disabled class="ip" value="443">
+                    <input type="text" class="ip" value="443">
                 </td>
               </tr>
             </table>
@@ -712,15 +740,6 @@
                 <td class="table-right">
                   <select id="">
                     <option value="0">AutoConfiguration(SLAAC-DHCPv6)</option>
-                  </select>
-                </td>
-              </tr>
-              <tr>
-                <td class="table-left">DNS desde: </td>
-                <td class="table-right">
-                  <select id="">
-                    <option value="0">Automático</option>
-                    <option value="1">Estático</option>
                   </select>
                 </td>
               </tr>
@@ -1008,12 +1027,12 @@
               </tr>
               <tr>
                 <td colspan="2" class="ctn">
-                  <button class="btn">Quitar Última Buena</button>
+                  <button disabled class="btn-disabled">Quitar Última Buena</button>
                 </td>
               </tr>
               <tr>
                 <td colspan="2" class="ctn">
-                  <button class="btn">Reestablecer Última Buena</button>
+                  <button disabled class="btn-disabled">Reestablecer Última Buena</button>
                 </td>
               </tr>
             </table>
@@ -1068,7 +1087,7 @@
         </div>
       </div>
       <div class="Monitoreo1 hidden" id="left_7">
-        <img src="img/red.jpg" alt="">
+        <img src="img/Monitoreo-estado.jpg" alt="">
       </div>
       <div class="Monitoreo2 hidden" id="left_72">
         <div class="container">
@@ -1112,7 +1131,8 @@
                 <td class="table-left">Tipo de Protocolo</td>
                 <td class="table-right">
                   <select name="" id="">
-                    <option value="0">TCP</option>
+                    <option value="0">UDP</option>
+                    <option value="1">TCP</option>
                   </select>
                 </td>
               </tr>
@@ -1203,7 +1223,7 @@
         </div>
       </div>
       <div class="Acerca hidden" id="left_8">
-          <img src="img/red.jpg" alt="Red LTE">
+          <img src="img/acerca-de.jpg" alt="Red LTE">
         </div>
     </div>
   </div>

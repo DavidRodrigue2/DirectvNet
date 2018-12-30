@@ -1,5 +1,6 @@
 const buttonLogin = document.getElementById('buttonLogin');
 const login = document.getElementById('login');
+const bloque1 = document.getElementById('bloque1');
 const img = document.getElementById('img');
 const menu = document.getElementById('menu');
 
@@ -7,6 +8,7 @@ buttonLogin.addEventListener('click', (event)=>{
   login.classList.add('hidden');
   img.src = "Images/InfoGeneral.png";
   menu.classList.remove('hidden');
+  bloque1.classList.remove('hidden');
 });
 
 function doClick(n){
