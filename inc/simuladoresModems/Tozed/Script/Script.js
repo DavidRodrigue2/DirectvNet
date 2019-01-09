@@ -46,23 +46,18 @@ function doClick(n){
   }
 }
 
-// function center(n){
-//   if (n == 11){
-//     img.src = "Images/center.png";
-//   }
-//   if (n == 12){
-//     img.src = "Images/Version.png";
-//   }
-//   if (n == 13){
-//     img.src = "Images/Dispositivos.png";
-//   }
-//   if (n == 14){
-//     img.src = "Images/Estadisticas.png";
-//   }
-//   if (n == 15){
-//     img.src = "Images/EstadoLTE.png";
-//   }  
-//   if (n == 21){
-//     img.src = "Images/ConfigWiFi.png";
-//   }  
-// }
+const close = document.getElementById('close');
+const save = document.getElementById('save');
+const ChangePass = document.getElementById('ChangePass');
+const modalReinicio = document.getElementById('modalReinicio');
+
+ChangePass.addEventListener('click', (event)=>{
+  modalReinicio.classList.remove('hidden')
+})
+close.addEventListener('click', (event)=>{
+  modalReinicio.classList.add('hidden')
+})
+save.addEventListener('click', (event)=>{
+  alert('Los datos se han guardado correctamente...')
+  modalReinicio.classList.add('hidden')
+})

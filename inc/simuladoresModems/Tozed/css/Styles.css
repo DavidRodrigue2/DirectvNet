@@ -194,10 +194,10 @@ body{
   border: 10px solid #c4c4c4;
   background: #e9e9e9;
   border-radius: 6px;
-  width: 450px;
+  width: 776px;
   text-align: center;
   opacity: 1;
-  margin: 100px auto;
+  margin: 200px auto;
   position: relative;
   z-index: 6;
 }
@@ -208,4 +208,31 @@ body{
 .modal-reinicio .modal-content .modal-body h3{
   font-size: 24px;
   font-weight: 500;
+}
+.modal-reinicio .modal-content .modal-body .modal-title{
+  font-weight: bold;
+  background: #D9E5F4;
+  width: 100%;
+}
+.modal-reinicio .modal-content .modal-body .modal-title .title{
+  width: 34%;
+}
+.modal-reinicio .modal-content .modal-body .modal-title .btn{
+  float: right;
+  margin: 4px;
+}
+.modal-reinicio .modal-content .modal-body .modal-left{
+  font-weight: bold;
+  padding: 4px;
+  margin: 0;
+  text-align: left;
+  font-size: 14px;
+  width: 200px;
+}
+.modal-reinicio .modal-content .modal-body .modal-right input{
+  float: left;
+}
+.modal-reinicio .modal-content .modal-body .modal-right span{
+  padding-left: 5px;
+  color: green;
 }

@@ -47,25 +47,25 @@
       </div>
     </div>
   </div>
-  <div class="modal-reinicio" id="modalReinicio">
+  <div class="modal-reinicio hidden" id="modalReinicio">
     <div class="modal-content">
       <div class="modal-body">
         <table>
           <tbody>
-            <tr>
-              <td>Configuración rápida Wi-Fi</td>
-              <td><button>Cerrar</button></td>
+            <tr class="modal-title">
+              <td class="title">Configuración rápida Wi-Fi</td>
+              <td><button class="btn" id="close">Cerrar</button></td>
             </tr>
             <tr>
-              <td>Nombre de red Wi-Fi</td>
-              <td><input type="text" value="DTVNET_1CB879"></td>
+              <td class="modal-left">Nombre de red Wi-Fi</td>
+              <td class="modal-right"><input type="text" value="DTVNET_1CB879"></td>
             </tr>
             <tr>
-              <td>Contraseña Wi-Fi</td>
-              <td><input type="text" value="69B64FDA"><P>La clave de seguridad debe estar entre 8 y 63 caracteres de longitud.</P></td>
+              <td class="modal-left">Contraseña Wi-Fi</td>
+              <td class="modal-right"><input type="text" value="69B64FDA"><span>La clave de seguridad debe estar entre 8 y 63 caracteres de longitud.</span></td>
             </tr>
             <tr>
-              <td colspan="2"><button>Guardar</button></td>
+              <td colspan="2"><button id="save">Guardar</button></td>
             </tr>
           </tbody>
         </table>
