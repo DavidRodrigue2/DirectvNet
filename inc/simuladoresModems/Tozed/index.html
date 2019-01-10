@@ -126,10 +126,122 @@
 
   </div>
   <div class="center">
-    <div class="loginCenter" id="loginCenter">
+    <div class="op_center hidden" id="loginCenter">
       <figure>
         <img src="Images/center.png" alt="" id="img">
       </figure>
+    </div>
+    <div class="op_center hidden">
+      <figure>
+        <img src="Images/Info_general.png" alt="">
+      </figure>
+    </div>
+    <div class="op_center hidden">
+      <figure>
+        <img src="Images/Dispositivos_conectados.png" alt="">
+      </figure>
+    </div>
+    <div class="op_center hidden">
+      <figure>
+        <img src="Images/Estadisticas.png" alt="">
+      </figure>
+    </div>
+    <div class="op_center hidden">
+      <figure>
+        <img src="Images/EstadoLTE.png" alt="">
+      </figure>
+    </div>
+    <div class="op_center ">
+      <div class="tab_menu">
+        <ul class="tabs">
+          <li><a>Configuración Wi-Fi</a></li>
+        </ul>
+      </div>
+      <div class="tab_menu_bottom"></div>
+      <div class="configWifi">
+        <table>
+          <tbody>
+            <tr>
+              <td class="c-left">Nombre de red Wi-Fi:</td>
+              <td class="c-right"><input type="text" value="DTVNET_89JK34"></td>
+            </tr>
+            <tr>
+              <td class="c-left">Contraseña de Wi-Fi:</td>
+              <td class="c-right"><input type="text" value="34JD78V6"><span>La Contraseña de seguridad debe estar entre 8 y 63 caracteres de longitud.</span></td>
+            </tr>
+            <tr>
+              <td class="c-left">Tipo de seguridad:</td>
+              <td class="c-right">
+                <select name="" id="">
+                  <option value="0">Ninguno</option>
+                  <option value="1">WPA-PSK[TKIP]</option>
+                  <option value="2">WPA-PSK[AES]</option>
+                  <option value="3">WPA2-PSK[AES](Recomendado)</option>
+                  <option selected value="4">WPA-PSK[TKIP]/WPA2-PSK[AES]</option>
+                  <option value="5">WEP</option>
+                </select>
+              </td>
+            </tr>
+            <tr>
+              <td class="c-left">Canal:</td>
+              <td class="c-right">
+                <select name="" id="">
+                  <option value="0">Auto</option>
+                  <option value="1">1</option>
+                  <option value="2">2</option>
+                  <option value="3">3</option>
+                  <option value="4">4</option>
+                  <option value="5">5</option>
+                  <option value="6">6</option>
+                  <option value="7">7</option>
+                  <option value="8">8</option>
+                  <option value="9">9</option>
+                  <option value="10">10</option>
+                  <option value="11">11</option>
+                </select>
+              </td>
+            </tr>
+            <tr>
+              <td class="c-left">Ancho de banda:</td>
+              <td class="c-right">
+                <select name="" id="">
+                  <option value="0">20 MHz</option>
+                  <option value="1">40 MHz</option>
+                  <option value="2">20 MHz / 40 MHz</option>
+                </select>
+              </td>
+            </tr>
+            <tr>
+              <td class="c-left">Estandar Wi-Fi:</td>
+              <td class="c-right">
+                <select name="" id="">
+                  <option value="0">802.11bgn (por defecto)</option>
+                  <option value="1">802.11b</option>
+                  <option value="2">802.11g</option>
+                  <option value="3">802.11bg</option>
+                  <option value="4">802.11n</option>
+                </select>
+              </td>
+            </tr>
+            <tr>
+              <td class="c-left">Máximo numero de equipos conectados:</td>
+              <td class="c-right"><input type="text" value="32"><span>(Rango: 1 ~ 32)</span></td>
+            </tr>
+            <tr>
+              <td class="c-left">Propagar Wi-Fi:</td>
+              <td class="c-right"><input type="checkbox" checked name="" id="">Activo</td>
+            </tr>
+            <tr>
+              <td class="c-left">Wi-Fi:</td>
+              <td class="c-right"><input type="checkbox" checked name="" id="">Activo</td>
+            </tr>
+            <tr>
+              <td class="c-left"></td>
+              <td class="c-right"><button>Guardar</button></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
     </div>
   </div>
   <script type="text/javascript" src="Script/Script.js"></script>

@@ -6,7 +6,7 @@ const menu = document.getElementById('menu');
 
 buttonLogin.addEventListener('click', (event)=>{
   login.classList.add('hidden');
-  img.src = "Images/InfoGeneral.png";
+  // img.src = "Images/Info_general.png";
   menu.classList.remove('hidden');
   bloque1.classList.remove('hidden');
 });

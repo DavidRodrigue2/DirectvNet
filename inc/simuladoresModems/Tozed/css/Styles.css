@@ -121,20 +121,6 @@ body{
   padding: 8px 0;
   cursor: pointer;  
 }
-/*  ----------------------------------CENTER --------------------------------------- */
-.center{
-  display: inline-block;
-  width: calc(100% - 210px);
-  height: 100%;
-}
-.center figure{
-  position: absolute;
-  top: 64px;
-  left: 180px;
-}
-.hidden{
-  display: none;
-}
 /*  ----------------------------------LEFT MENU --------------------------------------- */
 .left .menu{
   font-size: 15px;
@@ -235,4 +221,49 @@ body{
 .modal-reinicio .modal-content .modal-body .modal-right span{
   padding-left: 5px;
   color: green;
+}
+/* -------------------------------------------- */
+/* -----------CENTRO------------------- */
+/* -------------------------------------------- */
+.center{
+  display: inline-block;
+  width: calc(100% - 230px);
+  height: 100%;
+  position: absolute;
+  top: 85px;
+  left: 220px;
+}
+.hidden{
+  display: none;
+}
+.center .op_center figure{
+  margin: 0;
+}
+.center .op_center .tab_menu{
+  padding-left: 5px;
+  border-bottom: 1px solid #2E6DB4;
+}
+.center .op_center .tab_menu .tabs{
+  list-style: none;
+  height: 23px;
+  margin: 0;
+  padding: 0;
+}
+.center .op_center .tab_menu .tabs a{
+  color: #27568F;
+  background-color: #D9E5F4;
+  border: 1px solid #2E6DB4;
+  border-bottom: 2px solid #D9E5F4;
+  cursor: default;
+  padding: 3px 15px;
+  text-decoration: none;
+  cursor: pointer;
+}
+.center .op_center .tab_menu_bottom{
+  border-top: solid 5px #D9E5F4;
+}
+.center .op_center .configWifi span{
+  padding-left: 5px;
+  color: green;
+  font-size: 14px;
 }
