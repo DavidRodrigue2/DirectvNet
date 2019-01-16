@@ -47,10 +47,10 @@
       </div>
     </div>
   </div>
-  <div class="modal-reinicio hidden" id="modalReinicio">
+  <div class="modal hidden" id="modalReinicio">
     <div class="modal-content">
       <div class="modal-body">
-        <table>
+        <table style="border-spacing: 0;">
           <tbody>
             <tr class="modal-title">
               <td class="title">Configuración rápida Wi-Fi</td>
@@ -72,6 +72,317 @@
       </div>
     </div>
   </div>
+  <div class="modal hidden" id="modalMAC">
+    <div class="modal-content" style="    width: 650px;">
+      <div class="modal-body">
+        <table style="width: 100%; border-spacing: 0;">
+          <tbody>
+            <tr class="modal-title">
+              <td class="title" style="text-align: left;">Añadir IP estática</td>
+              <td><button class="btn" id="closeMAC">Cerrar</button></td>
+            </tr>
+            <tr>
+              <td class="modal-left">Dirección IP MAC</td>
+              <td class="modal-right"><input type="text"></td>
+            </tr>
+            <tr>
+              <td class="modal-left">IP</td>
+              <td class="modal-right"><input type="text"></td>
+            </tr>
+            <tr>
+              <td></td>
+              <td><button id="saveMAC" style="float: left;">Agregar</button></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+  <div class="modal hidden" id="modalRutas">
+    <div class="modal-content" style="    width: 650px;">
+      <div class="modal-body">
+        <table style="width: 100%; border-spacing: 0;">
+          <tbody>
+            <tr class="modal-title">
+              <td class="title" style="text-align: left;">Añadir</td>
+              <td colspan="2"><button class="btn" id="closeRutas">Cerrar</button></td>
+            </tr>
+            <tr>
+              <td class="modal-left">Interfaz:</td>
+              <td style="float:left;" class="modal-right">
+                <label for=""><input type="radio" id="" checked name=""> WAN</label>
+              </td>
+              <td style="float:left;">
+                <label for=""><input type="radio" id="" name=""> LAN</label>
+              </td>
+            </tr>
+            <tr>
+              <td class="modal-left">Dirección IP de destino:</td>
+              <td colspan="2" class="modal-right"><input type="text"></td>
+            </tr>
+            <tr>
+              <td class="modal-left">Mascara de subred:</td>
+              <td colspan="2" class="modal-right"><input type="text" value="25.255.255.0"></td>
+            </tr>
+            <tr>
+              <td class="modal-left">Gateway:</td>
+              <td colspan="2" class="modal-right"><input type="text"></td>
+            </tr>
+            <tr>
+              <td class="modal-left">Estado:</td>
+              <td style="float:left;" class="modal-right">
+                <label for=""><input type="radio" id="" checked name=""> Valido</label>
+              </td>
+              <td style="float:left;">
+                <label for=""><input type="radio" id="" name=""> Inválido</label>
+              </td>
+            </tr>
+            <tr>
+              <td></td>
+              <td colspan="2"><button id="saveRutas" style="float: left;">Agregar</button></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+  <div class="modal hidden" id="modalFiltroPuertos">
+    <div class="modal-content" style="width: 650px;">
+      <div class="modal-body">
+        <table style="width: 100%; border-spacing: 0; font-size: 14px">
+          <tbody>
+            <tr class="modal-title">
+              <td class="title" style="text-align: left;">Añadir filtrado de puerto</td>
+              <td colspan="2"><button class="btn" id="closeFiltroPuertos">Cerrar</button></td>
+            </tr>
+            <tr>
+              <td class="modal-left">IPv4 / IPv6:</td>
+              <td style="float:left;" class="modal-right"><label for=""><input type="radio" id="" checked name="ip"> IPv4</label></td>
+              <td style="float:left;" class="modal-right"><label for=""><input type="radio" id="" name="ip"> IPv6</label></td>
+            </tr>
+            <tr>
+              <td class="modal-left">Modo de filtro:</td>
+              <td style="float:left; color: green;" class="modal-right"><label for=""><input type="radio" id="" checked name="modo"> Permitir</label></td>
+              <td style="float:left; color: red;" class="modal-right"><label for=""><input type="radio" id="" name="modo"> Rechazar</label></td>
+            </tr>
+            <tr>
+              <td class="modal-left">Protocolo:</td>
+              <td style="float:left;" class="modal-right"><label for=""><input type="radio" id="" checked name="pro"> Todas</label></td>
+              <td style="float:left;" class="modal-right"><label for=""><input type="radio" id="" name="pro"> TCP</label></td>
+              <td style="float:left;" class="modal-right"><label for=""><input type="radio" id="" name="pro"> UDP</label></td>
+            </tr>
+            <tr>
+              <td class="modal-left">Puerto:</td>
+              <td colspan="2" class="modal-right"><input type="text"><span>Ejemplo:80(http), 443(https), 5000 - 5010, >4000, < 1024 </span></td>
+            </tr>
+            <tr>
+              <td class="modal-left">Observación:</td>
+              <td colspan="2" class="modal-right"><input type="text" style="width:300px"></td>
+            </tr>
+            </tr>
+            <tr>
+              <td></td>
+              <td colspan="2"><button id="saveFiltroPuertos" style="float: left;">Agregar</button></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+  <div class="modal hidden" id="modalFiltroIP">
+    <div class="modal-content" style="width: 650px;">
+      <div class="modal-body">
+        <table style="width: 100%; border-spacing: 0; font-size: 14px">
+          <tbody>
+            <tr class="modal-title">
+              <td class="title" style="text-align: left;">Añadir filtrado de puerto</td>
+              <td colspan="2"><button class="btn" id="closeFiltroIP">Cerrar</button></td>
+            </tr>
+            <tr>
+              <td class="modal-left">IPv4 / IPv6:</td>
+              <td style="float:left;" class="modal-right"><label for=""><input type="radio" id="" checked name="ip"> IPv4</label></td>
+              <td style="float:left;" class="modal-right"><label for=""><input type="radio" id="" name="ip"> IPv6</label></td>
+            </tr>
+            <tr>
+              <td class="modal-left">Modo de filtro:</td>
+              <td style="float:left; color: green;" class="modal-right"><label for=""><input type="radio" id="" checked name="filtro"> Permitir</label></td>
+              <td style="float:left; color: red;" class="modal-right"><label for=""><input type="radio" id="" name="filtro"> Rechazar</label></td>
+            </tr>
+            <tr>
+              <td class="modal-left">Protocolo:</td>
+              <td style="float:left;" class="modal-right"><label for=""><input type="radio" id="" checked name="proto"> Todas</label></td>
+              <td style="float:left;" class="modal-right"><label for=""><input type="radio" id="" name="proto"> TCP</label></td>
+              <td style="float:left;" class="modal-right"><label for=""><input type="radio" id="" name="proto"> UDP</label></td>
+            </tr>
+            <tr>
+              <td class="modal-left">Puerto:</td>
+              <td colspan="2" class="modal-right"><input type="text"><span>Ejemplo:192.168.100.100, 192.168.100.150-192.168.100.200</span></td>
+            </tr>
+            <tr>
+              <td class="modal-left">Observación:</td>
+              <td colspan="2" class="modal-right"><input type="text" style="width:300px"></td>
+            </tr>
+            </tr>
+            <tr>
+              <td></td>
+              <td colspan="2"><button id="saveFiltroIP" style="float: left;">Agregar</button></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+  <div class="modal hidden" id="modalFiltroMAC">
+    <div class="modal-content" style="width: 650px;">
+      <div class="modal-body">
+        <table style="width: 100%; border-spacing: 0; font-size: 14px">
+          <tbody>
+            <tr class="modal-title">
+              <td class="title" style="text-align: left;">Añadir filtrado de puerto</td>
+              <td colspan="2"><button class="btn" id="closeFiltroMAC">Cerrar</button></td>
+            </tr>
+            <tr>
+              <td class="modal-left">IPv4 / IPv6:</td>
+              <td style="float:left;" class="modal-right"><label for=""><input type="radio" id="" checked name="ip"> IPv4</label></td>
+              <td style="float:left;" class="modal-right"><label for=""><input type="radio" id="" name="ip"> IPv6</label></td>
+            </tr>
+            <tr>
+              <td class="modal-left">Modo de filtro:</td>
+              <td style="float:left; color: green;" class="modal-right"><label for=""><input type="radio" id="" checked name="filtro"> Permitir</label></td>
+              <td style="float:left; color: red;" class="modal-right"><label for=""><input type="radio" id="" name="filtro"> Rechazar</label></td>
+            </tr>
+            <tr>
+              <td class="modal-left">Dirección MAC:</td>
+              <td colspan="2" class="modal-right"><input type="text"><span>Ejemplo:B8:AC:6F:BB:7E:3F</span></td>
+            </tr>
+            <tr>
+              <td class="modal-left">Observación:</td>
+              <td colspan="2" class="modal-right"><input type="text" style="width:300px"></td>
+            </tr>
+            </tr>
+            <tr>
+              <td></td>
+              <td colspan="2"><button id="saveFiltroMAC" style="float: left;">Guardar</button></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+  <div class="modal hidden" id="modalMapeoPuertos">
+    <div class="modal-content" style="width: 650px;">
+      <div class="modal-body">
+        <table style="width: 100%; border-spacing: 0; font-size: 14px">
+          <tbody>
+            <tr class="modal-title">
+              <td class="title" style="text-align: left;">Añadir filtrado de puerto</td>
+              <td colspan="2"><button class="btn" id="closeMapeoPuertos">Cerrar</button></td>
+            </tr>
+            <tr>
+              <td class="modal-left">Protocolo:</td>
+              <td style="float:left;" class="modal-right"><label for=""><input type="radio" id="" checked name="ip"> TCP</label></td>
+              <td style="float:left;" class="modal-right"><label for=""><input type="radio" id="" name="ip"> UDP</label></td>
+            </tr>
+            <tr>
+              <td class="modal-left">Puerto:</td>
+              <td class="modal-right"><input type="text"><span>Ejemplo:80(http), 443(https)</span></td>
+            </tr>
+            <tr>
+              <td class="modal-left">Asignación de IP:</td>
+              <td class="modal-right"><input type="text"><span>Ejemplo:192.168.100.100</span></td>
+            </tr>
+            <tr>
+              <td class="modal-left">La asignación de puertos:</td>
+              <td colspan="2" class="modal-right"><input type="text"><span>Ejemplo:8080</span></td>
+            </tr>
+            <tr>
+              <td class="modal-left">Observación:</td>
+              <td colspan="2" class="modal-right"><input type="text" style="width:300px"></td>
+            </tr>
+            </tr>
+            <tr>
+              <td></td>
+              <td colspan="2"><button id="saveMapeoPuertos" style="float: left;">Guardar</button></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+  <div class="modal hidden" id="modalFiltroURL">
+    <div class="modal-content" style="width: 650px;">
+      <div class="modal-body">
+        <table style="width: 100%; border-spacing: 0; font-size: 14px">
+          <tbody>
+            <tr class="modal-title">
+              <td class="title" style="text-align: left;">Añadir filtrado de puerto</td>
+              <td colspan="2"><button class="btn" id="closeFiltroURL">Cerrar</button></td>
+            </tr>
+            <tr>
+              <td class="modal-left">IPv4 / IPv6:</td>
+              <td style="float:left;" class="modal-right"><label for=""><input type="radio" id="" checked name="ip"> IPv4</label></td>
+              <td style="float:left;" class="modal-right"><label for=""><input type="radio" id="" name="ip"> IPv6</label></td>
+            </tr>
+            <tr>
+              <td class="modal-left">Modo de filtro:</td>
+              <td style="float:left; color: green;" class="modal-right"><label for=""><input type="radio" id="" checked name="filtro"> Permitir</label></td>
+              <td style="float:left; color: red;" class="modal-right"><label for=""><input type="radio" id="" name="filtro"> Rechazar</label></td>
+            </tr>
+            <tr>
+              <td class="modal-left">Dirección URL:</td>
+              <td colspan="2" class="modal-right"><input type="text"><span>Ejemplo:google.com, baidu.com</span></td>
+            </tr>
+            <tr>
+              <td class="modal-left">Observación:</td>
+              <td colspan="2" class="modal-right"><input type="text" style="width:300px"></td>
+            </tr>
+            </tr>
+            <tr>
+              <td></td>
+              <td colspan="2"><button id="saveFiltroURL" style="float: left;">Guardar</button></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+  <div class="modal hidden" id="modalIPMAC">
+    <div class="modal-content" style="width: 650px;">
+      <div class="modal-body">
+        <table style="width: 100%; border-spacing: 0; font-size: 14px">
+          <tbody>
+            <tr class="modal-title">
+              <td class="title" style="text-align: left;">Añadir IP MAC Binding</td>
+              <td colspan="2"><button class="btn" id="closeIPMAC">Cerrar</button></td>
+            </tr>
+            <tr>
+              <td class="modal-left">IPv4 / IPv6:</td>
+              <td style="float:left;" class="modal-right"><label for=""><input type="radio" id="" checked name="ip"> IPv4</label></td>
+              <td style="float:left;" class="modal-right"><label for=""><input type="radio" id="" name="ip"> IPv6</label></td>
+            </tr>
+            <tr>
+              <td class="modal-left">IP:</td>
+              <td class="modal-right"><input type="text"><span>Ejemplo:192.168.100.100</span></td>
+            </tr>
+            <tr>
+              <td class="modal-left">Dirección MAC:</td>
+              <td colspan="2" class="modal-right"><input type="text"><span>Ejemplo:B8:AC:6F:BB:7E:3F</span></td>
+            </tr>
+            <tr>
+              <td class="modal-left">Observación:</td>
+              <td colspan="2" class="modal-right"><input type="text" style="width:300px"></td>
+            </tr>
+            </tr>
+            <tr>
+              <td></td>
+              <td colspan="2"><button id="saveIPMAC" style="float: left;">Guardar</button></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+
   <div class="left">
     <div class="login" id="login">
       <div class="loginContainer" id="loginContainer">
@@ -123,35 +434,40 @@
         <li class="li" id="li56" onclick="doClick(56)">Reiniciar</li>
       </ol>
     </div>
-
   </div>
+
   <div class="center">
     <div class="op_center hidden" id="loginCenter">
       <figure>
         <img src="Images/center.png" alt="" id="img">
       </figure>
     </div>
-    <div class="op_center hidden">
+    <div class="op_center hidden" id="informacion-general">
       <figure>
         <img src="Images/Info_general.png" alt="">
       </figure>
     </div>
-    <div class="op_center hidden">
+    <div class="op_center hidden" id="version">
+      <figure>
+        <img src="Images/Version.png" alt="">
+      </figure>
+    </div>
+    <div class="op_center hidden" id="dispositivos-conectados">
       <figure>
         <img src="Images/Dispositivos_conectados.png" alt="">
       </figure>
     </div>
-    <div class="op_center hidden">
+    <div class="op_center hidden" id="estadisicas-trafico">
       <figure>
         <img src="Images/Estadisticas.png" alt="">
       </figure>
     </div>
-    <div class="op_center hidden">
+    <div class="op_center hidden" id="estado-lte">
       <figure>
         <img src="Images/EstadoLTE.png" alt="">
       </figure>
     </div>
-    <div class="op_center ">
+    <div class="op_center hidden" id="configuracion-wifi">
       <div class="tab_menu">
         <ul class="tabs">
           <li><a>Configuración Wi-Fi</a></li>
@@ -167,7 +483,7 @@
             </tr>
             <tr>
               <td class="c-left">Contraseña de Wi-Fi:</td>
-              <td class="c-right"><input type="text" value="34JD78V6"><span>La Contraseña de seguridad debe estar entre 8 y 63 caracteres de longitud.</span></td>
+              <td class="c-right"><input type="text" value="34JD78V6"><span>La clave de seguridad debe estar entre 8 y 63 caracteres de longitud.</span></td>
             </tr>
             <tr>
               <td class="c-left">Tipo de seguridad:</td>
@@ -238,6 +554,742 @@
             <tr>
               <td class="c-left"></td>
               <td class="c-right"><button>Guardar</button></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+    <div class="op_center hidden" id="wan">
+      <div class="tab_menu">
+        <ul class="tabs">
+          <li><a>Ajustes DNS</a></li>
+        </ul>
+      </div>
+      <div class="tab_menu_bottom"></div>
+      <div class="conf-wan">
+        <table>
+          <tbody>
+            <tr>
+              <td class="c-left">Dirección del servidor DNS: </td>
+              <td class="c-right">
+                <input type="radio" name="dns" id="auto" checked>Automático
+                <input type="radio" name="dns" id="manual">Manual
+              </td>
+            </tr>
+            <tr class="hidden" id="dns1">
+              <td class="c-left">DNS Primario: </td>
+              <td class="c-right"><input type="text"></td>
+            </tr>
+            <tr class="hidden" id="dns2">
+              <td class="c-left">DNS Secundario: </td>
+              <td class="c-right"><input type="text"></td>
+            </tr>
+            <tr>
+              <td class="c-left"></td>
+              <td class="c-right"><button id="btnDns">Guardar</button></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+    <div class="op_center hidden" id="DHCP">
+      <div class="tab_menu">
+        <ul class="tabs">
+          <li><a>Configuración DHCP</a></li>
+          <li><a class="hiddenTab">Dirección IP Reservada</a></li>
+        </ul>
+      </div>
+      <div class="tab_menu_bottom"></div>
+      <div class="conf-DHCP hidden">
+        <table>
+          <tbody>
+            <tr>
+              <td class="c-left">IP de LAN: </td>
+              <td class="c-right"><input type="text" value="192.168.100.1"></td>
+            </tr>
+            <tr>
+              <td class="c-left">Mascara subred: </td>
+              <td class="c-right"><input type="text" value="255.255.255.0"></td>
+            </tr>
+            <tr>
+              <td class="c-left">Servidor DHCP: </td>
+              <td class="c-right"><input type="checkbox" checked name="" id="">Activo</td>
+            </tr>
+            <tr>
+              <td class="c-left">Rango de direcciones IP: </td>
+              <td class="c-right">
+                <input type="text" value="192.168.100.2"> - 
+                <input type="text" value="192.168.100.254">
+              </td>
+            </tr>
+            <tr>
+              <td class="c-left">Tiempo de sesión: </td>
+              <td class="c-right"><input type="text" value="1440"> Mins</td>
+            </tr>
+            <tr>
+              <td class="c-left"></td>
+              <td class="c-right"><button id="btnDns">Guardar</button></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="conf-IPReserv">
+        <table>
+          <tbody>
+            <tr style="background: rgb(51, 154, 214);">
+              <td>No.</td>
+              <td>Dirección MAC</td>
+              <td>IP</td>
+              <td>Editar</td>
+              <td>Borrar</td>
+            </tr>
+            <tr>
+              <td colspan="5">
+                <button id="btnAdd">Añadir</button>
+                <button>Eliminar Todo</button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+    <div class="op_center hidden" id="rutas">
+      <div class="tab_menu">
+        <ul class="tabs">
+          <li><a>Tabla de enrutamiento estático</a></li>
+        </ul>
+      </div>
+      <div class="tab_menu_bottom"></div>
+      <div class="rutas">
+        <table>
+          <tbody>
+            <tr style="background: rgb(51, 154, 214); color: white">
+              <td>No.</td>
+              <td>Interfaz</td>
+              <td>Dirección IP de destino</td>
+              <td>Mascara de subred</td>
+              <td>Gateway</td>
+              <td>Estado</td>
+              <td>Editar</td>
+              <td>Borrar</td>
+            </tr>
+            <tr>
+              <td colspan="8">
+                <button id="btnRutas">Añadir ruta</button>
+                <button>Establecer todas las rutas validas</button>
+                <button>Establecer todas las rutas no validas</button>
+                <button>Eliminar todas las entradas</button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+    <div class="op_center hidden" id="DDNS">
+      <div class="tab_menu">
+        <ul class="tabs">
+          <li><a>Configuración de Oray</a></li>
+          <li><a class="hiddenTab">Configuración de Pubuy</a></li>
+          <li><a class="hiddenTab">Otros servidores de configuraciones de DDNS</a></li>
+        </ul>
+      </div>
+      <div class="tab_menu_bottom"></div>
+      <div class="conf-DDNS-Oray hidden">
+        <span>Consejo: Si usted no tiene una cuenta, por favor visite el sitio web Oray <a href="www.oray.com">www.oray.com</a> para registrar</span>
+        <table>
+          <tbody>
+            <tr>
+              <td class="c-left">Habilitar DDNS: </td>
+              <td class="c-right"><input type="checkbox" checked name="" id="">Activo</td>
+            </tr>
+            <tr>
+              <td class="c-left">Proveedor del servicio: </td>
+              <td class="c-right"><a href="www.oray.com">www.oray.com</a></td>
+            </tr>
+            <tr>
+              <td class="c-left">Estado de conexión:</td>
+              <td class="c-right"></td>
+            </tr>
+            <tr>
+              <td class="c-left">Nombre de usuario: </td>
+              <td class="c-right"><input type="text"></td>
+            </tr>
+            <tr>
+              <td class="c-left">Contraseña: </td>
+              <td class="c-right"><input type="text"></td>
+            </tr>
+            <tr>
+              <td class="c-left">Dominio: </td>
+              <td class="c-right"></td>
+            </tr>
+            <tr>
+              <td class="c-left"></td>
+              <td class="c-right">
+                <button>Guardar</button>
+                <button>Conectar</button>
+                <button disabled="disabled">Desconectar</button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="conf-DDNS-pubyun hidden">
+        <span>Consejo: Si usted no tiene una cuenta, por favor visite el sitio web Pubyun <a href="www.pubyun.com">www.pubyun.com</a> para registrar</span>
+        <table>
+          <tbody>
+            <tr>
+              <td class="c-left">Habilitar DDNS: </td>
+              <td class="c-right"><input type="checkbox" checked name="" id="">Activo</td>
+            </tr>
+            <tr>
+              <td class="c-left">Proveedor del servicio: </td>
+              <td class="c-right"><a href="www.pubyun.com">www.pubyun.com</a></td>
+            </tr>
+            <tr>
+              <td class="c-left">Estado de conexión:</td>
+              <td class="c-right"></td>
+            </tr>
+            <tr>
+              <td class="c-left">Nombre de usuario: </td>
+              <td class="c-right"><input type="text"></td>
+            </tr>
+            <tr>
+              <td class="c-left">Contraseña: </td>
+              <td class="c-right"><input type="text"></td>
+            </tr>
+            <tr>
+              <td class="c-left">Dominio: </td>
+              <td class="c-right"></td>
+            </tr>
+            <tr>
+              <td class="c-left"></td>
+              <td class="c-right">
+                <button>Guardar</button>
+                <button>Conectar</button>
+                <button disabled="disabled">Desconectar</button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="conf-DDNS-otros ">
+        <span>Consejo: Si usted no tiene una cuenta, por favor visite uno de los siguientes servicios y registrar primero</span>
+        <br> <a href="http://dyndns.org">http://dyndns.org</a>
+        <br> <a href="http://noip.com">http://noip.com</a>
+        <br> <a href="http://duckdns.org">http://duckdns.org</a>
+        <br> <a href="http://guide.ovh.com/DynDns">http://guide.ovh.com/DynDns</a>
+        <br> <a href="http://sitelutions.com/info/sidns">http://sitelutions.com/info/sidns</a>
+        <br> <a href="http://chngeip.com">http://chngeip.com</a>
+        <table>
+          <tbody>
+            <tr>
+              <td class="c-left">Habilitar DDNS: </td>
+              <td class="c-right"><input type="checkbox" checked name="" id="">Activo</td>
+            </tr>
+            <tr>
+              <td class="c-left">Proveedor del servicio: </td>
+              <td class="c-right">
+                <select name="" id="">
+                  <option value="0">http://dyndns.org</option>
+                  <option value="1">http://noip.com</option>
+                  <option value="2">http://duckdns.org</option>
+                  <option value="3">http://guide.ovh.com/DynDns</option>
+                  <option value="4">http://sitelutions.com/info/sidns</option>
+                  <option value="5">http://chngeip.com</option>
+                </select>
+              </td>
+            </tr>
+            <tr>
+              <td class="c-left">Estado de conexión:</td>
+              <td class="c-right"></td>
+            </tr>
+            <tr>
+              <td class="c-left">Nombre de usuario: </td>
+              <td class="c-right"><input type="text"></td>
+            </tr>
+            <tr>
+              <td class="c-left">Contraseña: </td>
+              <td class="c-right"><input type="text"></td>
+            </tr>
+            <tr>
+              <td class="c-left">Dominio: </td>
+              <td class="c-right"><input type="text" name="" id=""></td>
+            </tr>
+            <tr>
+              <td class="c-left"></td>
+              <td class="c-right">
+                <button>Guardar</button>
+                <button>Conectar</button>
+                <button disabled="disabled">Desconectar</button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+    <div class="op_center hidden" id="reglas-de-filtrado">
+      <div class="tab_menu">
+        <ul class="tabs">
+          <li><a>Filtros de puertos</a></li>
+          <li><a class="hiddenTab">Filtado IP</a></li>
+          <li><a class="hiddenTab">Ajustes por defecto</a></li>
+        </ul>
+      </div>
+      <div class="tab_menu_bottom"></div>
+      <div class="filtroPuertos hidden">
+        <table>
+          <tbody>
+            <tr style="background: rgb(51, 154, 214); color: white; font-size: 13px;">
+              <td>Habilitar regla</td>
+              <td>Seleccionado</td>
+              <td>Prioridad</td>
+              <td>IPv4 / IPv6</td>
+              <td>Protocolo</td>
+              <td>Puerto</td>
+              <td>Observación</td>
+              <td>Modo de filtro</td>
+              <td>Modo de cambio de filtro</td>
+              <td>Eliminar regla</td>
+            </tr>
+            <tr>
+              <td colspan="10">
+                <button id="btnFiltroPuertos">Añadir regla</button>
+                <button disabled>Prioridad</button>
+                <button disabled>Parte superior</button>
+                <button disabled>Ascender</button>
+                <button disabled>Mover hacia abajo</button>
+                <button disabled>Fondo</button>
+                <button>Aplicar Reglas</button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="filtradoIP hidden">
+        <table>
+          <tbody>
+            <tr style="background: rgb(51, 154, 214); color: white; font-size: 13px;">
+              <td>Habilitar regla</td>
+              <td>Seleccionado</td>
+              <td>Prioridad</td>
+              <td>IPv4 / IPv6</td>
+              <td>Protocolo</td>
+              <td>IP</td>
+              <td>Observación</td>
+              <td>Modo de filtro</td>
+              <td>Modo de cambio de filtro</td>
+              <td>Eliminar regla</td>
+            </tr>
+            <tr>
+              <td colspan="10">
+                <button id="btnFiltroIP">Añadir regla</button>
+                <button disabled>Prioridad</button>
+                <button disabled>Parte superior</button>
+                <button disabled>Ascender</button>
+                <button disabled>Mover hacia abajo</button>
+                <button disabled>Fondo</button>
+                <button>Aplicar Reglas</button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="ajustesPorDefecto ">
+        <br>
+        <div class="regla">
+          <div class="data">
+            <p>Reglas de filtro predeterminado IPv4</p>
+            <input type="radio" name="regla1" checked id="">Aceptar <br>
+            <input type="radio" name="regla1" id="">Rechazar
+          </div>
+        </div>
+        <br>
+        <div class="regla">
+          <div class="data">
+            <p>Reglas de filtro predeterminado IPv6</p>
+            <input type="radio" name="regla2" checked id="">Aceptar <br>
+            <input type="radio" name="regla2" id="">Rechazar
+          </div>
+        </div>
+        <br>
+        <button id="btnAplicarReglas">Aplicar reglas</button>
+        <button>Borrar todas las reglas</button>
+      </div>
+    </div>
+    <div class="op_center hidden" id="filtroMAC">
+      <div class="tab_menu">
+        <ul class="tabs">
+          <li><a>Filtrado de direcciones MAC</a></li>
+          <li><a class="hiddenTab">Ajustes por defecto</a></li>
+        </ul>
+      </div>
+      <div class="tab_menu_bottom"></div>
+      <div class="filtroMAC hidden">
+        <table>
+          <tbody>
+            <tr style="background: rgb(51, 154, 214); color: white; font-size: 13px;">
+              <td>Habilitar regla</td>
+              <td>Seleccionado</td>
+              <td>Prioridad</td>
+              <td>IPv4 / IPv6</td>
+              <td>Dirección MAC</td>
+              <td>Observación</td>
+              <td>Modo de filtro</td>
+              <td>Modo de cambio de filtro</td>
+              <td>Eliminar regla</td>
+            </tr>
+            <tr>
+              <td colspan="9">
+                <button id="btnFiltroMAC">Añadir regla</button>
+                <button disabled>Prioridad</button>
+                <button disabled>Parte superior</button>
+                <button disabled>Ascender</button>
+                <button disabled>Mover hacia abajo</button>
+                <button disabled>Fondo</button>
+                <button>Aplicar Reglas</button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="ajustesPorDefecto ">
+        <br>
+        <div class="regla">
+          <div class="data">
+            <p>Reglas de filtro predeterminado IPv4</p>
+            <input type="radio" name="regla1" checked id="">Aceptar <br>
+            <input type="radio" name="regla1" id="">Rechazar
+          </div>
+        </div>
+        <br>
+        <div class="regla">
+          <div class="data">
+            <p>Reglas de filtro predeterminado IPv6</p>
+            <input type="radio" name="regla2" checked id="">Aceptar <br>
+            <input type="radio" name="regla2" id="">Rechazar
+          </div>
+        </div>
+        <br>
+        <button id="btnAplicarReglasMAC">Aplicar reglas</button>
+        <button>Borrar todas las reglas</button>
+      </div>
+    </div>
+    <div class="op_center hidden" id="mapeoPuertos">
+      <div class="tab_menu">
+        <ul class="tabs">
+          <li><a>Mapeo de puerto</a></li>
+        </ul>
+      </div>
+      <div class="tab_menu_bottom"></div>
+      <div class="mapeo">
+        <table>
+          <tbody>
+            <tr style="background: rgb(51, 154, 214); color: white; font-size: 13px;">
+              <td>Habilitar regla</td>
+              <td>Seleccionado</td>
+              <td>Prioridad</td>
+              <td>IPv4 / IPv6</td>
+              <td>Puerto</td>
+              <td>Asignación de IP</td>
+              <td>La asignación de puertos</td>
+              <td>Observación</td>
+              <td>Eliminar regla</td>
+            </tr>
+            <tr>
+              <td colspan="9">
+                <button id="btnMapeoPuertos">Añadir regla</button>
+                <button disabled>Prioridad</button>
+                <button disabled>Parte superior</button>
+                <button disabled>Ascender</button>
+                <button disabled>Mover hacia abajo</button>
+                <button disabled>Fondo</button>
+                <button>Aplicar Reglas</button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+    <div class="op_center hidden" id="IpDMZ">
+      <div class="title_DMZ">
+        <p>IP DMZ</p>
+      </div>
+      <span>AVISO: Después de configurar el host DMZ, configuración del firewall asociados a esta dirección IP no funcionarán.</span>
+      <table>
+        <tbody>
+          <tr>
+            <td class="c-left">Habilitar DMZ: </td>
+            <td class="c-right"><input type="checkbox" name="" id="dmz">Activo</td>
+          </tr>
+          <tr class="hidden" id="host">
+            <td class="c-left">DMZ Host IP: </td>
+            <td class="c-right"><input type="text" value="192.168.100."></td>
+          </tr>
+          <tr>
+            <td class="c-left"></td>
+            <td class="c-right"><button id="btnDns">Guardar</button></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="op_center hidden" id="filtroURL">
+      <div class="tab_menu">
+        <ul class="tabs">
+          <li><a>Filtrado de URL</a></li>
+          <li><a class="hiddenTab">Ajustes por defecto</a></li>
+        </ul>
+      </div>
+      <div class="tab_menu_bottom"></div>
+      <div class="filtroMAC ">
+        <table>
+          <tbody>
+            <tr style="background: rgb(51, 154, 214); color: white; font-size: 13px;">
+              <td>Habilitar regla</td>
+              <td>Seleccionado</td>
+              <td>Prioridad</td>
+              <td>IPv4 / IPv6</td>
+              <td>URL</td>
+              <td>Observación</td>
+              <td>Modo de filtro</td>
+              <td>Modo de cambio de filtro</td>
+              <td>Eliminar regla</td>
+            </tr>
+            <tr>
+              <td colspan="9">
+                <button id="btnFiltroURL">Añadir regla</button>
+                <button disabled>Prioridad</button>
+                <button disabled>Parte superior</button>
+                <button disabled>Ascender</button>
+                <button disabled>Mover hacia abajo</button>
+                <button disabled>Fondo</button>
+                <button>Aplicar Reglas</button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="ajustesPorDefecto hidden">
+        <br>
+        <div class="regla">
+          <div class="data">
+            <p>Reglas de filtro predeterminado IPv4</p>
+            <input type="radio" name="regla1" checked id="">Aceptar <br>
+            <input type="radio" name="regla1" id="">Rechazar
+          </div>
+        </div>
+        <br>
+        <div class="regla">
+          <div class="data">
+            <p>Reglas de filtro predeterminado IPv6</p>
+            <input type="radio" name="regla2" checked id="">Aceptar <br>
+            <input type="radio" name="regla2" id="">Rechazar
+          </div>
+        </div>
+        <br>
+        <button id="btnAplicarReglasURL">Aplicar reglas</button>
+        <button>Borrar todas las reglas</button>
+      </div>
+    </div>
+    <div class="op_center hidden" id="IPMAC">
+      <div class="tab_menu">
+        <ul class="tabs">
+          <li><a>IP MAC Binding</a></li>
+        </ul>
+      </div>
+      <div class="tab_menu_bottom"></div>
+      <div class="IPMAC ">
+        <table>
+          <tbody>
+            <tr style="background: rgb(51, 154, 214); color: white; font-size: 13px;">
+              <td>Habilitar regla</td>
+              <td>Seleccionado</td>
+              <td>Prioridad</td>
+              <td>IPv4 / IPv6</td>
+              <td>IP</td>
+              <td>Dirección MAC</td>
+              <td>Observación</td>
+              <td>Eliminar regla</td>
+            </tr>
+            <tr>
+              <td colspan="8">
+                <button id="btnIPMAC">Añadir regla</button>
+                <button disabled>Prioridad</button>
+                <button disabled>Parte superior</button>
+                <button disabled>Ascender</button>
+                <button disabled>Mover hacia abajo</button>
+                <button disabled>Fondo</button>
+                <button>Aplicar Reglas</button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+    <div class="op_center hidden" id="FirewallCopiaSeguridad">
+      <div class="title_DMZ">
+        <p>Firewall de copia de seguridad</p>
+      </div>
+      <span>AVISO: Si desea restaurar la configuración del contrafuegos, por favor subir el archivo de copia de seguridad (firewallbactup.tar) en primer lugar.</span>
+      <table>
+        <tbody>
+          <tr>
+            <td class="c-left">Seleccionar el archivo de actualización: </td>
+            <td class="c-right">
+              <button>Seleccionar archivo</button> No se eligió archivo <button>Subir</button> <br><br>
+              <button>Configuración de copia de seguridad</button> <button>Restaurar los ajustes</button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="op_center hidden" id="ConfiguracionSistema">
+      <div class="tab_menu">
+        <ul class="tabs">
+          <li><a>Restaurar configuración de fábrica</a></li>
+        </ul>
+      </div>
+      <div class="tab_menu_bottom"></div>
+      <div class=" ">
+        <table>
+          <tbody>
+            <tr>
+              <td class="c-left">Restaurar configuración de fábrica</td>
+              <td class="c-right"><button id="restaurar">Restaurar</button></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+    <div class="op_center hidden" id="RegistroSistema">
+      <div class="title_DMZ">
+        <p>Registro del sistema</p>
+      </div>
+      <div class="area" style="width: 100%; height: 60vh; background: #d9e5f485"></div><br>
+      <button>Borrar</button>
+    </div>
+    <div class="op_center hidden" id="ActualizacionSistema">
+      <div class="title_DMZ">
+          <p>Actualización local</p>
+      </div>
+      <div class=" ">
+        <table>
+          <tbody>
+            <tr>
+              <td class="c-left">Seleccionar archivo de actualización: </td>
+              <td class="c-right"><button>Seleccionar archivo</button> No se eligió archivo <button>Subir</button></td>
+            </tr>
+            <tr>
+              <td class="c-left"></td>
+              <td class="c-right"><button>Actualizar</button></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="title_DMZ">
+          <p>Actualización remota</p>
+      </div>
+      <div class=" ">
+        <table>
+          <tbody>
+            <tr>
+              <td class="c-left">FOTA URL:</td>
+              <td class="c-right">http://191.102..192.250/TOZED/ZLT_P10/col-cfg.xml</td>
+            </tr>
+            <tr>
+              <td class="c-left"></td>
+              <td class="c-right"><button>Actualizar</button></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+    <div class="op_center hidden" id="ActualizacionConfiguracion">
+      <div class="title_DMZ">
+          <p>Actualización de config</p>
+      </div>
+      <div class=" ">
+        <table>
+          <tbody>
+            <tr>
+              <td class="c-left">Seleccionar archivo de actualización: </td>
+              <td class="c-right"><button>Seleccionar archivo</button> No se eligió archivo <button>Subir</button></td>
+            </tr>
+            <tr>
+              <td class="c-left"></td>
+              <td class="c-right"><button>Actualizar</button></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+    <div class="op_center " id="HerramientasRed">
+      <div class="tab_menu">
+        <ul class="tabs">
+          <li><a>Ping</a></li>
+          <li><a class="hiddenTab">Tcpdump</a></li>
+          <li><a class="hiddenTab">Regitro del sistema</a></li>
+        </ul>
+      </div>
+      <div class="tab_menu_bottom"></div>
+      <div class="ping hidden">
+        <table>
+          <tbody>
+            <tr>
+              <td class="c-left">Contar:</td>
+              <td class="c-right"><input type="text" value="20" style="width: 50px;"><input type="checkbox" name="" id="">Infinito</td>
+            </tr>
+            <tr>
+              <td class="c-left">URL o IP:</td>
+              <td class="c-right"><input type="text"></td>
+            </tr>
+            <tr>
+              <td></td>
+              <td class="c-right"><button>Iniciar</button> <button disabled>Detener</button></td>
+            </tr>
+            <tr>
+              <td></td>
+              <td class="c-right">
+                <textarea name="" id="" cols="70" rows="20"></textarea><br>
+                <button>Borrar</button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="Tcpdump hidden">
+        <table>
+          <tbody>
+            <tr>
+              <td class="c-left">Interfaz</td>
+              <td class="c-right"><input type="text"><span>Si el valor está vacio, el valor predeterminado es de interfaz WAN</span></td>
+            </tr>
+            <tr>
+              <td></td>
+              <td class="c-right">
+                <button>Iniciar</button>
+                <button disabled="disabled">Detener</button>
+              </td>
+            </tr>
+            <tr>
+              <td class="c-left">Tamaño del archivo:</td>
+              <td></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="RegistroSistema ">
+        <table>
+          <tbody>
+            <tr>
+              <td></td>
+              <td class="c-right">
+                <button>Iniciar</button>
+                <button disabled>Detener</button>
+              </td>
+            </tr>
+            <tr>
+              <td class="c-left">Tamaño del archivo</td>
+              <td></td>
             </tr>
           </tbody>
         </table>

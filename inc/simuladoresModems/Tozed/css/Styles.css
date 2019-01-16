@@ -167,7 +167,7 @@ body{
   background: #0099CC;
 }
 /* --------------MODAL------------------ */
-.modal-reinicio{
+.modal{
   position: absolute;
   z-index: 4;
   top: 0;
@@ -176,7 +176,7 @@ body{
   left: 0;
   background: rgba(0, 0, 0, .3);
 }
-.modal-reinicio .modal-content{
+.modal .modal-content{
   border: 10px solid #c4c4c4;
   background: #e9e9e9;
   border-radius: 6px;
@@ -187,40 +187,45 @@ body{
   position: relative;
   z-index: 6;
 }
-.modal-reinicio .modal-content .modal-body{
+.modal .modal-content .modal-body{
   position: relative;
   padding: 15px;
+  background: white;
 }
-.modal-reinicio .modal-content .modal-body h3{
+.modal .modal-content .modal-body h3{
   font-size: 24px;
   font-weight: 500;
 }
-.modal-reinicio .modal-content .modal-body .modal-title{
+.modal .modal-content .modal-body .modal-title{
   font-weight: bold;
   background: #D9E5F4;
   width: 100%;
 }
-.modal-reinicio .modal-content .modal-body .modal-title .title{
+.modal .modal-content .modal-body .modal-title .title{
   width: 34%;
 }
-.modal-reinicio .modal-content .modal-body .modal-title .btn{
+.modal .modal-content .modal-body .modal-title .btn{
   float: right;
   margin: 4px;
 }
-.modal-reinicio .modal-content .modal-body .modal-left{
+.modal .modal-content .modal-body .modal-left{
   font-weight: bold;
   padding: 4px;
   margin: 0;
   text-align: left;
-  font-size: 14px;
+  font-size: 13px;
   width: 200px;
 }
-.modal-reinicio .modal-content .modal-body .modal-right input{
+.modal .modal-content .modal-body .modal-right{
+  font-size: 13px;
+}
+.modal .modal-content .modal-body .modal-right input{
   float: left;
 }
-.modal-reinicio .modal-content .modal-body .modal-right span{
+.modal .modal-content .modal-body .modal-right span{
   padding-left: 5px;
   color: green;
+  float: left;
 }
 /* -------------------------------------------- */
 /* -----------CENTRO------------------- */
@@ -249,21 +254,78 @@ body{
   margin: 0;
   padding: 0;
 }
+.center .op_center .tab_menu .tabs li{
+  display: inline-block;
+  cursor: pointer;
+}
 .center .op_center .tab_menu .tabs a{
   color: #27568F;
   background-color: #D9E5F4;
   border: 1px solid #2E6DB4;
   border-bottom: 2px solid #D9E5F4;
-  cursor: default;
   padding: 3px 15px;
   text-decoration: none;
-  cursor: pointer;
+  font-size: 13px;
 }
 .center .op_center .tab_menu_bottom{
   border-top: solid 5px #D9E5F4;
 }
-.center .op_center .configWifi span{
+.center .op_center span{
   padding-left: 5px;
   color: green;
   font-size: 14px;
+}
+.center .op_center .c-left{
+  padding: 4px;
+  margin: 0;
+  text-align: left;
+  font-size: 14px;
+  color: #333;
+  width: 230px;
+  font-weight: bold;
+}
+.center .op_center .c-right{
+  font-size: 14px;
+}
+.hiddenTab{
+  border: 1px solid #99b7dc !important;
+  border-bottom: 0 !important;
+  padding-bottom: 5px !important;
+  position: relative;
+  z-index: -1;
+  background-color: #d9e5f485 !important;
+}
+.center .op_center table{
+  width: 100%;
+  border-spacing: 1px;
+  margin-top: 7px;
+}
+.color{
+  background-color: rgba(153, 183, 220, 0.1);
+}
+.center .op_center .regla{
+  border: 1px solid gray;
+  font-size: 14px;
+  width: 70%;
+}
+.center .op_center .regla .data{
+  position: relative;
+  top: -10px;
+  left: 31px;
+  background: white;
+  width: 270px;
+  padding-left: 5px;
+  padding-bottom: 6px;
+  margin: 0;
+}
+.center .op_center .regla .data p{
+  margin: 0;
+  padding-bottom: 9px;
+}
+.center .op_center .title_DMZ p{
+  font-size: 15px;
+  margin: 0;
+  background: #cde0f7;
+  font-weight: bold;
+  padding: 3px 13px;
 }
