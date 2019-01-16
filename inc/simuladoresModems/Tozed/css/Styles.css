@@ -8,6 +8,7 @@ body{
   display: flex;
   height: 67px;
   justify-content: space-between;
+  font-size: 13px;
 }
 .header .logo{
   width: 200px;
@@ -40,10 +41,9 @@ body{
 }
 .header .sesion p{
   margin: 0;
-  font-size: 15px;
 }
 .header .sesion .bloque1{
-  /* display: flex; */
+  margin-top: 11px;
   align-items: center;
 }
 .header .sesion .bloque1 .idioma{
@@ -243,6 +243,9 @@ body{
 }
 .center .op_center figure{
   margin: 0;
+}
+.center .op_center img{
+  width: 100%;
 }
 .center .op_center .tab_menu{
   padding-left: 5px;

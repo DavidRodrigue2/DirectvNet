@@ -1,12 +1,13 @@
 const buttonLogin = document.getElementById('buttonLogin');
 const login = document.getElementById('login');
+const loginCenter = document.getElementById('loginCenter');
 const bloque1 = document.getElementById('bloque1');
 const img = document.getElementById('img');
 const menu = document.getElementById('menu');
 
 buttonLogin.addEventListener('click', (event)=>{
   login.classList.add('hidden');
-  // img.src = "Images/Info_general.png";
+  loginCenter.classList.add('hidden');
   menu.classList.remove('hidden');
   bloque1.classList.remove('hidden');
 });
