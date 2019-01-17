@@ -52,7 +52,7 @@ function doClick(n){
     h.classList.add('activH');
     left.classList.remove('hidden')
   }
-  else{
+  else if(n > 10 && n < 100){
     const li = document.getElementById('li'+n);
     const left = document.getElementById('left_'+n);
     d = menu.childElementCount;
@@ -82,6 +82,23 @@ function doClick(n){
       left.classList.remove('hidden')
       li.classList.add('selectLi')
     }
+  }
+  else if(n > 100){
+    var z = (n/10).toFixed(0)
+    const ul = document.getElementById('ul'+z)
+    x = ul.childElementCount
+    var a = (z*10+1)
+    for( var i=0; i<x; i++){
+      const tab = document.getElementById('tab'+a)
+      tab.classList.add('hiddenTab')
+      const cont = document.getElementById('cont'+a)
+      cont.classList.add('hidden')
+      a+=1
+    }
+    const tab = document.getElementById('tab'+n)
+    tab.classList.remove('hiddenTab')
+    const cont = document.getElementById('cont'+n)
+    cont.classList.remove('hidden')
   }
 }
 

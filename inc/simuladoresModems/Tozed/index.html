@@ -594,13 +594,13 @@
     </div>
     <div class="op_center hidden" id="left_32">
       <div class="tab_menu">
-        <ul class="tabs">
-          <li><a>Configuración DHCP</a></li>
-          <li><a class="hiddenTab">Dirección IP Reservada</a></li>
+        <ul class="tabs" id="ul32">
+          <li onclick="doClick(321)"><a id="tab321">Configuración DHCP</a></li>
+          <li onclick="doClick(322)"><a class="hiddenTab" id="tab322">Dirección IP Reservada</a></li>
         </ul>
       </div>
       <div class="tab_menu_bottom"></div>
-      <div class="conf-DHCP hidden">
+      <div class="conf-DHCP" id="cont321">
         <table>
           <tbody>
             <tr>
@@ -633,10 +633,10 @@
           </tbody>
         </table>
       </div>
-      <div class="conf-IPReserv">
+      <div class="conf-IPReserv hidden" id="cont322">
         <table>
           <tbody>
-            <tr style="background: rgb(51, 154, 214);">
+            <tr style="background: rgb(51, 154, 214); color: white; font-size: 13px;">
               <td>No.</td>
               <td>Dirección MAC</td>
               <td>IP</td>
@@ -663,7 +663,7 @@
       <div class="rutas">
         <table>
           <tbody>
-            <tr style="background: rgb(51, 154, 214); color: white">
+            <tr style="background: rgb(51, 154, 214); color: white; font-size: 13px;">
               <td>No.</td>
               <td>Interfaz</td>
               <td>Dirección IP de destino</td>
@@ -687,14 +687,14 @@
     </div>
     <div class="op_center hidden" id="left_34">
       <div class="tab_menu">
-        <ul class="tabs">
-          <li><a>Configuración de Oray</a></li>
-          <li><a class="hiddenTab">Configuración de Pubuy</a></li>
-          <li><a class="hiddenTab">Otros servidores de configuraciones de DDNS</a></li>
+        <ul class="tabs" id="ul34">
+          <li onclick="doClick(341)"><a id="tab341">Configuración de Oray</a></li>
+          <li onclick="doClick(342)"><a class="hiddenTab" id="tab342">Configuración de Pubuy</a></li>
+          <li onclick="doClick(343)"><a class="hiddenTab" id="tab343">Otros servidores de configuraciones de DDNS</a></li>
         </ul>
       </div>
       <div class="tab_menu_bottom"></div>
-      <div class="conf-DDNS-Oray hidden">
+      <div class="conf-DDNS-Oray" id="cont341">
         <span>Consejo: Si usted no tiene una cuenta, por favor visite el sitio web Oray <a href="www.oray.com">www.oray.com</a> para registrar</span>
         <table>
           <tbody>
@@ -733,7 +733,7 @@
           </tbody>
         </table>
       </div>
-      <div class="conf-DDNS-pubyun hidden">
+      <div class="conf-DDNS-pubyun hidden" id="cont342">
         <span>Consejo: Si usted no tiene una cuenta, por favor visite el sitio web Pubyun <a href="www.pubyun.com">www.pubyun.com</a> para registrar</span>
         <table>
           <tbody>
@@ -772,7 +772,7 @@
           </tbody>
         </table>
       </div>
-      <div class="conf-DDNS-otros ">
+      <div class="conf-DDNS-otros hidden" id="cont343">
         <span>Consejo: Si usted no tiene una cuenta, por favor visite uno de los siguientes servicios y registrar primero</span>
         <br> <a href="http://dyndns.org">http://dyndns.org</a>
         <br> <a href="http://noip.com">http://noip.com</a>
@@ -829,14 +829,14 @@
     </div>
     <div class="op_center hidden" id="left_4">
       <div class="tab_menu">
-        <ul class="tabs">
-          <li><a>Filtros de puertos</a></li>
-          <li><a class="hiddenTab">Filtado IP</a></li>
-          <li><a class="hiddenTab">Ajustes por defecto</a></li>
+        <ul class="tabs" id="ul40">
+          <li onclick="doClick(401)"><a id="tab401">Filtros de puertos</a></li>
+          <li onclick="doClick(402)"><a class="hiddenTab" id="tab402">Filtado IP</a></li>
+          <li onclick="doClick(403)"><a class="hiddenTab" id="tab403">Ajustes por defecto</a></li>
         </ul>
       </div>
       <div class="tab_menu_bottom"></div>
-      <div class="filtroPuertos hidden">
+      <div class="filtroPuertos " id="cont401">
         <table>
           <tbody>
             <tr style="background: rgb(51, 154, 214); color: white; font-size: 13px;">
@@ -865,7 +865,7 @@
           </tbody>
         </table>
       </div>
-      <div class="filtradoIP hidden">
+      <div class="filtradoIP hidden" id="cont402">
         <table>
           <tbody>
             <tr style="background: rgb(51, 154, 214); color: white; font-size: 13px;">
@@ -894,7 +894,7 @@
           </tbody>
         </table>
       </div>
-      <div class="ajustesPorDefecto ">
+      <div class="ajustesPorDefecto hidden" id="cont403">
         <br>
         <div class="regla">
           <div class="data">
@@ -918,13 +918,13 @@
     </div>
     <div class="op_center hidden" id="left_42">
       <div class="tab_menu">
-        <ul class="tabs">
-          <li><a>Filtrado de direcciones MAC</a></li>
-          <li><a class="hiddenTab">Ajustes por defecto</a></li>
+        <ul class="tabs" id="ul42">
+          <li onclick="doClick(421)"><a id="tab421">Filtrado de direcciones MAC</a></li>
+          <li onclick="doClick(422)"><a class="hiddenTab" id="tab422">Ajustes por defecto</a></li>
         </ul>
       </div>
       <div class="tab_menu_bottom"></div>
-      <div class="filtroMAC hidden">
+      <div class="filtroMAC " id="cont421">
         <table>
           <tbody>
             <tr style="background: rgb(51, 154, 214); color: white; font-size: 13px;">
@@ -952,7 +952,7 @@
           </tbody>
         </table>
       </div>
-      <div class="ajustesPorDefecto ">
+      <div class="ajustesPorDefecto hidden" id="cont422">
         <br>
         <div class="regla">
           <div class="data">
@@ -1034,13 +1034,13 @@
     </div>
     <div class="op_center hidden" id="left_45">
       <div class="tab_menu">
-        <ul class="tabs">
-          <li><a>Filtrado de URL</a></li>
-          <li><a class="hiddenTab">Ajustes por defecto</a></li>
+        <ul class="tabs" id="ul45">
+          <li onclick="doClick(451)"><a id="tab451">Filtrado de URL</a></li>
+          <li onclick="doClick(452)"><a class="hiddenTab" id="tab452">Ajustes por defecto</a></li>
         </ul>
       </div>
       <div class="tab_menu_bottom"></div>
-      <div class="filtroMAC ">
+      <div class="filtroMAC " id="cont451">
         <table>
           <tbody>
             <tr style="background: rgb(51, 154, 214); color: white; font-size: 13px;">
@@ -1068,7 +1068,7 @@
           </tbody>
         </table>
       </div>
-      <div class="ajustesPorDefecto hidden">
+      <div class="ajustesPorDefecto hidden" id="cont452">
         <br>
         <div class="regla">
           <div class="data">
@@ -1224,14 +1224,14 @@
     </div>
     <div class="op_center hidden" id="left_55">
       <div class="tab_menu">
-        <ul class="tabs">
-          <li><a>Ping</a></li>
-          <li><a class="hiddenTab">Tcpdump</a></li>
-          <li><a class="hiddenTab">Regitro del sistema</a></li>
+        <ul class="tabs" id="ul55">
+          <li onclick="doClick(551)"><a id="tab551">Ping</a></li>
+          <li onclick="doClick(552)"><a class="hiddenTab" id="tab552">Tcpdump</a></li>
+          <li onclick="doClick(553)"><a class="hiddenTab" id="tab553">Regitro del sistema</a></li>
         </ul>
       </div>
       <div class="tab_menu_bottom"></div>
-      <div class="ping hidden">
+      <div class="ping " id="cont551">
         <table>
           <tbody>
             <tr>
@@ -1256,7 +1256,7 @@
           </tbody>
         </table>
       </div>
-      <div class="Tcpdump hidden">
+      <div class="Tcpdump hidden" id="cont552">
         <table>
           <tbody>
             <tr>
@@ -1277,7 +1277,7 @@
           </tbody>
         </table>
       </div>
-      <div class="RegistroSistema ">
+      <div class="RegistroSistema hidden" id="cont553">
         <table>
           <tbody>
             <tr>
