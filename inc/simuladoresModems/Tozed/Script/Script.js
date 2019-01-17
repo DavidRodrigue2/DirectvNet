@@ -4,48 +4,88 @@ const loginCenter = document.getElementById('loginCenter');
 const bloque1 = document.getElementById('bloque1');
 const img = document.getElementById('img');
 const menu = document.getElementById('menu');
+const infoGral = document.getElementById('left_1');
 
 buttonLogin.addEventListener('click', (event)=>{
   login.classList.add('hidden');
   loginCenter.classList.add('hidden');
   menu.classList.remove('hidden');
+  infoGral.classList.remove('hidden');
   bloque1.classList.remove('hidden');
 });
 
 function doClick(n){
   if (n < 10) {
+    var s = (n * 10) + 1;
     const ol = document.getElementById('ol'+n);
+    const li = document.getElementById('li'+s);
+    const left = document.getElementById('left_'+n);
     const h = document.getElementById('h'+n);
     d = menu.childElementCount;
     for (var i = 1; i <= d; i++){
+      // li.classList.remove('selectLi')
       const ol2 = document.getElementById('ol'+i);
+      const left1 = document.getElementById('left_'+i);
+      left1.classList.add('hidden');
       const h2 = document.getElementById('h'+i);
       ol2.classList.remove('activOl');
       h2.classList.remove('activH');
-  
       z = ol2.childElementCount - 1;
       for(var b = 1; b <= z; b++){
         var c = (i * 10) + b;
+        if(b != 1){
+          const left2 = document.getElementById('left_'+c);
+          left2.classList.add('hidden');
+        }
         const li = document.getElementById('li'+c);
         li.classList.remove('activLi');
       }
     }
-    
     x = ol.childElementCount - 1;
     for(var b = 1; b <= x; b++){
       var a = (n * 10) + b;
       const li = document.getElementById('li'+a);
       li.classList.add('activLi');
     }
-    var r = (n * 10) + 1;
-    // center(r);
+    li.classList.add('selectLi');
     ol.classList.add('activOl');
     h.classList.add('activH');
+    left.classList.remove('hidden')
   }
   else{
-    // center(n);
+    const li = document.getElementById('li'+n);
+    const left = document.getElementById('left_'+n);
+    d = menu.childElementCount;
+    for (var i = 1; i <= d; i++){
+      const ol2 = document.getElementById('ol'+i);
+      const left1 = document.getElementById('left_'+i);
+      left1.classList.add('hidden');
+      z = ol2.childElementCount - 1;
+      for(var b = 1; b <= z; b++){
+        var c = (i * 10) + b;
+        const li2 = document.getElementById('li'+c);
+        li2.classList.remove('selectLi');
+        if(b != 1){
+          const left2 = document.getElementById('left_'+c);
+          left2.classList.add('hidden');
+          li2.classList.remove('selectLi');
+        }
+      }
+    }
+    if(li.className == 'li firt activLi' || li.className == 'li firt activLi selectLi'){
+      var z = (n-1)/10;
+      const left = document.getElementById('left_'+z);
+      left.classList.remove('hidden')
+      li.classList.add('selectLi')
+    }
+    else{
+      left.classList.remove('hidden')
+      li.classList.add('selectLi')
+    }
   }
 }
+
+// ------------------MODALES------------------
 
 const close = document.getElementById('close');
 const save = document.getElementById('save');
@@ -237,7 +277,12 @@ reiniciar.addEventListener('click', (event)=>{
   alert('¿Está seguro de que desea reiniciar?')
 })
 
+const dmz = document.getElementById('dmz')
+const host = document.getElementById('host')
 
+dmz.addEventListener('click', (event=>{
+  host.classList.toggle('hidden')
+}))
 
 
 
@@ -253,15 +298,8 @@ var tableLength = table.length;
 for(var i = 0; i<tableLength; i++){
   for(var j = 0; j<table[i].rows.length; j++){
     if(j % 2){
-      // table[i].rows[j].bgColor= '#99b7dc'
       table[i].rows[j].classList.add('color')
     }
   }
 }
 
-const dmz = document.getElementById('dmz')
-const host = document.getElementById('host')
-
-dmz.addEventListener('click', (event=>{
-  host.classList.toggle('hidden')
-}))

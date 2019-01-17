@@ -401,23 +401,23 @@
     </div>
     <div class="menu hidden" id="menu">
       <ol class="ol activOl" id="ol1"><h3 class="h3 activH" id="h1" onclick="doClick(1)">Estado del sistema</h3>
-        <li class="li activLi selectLi" id="li11" onclick="doClick(11)">Informacion general</li>
+        <li class="li firt activLi selectLi" id="li11" onclick="doClick(11)">Informacion general</li>
         <li class="li activLi" id="li12" onclick="doClick(12)">Versión</li>
         <li class="li activLi" id="li13" onclick="doClick(13)">Dispositivos conectados</li>
         <li class="li activLi" id="li14" onclick="doClick(14)">Estadísticas de tráfico</li>
         <li class="li activLi" id="li15" onclick="doClick(15)">Estado LTE</li>
       </ol>
       <ol class="ol" id="ol2"><h3 class="h3" id="h2" onclick="doClick(2)">Configuración Wi-Fi</h3>
-        <li class="li" id="li21" onclick="doClick(21)">Configuración Wi-Fi</li>
+        <li class="li firt" id="li21" onclick="doClick(21)">Configuración Wi-Fi</li>
       </ol>
       <ol class="ol" id="ol3"><h3 class="h3" id="h3" onclick="doClick(3)">Configuración</h3>
-        <li class="li" id="li31" onclick="doClick(31)">WAN</li>
+        <li class="li firt" id="li31" onclick="doClick(31)">WAN</li>
         <li class="li" id="li32" onclick="doClick(32)">DHCP</li>
         <li class="li" id="li33" onclick="doClick(33)">Rutas</li>
         <li class="li" id="li34" onclick="doClick(34)">DDNS</li>
       </ol>
       <ol class="ol" id="ol4"><h3 class="h3" id="h4" onclick="doClick(4)">Firewall</h3>
-        <li class="li" id="li41" onclick="doClick(41)">Reglas de filtrado</li>
+        <li class="li firt" id="li41" onclick="doClick(41)">Reglas de filtrado</li>
         <li class="li" id="li42" onclick="doClick(42)">Filtro MAC</li>
         <li class="li" id="li43" onclick="doClick(43)">Mapeo de puerto</li>
         <li class="li" id="li44" onclick="doClick(44)">IP DMZ</li>
@@ -426,7 +426,7 @@
         <li class="li" id="li47" onclick="doClick(47)">Firewall de copia de seguridad</li>
       </ol>
       <ol class="ol" id="ol5"><h3 class="h3" id="h5" onclick="doClick(5)">Administración</h3>
-        <li class="li" id="li51" onclick="doClick(51)">Configuración del sistema</li>
+        <li class="li firt" id="li51" onclick="doClick(51)">Configuración del sistema</li>
         <li class="li" id="li52" onclick="doClick(52)">Registro del sistema</li>
         <li class="li" id="li53" onclick="doClick(53)">Actualización del sistema</li>
         <li class="li" id="li54" onclick="doClick(54)">Actualización de config</li>
@@ -442,32 +442,32 @@
         <img src="Images/center.png" alt="" id="img">
       </figure>
     </div>
-    <div class="op_center hidden" id="informacion-general">
+    <div class="op_center hidden" id="left_1">
       <figure>
         <img src="Images/Info_general.png" alt="">
       </figure>
     </div>
-    <div class="op_center hidden" id="version">
+    <div class="op_center hidden" id="left_12">
       <figure>
         <img src="Images/Version.png" alt="">
       </figure>
     </div>
-    <div class="op_center hidden" id="dispositivos-conectados">
+    <div class="op_center hidden" id="left_13">
       <figure>
         <img src="Images/Dispositivos_conectados.png" alt="">
       </figure>
     </div>
-    <div class="op_center hidden" id="estadisicas-trafico">
+    <div class="op_center hidden" id="left_14">
       <figure>
         <img src="Images/Estadisticas.png" alt="">
       </figure>
     </div>
-    <div class="op_center hidden" id="estado-lte">
+    <div class="op_center hidden" id="left_15">
       <figure>
         <img src="Images/EstadoLTE.png" alt="">
       </figure>
     </div>
-    <div class="op_center hidden" id="configuracion-wifi">
+    <div class="op_center hidden" id="left_2">
       <div class="tab_menu">
         <ul class="tabs">
           <li><a>Configuración Wi-Fi</a></li>
@@ -559,7 +559,7 @@
         </table>
       </div>
     </div>
-    <div class="op_center hidden" id="wan">
+    <div class="op_center hidden" id="left_3">
       <div class="tab_menu">
         <ul class="tabs">
           <li><a>Ajustes DNS</a></li>
@@ -592,7 +592,7 @@
         </table>
       </div>
     </div>
-    <div class="op_center hidden" id="DHCP">
+    <div class="op_center hidden" id="left_32">
       <div class="tab_menu">
         <ul class="tabs">
           <li><a>Configuración DHCP</a></li>
@@ -653,7 +653,7 @@
         </table>
       </div>
     </div>
-    <div class="op_center hidden" id="rutas">
+    <div class="op_center hidden" id="left_33">
       <div class="tab_menu">
         <ul class="tabs">
           <li><a>Tabla de enrutamiento estático</a></li>
@@ -685,7 +685,7 @@
         </table>
       </div>
     </div>
-    <div class="op_center hidden" id="DDNS">
+    <div class="op_center hidden" id="left_34">
       <div class="tab_menu">
         <ul class="tabs">
           <li><a>Configuración de Oray</a></li>
@@ -827,7 +827,7 @@
         </table>
       </div>
     </div>
-    <div class="op_center hidden" id="reglas-de-filtrado">
+    <div class="op_center hidden" id="left_4">
       <div class="tab_menu">
         <ul class="tabs">
           <li><a>Filtros de puertos</a></li>
@@ -916,7 +916,7 @@
         <button>Borrar todas las reglas</button>
       </div>
     </div>
-    <div class="op_center hidden" id="filtroMAC">
+    <div class="op_center hidden" id="left_42">
       <div class="tab_menu">
         <ul class="tabs">
           <li><a>Filtrado de direcciones MAC</a></li>
@@ -974,7 +974,7 @@
         <button>Borrar todas las reglas</button>
       </div>
     </div>
-    <div class="op_center hidden" id="mapeoPuertos">
+    <div class="op_center hidden" id="left_43">
       <div class="tab_menu">
         <ul class="tabs">
           <li><a>Mapeo de puerto</a></li>
@@ -1010,7 +1010,7 @@
         </table>
       </div>
     </div>
-    <div class="op_center hidden" id="IpDMZ">
+    <div class="op_center hidden" id="left_44">
       <div class="title_DMZ">
         <p>IP DMZ</p>
       </div>
@@ -1032,7 +1032,7 @@
         </tbody>
       </table>
     </div>
-    <div class="op_center hidden" id="filtroURL">
+    <div class="op_center hidden" id="left_45">
       <div class="tab_menu">
         <ul class="tabs">
           <li><a>Filtrado de URL</a></li>
@@ -1090,7 +1090,7 @@
         <button>Borrar todas las reglas</button>
       </div>
     </div>
-    <div class="op_center hidden" id="IPMAC">
+    <div class="op_center hidden" id="left_46">
       <div class="tab_menu">
         <ul class="tabs">
           <li><a>IP MAC Binding</a></li>
@@ -1125,7 +1125,7 @@
         </table>
       </div>
     </div>
-    <div class="op_center hidden" id="FirewallCopiaSeguridad">
+    <div class="op_center hidden" id="left_47">
       <div class="title_DMZ">
         <p>Firewall de copia de seguridad</p>
       </div>
@@ -1142,7 +1142,7 @@
         </tbody>
       </table>
     </div>
-    <div class="op_center hidden" id="ConfiguracionSistema">
+    <div class="op_center hidden" id="left_5">
       <div class="tab_menu">
         <ul class="tabs">
           <li><a>Restaurar configuración de fábrica</a></li>
@@ -1160,14 +1160,14 @@
         </table>
       </div>
     </div>
-    <div class="op_center hidden" id="RegistroSistema">
+    <div class="op_center hidden" id="left_52">
       <div class="title_DMZ">
         <p>Registro del sistema</p>
       </div>
       <div class="area" style="width: 100%; height: 60vh; background: #d9e5f485"></div><br>
       <button>Borrar</button>
     </div>
-    <div class="op_center hidden" id="ActualizacionSistema">
+    <div class="op_center hidden" id="left_53">
       <div class="title_DMZ">
           <p>Actualización local</p>
       </div>
@@ -1203,7 +1203,7 @@
         </table>
       </div>
     </div>
-    <div class="op_center hidden" id="ActualizacionConfiguracion">
+    <div class="op_center hidden" id="left_54">
       <div class="title_DMZ">
           <p>Actualización de config</p>
       </div>
@@ -1222,7 +1222,7 @@
         </table>
       </div>
     </div>
-    <div class="op_center hidden" id="HerramientasRed">
+    <div class="op_center hidden" id="left_55">
       <div class="tab_menu">
         <ul class="tabs">
           <li><a>Ping</a></li>
@@ -1295,6 +1295,7 @@
         </table>
       </div>
     </div>
+    <div class="op_center hidden" id="left_56"></div>
   </div>
   <script type="text/javascript" src="Script/Script.js"></script>
 </body>
