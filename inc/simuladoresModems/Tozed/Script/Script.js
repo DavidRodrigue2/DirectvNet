@@ -23,7 +23,6 @@ function doClick(n){
     const h = document.getElementById('h'+n);
     d = menu.childElementCount;
     for (var i = 1; i <= d; i++){
-      // li.classList.remove('selectLi')
       const ol2 = document.getElementById('ol'+i);
       const left1 = document.getElementById('left_'+i);
       left1.classList.add('hidden');
